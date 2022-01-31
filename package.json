@@ -1,0 +1,38 @@
+{
+  "name": "@puppeteer/replay",
+  "version": "0.0.1",
+  "description": "Replay is a library which provides an API to replay and stringify recordings created using Chrome DevTools Recorder](https://developer.chrome.com/docs/devtools/recorder/)",
+  "main": "lib/main.js",
+  "types": "lib/main.d.ts",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "npm run tsc && mocha --config .mocharc.cjs",
+    "eslint": "([ \"$CI\" = true ] && eslint --ext js --ext ts --quiet -f codeframe . || eslint --ext js --ext ts .)",
+    "eslint-fix": "eslint --ext js --ext ts --fix .",
+    "clean-lib": "rimraf lib",
+    "build": "npm run tsc",
+    "tsc": "npm run clean-lib && tsc --version && tsc -b tsconfig.json"
+  },
+  "author": "Chrome DevTools authors",
+  "license": "Apache-2.0",
+  "type": "module",
+  "devDependencies": {
+    "@types/chai": "4.3.0",
+    "@types/mocha": "9.1.0",
+    "@types/node": "17.0.13",
+    "@typescript-eslint/eslint-plugin": "5.10.1",
+    "@typescript-eslint/parser": "5.10.1",
+    "chai": "4.3.6",
+    "eslint": "8.8.0",
+    "eslint-config-google": "0.14.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "mocha": "9.2.0",
+    "prettier": "2.5.1",
+    "rimraf": "3.0.2",
+    "ts-node": "10.4.0",
+    "typescript": "4.5.5"
+  }
+}

@@ -69,40 +69,6 @@ export const typeableInputTypes = new Set([
   "email",
 ]);
 
-export function createViewportStep(viewport: {
-  clientWidth: number;
-  clientHeight: number;
-}): SetViewportStep {
-  return {
-    type: "setViewport",
-    width: viewport.clientWidth,
-    height: viewport.clientHeight,
-    // TODO read real parameters here
-    deviceScaleFactor: 1,
-    isMobile: false,
-    hasTouch: false,
-    isLandscape: false,
-  };
-}
-
-export function createEmulateNetworkConditionsStep(conditions: {
-  download: number;
-  upload: number;
-  latency: number;
-}): EmulateNetworkConditionsStep {
-  return {
-    type: "emulateNetworkConditions",
-    ...conditions,
-  };
-}
-
-export function areSelectorsEqual(stepA: Step, stepB: Step): boolean {
-  if ("selectors" in stepA && "selectors" in stepB) {
-    return JSON.stringify(stepA.selectors) === JSON.stringify(stepB.selectors);
-  }
-  return !("selectors" in stepA) && !("selectors" in stepB);
-}
-
 function hasProperty<KeyType extends PropertyKey>(
   data: object,
   prop: KeyType

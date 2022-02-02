@@ -12,11 +12,10 @@ on:
 
 jobs:
   main-checks:
-    # https://github.com/actions/virtual-environments#available-environments
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        # Latest Ubuntu, MacOS, Windows
+        # https://github.com/actions/virtual-environments#available-environments
         os: [ubuntu-latest, macos-latest, windows-latest]
         # Include all major maintenance + active LTS + current Node.js versions.
         # https://github.com/nodejs/Release#release-schedule
@@ -34,7 +33,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get install xvfb
           npm ci
 
       - name: Build
@@ -51,5 +49,5 @@ jobs:
           CHROMIUM: true
         with:
           max_attempts: 3
-          command: xvfb-run --auto-servernum npm run test
+          command: npm run test
           timeout_minutes: 10

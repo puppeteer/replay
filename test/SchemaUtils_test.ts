@@ -14,17 +14,17 @@
     limitations under the License.
  */
 
-import { parse } from "../src/SchemaUtils.js";
-import { assert } from "chai";
+import { parse } from '../src/SchemaUtils.js';
+import { assert } from 'chai';
 
-describe("SchemaUtils", () => {
-  describe("Schema parser", () => {
-    it("should parse a sample Schema JSON", () => {
+describe('SchemaUtils', () => {
+  describe('Schema parser', () => {
+    it('should parse a sample Schema JSON', () => {
       const actual = parse({
-        title: "test",
+        title: 'test',
         steps: [
           {
-            type: "setViewport",
+            type: 'setViewport',
             width: 735,
             height: 1064,
             deviceScaleFactor: 1,
@@ -33,57 +33,57 @@ describe("SchemaUtils", () => {
             isLandscape: false,
           },
           {
-            type: "navigate",
-            url: "https://www.google.com/",
+            type: 'navigate',
+            url: 'https://www.google.com/',
             assertedEvents: [
               {
-                type: "navigation",
-                url: "https://www.google.com/",
-                title: "Google",
+                type: 'navigation',
+                url: 'https://www.google.com/',
+                title: 'Google',
               },
             ],
           },
           {
-            type: "click",
+            type: 'click',
             selectors: [
-              ["aria/Google"],
-              ["body > div.L3eUgb > div.o3j99.LLD4me.yr19Zb.LS8OJ > div > img"],
+              ['aria/Google'],
+              ['body > div.L3eUgb > div.o3j99.LLD4me.yr19Zb.LS8OJ > div > img'],
             ],
-            target: "main",
+            target: 'main',
             offsetX: 213.5,
             offsetY: 46,
           },
           {
-            type: "click",
+            type: 'click',
             selectors: [
-              ["aria/Images"],
-              ["#gb > div > div:nth-child(1) > div > div:nth-child(2) > a"],
+              ['aria/Images'],
+              ['#gb > div > div:nth-child(1) > div > div:nth-child(2) > a'],
             ],
-            target: "main",
+            target: 'main',
             offsetX: 16.640625,
             offsetY: 15,
             assertedEvents: [
               {
-                type: "navigation",
-                url: "https://www.google.com/imghp?hl=en&ogbl",
-                title: "Google Images",
+                type: 'navigation',
+                url: 'https://www.google.com/imghp?hl=en&ogbl',
+                title: 'Google Images',
               },
             ],
           },
           {
-            type: "click",
-            selectors: [["aria/Search"], ["#sbtc > div > div.a4bIc > input"]],
-            target: "main",
+            type: 'click',
+            selectors: [['aria/Search'], ['#sbtc > div > div.a4bIc > input']],
+            target: 'main',
             offsetX: 126,
             offsetY: 26.5,
           },
         ],
       });
       assert.deepEqual(actual, {
-        title: "test",
+        title: 'test',
         steps: [
           {
-            type: "setViewport",
+            type: 'setViewport',
             width: 735,
             height: 1064,
             deviceScaleFactor: 1,
@@ -92,47 +92,47 @@ describe("SchemaUtils", () => {
             isLandscape: false,
           },
           {
-            type: "navigate",
-            url: "https://www.google.com/",
+            type: 'navigate',
+            url: 'https://www.google.com/',
             assertedEvents: [
               {
-                type: "navigation",
-                url: "https://www.google.com/",
-                title: "Google",
+                type: 'navigation',
+                url: 'https://www.google.com/',
+                title: 'Google',
               },
             ],
           },
           {
-            type: "click",
+            type: 'click',
             selectors: [
-              ["aria/Google"],
-              ["body > div.L3eUgb > div.o3j99.LLD4me.yr19Zb.LS8OJ > div > img"],
+              ['aria/Google'],
+              ['body > div.L3eUgb > div.o3j99.LLD4me.yr19Zb.LS8OJ > div > img'],
             ],
-            target: "main",
+            target: 'main',
             offsetX: 213.5,
             offsetY: 46,
           },
           {
-            type: "click",
+            type: 'click',
             selectors: [
-              ["aria/Images"],
-              ["#gb > div > div:nth-child(1) > div > div:nth-child(2) > a"],
+              ['aria/Images'],
+              ['#gb > div > div:nth-child(1) > div > div:nth-child(2) > a'],
             ],
-            target: "main",
+            target: 'main',
             offsetX: 16.640625,
             offsetY: 15,
             assertedEvents: [
               {
-                type: "navigation",
-                url: "https://www.google.com/imghp?hl=en&ogbl",
-                title: "Google Images",
+                type: 'navigation',
+                url: 'https://www.google.com/imghp?hl=en&ogbl',
+                title: 'Google Images',
               },
             ],
           },
           {
-            type: "click",
-            selectors: [["aria/Search"], ["#sbtc > div > div.a4bIc > input"]],
-            target: "main",
+            type: 'click',
+            selectors: [['aria/Search'], ['#sbtc > div > div.a4bIc > input']],
+            target: 'main',
             offsetX: 126,
             offsetY: 26.5,
           },
@@ -140,37 +140,37 @@ describe("SchemaUtils", () => {
       });
     });
 
-    it("should parse a script without steps", () => {
+    it('should parse a script without steps', () => {
       const actual = parse({
-        title: "test",
+        title: 'test',
         steps: [],
       });
       assert.deepEqual(actual, {
-        title: "test",
+        title: 'test',
         steps: [],
       });
     });
 
-    it("should parse a script with timeout", () => {
+    it('should parse a script with timeout', () => {
       const actual = parse({
-        title: "test",
+        title: 'test',
         timeout: 100,
         steps: [],
       });
       assert.deepEqual(actual, {
-        title: "test",
+        title: 'test',
         timeout: 100,
         steps: [],
       });
     });
 
-    it("should parse a script with setViewport step", () => {
+    it('should parse a script with setViewport step', () => {
       assert.deepEqual(
         parse({
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "setViewport",
+              type: 'setViewport',
               width: 735,
               height: 1064,
               deviceScaleFactor: 1,
@@ -181,10 +181,10 @@ describe("SchemaUtils", () => {
           ],
         }),
         {
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "setViewport",
+              type: 'setViewport',
               width: 735,
               height: 1064,
               deviceScaleFactor: 1,
@@ -197,13 +197,13 @@ describe("SchemaUtils", () => {
       );
     });
 
-    it("should parse a script with emulateNetworkConditionsStep step", () => {
+    it('should parse a script with emulateNetworkConditionsStep step', () => {
       assert.deepEqual(
         parse({
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "emulateNetworkConditions",
+              type: 'emulateNetworkConditions',
               download: 1,
               upload: 1,
               latency: 1,
@@ -211,10 +211,10 @@ describe("SchemaUtils", () => {
           ],
         }),
         {
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "emulateNetworkConditions",
+              type: 'emulateNetworkConditions',
               download: 1,
               upload: 1,
               latency: 1,
@@ -224,71 +224,71 @@ describe("SchemaUtils", () => {
       );
     });
 
-    it("should parse a script with keyDown step", () => {
+    it('should parse a script with keyDown step', () => {
       assert.deepEqual(
         parse({
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "keyDown",
-              target: "main",
-              key: "A",
+              type: 'keyDown',
+              target: 'main',
+              key: 'A',
             },
           ],
         }),
         {
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "keyDown",
-              target: "main",
-              key: "A",
+              type: 'keyDown',
+              target: 'main',
+              key: 'A',
             },
           ],
         }
       );
     });
 
-    it("should parse a script with waitForElement step", () => {
+    it('should parse a script with waitForElement step', () => {
       assert.deepEqual(
         parse({
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "waitForElement",
-              selectors: [["aria/Test"]],
+              type: 'waitForElement',
+              selectors: [['aria/Test']],
             },
           ],
         }),
         {
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "waitForElement",
-              selectors: [["aria/Test"]],
+              type: 'waitForElement',
+              selectors: [['aria/Test']],
             },
           ],
         }
       );
       assert.deepEqual(
         parse({
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "waitForElement",
-              selectors: [["aria/Test"]],
-              operator: "==",
+              type: 'waitForElement',
+              selectors: [['aria/Test']],
+              operator: '==',
               count: 1,
             },
           ],
         }),
         {
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "waitForElement",
-              selectors: [["aria/Test"]],
-              operator: "==",
+              type: 'waitForElement',
+              selectors: [['aria/Test']],
+              operator: '==',
               count: 1,
             },
           ],
@@ -296,137 +296,137 @@ describe("SchemaUtils", () => {
       );
     });
 
-    it("should parse a script with waitForExpression step", () => {
+    it('should parse a script with waitForExpression step', () => {
       assert.deepEqual(
         parse({
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "waitForExpression",
-              expression: "1 + 2",
+              type: 'waitForExpression',
+              expression: '1 + 2',
             },
           ],
         }),
         {
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "waitForExpression",
-              expression: "1 + 2",
+              type: 'waitForExpression',
+              expression: '1 + 2',
             },
           ],
         }
       );
     });
 
-    it("should parse a script with close step", () => {
+    it('should parse a script with close step', () => {
       assert.deepEqual(
         parse({
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "close",
+              type: 'close',
             },
           ],
         }),
         {
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "close",
+              type: 'close',
             },
           ],
         }
       );
     });
 
-    it("should parse a script with custom step", () => {
+    it('should parse a script with custom step', () => {
       assert.deepEqual(
         parse({
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "customStep",
-              name: "test",
-              parameters: ["1", "2"],
+              type: 'customStep',
+              name: 'test',
+              parameters: ['1', '2'],
             },
           ],
         }),
         {
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "customStep",
-              name: "test",
-              parameters: ["1", "2"],
+              type: 'customStep',
+              name: 'test',
+              parameters: ['1', '2'],
             },
           ],
         }
       );
     });
 
-    it("should parse a script with navigate step", () => {
+    it('should parse a script with navigate step', () => {
       assert.deepEqual(
         parse({
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "navigate",
-              url: "http://localhost",
+              type: 'navigate',
+              url: 'http://localhost',
             },
           ],
         }),
         {
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "navigate",
-              url: "http://localhost",
+              type: 'navigate',
+              url: 'http://localhost',
             },
           ],
         }
       );
       assert.deepEqual(
         parse({
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "navigate",
-              url: "http://localhost",
-              target: "main",
+              type: 'navigate',
+              url: 'http://localhost',
+              target: 'main',
             },
           ],
         }),
         {
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "navigate",
-              url: "http://localhost",
-              target: "main",
+              type: 'navigate',
+              url: 'http://localhost',
+              target: 'main',
             },
           ],
         }
       );
     });
 
-    it("should parse a script with scroll step", () => {
+    it('should parse a script with scroll step', () => {
       assert.deepEqual(
         parse({
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "scroll",
+              type: 'scroll',
               x: 1,
               y: 1,
             },
           ],
         }),
         {
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "scroll",
+              type: 'scroll',
               x: 1,
               y: 1,
             },
@@ -435,19 +435,19 @@ describe("SchemaUtils", () => {
       );
       assert.deepEqual(
         parse({
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "scroll",
+              type: 'scroll',
               frame: [1],
             },
           ],
         }),
         {
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "scroll",
+              type: 'scroll',
               frame: [1],
             },
           ],
@@ -455,72 +455,72 @@ describe("SchemaUtils", () => {
       );
       assert.deepEqual(
         parse({
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "scroll",
-              selectors: [["aria/Test"]],
+              type: 'scroll',
+              selectors: [['aria/Test']],
             },
           ],
         }),
         {
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "scroll",
-              selectors: [["aria/Test"]],
+              type: 'scroll',
+              selectors: [['aria/Test']],
             },
           ],
         }
       );
     });
 
-    it("should parse a script with keyUp step", () => {
+    it('should parse a script with keyUp step', () => {
       assert.deepEqual(
         parse({
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "keyDown",
-              target: "main",
-              key: "A",
+              type: 'keyDown',
+              target: 'main',
+              key: 'A',
             },
           ],
         }),
         {
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "keyDown",
-              target: "main",
-              key: "A",
+              type: 'keyDown',
+              target: 'main',
+              key: 'A',
             },
           ],
         }
       );
     });
 
-    it("should parse a script with change step", () => {
+    it('should parse a script with change step', () => {
       assert.deepEqual(
         parse({
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "change",
-              selectors: [["aria/Test"]],
-              target: "main",
-              value: "Test",
+              type: 'change',
+              selectors: [['aria/Test']],
+              target: 'main',
+              value: 'Test',
             },
           ],
         }),
         {
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "change",
-              selectors: [["aria/Test"]],
-              target: "main",
-              value: "Test",
+              type: 'change',
+              selectors: [['aria/Test']],
+              target: 'main',
+              value: 'Test',
             },
           ],
         }
@@ -528,26 +528,26 @@ describe("SchemaUtils", () => {
 
       assert.deepEqual(
         parse({
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "change",
-              selectors: [["aria/Test"]],
-              target: "main",
+              type: 'change',
+              selectors: [['aria/Test']],
+              target: 'main',
               frame: [1],
-              value: "Test",
+              value: 'Test',
             },
           ],
         }),
         {
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "change",
-              selectors: [["aria/Test"]],
+              type: 'change',
+              selectors: [['aria/Test']],
               frame: [1],
-              target: "main",
-              value: "Test",
+              target: 'main',
+              value: 'Test',
             },
           ],
         }
@@ -555,49 +555,49 @@ describe("SchemaUtils", () => {
 
       assert.deepEqual(
         parse({
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "change",
-              selectors: [["aria/Test"]],
-              value: "Test",
+              type: 'change',
+              selectors: [['aria/Test']],
+              value: 'Test',
             },
           ],
         }),
         {
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "change",
-              selectors: [["aria/Test"]],
-              value: "Test",
+              type: 'change',
+              selectors: [['aria/Test']],
+              value: 'Test',
             },
           ],
         }
       );
     });
 
-    it("should parse a script with click step", () => {
+    it('should parse a script with click step', () => {
       assert.deepEqual(
         parse({
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "click",
-              selectors: [["aria/Test"]],
-              target: "main",
+              type: 'click',
+              selectors: [['aria/Test']],
+              target: 'main',
               offsetX: 126,
               offsetY: 26.5,
             },
           ],
         }),
         {
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "click",
-              selectors: [["aria/Test"]],
-              target: "main",
+              type: 'click',
+              selectors: [['aria/Test']],
+              target: 'main',
               offsetX: 126,
               offsetY: 26.5,
             },
@@ -607,26 +607,26 @@ describe("SchemaUtils", () => {
 
       assert.deepEqual(
         parse({
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "click",
-              selectors: [["aria/Test"]],
+              type: 'click',
+              selectors: [['aria/Test']],
               frame: [0],
-              target: "main",
+              target: 'main',
               offsetX: 126,
               offsetY: 26.5,
             },
           ],
         }),
         {
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "click",
-              selectors: [["aria/Test"]],
+              type: 'click',
+              selectors: [['aria/Test']],
               frame: [0],
-              target: "main",
+              target: 'main',
               offsetX: 126,
               offsetY: 26.5,
             },
@@ -635,14 +635,14 @@ describe("SchemaUtils", () => {
       );
     });
 
-    it("should parse a script with click step", () => {
+    it('should parse a script with click step', () => {
       assert.deepEqual(
         parse({
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "click",
-              selectors: [["aria/Test"]],
+              type: 'click',
+              selectors: [['aria/Test']],
               offsetX: 126,
               offsetY: 26.5,
               timeout: 1000,
@@ -650,11 +650,11 @@ describe("SchemaUtils", () => {
           ],
         }),
         {
-          title: "test",
+          title: 'test',
           steps: [
             {
-              type: "click",
-              selectors: [["aria/Test"]],
+              type: 'click',
+              selectors: [['aria/Test']],
               offsetX: 126,
               offsetY: 26.5,
               timeout: 1000,
@@ -664,60 +664,60 @@ describe("SchemaUtils", () => {
       );
     });
 
-    it("should parse a script with selectorAttribute", () => {
+    it('should parse a script with selectorAttribute', () => {
       assert.deepEqual(
         parse({
-          title: "test",
-          selectorAttribute: "data-testid",
+          title: 'test',
+          selectorAttribute: 'data-testid',
           steps: [],
         }),
         {
-          title: "test",
-          selectorAttribute: "data-testid",
+          title: 'test',
+          selectorAttribute: 'data-testid',
           steps: [],
         }
       );
     });
 
-    it("should handle wrong input with erros", () => {
+    it('should handle wrong input with erros', () => {
       const testCases = [
         {
           input: {},
-          error: "Recording is missing `title`",
+          error: 'Recording is missing `title`',
         },
         {
-          input: { title: "test" },
-          error: "Recording is missing `steps`",
+          input: { title: 'test' },
+          error: 'Recording is missing `steps`',
         },
         {
-          input: { title: "test", steps: {} },
-          error: "Recording `steps` is not an array",
+          input: { title: 'test', steps: {} },
+          error: 'Recording `steps` is not an array',
         },
         {
-          input: { title: "test", steps: [], timeout: 30001 },
-          error: "Timeout is not between 1 and 30000 milliseconds",
+          input: { title: 'test', steps: [], timeout: 30001 },
+          error: 'Timeout is not between 1 and 30000 milliseconds',
         },
         {
-          input: { title: "test", steps: [], timeout: 0 },
-          error: "Timeout is not between 1 and 30000 milliseconds",
-        },
-        {
-          input: {
-            title: "test",
-            steps: [
-              { type: "navigate", url: "https://example.com", timeout: 30001 },
-            ],
-          },
-          error: "Timeout is not between 1 and 30000 milliseconds",
+          input: { title: 'test', steps: [], timeout: 0 },
+          error: 'Timeout is not between 1 and 30000 milliseconds',
         },
         {
           input: {
-            title: "test",
+            title: 'test',
             steps: [
-              { type: "navigate", url: "https://example.com", timeout: 0 },
+              { type: 'navigate', url: 'https://example.com', timeout: 30001 },
             ],
           },
-          error: "Timeout is not between 1 and 30000 milliseconds",
+          error: 'Timeout is not between 1 and 30000 milliseconds',
+        },
+        {
+          input: {
+            title: 'test',
+            steps: [
+              { type: 'navigate', url: 'https://example.com', timeout: 0 },
+            ],
+          },
+          error: 'Timeout is not between 1 and 30000 milliseconds',
         },
       ];
       for (const testCase of testCases) {

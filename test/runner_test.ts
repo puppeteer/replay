@@ -14,11 +14,11 @@
     limitations under the License.
  */
 
-import { createRunner } from "../src/Runner.js";
-import { PuppeteerRunnerExtension } from "../src/PuppeteerRunnerExtension.js";
-import puppeteer from "puppeteer";
+import { createRunner } from '../src/Runner.js';
+import { PuppeteerRunnerExtension } from '../src/PuppeteerRunnerExtension.js';
+import puppeteer from 'puppeteer';
 
-describe("Runner", () => {
+describe('Runner', () => {
   let browser: puppeteer.Browser;
   let page: puppeteer.Page;
 
@@ -40,10 +40,10 @@ describe("Runner", () => {
     await browser.close();
   });
 
-  it("should run an empty flow using Puppeteer", async () => {
+  it('should run an empty flow using Puppeteer', async () => {
     const runner = await createRunner(
       {
-        title: "test",
+        title: 'test',
         steps: [],
       },
       new PuppeteerRunnerExtension(browser, page)

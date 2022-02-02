@@ -14,10 +14,10 @@
     limitations under the License.
  */
 
-import { LineWriterImpl } from "./LineWriterImpl.js";
-import { PuppeteerStringifyExtension } from "./PuppeteerStringifyExtension.js";
-import type { UserFlow } from "./Schema.js";
-import { StringifyExtension } from "./StringifyExtension.js";
+import { LineWriterImpl } from './LineWriterImpl.js';
+import { PuppeteerStringifyExtension } from './PuppeteerStringifyExtension.js';
+import type { UserFlow } from './Schema.js';
+import { StringifyExtension } from './StringifyExtension.js';
 
 interface StringifyOptions {
   extension?: StringifyExtension;
@@ -35,12 +35,12 @@ export async function stringify(
     opts.extension = new PuppeteerStringifyExtension();
   }
   if (!opts.indentation) {
-    opts.indentation = "  ";
+    opts.indentation = '  ';
   }
   const out = new LineWriterImpl(opts.indentation);
   const ext = opts.extension;
   if (!ext) {
-    throw new Error("Internal error: StringifyExtension is not found.");
+    throw new Error('Internal error: StringifyExtension is not found.');
   }
 
   await ext.beforeAllSteps?.(out, flow);

@@ -14,7 +14,7 @@
     limitations under the License.
  */
 
-import type { LineWriter } from "./LineWriter.js";
+import type { LineWriter } from './LineWriter.js';
 import type {
   Step,
   ClickStep,
@@ -31,52 +31,52 @@ import type {
   NavigateStep,
   WaitForElementStep,
   WaitForExpressionStep,
-} from "./Schema.js";
-import type { StringifyExtension } from "./StringifyExtension.js";
+} from './Schema.js';
+import type { StringifyExtension } from './StringifyExtension.js';
 
 import {
   assertAllStepTypesAreHandled,
   typeableInputTypes,
-} from "./SchemaUtils.js";
+} from './SchemaUtils.js';
 
 export class PuppeteerStringifyExtension implements StringifyExtension {
   async beforeAllSteps(out: LineWriter, flow: UserFlow) {
     out.appendLine(
       "const puppeteer = require('puppeteer'); // v13.0.0 or later"
     );
-    out.appendLine("");
-    out.appendLine("(async () => {").startBlock();
-    out.appendLine("const browser = await puppeteer.launch();");
-    out.appendLine("const page = await browser.newPage();");
+    out.appendLine('');
+    out.appendLine('(async () => {').startBlock();
+    out.appendLine('const browser = await puppeteer.launch();');
+    out.appendLine('const page = await browser.newPage();');
     out.appendLine(`const timeout = ${flow.timeout || defaultTimeout};`);
-    out.appendLine("page.setDefaultTimeout(timeout);");
-    out.appendLine("");
+    out.appendLine('page.setDefaultTimeout(timeout);');
+    out.appendLine('');
 
-    for (const line of helpers.split("\n")) {
+    for (const line of helpers.split('\n')) {
       out.appendLine(line);
     }
   }
 
   async afterAllSteps(out: LineWriter, flow: UserFlow) {
-    out.appendLine("");
-    out.appendLine("await browser.close();").endBlock();
-    out.appendLine("})();");
+    out.appendLine('');
+    out.appendLine('await browser.close();').endBlock();
+    out.appendLine('})();');
   }
 
   async stringifyStep(out: LineWriter, step: Step, flow: UserFlow) {
-    out.appendLine("{").startBlock();
+    out.appendLine('{').startBlock();
     if (step.timeout !== undefined) {
       out.appendLine(`const timeout = ${step.timeout};`);
     }
     this.#appendContext(out, step);
     if (step.assertedEvents) {
-      out.appendLine("const promises = [];");
+      out.appendLine('const promises = [];');
       for (const event of step.assertedEvents) {
         switch (event.type) {
-          case "navigation": {
+          case 'navigation': {
             out.appendLine(
               `promises.push(${
-                "frame" in step && step.frame ? "frame" : "targetPage"
+                'frame' in step && step.frame ? 'frame' : 'targetPage'
               }.waitForNavigation());`
             );
             break;
@@ -90,28 +90,28 @@ export class PuppeteerStringifyExtension implements StringifyExtension {
     this.#appendStepType(out, step);
 
     if (step.assertedEvents) {
-      out.appendLine("await Promise.all(promises);");
+      out.appendLine('await Promise.all(promises);');
     }
 
-    out.endBlock().appendLine("}");
+    out.endBlock().appendLine('}');
   }
 
   #appendTarget(out: LineWriter, target: string): void {
-    if (target === "main") {
-      out.appendLine("const targetPage = page;");
+    if (target === 'main') {
+      out.appendLine('const targetPage = page;');
     } else {
       out.appendLine(
         `const target = await browser.waitForTarget(t => t.url() === ${formatAsJSLiteral(
           target
         )}, { timeout });`
       );
-      out.appendLine("const targetPage = await target.page();");
-      out.appendLine("targetPage.setDefaultTimeout(timeout);");
+      out.appendLine('const targetPage = await target.page();');
+      out.appendLine('targetPage.setDefaultTimeout(timeout);');
     }
   }
 
   #appendFrame(out: LineWriter, path: number[]): void {
-    out.appendLine("let frame = targetPage.mainFrame();");
+    out.appendLine('let frame = targetPage.mainFrame();');
     for (const index of path) {
       out.appendLine(`frame = frame.childFrames()[${index}];`);
     }
@@ -119,7 +119,7 @@ export class PuppeteerStringifyExtension implements StringifyExtension {
 
   #appendContext(out: LineWriter, step: StepWithFrame): void {
     // TODO fix optional target: should it be main?
-    this.#appendTarget(out, step.target || "main");
+    this.#appendTarget(out, step.target || 'main');
     // TODO fix optional frame: should it be required?
     if (step.frame) {
       this.#appendFrame(out, step.frame);
@@ -130,9 +130,9 @@ export class PuppeteerStringifyExtension implements StringifyExtension {
     out.appendLine(
       `const element = await waitForSelectors(${JSON.stringify(
         step.selectors
-      )}, ${step.frame ? "frame" : "targetPage"}, { timeout, visible: true });`
+      )}, ${step.frame ? 'frame' : 'targetPage'}, { timeout, visible: true });`
     );
-    out.appendLine("await scrollIntoViewIfNeeded(element, timeout);");
+    out.appendLine('await scrollIntoViewIfNeeded(element, timeout);');
   }
 
   #appendClickStep(out: LineWriter, step: ClickStep): void {
@@ -144,15 +144,15 @@ export class PuppeteerStringifyExtension implements StringifyExtension {
 
   #appendChangeStep(out: LineWriter, step: ChangeStep): void {
     this.#appendWaitForSelector(out, step);
-    out.appendLine("const type = await element.evaluate(el => el.type);");
+    out.appendLine('const type = await element.evaluate(el => el.type);');
     out.appendLine(
       `if (${JSON.stringify(Array.from(typeableInputTypes))}.includes(type)) {`
     );
     out.appendLine(`  await element.type(${formatAsJSLiteral(step.value)});`);
-    out.appendLine("} else {");
-    out.appendLine("  await element.focus();");
-    out.appendLine("  await element.evaluate((el, value) => {");
-    out.appendLine("    el.value = value;");
+    out.appendLine('} else {');
+    out.appendLine('  await element.focus();');
+    out.appendLine('  await element.evaluate((el, value) => {');
+    out.appendLine('    el.value = value;');
     out.appendLine(
       "    el.dispatchEvent(new Event('input', { bubbles: true }));"
     );
@@ -160,19 +160,19 @@ export class PuppeteerStringifyExtension implements StringifyExtension {
       "    el.dispatchEvent(new Event('change', { bubbles: true }));"
     );
     out.appendLine(`  }, ${JSON.stringify(step.value)});`);
-    out.appendLine("}");
+    out.appendLine('}');
   }
 
   #appendEmulateNetworkConditionsStep(
     out: LineWriter,
     step: EmulateNetworkConditionsStep
   ): void {
-    out.appendLine("await targetPage.emulateNetworkConditions({");
+    out.appendLine('await targetPage.emulateNetworkConditions({');
     out.appendLine(`  offline: ${!step.download && !step.upload},`);
     out.appendLine(`  downloadThroughput: ${step.download},`);
     out.appendLine(`  uploadThroughput: ${step.upload},`);
     out.appendLine(`  latency: ${step.latency},`);
-    out.appendLine("});");
+    out.appendLine('});');
   }
 
   #appendKeyDownStep(out: LineWriter, step: KeyDownStep): void {
@@ -188,7 +188,7 @@ export class PuppeteerStringifyExtension implements StringifyExtension {
   }
 
   #appendCloseStep(out: LineWriter, _step: CloseStep): void {
-    out.appendLine("await targetPage.close()");
+    out.appendLine('await targetPage.close()');
   }
 
   #appendViewportStep(out: LineWriter, step: SetViewportStep): void {
@@ -201,7 +201,7 @@ export class PuppeteerStringifyExtension implements StringifyExtension {
   }
 
   #appendScrollStep(out: LineWriter, step: ScrollStep): void {
-    if ("selectors" in step) {
+    if ('selectors' in step) {
       this.#appendWaitForSelector(out, step);
       out.appendLine(
         `await element.evaluate((el, x, y) => { el.scrollTop = y; el.scrollLeft = x; }, ${step.x}, ${step.y});`
@@ -215,29 +215,29 @@ export class PuppeteerStringifyExtension implements StringifyExtension {
 
   #appendStepType(out: LineWriter, step: Step): void {
     switch (step.type) {
-      case "click":
+      case 'click':
         return this.#appendClickStep(out, step);
-      case "change":
+      case 'change':
         return this.#appendChangeStep(out, step);
-      case "emulateNetworkConditions":
+      case 'emulateNetworkConditions':
         return this.#appendEmulateNetworkConditionsStep(out, step);
-      case "keyDown":
+      case 'keyDown':
         return this.#appendKeyDownStep(out, step);
-      case "keyUp":
+      case 'keyUp':
         return this.#appendKeyUpStep(out, step);
-      case "close":
+      case 'close':
         return this.#appendCloseStep(out, step);
-      case "setViewport":
+      case 'setViewport':
         return this.#appendViewportStep(out, step);
-      case "scroll":
+      case 'scroll':
         return this.#appendScrollStep(out, step);
-      case "navigate":
+      case 'navigate':
         return this.#appendNavigationStep(out, step);
-      case "waitForElement":
+      case 'waitForElement':
         return this.#appendWaitForElementStep(out, step);
-      case "waitForExpression":
+      case 'waitForExpression':
         return this.#appendWaitExpressionStep(out, step);
-      case "customStep":
+      case 'customStep':
         return; // TODO: implement these
       default:
         return assertAllStepTypesAreHandled(step);
@@ -254,7 +254,7 @@ export class PuppeteerStringifyExtension implements StringifyExtension {
   ): void {
     out.appendLine(
       `await ${
-        step.frame ? "frame" : "targetPage"
+        step.frame ? 'frame' : 'targetPage'
       }.waitForFunction(${formatAsJSLiteral(step.expression)}, { timeout });`
     );
   }
@@ -262,7 +262,7 @@ export class PuppeteerStringifyExtension implements StringifyExtension {
   #appendWaitForElementStep(out: LineWriter, step: WaitForElementStep): void {
     out.appendLine(
       `await waitForElement(${JSON.stringify(step)}, ${
-        step.frame ? "frame" : "targetPage"
+        step.frame ? 'frame' : 'targetPage'
       }, timeout);`
     );
   }

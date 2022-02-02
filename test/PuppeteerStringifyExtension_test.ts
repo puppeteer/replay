@@ -14,24 +14,24 @@
     limitations under the License.
  */
 
-import { LineWriterImpl } from "../src/LineWriterImpl.js";
-import { PuppeteerStringifyExtension } from "../src/PuppeteerStringifyExtension.js";
-import { assert } from "chai";
+import { LineWriterImpl } from '../src/LineWriterImpl.js';
+import { PuppeteerStringifyExtension } from '../src/PuppeteerStringifyExtension.js';
+import { assert } from 'chai';
 
-describe("PuppeteerStringifyExtension", () => {
+describe('PuppeteerStringifyExtension', () => {
   const ext = new PuppeteerStringifyExtension();
 
-  it("should print the correct script for a click step", async () => {
+  it('should print the correct script for a click step', async () => {
     const step = {
-      type: "click" as const,
-      target: "main",
-      selectors: ["aria/Test"],
+      type: 'click' as const,
+      target: 'main',
+      selectors: ['aria/Test'],
       offsetX: 1,
       offsetY: 1,
     };
-    const flow = { title: "test", steps: [step] };
+    const flow = { title: 'test', steps: [step] };
 
-    const writer = new LineWriterImpl("  ");
+    const writer = new LineWriterImpl('  ');
     await ext.stringifyStep(writer, step, flow);
     assert.deepEqual(
       writer.toString(),
@@ -45,18 +45,18 @@ describe("PuppeteerStringifyExtension", () => {
     );
   });
 
-  it("should print the correct script for asserted events", async () => {
+  it('should print the correct script for asserted events', async () => {
     const step = {
-      type: "click" as const,
-      target: "main",
-      selectors: ["aria/Test"],
+      type: 'click' as const,
+      target: 'main',
+      selectors: ['aria/Test'],
       offsetX: 1,
       offsetY: 1,
-      assertedEvents: [{ type: "navigation" as const }],
+      assertedEvents: [{ type: 'navigation' as const }],
     };
-    const flow = { title: "test", steps: [step] };
+    const flow = { title: 'test', steps: [step] };
 
-    const writer = new LineWriterImpl("  ");
+    const writer = new LineWriterImpl('  ');
     await ext.stringifyStep(writer, step, flow);
     assert.deepEqual(
       writer.toString(),
@@ -73,17 +73,17 @@ describe("PuppeteerStringifyExtension", () => {
     );
   });
 
-  it("should print the correct script with a chain selector", async () => {
+  it('should print the correct script with a chain selector', async () => {
     const step = {
-      type: "click" as const,
-      target: "main",
-      selectors: [["aria/Test", "aria/Test2"]],
+      type: 'click' as const,
+      target: 'main',
+      selectors: [['aria/Test', 'aria/Test2']],
       offsetX: 1,
       offsetY: 1,
     };
-    const flow = { title: "test", steps: [step] };
+    const flow = { title: 'test', steps: [step] };
 
-    const writer = new LineWriterImpl("  ");
+    const writer = new LineWriterImpl('  ');
     await ext.stringifyStep(writer, step, flow);
     assert.deepEqual(
       writer.toString(),
@@ -97,16 +97,16 @@ describe("PuppeteerStringifyExtension", () => {
     );
   });
 
-  it("should print the correct script for a change step", async () => {
+  it('should print the correct script for a change step', async () => {
     const step = {
-      type: "change" as const,
-      target: "main",
-      selectors: ["aria/Test"],
-      value: "Hello World",
+      type: 'change' as const,
+      target: 'main',
+      selectors: ['aria/Test'],
+      value: 'Hello World',
     };
-    const flow = { title: "test", steps: [step] };
+    const flow = { title: 'test', steps: [step] };
 
-    const writer = new LineWriterImpl("  ");
+    const writer = new LineWriterImpl('  ');
     await ext.stringifyStep(writer, step, flow);
     assert.deepEqual(
       writer.toString(),
@@ -130,16 +130,16 @@ describe("PuppeteerStringifyExtension", () => {
     );
   });
 
-  it("should print the correct script for a change step for non-text inputs", async () => {
+  it('should print the correct script for a change step for non-text inputs', async () => {
     const step = {
-      type: "change" as const,
-      target: "main",
-      selectors: ["aria/Test"],
-      value: "#333333",
+      type: 'change' as const,
+      target: 'main',
+      selectors: ['aria/Test'],
+      value: '#333333',
     };
-    const flow = { title: "test", steps: [step] };
+    const flow = { title: 'test', steps: [step] };
 
-    const writer = new LineWriterImpl("  ");
+    const writer = new LineWriterImpl('  ');
     await ext.stringifyStep(writer, step, flow);
     assert.deepEqual(
       writer.toString(),

@@ -14,9 +14,9 @@
     limitations under the License.
  */
 
-import { PuppeteerRunnerExtension } from "./PuppeteerRunnerExtension.js";
-import { RunnerExtension } from "./RunnerExtension.js";
-import { UserFlow } from "./Schema.js";
+import { PuppeteerRunnerExtension } from './PuppeteerRunnerExtension.js';
+import { RunnerExtension } from './RunnerExtension.js';
+import { UserFlow } from './Schema.js';
 
 export class Runner {
   #flow: UserFlow;
@@ -66,7 +66,7 @@ export async function createRunner(
   extension?: RunnerExtension
 ) {
   if (!extension) {
-    const puppeteer = await import("puppeteer");
+    const puppeteer = await import('puppeteer');
     const browser = await puppeteer.launch({
       headless: true,
     });

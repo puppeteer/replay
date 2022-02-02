@@ -8,12 +8,13 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "npm run tsc && mocha --config .mocharc.cjs",
+    "test": "mocha --config .mocharc.cjs",
     "eslint": "([ \"$CI\" = true ] && eslint --ext js --ext ts --quiet -f codeframe . || eslint --ext js --ext ts .)",
     "eslint-fix": "eslint --ext js --ext ts --fix .",
     "clean-lib": "rimraf lib",
     "build": "npm run tsc",
-    "tsc": "npm run clean-lib && tsc --version && tsc -b tsconfig.json"
+    "tsc": "npm run clean-lib && tsc --version && tsc -b tsconfig.json",
+    "lint": "npm run eslint"
   },
   "author": "Chrome DevTools authors",
   "license": "Apache-2.0",

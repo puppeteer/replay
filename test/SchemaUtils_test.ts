@@ -14,58 +14,10 @@
     limitations under the License.
  */
 
-import { areSelectorsEqual, parse } from "../src/SchemaUtils.js";
+import { parse } from "../src/SchemaUtils.js";
 import { assert } from "chai";
 
 describe("SchemaUtils", () => {
-  it("should compare step selectors", () => {
-    assert.isTrue(
-      areSelectorsEqual(
-        {
-          type: "scroll",
-        },
-        {
-          type: "scroll",
-        }
-      )
-    );
-    assert.isFalse(
-      areSelectorsEqual(
-        {
-          type: "scroll",
-          selectors: [["#id"]],
-        },
-        {
-          type: "scroll",
-        }
-      )
-    );
-    assert.isTrue(
-      areSelectorsEqual(
-        {
-          type: "scroll",
-          selectors: [["#id"]],
-        },
-        {
-          type: "scroll",
-          selectors: [["#id"]],
-        }
-      )
-    );
-    assert.isFalse(
-      areSelectorsEqual(
-        {
-          type: "scroll",
-          selectors: [["#id", "#id2"]],
-        },
-        {
-          type: "scroll",
-          selectors: [["#id"]],
-        }
-      )
-    );
-  });
-
   describe("Schema parser", () => {
     it("should parse a sample Schema JSON", () => {
       const actual = parse({

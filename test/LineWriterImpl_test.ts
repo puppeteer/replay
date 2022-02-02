@@ -14,7 +14,21 @@
     limitations under the License.
  */
 
-export { UserFlow } from "./Schema.js";
-export { parse } from "./SchemaUtils.js";
-export { StringifyExtension } from "./StringifyExtension.js";
-export { stringify } from "./stringify.js";
+import { LineWriterImpl } from "../src/LineWriterImpl.js";
+import { assert } from "chai";
+
+describe("LineWriterImpl", () => {
+  it("should open and close blocks", () => {
+    const out = new LineWriterImpl("  ");
+    out.appendLine("{").startBlock();
+    out.appendLine('console.log("test");');
+    out.endBlock().appendLine("}");
+    assert.strictEqual(
+      out.toString(),
+      `{
+  console.log("test");
+}
+`
+    );
+  });
+});

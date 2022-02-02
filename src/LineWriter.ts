@@ -14,7 +14,8 @@
     limitations under the License.
  */
 
-export { UserFlow } from "./Schema.js";
-export { parse } from "./SchemaUtils.js";
-export { StringifyExtension } from "./StringifyExtension.js";
-export { stringify } from "./stringify.js";
+export interface LineWriter {
+  appendLine(line: string): LineWriter;
+  startBlock(): LineWriter;
+  endBlock(): LineWriter;
+}

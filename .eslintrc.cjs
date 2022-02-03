@@ -15,5 +15,6 @@ module.exports = {
   rules: {
     "require-jsdoc": 0,
     "no-redeclare": 0,
+    "valid-jsdoc": 0, // Figure jsdoc once we look into documentation.
   },
 };

@@ -14,8 +14,12 @@
     limitations under the License.
  */
 
-export { UserFlow } from "./Schema.js";
-export { parse } from "./SchemaUtils.js";
-export { StringifyExtension } from "./StringifyExtension.js";
-export { stringify } from "./stringify.js";
-export { createRunner } from "./Runner.js";
+import { UserFlow, Step } from "./Schema.js";
+
+export interface RunnerExtension {
+  beforeAllSteps?(flow: UserFlow): Promise<void>;
+  afterAllSteps?(flow: UserFlow): Promise<void>;
+  beforeEachStep?(step: Step, flow: UserFlow): Promise<void>;
+  runStep(step: Step, flow: UserFlow): Promise<void>;
+  afterEachStep?(step: Step, flow: UserFlow): Promise<void>;
+}

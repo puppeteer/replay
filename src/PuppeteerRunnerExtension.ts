@@ -454,7 +454,6 @@ async function waitForFunction(
   throw new Error("Timed out");
 }
 
-
 // Partial description of Puppeteer API below to allow runtime dependencies.
 type EvaluateFn<T = any> = string | ((arg1: T, ...args: any[]) => any);
 type EvaluateFnReturnType<T extends EvaluateFn> = T extends (
@@ -480,7 +479,7 @@ type UnwrapPromiseLike<T> = T extends PromiseLike<infer U> ? U : T;
 
 interface Target {
   url(): string;
-  page(): Promise<Page|null>;
+  page(): Promise<Page | null>;
 }
 
 interface Browser {
@@ -545,7 +544,7 @@ interface Frame {
   waitForSelector(
     part: string,
     options: WaitForOptions
-  ): Promise<ElementHandle<Element>|null>;
+  ): Promise<ElementHandle<Element> | null>;
   isOOPFrame(): boolean;
   url(): string;
   evaluate<T extends EvaluateFn>(

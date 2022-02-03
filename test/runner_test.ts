@@ -18,8 +18,7 @@ import { createRunner } from "../src/Runner.js";
 import { PuppeteerRunnerExtension } from "../src/PuppeteerRunnerExtension.js";
 import puppeteer from "puppeteer";
 
-// TODO: the test is passing locally but skipping it until CI is setup in follow-ups.
-describe.skip("Runner", () => {
+describe("Runner", () => {
   let browser: puppeteer.Browser;
   let page: puppeteer.Page;
 

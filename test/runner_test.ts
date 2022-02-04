@@ -40,7 +40,7 @@ describe('Runner', () => {
     await browser.close();
   });
 
-  it('should run an empty flow using Puppeteer', async () => {
+  it('should run an empty flow using provided Puppeteer', async () => {
     const runner = await createRunner(
       {
         title: 'test',
@@ -48,6 +48,14 @@ describe('Runner', () => {
       },
       new PuppeteerRunnerExtension(browser, page)
     );
+    await runner.run();
+  });
+
+  it('should run an empty flow auto-imported Puppeteer', async () => {
+    const runner = await createRunner({
+      title: 'test',
+      steps: [],
+    });
     await runner.run();
   });
 });

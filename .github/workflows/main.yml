@@ -16,10 +16,12 @@ jobs:
     strategy:
       matrix:
         # https://github.com/actions/virtual-environments#available-environments
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        # TODO: use macos-latest, windows-latest once active development is over.
+        os: [ubuntu-latest]
         # Include all major maintenance + active LTS + current Node.js versions.
         # https://github.com/nodejs/Release#release-schedule
-        node: [12, 14, 16, 17]
+        # TODO: use more Node versions once active development is over.
+        node: [16]
     steps:
       - name: Checkout
         uses: actions/checkout@v2

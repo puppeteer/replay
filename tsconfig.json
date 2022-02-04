@@ -10,5 +10,5 @@
     "declaration": true,
     "moduleResolution": "Node",
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*"]
 }

@@ -14,15 +14,40 @@
     limitations under the License.
  */
 
+import puppeteer from 'puppeteer';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { assert } from 'chai';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 import { createRunner } from '../src/Runner.js';
 import { PuppeteerRunnerExtension } from '../src/PuppeteerRunnerExtension.js';
-import puppeteer from 'puppeteer';
+
+import { TestServer } from '../third_party/testserver/index.js';
+
+const HTTP_PORT = 8907;
+const HTTP_PREFIX = `http://localhost:${HTTP_PORT}`;
+const HTTPS_PORT = HTTP_PORT + 1;
+
+async function createServers() {
+  const resources = path.join(__dirname, 'resources');
+  const httpServer = await TestServer.create(resources, HTTP_PORT);
+  const httpsServer = await TestServer.createHTTPS(resources, HTTPS_PORT);
+  return { httpServer, httpsServer };
+}
 
 describe('Runner', () => {
   let browser: puppeteer.Browser;
   let page: puppeteer.Page;
+  let httpServer: TestServer;
+  let httpsServer: TestServer;
 
   before(async () => {
+    const servers = await createServers();
+    httpServer = servers.httpServer;
+    httpsServer = servers.httpsServer;
     browser = await puppeteer.launch({
       headless: true,
     });
@@ -38,6 +63,36 @@ describe('Runner', () => {
 
   after(async () => {
     await browser.close();
+    await httpServer.stop();
+    await httpsServer.stop();
+  });
+
+  it('should run an empty flow using Puppeteer', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+  });
+
+  it('should navigate to the right URL', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/empty.html`,
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+    assert.strictEqual(page.url(), `${HTTP_PREFIX}/empty.html`);
   });
 
   it('should run an empty flow using provided Puppeteer', async () => {

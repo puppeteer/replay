@@ -14,7 +14,7 @@
     limitations under the License.
  */
 
-import { PuppeteerRunnerExtensionOwningBrowser } from './PuppeteerRunnerExtension.js';
+import { PuppeteerRunnerOwningBrowserExtension } from './PuppeteerRunnerExtension.js';
 import { RunnerExtension } from './RunnerExtension.js';
 import { UserFlow } from './Schema.js';
 
@@ -72,7 +72,7 @@ export async function createRunner(
       headless: true,
     });
     const page = await browser.newPage();
-    extension = new PuppeteerRunnerExtensionOwningBrowser(browser, page);
+    extension = new PuppeteerRunnerOwningBrowserExtension(browser, page);
   }
   return new Runner(flow, extension);
 }

@@ -197,7 +197,7 @@ export class PuppeteerRunnerExtension implements RunnerExtension {
   }
 }
 
-export class PuppeteerRunnerExtensionOwningBrowser extends PuppeteerRunnerExtension {
+export class PuppeteerRunnerOwningBrowserExtension extends PuppeteerRunnerExtension {
   async afterAllSteps() {
     await this.browser.close();
   }

@@ -4,5 +4,5 @@
 *.pyc
 .vscode
 yarn.lock
-test/coverage.json
 lib
+coverage/

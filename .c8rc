@@ -1,0 +1,4 @@
+{
+  "reporter": ["text"],
+  "src": ["./src"]
+}

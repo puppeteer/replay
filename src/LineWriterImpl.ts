@@ -14,7 +14,7 @@
     limitations under the License.
  */
 
-import { LineWriter } from "./LineWriter.js";
+import { LineWriter } from './LineWriter.js';
 
 export class LineWriterImpl implements LineWriter {
   #indentation: string;
@@ -28,7 +28,7 @@ export class LineWriterImpl implements LineWriter {
   appendLine(line: string): LineWriter {
     const indentedLine = line
       ? this.#indentation.repeat(this.#currentIndentation) + line.trimEnd()
-      : "";
+      : '';
     this.#lines.push(indentedLine);
     return this;
   }
@@ -45,6 +45,6 @@ export class LineWriterImpl implements LineWriter {
 
   toString(): string {
     // Scripts should end with a final blank line.
-    return this.#lines.join("\n") + "\n";
+    return this.#lines.join('\n') + '\n';
   }
 }

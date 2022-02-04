@@ -14,8 +14,8 @@
     limitations under the License.
  */
 
-import { LineWriter } from "./LineWriter.js";
-import { Step, UserFlow } from "./Schema.js";
+import { LineWriter } from './LineWriter.js';
+import { Step, UserFlow } from './Schema.js';
 
 export interface StringifyExtension {
   beforeAllSteps?(out: LineWriter, flow: UserFlow): Promise<void>;

@@ -14,17 +14,17 @@
     limitations under the License.
  */
 
-import { stringify } from "../src/stringify.js";
-import { assert } from "chai";
+import { stringify } from '../src/stringify.js';
+import { assert } from 'chai';
 
-describe("stringify", () => {
-  it("should print the correct script for a navigate step", async () => {
+describe('stringify', () => {
+  it('should print the correct script for a navigate step', async () => {
     const flow = {
-      title: "Test Recording",
+      title: 'Test Recording',
       steps: [
         {
-          type: "navigate" as const,
-          url: "https://localhost/",
+          type: 'navigate' as const,
+          url: 'https://localhost/',
         },
       ],
     };
@@ -50,12 +50,12 @@ describe("stringify", () => {
     );
   });
 
-  it("should print the correct script for a emulateNetworkCondition step", async () => {
+  it('should print the correct script for a emulateNetworkCondition step', async () => {
     const flow = {
-      title: "Test Recording",
+      title: 'Test Recording',
       steps: [
         {
-          type: "emulateNetworkConditions" as const,
+          type: 'emulateNetworkConditions' as const,
           download: 100,
           upload: 100,
           latency: 999,
@@ -89,14 +89,14 @@ describe("stringify", () => {
     );
   });
 
-  it("should print the correct script if the target is not the main page", async () => {
+  it('should print the correct script if the target is not the main page', async () => {
     const flow = {
-      title: "Test Recording",
+      title: 'Test Recording',
       steps: [
         {
-          type: "click" as const,
-          target: "https://localhost/test",
-          selectors: ["aria/Test"],
+          type: 'click' as const,
+          target: 'https://localhost/test',
+          selectors: ['aria/Test'],
           offsetX: 1,
           offsetY: 1,
         },
@@ -128,15 +128,15 @@ describe("stringify", () => {
     );
   });
 
-  it("should print the correct script if the step is within an iframe", async () => {
+  it('should print the correct script if the step is within an iframe', async () => {
     const flow = {
-      title: "Test Recording",
+      title: 'Test Recording',
       steps: [
         {
-          type: "click" as const,
-          target: "main",
+          type: 'click' as const,
+          target: 'main',
           frame: [1, 1],
-          selectors: ["aria/Test"],
+          selectors: ['aria/Test'],
           offsetX: 1,
           offsetY: 1,
         },
@@ -169,36 +169,36 @@ describe("stringify", () => {
     );
   });
 
-  it("should fail when given an invalid step type", async () => {
+  it('should fail when given an invalid step type', async () => {
     try {
       await stringify({
-        title: "Test Recording",
+        title: 'Test Recording',
         steps: [
           {
             // @ts-ignore
-            type: "invalid",
-            target: "main",
+            type: 'invalid',
+            target: 'main',
             frame: [1, 1],
-            selectors: ["aria/Test"],
+            selectors: ['aria/Test'],
             offsetX: 1,
             offsetY: 1,
           },
         ],
       });
-      assert.fail("Not reachable.");
+      assert.fail('Not reachable.');
     } catch (err) {
       assert.match((err as Error).message, /^Unknown step type: invalid$/);
     }
   });
 
-  it("should print the correct script for a keydown step", async () => {
+  it('should print the correct script for a keydown step', async () => {
     const flow = {
-      title: "Test Recording",
+      title: 'Test Recording',
       steps: [
         {
-          type: "keyDown" as const,
-          target: "main",
-          key: "E" as const,
+          type: 'keyDown' as const,
+          target: 'main',
+          key: 'E' as const,
         },
       ],
     };
@@ -224,14 +224,14 @@ describe("stringify", () => {
     );
   });
 
-  it("should print the correct script for a keyup step", async () => {
+  it('should print the correct script for a keyup step', async () => {
     const flow = {
-      title: "Test Recording",
+      title: 'Test Recording',
       steps: [
         {
-          type: "keyUp" as const,
-          target: "main",
-          key: "E" as const,
+          type: 'keyUp' as const,
+          target: 'main',
+          key: 'E' as const,
         },
       ],
     };
@@ -257,20 +257,20 @@ describe("stringify", () => {
     );
   });
 
-  it("should print the correct script for scroll events", async () => {
+  it('should print the correct script for scroll events', async () => {
     const flow = {
-      title: "Test Recording",
+      title: 'Test Recording',
       steps: [
         {
-          type: "scroll" as const,
-          target: "main",
-          selectors: ["body > div:nth-child(1)"],
+          type: 'scroll' as const,
+          target: 'main',
+          selectors: ['body > div:nth-child(1)'],
           x: 0,
           y: 40,
         },
         {
-          type: "scroll" as const,
-          target: "main",
+          type: 'scroll' as const,
+          target: 'main',
           x: 40,
           y: 40,
         },
@@ -304,13 +304,13 @@ describe("stringify", () => {
     );
   });
 
-  it("should print the correct script for waitForElement steps", async () => {
+  it('should print the correct script for waitForElement steps', async () => {
     const flow = {
-      title: "Test Recording",
+      title: 'Test Recording',
       steps: [
         {
-          type: "waitForElement" as const,
-          selectors: ["body > div:nth-child(1)"],
+          type: 'waitForElement' as const,
+          selectors: ['body > div:nth-child(1)'],
         },
       ],
     };
@@ -336,13 +336,13 @@ describe("stringify", () => {
     );
   });
 
-  it("should print the correct script for waitForExpression steps", async () => {
+  it('should print the correct script for waitForExpression steps', async () => {
     const flow = {
-      title: "Test Recording",
+      title: 'Test Recording',
       steps: [
         {
-          type: "waitForExpression" as const,
-          expression: "1 + 2",
+          type: 'waitForExpression' as const,
+          expression: '1 + 2',
         },
       ],
     };

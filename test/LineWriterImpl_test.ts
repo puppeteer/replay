@@ -14,15 +14,15 @@
     limitations under the License.
  */
 
-import { LineWriterImpl } from "../src/LineWriterImpl.js";
-import { assert } from "chai";
+import { LineWriterImpl } from '../src/LineWriterImpl.js';
+import { assert } from 'chai';
 
-describe("LineWriterImpl", () => {
-  it("should open and close blocks", () => {
-    const out = new LineWriterImpl("  ");
-    out.appendLine("{").startBlock();
+describe('LineWriterImpl', () => {
+  it('should open and close blocks', () => {
+    const out = new LineWriterImpl('  ');
+    out.appendLine('{').startBlock();
     out.appendLine('console.log("test");');
-    out.endBlock().appendLine("}");
+    out.endBlock().appendLine('}');
     assert.strictEqual(
       out.toString(),
       `{

@@ -38,7 +38,7 @@ import type {
   StepWithTarget,
   Target,
   UserFlow,
-} from "./Schema.js";
+} from './Schema.js';
 
 export function assertAllStepTypesAreHandled(s: never): never;
 export function assertAllStepTypesAreHandled(s: Step): never {
@@ -48,25 +48,25 @@ export function assertAllStepTypesAreHandled(s: Step): never {
 export function hasFrameContext(
   step: Step
 ): step is ClickStep | ChangeStep | KeyDownStep | KeyUpStep {
-  return ["click", "change", "keydown", "keyup"].includes(step.type);
+  return ['click', 'change', 'keydown', 'keyup'].includes(step.type);
 }
 
 export function hasCondition(
   step: Step
 ): step is ClickStep | ChangeStep | KeyDownStep | KeyUpStep {
-  return ["click", "change", "keydown", "keyup"].includes(step.type);
+  return ['click', 'change', 'keydown', 'keyup'].includes(step.type);
 }
 
 export const typeableInputTypes = new Set([
-  "textarea",
-  "select-one",
-  "text",
-  "url",
-  "tel",
-  "search",
-  "password",
-  "number",
-  "email",
+  'textarea',
+  'select-one',
+  'text',
+  'url',
+  'tel',
+  'search',
+  'password',
+  'number',
+  'email',
 ]);
 
 function hasProperty<KeyType extends PropertyKey>(
@@ -82,15 +82,15 @@ function hasProperty<KeyType extends PropertyKey>(
 }
 
 function isObject(data: unknown): data is object {
-  return typeof data === "object" && data !== null;
+  return typeof data === 'object' && data !== null;
 }
 
 function isString(data: unknown): data is string {
-  return typeof data === "string";
+  return typeof data === 'string';
 }
 
 function isNumber(data: unknown): data is number {
-  return typeof data === "number";
+  return typeof data === 'number';
 }
 
 function isArray(data: unknown): data is unknown[] {
@@ -98,7 +98,7 @@ function isArray(data: unknown): data is unknown[] {
 }
 
 function isBoolean(data: unknown): data is boolean {
-  return typeof data === "boolean";
+  return typeof data === 'boolean';
 }
 
 function isIntegerArray(data: unknown): data is number[] {
@@ -106,19 +106,19 @@ function isIntegerArray(data: unknown): data is number[] {
 }
 
 function parseTarget(step: object): Target | undefined {
-  if (hasProperty(step, "target") && isString(step.target)) {
+  if (hasProperty(step, 'target') && isString(step.target)) {
     return step.target;
   }
   return undefined;
 }
 
 function parseFrame(step: object): FrameSelector | undefined {
-  if (hasProperty(step, "frame")) {
+  if (hasProperty(step, 'frame')) {
     if (isIntegerArray(step.frame)) {
       return step.frame;
     }
 
-    throw new Error("Step `frame` is not an integer array");
+    throw new Error('Step `frame` is not an integer array');
   }
   return undefined;
 }
@@ -168,20 +168,20 @@ function parseString(step: object, prop: string): string {
 }
 
 function parseSelectors(step: object): Selector[] {
-  if (!hasProperty(step, "selectors")) {
-    throw new Error("Step does not have required selectors");
+  if (!hasProperty(step, 'selectors')) {
+    throw new Error('Step does not have required selectors');
   }
   if (!isArray(step.selectors)) {
-    throw new Error("Step selectors are not an array");
+    throw new Error('Step selectors are not an array');
   }
   return step.selectors.map((s) => {
     if (!isString(s) && !isArray(s)) {
-      throw new Error("Selector is not an array or string");
+      throw new Error('Selector is not an array or string');
     }
     if (isArray(s)) {
       return s.map((sub) => {
         if (!isString(sub)) {
-          throw new Error("Selector element is not a string");
+          throw new Error('Selector element is not a string');
         }
         return sub;
       });
@@ -191,7 +191,7 @@ function parseSelectors(step: object): Selector[] {
 }
 
 function parseOptionalSelectors(step: object): Selector[] | undefined {
-  if (!hasProperty(step, "selectors")) {
+  if (!hasProperty(step, 'selectors')) {
     return undefined;
   }
   return parseSelectors(step);
@@ -199,19 +199,19 @@ function parseOptionalSelectors(step: object): Selector[] | undefined {
 
 function parseAssertedEvent(event: unknown): AssertedEvent {
   if (!isObject(event)) {
-    throw new Error("Asserted event is not an object");
+    throw new Error('Asserted event is not an object');
   }
-  if (!hasProperty(event, "type")) {
-    throw new Error("Asserted event is missing type");
+  if (!hasProperty(event, 'type')) {
+    throw new Error('Asserted event is missing type');
   }
-  if (event.type === "navigation") {
+  if (event.type === 'navigation') {
     return {
-      type: "navigation",
-      url: parseOptionalString(event, "url"),
-      title: parseOptionalString(event, "title"),
+      type: 'navigation',
+      url: parseOptionalString(event, 'url'),
+      title: parseOptionalString(event, 'title'),
     };
   }
-  throw new Error("Unknown assertedEvent type");
+  throw new Error('Unknown assertedEvent type');
 }
 
 function parseAssertedEvents(events: unknown): AssertedEvent[] | undefined {
@@ -223,7 +223,7 @@ function parseAssertedEvents(events: unknown): AssertedEvent[] | undefined {
 
 function parseBaseStep(type: string, step: object): BaseStep {
   if (
-    hasProperty(step, "timeout") &&
+    hasProperty(step, 'timeout') &&
     isNumber(step.timeout) &&
     !validTimeout(step.timeout)
   ) {
@@ -231,11 +231,11 @@ function parseBaseStep(type: string, step: object): BaseStep {
   }
   return {
     type,
-    assertedEvents: hasProperty(step, "assertedEvents")
+    assertedEvents: hasProperty(step, 'assertedEvents')
       ? parseAssertedEvents(step.assertedEvents)
       : undefined,
     timeout:
-      hasProperty(step, "timeout") && isNumber(step.timeout)
+      hasProperty(step, 'timeout') && isNumber(step.timeout)
         ? step.timeout
         : undefined,
   };
@@ -264,36 +264,36 @@ function parseStepWithSelectors(type: string, step: object): StepWithSelectors {
 
 function parseClickStep(step: object): ClickStep {
   return {
-    ...parseStepWithSelectors("click", step),
-    type: "click",
-    offsetX: parseNumber(step, "offsetX"),
-    offsetY: parseNumber(step, "offsetY"),
+    ...parseStepWithSelectors('click', step),
+    type: 'click',
+    offsetX: parseNumber(step, 'offsetX'),
+    offsetY: parseNumber(step, 'offsetY'),
   };
 }
 
 function parseChangeStep(step: object): ChangeStep {
   return {
-    ...parseStepWithSelectors("click", step),
-    type: "change",
-    value: parseString(step, "value"),
+    ...parseStepWithSelectors('click', step),
+    type: 'change',
+    value: parseString(step, 'value'),
   };
 }
 
 function parseKeyDownStep(step: object): KeyDownStep {
   return {
-    ...parseStepWithTarget("keyDown", step),
-    type: "keyDown",
+    ...parseStepWithTarget('keyDown', step),
+    type: 'keyDown',
     // TODO: type-check keys.
-    key: parseString(step, "key") as Key,
+    key: parseString(step, 'key') as Key,
   };
 }
 
 function parseKeyUpStep(step: object): KeyUpStep {
   return {
-    ...parseStepWithTarget("keyUp", step),
-    type: "keyUp",
+    ...parseStepWithTarget('keyUp', step),
+    type: 'keyUp',
     // TODO: type-check keys.
-    key: parseString(step, "key") as Key,
+    key: parseString(step, 'key') as Key,
   };
 }
 
@@ -301,136 +301,136 @@ function parseEmulateNetworkConditionsStep(
   step: object
 ): EmulateNetworkConditionsStep {
   return {
-    ...parseStepWithTarget("emulateNetworkConditions", step),
-    type: "emulateNetworkConditions",
-    download: parseNumber(step, "download"),
-    upload: parseNumber(step, "upload"),
-    latency: parseNumber(step, "latency"),
+    ...parseStepWithTarget('emulateNetworkConditions', step),
+    type: 'emulateNetworkConditions',
+    download: parseNumber(step, 'download'),
+    upload: parseNumber(step, 'upload'),
+    latency: parseNumber(step, 'latency'),
   };
 }
 
 function parseCloseStep(step: object): CloseStep {
   return {
-    ...parseStepWithTarget("close", step),
-    type: "close",
+    ...parseStepWithTarget('close', step),
+    type: 'close',
   };
 }
 
 function parseSetViewportStep(step: object): SetViewportStep {
   return {
-    ...parseStepWithTarget("setViewport", step),
-    type: "setViewport",
-    width: parseNumber(step, "width"),
-    height: parseNumber(step, "height"),
-    deviceScaleFactor: parseNumber(step, "deviceScaleFactor"),
-    isMobile: parseBoolean(step, "isMobile"),
-    hasTouch: parseBoolean(step, "hasTouch"),
-    isLandscape: parseBoolean(step, "isLandscape"),
+    ...parseStepWithTarget('setViewport', step),
+    type: 'setViewport',
+    width: parseNumber(step, 'width'),
+    height: parseNumber(step, 'height'),
+    deviceScaleFactor: parseNumber(step, 'deviceScaleFactor'),
+    isMobile: parseBoolean(step, 'isMobile'),
+    hasTouch: parseBoolean(step, 'hasTouch'),
+    isLandscape: parseBoolean(step, 'isLandscape'),
   };
 }
 
 function parseScrollStep(step: object): ScrollStep {
   return {
-    ...parseStepWithFrame("scroll", step),
-    type: "scroll",
-    x: parseOptionalNumber(step, "x"),
-    y: parseOptionalNumber(step, "y"),
+    ...parseStepWithFrame('scroll', step),
+    type: 'scroll',
+    x: parseOptionalNumber(step, 'x'),
+    y: parseOptionalNumber(step, 'y'),
     selectors: parseOptionalSelectors(step),
   };
 }
 
 function parseNavigateStep(step: object): NavigateStep {
   return {
-    ...parseStepWithTarget("scroll", step),
-    type: "navigate",
+    ...parseStepWithTarget('scroll', step),
+    type: 'navigate',
     target: parseTarget(step),
-    url: parseString(step, "url"),
+    url: parseString(step, 'url'),
   };
 }
 
 function parseWaitForElementStep(step: object): WaitForElementStep {
-  const operator = parseOptionalString(step, "operator");
-  if (operator && operator !== ">=" && operator !== "==" && operator !== "<=") {
+  const operator = parseOptionalString(step, 'operator');
+  if (operator && operator !== '>=' && operator !== '==' && operator !== '<=') {
     throw new Error(
       "WaitForElement step's operator is not one of '>=','==','<='"
     );
   }
   return {
-    ...parseStepWithSelectors("waitForElement", step),
-    type: "waitForElement",
-    operator: operator as ">=" | "==" | "<=" | undefined,
-    count: parseOptionalNumber(step, "count"),
+    ...parseStepWithSelectors('waitForElement', step),
+    type: 'waitForElement',
+    operator: operator as '>=' | '==' | '<=' | undefined,
+    count: parseOptionalNumber(step, 'count'),
   };
 }
 
 function parseWaitForExpressionStep(step: object): WaitForExpressionStep {
-  if (!hasProperty(step, "expression")) {
-    throw new Error("waitForExpression step is missing `expression`");
+  if (!hasProperty(step, 'expression')) {
+    throw new Error('waitForExpression step is missing `expression`');
   }
   return {
-    ...parseStepWithFrame("waitForExpression", step),
-    type: "waitForExpression",
-    expression: parseString(step, "expression"),
+    ...parseStepWithFrame('waitForExpression', step),
+    type: 'waitForExpression',
+    expression: parseString(step, 'expression'),
   };
 }
 
 function parseCustomStep(step: object): CustomStep {
-  if (!hasProperty(step, "name")) {
-    throw new Error("customStep is missing name");
+  if (!hasProperty(step, 'name')) {
+    throw new Error('customStep is missing name');
   }
   if (!isString(step.name)) {
     throw new Error("customStep's name is not a string");
   }
   return {
-    ...parseStepWithFrame("customStep", step),
-    type: "customStep",
+    ...parseStepWithFrame('customStep', step),
+    type: 'customStep',
     name: step.name,
-    parameters: hasProperty(step, "parameters") ? step.parameters : undefined,
+    parameters: hasProperty(step, 'parameters') ? step.parameters : undefined,
   };
 }
 
 export function parseStep(step: unknown, idx?: number): Step {
   if (!isObject(step)) {
     throw new Error(
-      idx ? `Step ${idx} is not an object` : "Step is not an object"
+      idx ? `Step ${idx} is not an object` : 'Step is not an object'
     );
   }
-  if (!hasProperty(step, "type")) {
+  if (!hasProperty(step, 'type')) {
     throw new Error(
-      idx ? `Step ${idx} does not have a type` : "Step does not have a type"
+      idx ? `Step ${idx} does not have a type` : 'Step does not have a type'
     );
   }
   if (!isString(step.type)) {
     throw new Error(
       idx
         ? `Type of the step ${idx} is not a string`
-        : "Type of the step is not a string"
+        : 'Type of the step is not a string'
     );
   }
   switch (step.type) {
-    case "click":
+    case 'click':
       return parseClickStep(step);
-    case "change":
+    case 'change':
       return parseChangeStep(step);
-    case "keyDown":
+    case 'keyDown':
       return parseKeyDownStep(step);
-    case "keyUp":
+    case 'keyUp':
       return parseKeyUpStep(step);
-    case "emulateNetworkConditions":
+    case 'emulateNetworkConditions':
       return parseEmulateNetworkConditionsStep(step);
-    case "close":
+    case 'close':
       return parseCloseStep(step);
-    case "setViewport":
+    case 'setViewport':
       return parseSetViewportStep(step);
-    case "scroll":
+    case 'scroll':
       return parseScrollStep(step);
-    case "navigate":
+    case 'navigate':
       return parseNavigateStep(step);
-    case "customStep":
+    case 'customStep':
       return parseCustomStep(step);
-    case "waitForElement":
+    case 'waitForElement':
       return parseWaitForElementStep(step);
-    case "waitForExpression":
+    case 'waitForExpression':
       return parseWaitForExpressionStep(step);
     default:
       throw new Error(`Step type ${step.type} is not supported`);
@@ -440,7 +440,7 @@ export function parseStep(step: unknown, idx?: number): Step {
 function parseSteps(steps: unknown): Step[] {
   const result: Step[] = [];
   if (!isArray(steps)) {
-    throw new Error("Recording `steps` is not an array");
+    throw new Error('Recording `steps` is not an array');
   }
   for (const [idx, step] of steps.entries()) {
     result.push(parseStep(step, idx));
@@ -463,22 +463,22 @@ export function validTimeout(timeout: number): boolean {
 
 export function parse(data: unknown): UserFlow {
   if (!isObject(data)) {
-    throw new Error("Recording is not an object");
+    throw new Error('Recording is not an object');
   }
-  if (!hasProperty(data, "title")) {
-    throw new Error("Recording is missing `title`");
+  if (!hasProperty(data, 'title')) {
+    throw new Error('Recording is missing `title`');
   }
   if (!isString(data.title)) {
-    throw new Error("Recording `title` is not a string");
+    throw new Error('Recording `title` is not a string');
   }
-  if (hasProperty(data, "timeout") && !isNumber(data.timeout)) {
-    throw new Error("Recording `timeout` is not a number");
+  if (hasProperty(data, 'timeout') && !isNumber(data.timeout)) {
+    throw new Error('Recording `timeout` is not a number');
   }
-  if (!hasProperty(data, "steps")) {
-    throw new Error("Recording is missing `steps`");
+  if (!hasProperty(data, 'steps')) {
+    throw new Error('Recording is missing `steps`');
   }
   if (
-    hasProperty(data, "timeout") &&
+    hasProperty(data, 'timeout') &&
     isNumber(data.timeout) &&
     !validTimeout(data.timeout)
   ) {
@@ -487,11 +487,11 @@ export function parse(data: unknown): UserFlow {
   return cleanUndefined({
     title: data.title,
     timeout:
-      hasProperty(data, "timeout") && isNumber(data.timeout)
+      hasProperty(data, 'timeout') && isNumber(data.timeout)
         ? data.timeout
         : undefined,
     selectorAttribute:
-      hasProperty(data, "selectorAttribute") && isString(data.selectorAttribute)
+      hasProperty(data, 'selectorAttribute') && isString(data.selectorAttribute)
         ? data.selectorAttribute
         : undefined,
     steps: parseSteps(data.steps),

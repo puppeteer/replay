@@ -7,5 +7,5 @@ module.exports = {
   extension: ["ts"],
   timeout: 25 * 1000,
   reporter: process.env.CI ? "spec" : "dot",
-  loader: "ts-node/esm"
+  loader: "ts-node/esm",
 };

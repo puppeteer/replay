@@ -22,20 +22,20 @@ import {
 } from './SchemaUtils.js';
 
 export class PuppeteerRunnerExtension implements RunnerExtension {
-  #browser: Browser;
-  #page: Page;
-  #timeout: number;
+  protected browser: Browser;
+  protected page: Page;
+  protected timeout: number;
 
   constructor(browser: Browser, page: Page, opts?: { timeout?: number }) {
-    this.#browser = browser;
-    this.#page = page;
-    this.#timeout = opts?.timeout || 5000;
+    this.browser = browser;
+    this.page = page;
+    this.timeout = opts?.timeout || 5000;
   }
 
   async runStep(step: Step, flow: UserFlow): Promise<void> {
-    const timeout = step.timeout || this.#timeout;
-    const page = this.#page;
-    const browser = this.#browser;
+    const timeout = step.timeout || this.timeout;
+    const page = this.page;
+    const browser = this.browser;
     const waitForVisible = true;
 
     const targetPage = await getTargetPageForStep(browser, page, step, timeout);
@@ -194,6 +194,12 @@ export class PuppeteerRunnerExtension implements RunnerExtension {
     }
 
     await assertedEventsPromise;
+  }
+}
+
+export class PuppeteerRunnerExtensionOwningBrowser extends PuppeteerRunnerExtension {
+  async afterAllSteps() {
+    await this.browser.close();
   }
 }
 
@@ -492,6 +498,7 @@ export interface WaitForTargetOptions {
 }
 
 interface Browser {
+  close(): Promise<void>;
   waitForTarget(
     predicate: (x: Target) => boolean,
     options?: WaitForTargetOptions
@@ -539,9 +546,9 @@ interface Page {
   frames(): Frame[];
   emulateNetworkConditions(conditions: any): void;
   keyboard: {
-    type(value: string): void;
-    down(key: Key): void;
-    up(key: Key): void;
+    type(value: string): Promise<void>;
+    down(key: Key): Promise<void>;
+    up(key: Key): Promise<void>;
   };
   waitForTimeout(timeout: number): Promise<void>;
   close(): Promise<void>;

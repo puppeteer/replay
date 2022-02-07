@@ -1,4 +1,18 @@
-/**
+@puppeteer/replay / [Exports](modules.md)
+
+# @puppeteer/replay
+
+> Replay is a library which provides an API to replay and stringify recordings created using [Chrome DevTools Recorder](https://developer.chrome.com/docs/devtools/recorder/)
+
+## Source Code Headers
+
+Every file containing source code must include copyright and license
+information. This includes any JS/CSS files that you might be serving out to
+browsers. (This is to help well-intentioned people avoid accidental copying that
+doesn't comply with the license.)
+
+Apache header:
+
     Copyright 2022 Google LLC
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,18 +26,3 @@
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
- */
-
-
-/**
- * @packageDocumentation
- */
-export * as Schema from './Schema.js';
-export { parse } from './SchemaUtils.js';
-export { StringifyExtension } from './StringifyExtension.js';
-export { stringify, StringifyOptions } from './stringify.js';
-export {LineWriter} from './LineWriter.js';
-export { RunnerExtension} from './RunnerExtension.js';
-export { createRunner, Runner } from './Runner.js';
-export { PuppeteerRunnerExtension} from './PuppeteerRunnerExtension.js';
-export { PuppeteerStringifyExtension} from './PuppeteerStringifyExtension.js';

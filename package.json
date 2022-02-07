@@ -4,8 +4,12 @@
   "description": "Replay is a library which provides an API to replay and stringify recordings created using Chrome DevTools Recorder](https://developer.chrome.com/docs/devtools/recorder/)",
   "main": "lib/main.js",
   "types": "lib/main.d.ts",
+  "repository": "github:puppeteer/replay",
   "directories": {
     "doc": "docs"
+  },
+  "engines": {
+    "node": ">=12"
   },
   "scripts": {
     "test": "cross-env TS_NODE_PROJECT=test/tsconfig.json mocha --config .mocharc.cjs",
@@ -18,6 +22,14 @@
     "lint": "npm run eslint",
     "docs": "typedoc --excludePrivate --plugin typedoc-plugin-markdown --out docs src/main.ts"
   },
+  "files": [
+    "lib/types.d.ts",
+    "lib/**/*.d.ts",
+    "lib/**/*.d.ts.map",
+    "lib/**/*.js",
+    "lib/**/*.js.map"
+  ],
+  "private": true,
   "author": "Chrome DevTools authors",
   "license": "Apache-2.0",
   "type": "module",

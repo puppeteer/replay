@@ -19,7 +19,7 @@ import { PuppeteerStringifyExtension } from './PuppeteerStringifyExtension.js';
 import type { UserFlow } from './Schema.js';
 import { StringifyExtension } from './StringifyExtension.js';
 
-interface StringifyOptions {
+export interface StringifyOptions {
   extension?: StringifyExtension;
   indentation?: string;
 }

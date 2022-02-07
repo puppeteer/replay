@@ -23,18 +23,13 @@ export class Runner {
   #extension: RunnerExtension;
   #nextStep = 0;
 
-  /**
-   * @internal
-   * @param flow
-   * @param extension
-   */
   constructor(flow: UserFlow, extension: RunnerExtension) {
     this.#flow = flow;
     this.#extension = extension;
   }
 
   /**
-   * @param stepIdx - Run the flow up until the step with the `stepIdx` index.
+   * @param stepIdx Run the flow up until the step with the `stepIdx` index.
    */
   async run(stepIdx?: number): Promise<void> {
     if (stepIdx === undefined) {

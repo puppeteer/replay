@@ -9,7 +9,6 @@
     "outDir": "lib",
     "declaration": true,
     "moduleResolution": "Node",
-    "stripInternal": true
   },
   "include": ["src/**/*"]
 }

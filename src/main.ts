@@ -14,16 +14,8 @@
     limitations under the License.
  */
 
-
-/**
- * @packageDocumentation
- */
-export * as Schema from './Schema.js';
+export { UserFlow } from './Schema.js';
 export { parse } from './SchemaUtils.js';
 export { StringifyExtension } from './StringifyExtension.js';
-export { stringify, StringifyOptions } from './stringify.js';
-export {LineWriter} from './LineWriter.js';
-export { RunnerExtension} from './RunnerExtension.js';
-export { createRunner, Runner } from './Runner.js';
-export { PuppeteerRunnerExtension} from './PuppeteerRunnerExtension.js';
-export { PuppeteerStringifyExtension} from './PuppeteerStringifyExtension.js';
+export { stringify } from './stringify.js';
+export { createRunner } from './Runner.js';

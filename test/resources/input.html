@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+    Copyright 2022 Google LLC
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        https://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<input id="one">
+<input id="two">
+<input id="checkbox" type="checkbox">
+<input id="color" type="color">
+<input id="date" type="date">
+<input id="datetime-local" type="datetime-local">
+<input id="email" type="email">
+<input id="file" type="file">
+<input id="image" type="image">
+<input id="month" type="month">
+<input id="number" type="number">
+<input id="password" type="password">
+<input id="radio" type="radio">
+<input id="range" type="range">
+<input id="search" type="search">
+<input id="time" type="time">
+<input id="url" type="url">
+<input id="week" type="week">
+<input id="prefilled" value="abc">
+<pre id="log"></div>
+<script>
+  window.addEventListener('input', (e) => {
+    log.innerText += e.target.id + ':' + e.target.value + '\n';
+  });
+</script>

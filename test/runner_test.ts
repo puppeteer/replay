@@ -62,6 +62,9 @@ describe('Runner', () => {
   });
 
   after(async () => {
+    for (const page of await browser.pages()) {
+      await page.close();
+    }
     await browser.close();
     await httpServer.stop();
     await httpsServer.stop();
@@ -93,6 +96,468 @@ describe('Runner', () => {
     );
     await runner.run();
     assert.strictEqual(page.url(), `${HTTP_PREFIX}/empty.html`);
+  });
+
+  it('should be able to replay click steps', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/main.html`,
+          },
+          {
+            type: 'click',
+            selectors: ['a[href="main2.html"]'],
+            offsetX: 1,
+            offsetY: 1,
+            assertedEvents: [
+              {
+                type: 'navigation',
+                url: `${HTTP_PREFIX}/main2.html`,
+              },
+            ],
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+    assert.strictEqual(page.url(), `${HTTP_PREFIX}/main2.html`);
+  });
+
+  it('should be able to replay click steps on checkboxes', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/checkbox.html`,
+          },
+          {
+            type: 'click',
+            selectors: ['input'],
+            offsetX: 1,
+            offsetY: 1,
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+    assert.strictEqual(
+      await page.evaluate(() => document.querySelector('input')?.checked),
+      true
+    );
+  });
+
+  it('should be able to replay keyboard events', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/input.html`,
+          },
+          {
+            type: 'keyDown',
+            target: 'main',
+            key: 'Tab',
+          },
+          {
+            type: 'keyUp',
+            target: 'main',
+            key: 'Tab',
+          },
+          {
+            type: 'keyDown',
+            target: 'main',
+            key: '1',
+          },
+          {
+            type: 'keyUp',
+            target: 'main',
+            key: '1',
+          },
+          {
+            type: 'keyDown',
+            target: 'main',
+            key: 'Tab',
+          },
+          {
+            type: 'keyUp',
+            target: 'main',
+            key: 'Tab',
+          },
+          {
+            type: 'keyDown',
+            target: 'main',
+            key: '2',
+          },
+          {
+            type: 'keyUp',
+            target: 'main',
+            key: '2',
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+    const value = await page.$eval('#log', (e) =>
+      (e as HTMLElement).innerText.trim()
+    );
+    assert.strictEqual(value, ['one:1', 'two:2'].join('\n'));
+  });
+
+  it('should be able to replay events on select', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/select.html`,
+          },
+          {
+            type: 'change',
+            target: 'main',
+            selectors: ['aria/Select'],
+            value: 'O2',
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+    const value = await page.$eval(
+      '#select',
+      (e) => (e as HTMLSelectElement).value
+    );
+    assert.strictEqual(value, 'O2');
+  });
+
+  it('should be able to replay change events on non-text inputs', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/input.html`,
+          },
+          {
+            type: 'change',
+            target: 'main',
+            selectors: ['#color'],
+            value: '#333333',
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+    const value = await page.$eval(
+      '#color',
+      (e) => (e as HTMLSelectElement).value
+    );
+    assert.strictEqual(value, '#333333');
+  });
+
+  it('should be able to override the value in text inputs that have a value already', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/input.html`,
+          },
+          {
+            type: 'change',
+            target: 'main',
+            selectors: ['#prefilled'],
+            value: 'cba',
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+    const value = await page.$eval(
+      '#prefilled',
+      (e) => (e as HTMLSelectElement).value
+    );
+    assert.strictEqual(value, 'cba');
+  });
+
+  it('should be able to replay viewport change', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/select.html`,
+          },
+          {
+            type: 'setViewport',
+            width: 800,
+            height: 600,
+            isLandscape: false,
+            isMobile: false,
+            deviceScaleFactor: 1,
+            hasTouch: false,
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+    assert.strictEqual(
+      await page.evaluate(() => window.visualViewport.width),
+      800
+    );
+    assert.strictEqual(
+      await page.evaluate(() => window.visualViewport.height),
+      600
+    );
+  });
+
+  it('should be able to replay scroll events', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/scroll.html`,
+          },
+          {
+            type: 'setViewport',
+            width: 800,
+            height: 600,
+            isLandscape: false,
+            isMobile: false,
+            deviceScaleFactor: 1,
+            hasTouch: false,
+          },
+          {
+            type: 'scroll',
+            target: 'main',
+            selectors: ['body > div:nth-child(1)'],
+            x: 0,
+            y: 40,
+          },
+          {
+            type: 'scroll',
+            target: 'main',
+            x: 40,
+            y: 40,
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+    assert.strictEqual(await page.evaluate(() => window.pageXOffset), 40);
+    assert.strictEqual(await page.evaluate(() => window.pageYOffset), 40);
+    assert.strictEqual(
+      await page.evaluate(() => document.querySelector('#overflow')?.scrollTop),
+      40
+    );
+    assert.strictEqual(
+      await page.evaluate(
+        () => document.querySelector('#overflow')?.scrollLeft
+      ),
+      0
+    );
+  });
+
+  it('should be able to scroll into view when needed', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: 'setViewport',
+            width: 800,
+            height: 600,
+            isLandscape: false,
+            isMobile: false,
+            deviceScaleFactor: 1,
+            hasTouch: false,
+          },
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/scroll-into-view.html`,
+          },
+          {
+            type: 'click',
+            selectors: [['button']],
+            offsetX: 1,
+            offsetY: 1,
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+    assert.strictEqual(
+      await page.evaluate(() => document.querySelector('button')?.innerText),
+      'clicked'
+    );
+  });
+
+  it('should be able to replay ARIA selectors on inputs', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/form.html`,
+          },
+          {
+            type: 'setViewport',
+            width: 800,
+            height: 600,
+            isLandscape: false,
+            isMobile: false,
+            deviceScaleFactor: 1,
+            hasTouch: false,
+          },
+          {
+            type: 'click',
+            target: 'main',
+            selectors: ['aria/Name:'],
+            offsetX: 1,
+            offsetY: 1,
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+    assert.strictEqual(
+      await page.evaluate(() => document.activeElement?.id),
+      'name'
+    );
+  });
+
+  it('should be able to waitForElement', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/shadow-dynamic.html`,
+          },
+          {
+            type: 'waitForElement',
+            selectors: [['custom-element', 'button']],
+          },
+          {
+            type: 'click',
+            target: 'main',
+            selectors: [['custom-element', 'button']],
+            offsetX: 1,
+            offsetY: 1,
+          },
+          {
+            type: 'waitForElement',
+            selectors: [['custom-element', 'button']],
+            operator: '>=',
+            count: 2,
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+    assert.strictEqual(
+      await page.evaluate(
+        () => document.querySelectorAll('custom-element').length
+      ),
+      2
+    );
+  });
+
+  it('should be able to waitForExpression', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/shadow-dynamic.html`,
+          },
+          {
+            type: 'click',
+            target: 'main',
+            selectors: [['custom-element', 'button']],
+            offsetX: 1,
+            offsetY: 1,
+          },
+          {
+            type: 'waitForExpression',
+            target: 'main',
+            expression:
+              'document.querySelectorAll("custom-element").length === 2',
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+    assert.strictEqual(
+      await page.evaluate(
+        () => document.querySelectorAll('custom-element').length
+      ),
+      2
+    );
+  });
+
+  it('should be able to replay actions with popups', async () => {
+    const runner = await createRunner({
+      title: 'test',
+      steps: [
+        {
+          type: 'navigate',
+          url: `${HTTP_PREFIX}/main.html`,
+          assertedEvents: [
+            {
+              title: '',
+              type: 'navigation',
+              url: `${HTTP_PREFIX}/main.html`,
+            },
+          ],
+        },
+        {
+          type: 'click',
+          selectors: [['aria/Open Popup'], ['#popup']],
+          target: 'main',
+          offsetX: 1,
+          offsetY: 1,
+        },
+        {
+          type: 'click',
+          selectors: [['aria/Button in Popup'], ['body > button']],
+          target: `${HTTP_PREFIX}/popup.html`,
+          offsetX: 1,
+          offsetY: 1,
+        },
+        {
+          type: 'close',
+          target: `${HTTP_PREFIX}/popup.html`,
+        },
+      ],
+    });
+    await runner.run();
   });
 
   it('should run an empty flow using provided Puppeteer', async () => {

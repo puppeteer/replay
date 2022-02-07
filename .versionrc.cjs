@@ -1,9 +1,9 @@
 module.exports = {
-  releaseCommitMessageFormat: 'chore(release): mark v{{currentTag}}',
+  releaseCommitMessageFormat: 'chore(release): v{{currentTag}}',
   skip: {
     tag: true,
   },
   scripts: {
-    postbump: 'npm run doc && git add --update',
+    postbump: 'npm run docs && git add --update',
   },
 };

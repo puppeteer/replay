@@ -1,4 +1,4 @@
 {
   "reporter": ["text"],
-  "src": ["./src"]
+  "include": ["src/**/*"]
 }

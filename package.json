@@ -16,7 +16,7 @@
     "build": "npm run tsc",
     "tsc": "npm run clean-lib && tsc --version && tsc -b tsconfig.json",
     "lint": "npm run eslint",
-    "docs": "typedoc --excludePrivate --plugin typedoc-plugin-markdown --out docs src/main.ts"
+    "docs": "typedoc --externalPattern --excludeExternals --excludeProtected --excludePrivate --plugin typedoc-plugin-markdown --out docs/api src/main.ts"
   },
   "author": "Chrome DevTools authors",
   "license": "Apache-2.0",

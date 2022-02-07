@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[stringify.ts:23](https://github.com/puppeteer/replay/blob/5cee7ef/src/stringify.ts#L23)
+[stringify.ts:23](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L23)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[stringify.ts:24](https://github.com/puppeteer/replay/blob/5cee7ef/src/stringify.ts#L24)
+[stringify.ts:24](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L24)

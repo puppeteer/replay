@@ -34,7 +34,7 @@
 
 #### Defined in
 
-[RunnerExtension.ts:21](https://github.com/puppeteer/replay/blob/5cee7ef/src/RunnerExtension.ts#L21)
+[RunnerExtension.ts:21](https://github.com/puppeteer/replay/blob/main/src/RunnerExtension.ts#L21)
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 #### Defined in
 
-[RunnerExtension.ts:24](https://github.com/puppeteer/replay/blob/5cee7ef/src/RunnerExtension.ts#L24)
+[RunnerExtension.ts:24](https://github.com/puppeteer/replay/blob/main/src/RunnerExtension.ts#L24)
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 #### Defined in
 
-[RunnerExtension.ts:20](https://github.com/puppeteer/replay/blob/5cee7ef/src/RunnerExtension.ts#L20)
+[RunnerExtension.ts:20](https://github.com/puppeteer/replay/blob/main/src/RunnerExtension.ts#L20)
 
 ___
 
@@ -96,7 +96,7 @@ ___
 
 #### Defined in
 
-[RunnerExtension.ts:22](https://github.com/puppeteer/replay/blob/5cee7ef/src/RunnerExtension.ts#L22)
+[RunnerExtension.ts:22](https://github.com/puppeteer/replay/blob/main/src/RunnerExtension.ts#L22)
 
 ___
 
@@ -117,4 +117,4 @@ ___
 
 #### Defined in
 
-[RunnerExtension.ts:23](https://github.com/puppeteer/replay/blob/5cee7ef/src/RunnerExtension.ts#L23)
+[RunnerExtension.ts:23](https://github.com/puppeteer/replay/blob/main/src/RunnerExtension.ts#L23)

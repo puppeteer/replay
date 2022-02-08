@@ -20,7 +20,8 @@
     "build": "npm run tsc",
     "tsc": "npm run clean-lib && tsc --version && tsc -b tsconfig.json",
     "lint": "npm run eslint",
-    "docs": "typedoc --excludePrivate --plugin typedoc-plugin-markdown --out docs src/main.ts"
+    "docs": "typedoc --excludePrivate --plugin typedoc-plugin-markdown --out docs src/main.ts",
+    "release": "standard-version"
   },
   "files": [
     "lib/types.d.ts",
@@ -52,6 +53,7 @@
     "prettier": "2.5.1",
     "puppeteer": "13.1.3",
     "rimraf": "3.0.2",
+    "standard-version": "git@github.com:conventional-changelog/standard-version.git#v9.4.0",
     "ts-node": "10.4.0",
     "typedoc": "0.22.11",
     "typedoc-plugin-markdown": "3.11.13",

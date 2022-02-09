@@ -26,4 +26,4 @@
 
 #### Defined in
 
-[Runner.ts:39](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L39)
+[Runner.ts:37](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L37)

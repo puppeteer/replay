@@ -37,7 +37,7 @@
 
 #### Defined in
 
-[Schema.ts:34](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L34)
+[Schema.ts:33](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L33)
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:97](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L97)
+[Schema.ts:96](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L96)
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:99](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L99)
+[Schema.ts:98](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L98)
 
 ___
 
@@ -67,7 +67,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:96](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L96)
+[Schema.ts:95](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L95)
 
 ___
 
@@ -77,7 +77,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:100](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L100)
+[Schema.ts:99](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L99)
 
 ___
 
@@ -87,7 +87,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:98](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L98)
+[Schema.ts:97](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L97)
 
 ___
 
@@ -103,7 +103,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:41](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L41)
+[Schema.ts:40](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L40)
 
 ___
 
@@ -117,7 +117,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:33](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L33)
+[Schema.ts:32](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L32)
 
 ___
 
@@ -131,7 +131,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:94](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L94)
+[Schema.ts:93](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L93)
 
 ___
 
@@ -141,4 +141,4 @@ ___
 
 #### Defined in
 
-[Schema.ts:95](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L95)
+[Schema.ts:94](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L94)

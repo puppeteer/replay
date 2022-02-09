@@ -30,7 +30,6 @@
     "lib/**/*.js",
     "lib/**/*.js.map"
   ],
-  "private": true,
   "author": "Chrome DevTools authors",
   "license": "Apache-2.0",
   "type": "module",

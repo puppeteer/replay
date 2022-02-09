@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[Runner.ts:70](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L70)
+[Runner.ts:68](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L68)
 
 ___
 

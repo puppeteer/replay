@@ -14,7 +14,6 @@
     limitations under the License.
  */
 
-
 export type Target = string;
 export type Pattern = string;
 export type Selector = string | string[];

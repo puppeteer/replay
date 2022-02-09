@@ -1,5 +1,5 @@
 import { createRunner, parse } from '../../lib/main.js';
-import fs from 'fs'
+import fs from 'fs';
 
 // Read recording for a file.
 const recordingText = fs.readFileSync('./recording.json', 'utf-8');

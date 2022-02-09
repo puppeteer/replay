@@ -35,7 +35,7 @@
 
 #### Defined in
 
-[Schema.ts:34](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L34)
+[Schema.ts:33](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L33)
 
 ___
 
@@ -47,7 +47,7 @@ Defaults to 1
 
 #### Defined in
 
-[Schema.ts:157](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L157)
+[Schema.ts:156](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L156)
 
 ___
 
@@ -63,7 +63,7 @@ Defaults to main frame
 
 #### Defined in
 
-[Schema.ts:48](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L48)
+[Schema.ts:47](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L47)
 
 ___
 
@@ -75,7 +75,7 @@ Defaults to '=='
 
 #### Defined in
 
-[Schema.ts:153](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L153)
+[Schema.ts:152](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L152)
 
 ___
 
@@ -89,7 +89,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:52](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L52)
+[Schema.ts:51](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L51)
 
 ___
 
@@ -105,7 +105,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:41](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L41)
+[Schema.ts:40](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L40)
 
 ___
 
@@ -119,7 +119,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:33](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L33)
+[Schema.ts:32](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L32)
 
 ___
 
@@ -133,4 +133,4 @@ ___
 
 #### Defined in
 
-[Schema.ts:149](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L149)
+[Schema.ts:148](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L148)

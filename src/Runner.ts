@@ -25,8 +25,6 @@ export class Runner {
 
   /**
    * @internal
-   * @param flow
-   * @param extension
    */
   constructor(flow: UserFlow, extension: RunnerExtension) {
     this.#flow = flow;

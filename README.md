@@ -1,26 +1,49 @@
 # @puppeteer/replay
 
+<!-- [START badges] -->
+
+[![Build status](https://github.com/puppeteer/replay/workflows/run-checks/badge.svg)](https://github.com/puppeteer/replay/actions?query=workflow%3Arun-checks) [![npm puppeteer package](https://img.shields.io/npm/v/@puppeteer/replay.svg)](https://npmjs.org/package/@puppeteer/replay)
+
+<!-- [END badges] -->
+
+###### [API](https://github.com/puppeteer/replay/blob/main/docs/api) | [Contributing](https://github.com/puppeteer/replay/blob/main/docs/contributing.md)
+
 > Replay is a library which provides an API to replay and stringify recordings created using [Chrome DevTools Recorder](https://developer.chrome.com/docs/devtools/recorder/)
 
-## Source Code Headers
+## Installation
 
-Every file containing source code must include copyright and license
-information. This includes any JS/CSS files that you might be serving out to
-browsers. (This is to help well-intentioned people avoid accidental copying that
-doesn't comply with the license.)
+```
+npm install @puppeteer/replay --save
+```
 
-Apache header:
+If you want to replay recordings using Puppeteer, install Puppeteer as well:
 
-    Copyright 2022 Google LLC
+```
+npm install puppeteer --save
+```
 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
+## Replay a recording stored in a file using Puppeteer
 
-        https://www.apache.org/licenses/LICENSE-2.0
+```ts
+import { createRunner, parse } from '@puppeteer/replay';
+import fs from 'fs'
 
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+// Read recording for a file.
+const recordingText = fs.readFileSync('./recording.json', 'utf-8');
+// Validate the file using parse function.
+const recording = parse(JSON.parse(recordingText));
+// Create a runner and execute the script.
+const runner = await createRunner(recording);
+await runner.run();
+```
+
+## Stringify a recording as a Puppeteer script
+
+```ts
+import { stringify } from '@puppeteer/replay';
+
+console.log(await stringify({
+  title: 'Test recording',
+  steps: [],
+}));
+```

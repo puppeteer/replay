@@ -42,7 +42,7 @@ limitations under the License.
 
 #### Defined in
 
-[LineWriter.ts:18](https://github.com/puppeteer/replay/blob/5cee7ef/src/LineWriter.ts#L18)
+[LineWriter.ts:18](https://github.com/puppeteer/replay/blob/main/src/LineWriter.ts#L18)
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 #### Defined in
 
-[LineWriter.ts:20](https://github.com/puppeteer/replay/blob/5cee7ef/src/LineWriter.ts#L20)
+[LineWriter.ts:20](https://github.com/puppeteer/replay/blob/main/src/LineWriter.ts#L20)
 
 ___
 
@@ -70,4 +70,4 @@ ___
 
 #### Defined in
 
-[LineWriter.ts:19](https://github.com/puppeteer/replay/blob/5cee7ef/src/LineWriter.ts#L19)
+[LineWriter.ts:19](https://github.com/puppeteer/replay/blob/main/src/LineWriter.ts#L19)

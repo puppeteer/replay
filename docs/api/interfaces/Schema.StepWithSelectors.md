@@ -1,4 +1,4 @@
-[@puppeteer/replay](../README.md) / [Exports](../modules.md) / [Schema](../modules/Schema.md) / StepWithSelectors
+[@puppeteer/replay](../README.md) / [Schema](../modules/Schema.md) / StepWithSelectors
 
 # Interface: StepWithSelectors
 

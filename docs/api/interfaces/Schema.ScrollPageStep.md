@@ -1,4 +1,4 @@
-[@puppeteer/replay](../README.md) / [Exports](../modules.md) / [Schema](../modules/Schema.md) / ScrollPageStep
+[@puppeteer/replay](../README.md) / [Schema](../modules/Schema.md) / ScrollPageStep
 
 # Interface: ScrollPageStep
 

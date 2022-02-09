@@ -32,14 +32,14 @@ import type {
   WaitForElementStep,
   WaitForExpressionStep,
 } from './Schema.js';
-import type { StringifyExtension } from './StringifyExtension.js';
+import { StringifyExtension } from './StringifyExtension.js';
 
 import {
   assertAllStepTypesAreHandled,
   typeableInputTypes,
 } from './SchemaUtils.js';
 
-export class PuppeteerStringifyExtension implements StringifyExtension {
+export class PuppeteerStringifyExtension extends StringifyExtension {
   async beforeAllSteps(out: LineWriter, flow: UserFlow) {
     out.appendLine(
       "const puppeteer = require('puppeteer'); // v13.0.0 or later"

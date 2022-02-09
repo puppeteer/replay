@@ -1,4 +1,4 @@
-[@puppeteer/replay](../README.md) / [Exports](../modules.md) / Runner
+[@puppeteer/replay](../README.md) / Runner
 
 # Class: Runner
 

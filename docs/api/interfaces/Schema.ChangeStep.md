@@ -1,4 +1,4 @@
-[@puppeteer/replay](../README.md) / [Exports](../modules.md) / [Schema](../modules/Schema.md) / ChangeStep
+[@puppeteer/replay](../README.md) / [Schema](../modules/Schema.md) / ChangeStep
 
 # Interface: ChangeStep
 

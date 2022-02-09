@@ -1,4 +1,4 @@
-[@puppeteer/replay](../README.md) / [Exports](../modules.md) / StringifyOptions
+[@puppeteer/replay](../README.md) / StringifyOptions
 
 # Interface: StringifyOptions
 
@@ -13,7 +13,7 @@
 
 ### extension
 
-• `Optional` **extension**: [`StringifyExtension`](StringifyExtension.md)
+• `Optional` **extension**: [`StringifyExtension`](../classes/StringifyExtension.md)
 
 #### Defined in
 

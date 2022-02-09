@@ -16,10 +16,10 @@
 
 import { UserFlow, Step } from './Schema.js';
 
-export interface RunnerExtension {
-  beforeAllSteps?(flow: UserFlow): Promise<void>;
-  afterAllSteps?(flow: UserFlow): Promise<void>;
-  beforeEachStep?(step: Step, flow: UserFlow): Promise<void>;
-  runStep(step: Step, flow: UserFlow): Promise<void>;
-  afterEachStep?(step: Step, flow: UserFlow): Promise<void>;
+export class RunnerExtension {
+  async beforeAllSteps?(flow: UserFlow): Promise<void> {}
+  async afterAllSteps?(flow: UserFlow): Promise<void> {}
+  async beforeEachStep?(step: Step, flow: UserFlow): Promise<void> {}
+  async runStep(step: Step, flow: UserFlow): Promise<void> {}
+  async afterEachStep?(step: Step, flow: UserFlow): Promise<void> {}
 }

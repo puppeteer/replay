@@ -1,51 +1,90 @@
-@puppeteer/replay / [Exports](modules.md)
+@puppeteer/replay
 
 # @puppeteer/replay
 
-<!-- [START badges] -->
+## Table of contents
 
-[![Build status](https://github.com/puppeteer/replay/workflows/run-checks/badge.svg)](https://github.com/puppeteer/replay/actions?query=workflow%3Arun-checks) [![npm puppeteer package](https://img.shields.io/npm/v/@puppeteer/replay.svg)](https://npmjs.org/package/@puppeteer/replay)
+### Namespaces
 
-<!-- [END badges] -->
+- [Schema](modules/Schema.md)
 
-###### [API](https://github.com/puppeteer/replay/blob/main/docs/api) | [Contributing](https://github.com/puppeteer/replay/blob/main/docs/contributing.md)
+### Classes
 
-> Replay is a library which provides an API to replay and stringify recordings created using [Chrome DevTools Recorder](https://developer.chrome.com/docs/devtools/recorder/)
+- [PuppeteerRunnerExtension](classes/PuppeteerRunnerExtension.md)
+- [PuppeteerStringifyExtension](classes/PuppeteerStringifyExtension.md)
+- [Runner](classes/Runner.md)
+- [RunnerExtension](classes/RunnerExtension.md)
+- [StringifyExtension](classes/StringifyExtension.md)
 
-## Installation
+### Interfaces
 
-```
-npm install @puppeteer/replay --save
-```
+- [LineWriter](interfaces/LineWriter.md)
+- [StringifyOptions](interfaces/StringifyOptions.md)
 
-If you want to replay recordings using Puppeteer, install Puppeteer as well:
+### Functions
 
-```
-npm install puppeteer --save
-```
+- [createRunner](README.md#createrunner)
+- [parse](README.md#parse)
+- [stringify](README.md#stringify)
 
-## Replay a recording stored in a file using Puppeteer
+## Functions
 
-```js
-import { createRunner, parse } from '@puppeteer/replay';
-import fs from 'fs';
+### createRunner
 
-// Read recording for a file.
-const recordingText = fs.readFileSync('./recording.json', 'utf8');
-// Validate & parse the file.
-const recording = parse(JSON.parse(recordingText));
-// Create a runner and execute the script.
-const runner = await createRunner(recording);
-await runner.run();
-```
+▸ **createRunner**(`flow`, `extension?`): `Promise`<[`Runner`](classes/Runner.md)\>
 
-## Stringify a recording as a Puppeteer script
+#### Parameters
 
-```js
-import { stringify } from '@puppeteer/replay';
+| Name | Type |
+| :------ | :------ |
+| `flow` | [`UserFlow`](interfaces/Schema.UserFlow.md) |
+| `extension?` | [`RunnerExtension`](classes/RunnerExtension.md) |
 
-console.log(await stringify({
-  title: 'Test recording',
-  steps: [],
-}));
-```
+#### Returns
+
+`Promise`<[`Runner`](classes/Runner.md)\>
+
+#### Defined in
+
+[Runner.ts:71](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L71)
+
+___
+
+### parse
+
+▸ **parse**(`data`): [`UserFlow`](interfaces/Schema.UserFlow.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `data` | `unknown` |
+
+#### Returns
+
+[`UserFlow`](interfaces/Schema.UserFlow.md)
+
+#### Defined in
+
+[SchemaUtils.ts:452](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L452)
+
+___
+
+### stringify
+
+▸ **stringify**(`flow`, `opts?`): `Promise`<`string`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `flow` | [`UserFlow`](interfaces/Schema.UserFlow.md) |
+| `opts?` | [`StringifyOptions`](interfaces/StringifyOptions.md) |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[stringify.ts:27](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L27)

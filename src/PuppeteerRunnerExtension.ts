@@ -21,12 +21,13 @@ import {
   typeableInputTypes,
 } from './SchemaUtils.js';
 
-export class PuppeteerRunnerExtension implements RunnerExtension {
+export class PuppeteerRunnerExtension extends RunnerExtension {
   protected browser: Browser;
   protected page: Page;
   protected timeout: number;
 
   constructor(browser: Browser, page: Page, opts?: { timeout?: number }) {
+    super();
     this.browser = browser;
     this.page = page;
     this.timeout = opts?.timeout || 5000;

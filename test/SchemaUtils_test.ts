@@ -481,7 +481,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'keyDown',
+              type: 'keyUp',
               target: 'main',
               key: 'A',
             },
@@ -491,7 +491,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'keyDown',
+              type: 'keyUp',
               target: 'main',
               key: 'A',
             },

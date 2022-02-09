@@ -16,6 +16,9 @@
 
 import { stringify } from '../src/stringify.js';
 import { assert } from 'chai';
+import { StringifyExtension } from '../src/StringifyExtension.js';
+import { Step, UserFlow } from '../src/Schema.js';
+import { LineWriter } from '../src/LineWriter.js';
 
 describe('stringify', () => {
   it('should print the correct script for a navigate step', async () => {
@@ -114,6 +117,48 @@ describe('stringify', () => {
 
   ${helpers}
   {
+    const target = await browser.waitForTarget(t => t.url() === "https://localhost/test", { timeout });
+    const targetPage = await target.page();
+    targetPage.setDefaultTimeout(timeout);
+    const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
+    await scrollIntoViewIfNeeded(element, timeout);
+    await element.click({ offset: { x: 1, y: 1} });
+  }
+
+  await browser.close();
+})();
+`
+    );
+  });
+
+  it('should use step and flow timeouts', async () => {
+    const flow = {
+      title: 'Test Recording',
+      timeout: 10000,
+      steps: [
+        {
+          type: 'click' as const,
+          target: 'https://localhost/test',
+          selectors: ['aria/Test'],
+          offsetX: 1,
+          offsetY: 1,
+          timeout: 20000,
+        },
+      ],
+    };
+    assert.deepEqual(
+      await stringify(flow),
+      `const puppeteer = require('puppeteer'); // v13.0.0 or later
+
+(async () => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  const timeout = 10000;
+  page.setDefaultTimeout(timeout);
+
+  ${helpers}
+  {
+    const timeout = 20000;
     const target = await browser.waitForTarget(t => t.url() === "https://localhost/test", { timeout });
     const targetPage = await target.page();
     targetPage.setDefaultTimeout(timeout);
@@ -365,6 +410,61 @@ describe('stringify', () => {
   await browser.close();
 })();
 `
+    );
+  });
+
+  it('invokes all hooks in extensions', async () => {
+    class DummyExtension implements StringifyExtension {
+      async beforeAllSteps(out: LineWriter): Promise<void> {
+        out.appendLine('beforeAll');
+      }
+
+      async beforeEachStep(
+        out: LineWriter,
+        step: Step,
+        flow: UserFlow
+      ): Promise<void> {
+        out.appendLine('beforeStep' + flow.steps.indexOf(step));
+      }
+
+      async stringifyStep(
+        out: LineWriter,
+        step: Step,
+        flow: UserFlow
+      ): Promise<void> {
+        out.appendLine('stringifyStep' + flow.steps.indexOf(step));
+      }
+
+      async afterEachStep(
+        out: LineWriter,
+        step: Step,
+        flow: UserFlow
+      ): Promise<void> {
+        out.appendLine('afterStep' + flow.steps.indexOf(step));
+      }
+
+      async afterAllSteps(out: LineWriter): Promise<void> {
+        out.appendLine('afterAll');
+      }
+    }
+
+    const extension = new DummyExtension();
+    assert.strictEqual(
+      await stringify(
+        {
+          title: 'test',
+          steps: [{ type: 'customStep', name: 'test', parameters: {} }],
+        },
+        { extension }
+      ),
+      [
+        'beforeAll',
+        'beforeStep0',
+        'stringifyStep0',
+        'afterStep0',
+        'afterAll',
+        '',
+      ].join('\n')
     );
   });
 });

@@ -12,7 +12,7 @@
 
 ### run
 
-▸ **run**(`stepIdx?`): `Promise`<`void`\>
+▸ **run**(`stepIdx?`): `Promise`<`boolean`\>
 
 #### Parameters
 
@@ -22,7 +22,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`<`boolean`\>
 
 #### Defined in
 

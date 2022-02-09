@@ -31,17 +31,15 @@ export async function stringify(
   if (!opts) {
     opts = {};
   }
-  if (!opts.extension) {
-    opts.extension = new PuppeteerStringifyExtension();
+  let ext = opts.extension;
+  if (!ext) {
+    ext = new PuppeteerStringifyExtension();
   }
+
   if (!opts.indentation) {
     opts.indentation = '  ';
   }
   const out = new LineWriterImpl(opts.indentation);
-  const ext = opts.extension;
-  if (!ext) {
-    throw new Error('Internal error: StringifyExtension is not found.');
-  }
 
   await ext.beforeAllSteps?.(out, flow);
   for (const step of flow.steps) {

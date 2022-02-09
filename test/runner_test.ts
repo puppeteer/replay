@@ -26,6 +26,8 @@ import { createRunner } from '../src/Runner.js';
 import { PuppeteerRunnerExtension } from '../src/PuppeteerRunnerExtension.js';
 
 import { TestServer } from '../third_party/testserver/index.js';
+import { RunnerExtension } from '../src/RunnerExtension.js';
+import { Step, UserFlow } from '../src/Schema.js';
 
 const HTTP_PORT = 8907;
 const HTTP_PREFIX = `http://localhost:${HTTP_PORT}`;
@@ -577,5 +579,84 @@ describe('Runner', () => {
       steps: [],
     });
     await runner.run();
+  });
+
+  it('should run steps partially', async () => {
+    class DummyExtension implements RunnerExtension {
+      #log: string[] = [];
+
+      getLog(): string {
+        return this.#log.join(',');
+      }
+
+      async runStep(step: Step, flow: UserFlow): Promise<void> {
+        this.#log.push(flow.steps.indexOf(step).toString(10));
+      }
+    }
+    const extension = new DummyExtension();
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          { type: 'customStep', name: 'step1', parameters: {} },
+          { type: 'customStep', name: 'step2', parameters: {} },
+          { type: 'customStep', name: 'step3', parameters: {} },
+        ],
+      },
+      extension
+    );
+    assert.strictEqual(await runner.run(-1), false);
+    assert.strictEqual(extension.getLog(), '');
+    assert.strictEqual(await runner.run(0), false);
+    assert.strictEqual(extension.getLog(), '');
+    assert.strictEqual(await runner.run(1), false);
+    assert.strictEqual(extension.getLog(), '0');
+    assert.strictEqual(await runner.run(3), true);
+    assert.strictEqual(extension.getLog(), '0,1,2');
+    assert.strictEqual(await runner.run(), true);
+    assert.strictEqual(extension.getLog(), '0,1,2');
+  });
+
+  it('should run all extension hooks', async () => {
+    class DummyExtension implements RunnerExtension {
+      #log: string[] = [];
+
+      getLog(): string {
+        return this.#log.join(',');
+      }
+
+      async beforeAllSteps(): Promise<void> {
+        this.#log.push('beforeAll');
+      }
+
+      async beforeEachStep(step: Step, flow: UserFlow): Promise<void> {
+        this.#log.push('beforeStep' + flow.steps.indexOf(step));
+      }
+
+      async runStep(step: Step, flow: UserFlow): Promise<void> {
+        this.#log.push('runStep' + flow.steps.indexOf(step));
+      }
+
+      async afterEachStep(step: Step, flow: UserFlow): Promise<void> {
+        this.#log.push('afterStep' + flow.steps.indexOf(step));
+      }
+
+      async afterAllSteps(): Promise<void> {
+        this.#log.push('afterAll');
+      }
+    }
+    const extension = new DummyExtension();
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [{ type: 'customStep', name: 'step1', parameters: {} }],
+      },
+      extension
+    );
+    assert.strictEqual(await runner.run(), true);
+    assert.strictEqual(
+      extension.getLog(),
+      'beforeAll,beforeStep0,runStep0,afterStep0,afterAll'
+    );
   });
 });

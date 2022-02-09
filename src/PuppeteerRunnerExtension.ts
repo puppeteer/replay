@@ -109,16 +109,19 @@ export class PuppeteerRunnerExtension implements RunnerExtension {
           });
           await scrollIntoViewIfNeeded(element, timeout);
           const inputType = await element.evaluate(
+            /* c8 ignore next 1 */
             (el: Element) => (el as HTMLInputElement).type
           );
           if (typeableInputTypes.has(inputType)) {
             await element.evaluate((el: Element) => {
+              /* c8 ignore next 1 */
               (el as HTMLInputElement).value = '';
             });
             await element.type(step.value);
           } else {
             await element.focus();
             await element.evaluate((el: Element, value: string) => {
+              /* c8 ignore next 4 */
               const input = el as HTMLInputElement;
               input.value = value;
               input.dispatchEvent(new Event('input', { bubbles: true }));
@@ -143,6 +146,7 @@ export class PuppeteerRunnerExtension implements RunnerExtension {
           await scrollIntoViewIfNeeded(element, timeout);
           await element.evaluate(
             (e: Element, x: number, y: number) => {
+              /* c8 ignore next 2 */
               e.scrollTop = y;
               e.scrollLeft = x;
             },
@@ -153,6 +157,7 @@ export class PuppeteerRunnerExtension implements RunnerExtension {
         } else {
           await frame.evaluate(
             (x, y) => {
+              /* c8 ignore next 1 */
               window.scroll(x, y);
             },
             step.x || 0,
@@ -294,6 +299,7 @@ async function scrollIntoViewIfNeeded(
     return;
   }
   await element.evaluate((element: Element) => {
+    /* c8 ignore next 1 */
     element.scrollIntoView({
       block: 'center',
       inline: 'center',
@@ -308,6 +314,7 @@ async function waitForConnected(
   timeout: number
 ): Promise<void> {
   await waitForFunction(async () => {
+    /* c8 ignore next 1 */
     return await element.evaluate((el: Element) => el.isConnected);
   }, timeout);
 }

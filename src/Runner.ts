@@ -34,7 +34,7 @@ export class Runner {
   /**
    * @param stepIdx - Run the flow up until the step with the `stepIdx` index.
    */
-  async run(stepIdx?: number): Promise<void> {
+  async run(stepIdx?: number): Promise<boolean> {
     if (stepIdx === undefined) {
       stepIdx = this.#flow.steps.length;
     }
@@ -61,7 +61,10 @@ export class Runner {
     }
     if (this.#nextStep >= this.#flow.steps.length) {
       await this.#extension.afterAllSteps?.(this.#flow);
+      return true;
     }
+
+    return false;
   }
 }
 

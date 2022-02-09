@@ -45,18 +45,6 @@ export function assertAllStepTypesAreHandled(s: Step): never {
   throw new Error(`Unknown step type: ${s.type}`);
 }
 
-export function hasFrameContext(
-  step: Step
-): step is ClickStep | ChangeStep | KeyDownStep | KeyUpStep {
-  return ['click', 'change', 'keydown', 'keyup'].includes(step.type);
-}
-
-export function hasCondition(
-  step: Step
-): step is ClickStep | ChangeStep | KeyDownStep | KeyUpStep {
-  return ['click', 'change', 'keydown', 'keyup'].includes(step.type);
-}
-
 export const typeableInputTypes = new Set([
   'textarea',
   'select-one',

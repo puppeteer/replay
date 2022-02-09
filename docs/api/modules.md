@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[Runner.ts:68](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L68)
+[Runner.ts:71](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L71)
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 #### Defined in
 
-[SchemaUtils.ts:464](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L464)
+[SchemaUtils.ts:452](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L452)
 
 ___
 

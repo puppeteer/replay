@@ -24,13 +24,13 @@ npm install puppeteer --save
 
 ## Replay a recording stored in a file using Puppeteer
 
-```ts
+```js
 import { createRunner, parse } from '@puppeteer/replay';
-import fs from 'fs'
+import fs from 'fs';
 
 // Read recording for a file.
-const recordingText = fs.readFileSync('./recording.json', 'utf-8');
-// Validate the file using parse function.
+const recordingText = fs.readFileSync('./recording.json', 'utf8');
+// Validate the file.
 const recording = parse(JSON.parse(recordingText));
 // Create a runner and execute the script.
 const runner = await createRunner(recording);
@@ -39,7 +39,7 @@ await runner.run();
 
 ## Stringify a recording as a Puppeteer script
 
-```ts
+```js
 import { stringify } from '@puppeteer/replay';
 
 console.log(await stringify({

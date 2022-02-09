@@ -30,7 +30,7 @@ import fs from 'fs';
 
 // Read recording for a file.
 const recordingText = fs.readFileSync('./recording.json', 'utf8');
-// Validate the file.
+// Validate & parse the file.
 const recording = parse(JSON.parse(recordingText));
 // Create a runner and execute the script.
 const runner = await createRunner(recording);

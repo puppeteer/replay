@@ -19,9 +19,13 @@
 
 • `Optional` **selectorAttribute**: `string`
 
+The name of the attribute to use to generate selectors instead of regular
+CSS selectors. For example, specifying `data-testid` would generate the
+selector `[data-testid=value]` for the element `<div data-testid=value>`.
+
 #### Defined in
 
-[Schema.ts:171](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L171)
+[Schema.ts:210](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L210)
 
 ___
 
@@ -31,7 +35,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:172](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L172)
+[Schema.ts:211](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L211)
 
 ___
 
@@ -39,9 +43,11 @@ ___
 
 • `Optional` **timeout**: `number`
 
+Timeout in milliseconds.
+
 #### Defined in
 
-[Schema.ts:170](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L170)
+[Schema.ts:204](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L204)
 
 ___
 
@@ -49,6 +55,8 @@ ___
 
 • **title**: `string`
 
+Human-readble title describing the recorder user flow.
+
 #### Defined in
 
-[Schema.ts:169](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L169)
+[Schema.ts:200](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L200)

@@ -4,6 +4,21 @@
 
 [Schema](../modules/Schema.md).WaitForElementStep
 
+`waitForElement` allows waiting for the presence (or absence) of the number of
+elements identified by the selector.
+
+For example, the following step would wait for less than three elements
+to be on the page that match the selector `.my-class`.
+
+```
+{
+  "type": "waitForElement",
+  "selectors": [".my-class"],
+  "operator": "<=",
+  "count": 2,
+}
+```
+
 ## Hierarchy
 
 - [`StepWithSelectors`](Schema.StepWithSelectors.md)
@@ -47,7 +62,7 @@ Defaults to 1
 
 #### Defined in
 
-[Schema.ts:156](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L156)
+[Schema.ts:173](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L173)
 
 ___
 
@@ -75,7 +90,7 @@ Defaults to '=='
 
 #### Defined in
 
-[Schema.ts:152](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L152)
+[Schema.ts:169](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L169)
 
 ___
 
@@ -133,4 +148,4 @@ ___
 
 #### Defined in
 
-[Schema.ts:148](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L148)
+[Schema.ts:165](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L165)

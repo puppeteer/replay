@@ -144,6 +144,22 @@ export type UserStep =
   | NavigateStep
   | CustomStep;
 
+/**
+ * `waitForElement` allows waiting for the presence (or absence) of the number of
+ * elements identified by the selector.
+ *
+ * For example, the following step would wait for less than three elements
+ * to be on the page that match the selector `.my-class`.
+ *
+ * ```
+ * {
+ *   "type": "waitForElement",
+ *   "selectors": [".my-class"],
+ *   "operator": "<=",
+ *   "count": 2,
+ * }
+ * ```
+ */
 export interface WaitForElementStep extends StepWithSelectors {
   type: 'waitForElement';
   /**
@@ -156,6 +172,19 @@ export interface WaitForElementStep extends StepWithSelectors {
   count?: number;
 }
 
+/**
+ * `waitForExpression` allows for a JavaScript expression to resolve to truthy value.
+ *
+ * For example, the following step pauses for two seconds and then resolves to true
+ * allowing the replay to continue.
+ *
+ * ```
+ * {
+ *   "type": "waitForElement",
+ *   "expression": "new Promise(resole => setTimeout(() => resolve(true), 2000))",
+ * }
+ * ```
+ */
 export interface WaitForExpressionStep extends StepWithFrame {
   type: 'waitForExpression';
   expression: string;
@@ -166,12 +195,26 @@ export type AssertionStep = WaitForElementStep | WaitForExpressionStep;
 export type Step = UserStep | AssertionStep;
 
 export interface UserFlow {
+  /**
+   * Human-readble title describing the recorder user flow.
+   */
   title: string;
+  /**
+   * Timeout in milliseconds.
+   */
   timeout?: number;
+  /**
+   * The name of the attribute to use to generate selectors instead of regular
+   * CSS selectors. For example, specifying `data-testid` would generate the
+   * selector `[data-testid=value]` for the element `<div data-testid=value>`.
+   */
   selectorAttribute?: string;
   steps: Step[];
 }
 
+/**
+ * @internal
+ */
 export type Key =
   | '0'
   | '1'

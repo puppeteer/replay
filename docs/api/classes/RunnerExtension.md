@@ -1,12 +1,18 @@
-[@puppeteer/replay](../README.md) / [Exports](../modules.md) / RunnerExtension
+[@puppeteer/replay](../README.md) / RunnerExtension
 
-# Interface: RunnerExtension
+# Class: RunnerExtension
 
-## Implemented by
+## Hierarchy
 
-- [`PuppeteerRunnerExtension`](../classes/PuppeteerRunnerExtension.md)
+- **`RunnerExtension`**
+
+  ↳ [`PuppeteerRunnerExtension`](PuppeteerRunnerExtension.md)
 
 ## Table of contents
+
+### Constructors
+
+- [constructor](RunnerExtension.md#constructor)
 
 ### Methods
 
@@ -15,6 +21,12 @@
 - [beforeAllSteps](RunnerExtension.md#beforeallsteps)
 - [beforeEachStep](RunnerExtension.md#beforeeachstep)
 - [runStep](RunnerExtension.md#runstep)
+
+## Constructors
+
+### constructor
+
+• **new RunnerExtension**()
 
 ## Methods
 
@@ -26,7 +38,7 @@
 
 | Name | Type |
 | :------ | :------ |
-| `flow` | [`UserFlow`](Schema.UserFlow.md) |
+| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 
@@ -47,7 +59,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `step` | [`Step`](../modules/Schema.md#step) |
-| `flow` | [`UserFlow`](Schema.UserFlow.md) |
+| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 
@@ -67,7 +79,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `flow` | [`UserFlow`](Schema.UserFlow.md) |
+| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 
@@ -88,7 +100,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `step` | [`Step`](../modules/Schema.md#step) |
-| `flow` | [`UserFlow`](Schema.UserFlow.md) |
+| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 
@@ -109,7 +121,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `step` | [`Step`](../modules/Schema.md#step) |
-| `flow` | [`UserFlow`](Schema.UserFlow.md) |
+| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 

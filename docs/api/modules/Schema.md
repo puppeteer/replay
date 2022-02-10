@@ -1,4 +1,4 @@
-[@puppeteer/replay](../README.md) / [Exports](../modules.md) / Schema
+[@puppeteer/replay](../README.md) / Schema
 
 # Namespace: Schema
 

@@ -1,4 +1,4 @@
-[@puppeteer/replay](../README.md) / [Exports](../modules.md) / [Schema](../modules/Schema.md) / NavigateStep
+[@puppeteer/replay](../README.md) / [Schema](../modules/Schema.md) / NavigateStep
 
 # Interface: NavigateStep
 

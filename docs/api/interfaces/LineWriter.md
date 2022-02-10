@@ -1,4 +1,4 @@
-[@puppeteer/replay](../README.md) / [Exports](../modules.md) / LineWriter
+[@puppeteer/replay](../README.md) / LineWriter
 
 # Interface: LineWriter
 

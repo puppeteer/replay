@@ -1,12 +1,18 @@
-[@puppeteer/replay](../README.md) / [Exports](../modules.md) / StringifyExtension
+[@puppeteer/replay](../README.md) / StringifyExtension
 
-# Interface: StringifyExtension
+# Class: StringifyExtension
 
-## Implemented by
+## Hierarchy
 
-- [`PuppeteerStringifyExtension`](../classes/PuppeteerStringifyExtension.md)
+- **`StringifyExtension`**
+
+  ↳ [`PuppeteerStringifyExtension`](PuppeteerStringifyExtension.md)
 
 ## Table of contents
+
+### Constructors
+
+- [constructor](StringifyExtension.md#constructor)
 
 ### Methods
 
@@ -15,6 +21,12 @@
 - [beforeAllSteps](StringifyExtension.md#beforeallsteps)
 - [beforeEachStep](StringifyExtension.md#beforeeachstep)
 - [stringifyStep](StringifyExtension.md#stringifystep)
+
+## Constructors
+
+### constructor
+
+• **new StringifyExtension**()
 
 ## Methods
 
@@ -26,8 +38,8 @@
 
 | Name | Type |
 | :------ | :------ |
-| `out` | [`LineWriter`](LineWriter.md) |
-| `flow` | [`UserFlow`](Schema.UserFlow.md) |
+| `out` | [`LineWriter`](../interfaces/LineWriter.md) |
+| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 
@@ -47,9 +59,9 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `out` | [`LineWriter`](LineWriter.md) |
+| `out` | [`LineWriter`](../interfaces/LineWriter.md) |
 | `step` | [`Step`](../modules/Schema.md#step) |
-| `flow` | [`UserFlow`](Schema.UserFlow.md) |
+| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 
@@ -57,7 +69,7 @@ ___
 
 #### Defined in
 
-[StringifyExtension.ts:25](https://github.com/puppeteer/replay/blob/main/src/StringifyExtension.ts#L25)
+[StringifyExtension.ts:33](https://github.com/puppeteer/replay/blob/main/src/StringifyExtension.ts#L33)
 
 ___
 
@@ -69,8 +81,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `out` | [`LineWriter`](LineWriter.md) |
-| `flow` | [`UserFlow`](Schema.UserFlow.md) |
+| `out` | [`LineWriter`](../interfaces/LineWriter.md) |
+| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 
@@ -90,9 +102,9 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `out` | [`LineWriter`](LineWriter.md) |
+| `out` | [`LineWriter`](../interfaces/LineWriter.md) |
 | `step` | [`Step`](../modules/Schema.md#step) |
-| `flow` | [`UserFlow`](Schema.UserFlow.md) |
+| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 
@@ -112,9 +124,9 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `out` | [`LineWriter`](LineWriter.md) |
+| `out` | [`LineWriter`](../interfaces/LineWriter.md) |
 | `step` | [`Step`](../modules/Schema.md#step) |
-| `flow` | [`UserFlow`](Schema.UserFlow.md) |
+| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 
@@ -122,4 +134,4 @@ ___
 
 #### Defined in
 
-[StringifyExtension.ts:24](https://github.com/puppeteer/replay/blob/main/src/StringifyExtension.ts#L24)
+[StringifyExtension.ts:28](https://github.com/puppeteer/replay/blob/main/src/StringifyExtension.ts#L28)

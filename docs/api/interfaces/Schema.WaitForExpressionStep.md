@@ -4,6 +4,16 @@
 
 [Schema](../modules/Schema.md).WaitForExpressionStep
 
+`waitForExpression` allows for a JavaScript expression to resolve to truthy value.
+
+For example, the following wa
+```
+{
+  "type": "waitForElement",
+  "expression": "new Promise(resole => setTimeout(() => resolve(true), 2000))",
+}
+```
+
 ## Hierarchy
 
 - [`StepWithFrame`](Schema.StepWithFrame.md)
@@ -43,7 +53,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:161](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L161)
+[Schema.ts:189](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L189)
 
 ___
 
@@ -103,4 +113,4 @@ ___
 
 #### Defined in
 
-[Schema.ts:160](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L160)
+[Schema.ts:188](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L188)

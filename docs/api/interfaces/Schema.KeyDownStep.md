@@ -38,7 +38,7 @@ ___
 
 ### key
 
-• **key**: [`Key`](../modules/Schema.md#key)
+• **key**: `Key`
 
 #### Defined in
 

@@ -296,6 +296,33 @@ describe('Runner', () => {
     assert.strictEqual(value, 'cba');
   });
 
+  it('should be able to override the value in text inputs that are partially prefilled', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/input.html`,
+          },
+          {
+            type: 'change',
+            target: 'main',
+            selectors: ['#partially-prefilled'],
+            value: 'abcdef',
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+    const value = await page.$eval(
+      '#partially-prefilled',
+      (e) => (e as HTMLSelectElement).value
+    );
+    assert.strictEqual(value, 'abcdef');
+  });
+
   it('should be able to replay viewport change', async () => {
     const runner = await createRunner(
       {

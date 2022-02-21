@@ -41,12 +41,15 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
 
     const targetPage = await getTargetPageForStep(browser, page, step, timeout);
     let targetFrame: Frame | null = null;
-    if (!targetPage) {
+    if (!targetPage && step.target) {
       const frames = page.frames();
       for (const f of frames) {
         if (f.isOOPFrame() && f.url() === step.target) {
           targetFrame = f;
         }
+      }
+      if (!targetFrame) {
+        targetFrame = await page.waitForFrame(step.target, { timeout });
       }
     }
     const pageOrFrame = targetPage || targetFrame;
@@ -114,11 +117,26 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
             (el: Element) => (el as HTMLInputElement).type
           );
           if (typeableInputTypes.has(inputType)) {
-            await element.evaluate((el: Element) => {
-              /* c8 ignore next 1 */
-              (el as HTMLInputElement).value = '';
-            });
-            await element.type(step.value);
+            const textToType = await element.evaluate(
+              (el: Element, newValue: string) => {
+                /* c8 ignore next 10 */
+                const input = el as HTMLInputElement;
+                if (
+                  newValue.length > input.value.length &&
+                  newValue.startsWith(input.value)
+                ) {
+                  const originalValue = input.value;
+                  // Move cursor to the end of the common prefix.
+                  input.value = '';
+                  input.value = originalValue;
+                  return newValue.substring(originalValue.length);
+                }
+                input.value = '';
+                return newValue;
+              },
+              step.value
+            );
+            await element.type(textToType);
           } else {
             await element.focus();
             await element.evaluate((el: Element, value: string) => {
@@ -566,6 +584,7 @@ interface Page {
   $$<T extends Element = Element>(
     selector: string
   ): Promise<Array<ElementHandle<T>>>;
+  waitForFrame(url: string, opts: { timeout: number }): Promise<Frame>;
 }
 
 interface Frame {

@@ -46,6 +46,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
       for (const f of frames) {
         if (f.isOOPFrame() && f.url() === step.target) {
           targetFrame = f;
+          break;
         }
       }
       if (!targetFrame) {
@@ -119,20 +120,20 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
           if (typeableInputTypes.has(inputType)) {
             const textToType = await element.evaluate(
               (el: Element, newValue: string) => {
-                /* c8 ignore next 10 */
+                /* c8 ignore next 13 */
                 const input = el as HTMLInputElement;
                 if (
-                  newValue.length > input.value.length &&
-                  newValue.startsWith(input.value)
+                  newValue.length <= input.value.length ||
+                  !newValue.startsWith(input.value)
                 ) {
-                  const originalValue = input.value;
-                  // Move cursor to the end of the common prefix.
                   input.value = '';
-                  input.value = originalValue;
-                  return newValue.substring(originalValue.length);
+                  return newValue;
                 }
+                const originalValue = input.value;
+                // Move cursor to the end of the common prefix.
                 input.value = '';
-                return newValue;
+                input.value = originalValue;
+                return newValue.substring(originalValue.length);
               },
               step.value
             );

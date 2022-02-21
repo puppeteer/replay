@@ -16,6 +16,8 @@
 npm install @puppeteer/replay --save
 ```
 
+> Currently, @puppeteer/replay ships only ESM modules. Please vote/comment on [this issue](https://github.com/puppeteer/replay/issues/26), if you need CJS module support.
+
 If you want to replay recordings using Puppeteer, install Puppeteer as well:
 
 ```

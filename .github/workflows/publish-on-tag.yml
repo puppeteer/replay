@@ -1,5 +1,7 @@
 name: publish-on-tag
 
+permissions: read-all
+
 on:
   push:
     tags:

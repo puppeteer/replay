@@ -16,12 +16,9 @@ jobs:
     strategy:
       matrix:
         # https://github.com/actions/virtual-environments#available-environments
-        # TODO: use macos-latest, windows-latest once active development is over.
-        os: [ubuntu-latest]
-        # Include all major maintenance + active LTS + current Node.js versions.
+        os: [ubuntu-latest, macos-latest, windows-latest]
         # https://github.com/nodejs/Release#release-schedule
-        # TODO: use more Node versions once active development is over.
-        node: [16]
+        node: [12, 14, 16]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -34,8 +31,9 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install dependencies
+        # TODO: replace install with ci once https://github.com/conventional-changelog/standard-version/issues/883 is fixed.
         run: |
-          npm ci
+          npm install
 
       - name: Build
         run: |

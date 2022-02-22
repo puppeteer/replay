@@ -23,5 +23,5 @@ jobs:
         run: |
           npm config set registry 'https://wombat-dressing-room.appspot.com/'
           npm config set '//wombat-dressing-room.appspot.com/:_authToken' '${NPM_TOKEN}'
-          npm publish
+          npm publish --access=public
 

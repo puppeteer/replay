@@ -62,7 +62,7 @@ Defaults to 1
 
 #### Defined in
 
-[Schema.ts:173](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L173)
+[Schema.ts:172](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L172)
 
 ___
 
@@ -90,7 +90,7 @@ Defaults to '=='
 
 #### Defined in
 
-[Schema.ts:169](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L169)
+[Schema.ts:168](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L168)
 
 ___
 
@@ -148,4 +148,4 @@ ___
 
 #### Defined in
 
-[Schema.ts:165](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L165)
+[Schema.ts:164](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L164)

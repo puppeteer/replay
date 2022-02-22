@@ -6,7 +6,9 @@
 
 `waitForExpression` allows for a JavaScript expression to resolve to truthy value.
 
-For example, the following wa
+For example, the following step pauses for two seconds and then resolves to true
+allowing the replay to continue.
+
 ```
 {
   "type": "waitForElement",
@@ -53,7 +55,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:189](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L189)
+[Schema.ts:190](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L190)
 
 ___
 
@@ -113,4 +115,4 @@ ___
 
 #### Defined in
 
-[Schema.ts:188](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L188)
+[Schema.ts:189](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L189)

@@ -57,7 +57,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:192](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L192)
+[Schema.ts:193](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L193)
 
 ___
 
@@ -117,7 +117,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:194](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L194)
+[Schema.ts:195](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L195)
 
 ___
 

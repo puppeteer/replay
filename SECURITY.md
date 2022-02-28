@@ -1,6 +1,6 @@
 # Security Policy
 
-@puppeteer/replay project takes security very seriously. Please use the Chromium's process to report security issues below. 
+The @puppeteer/replay project takes security very seriously. Please use Chromium's process to report security issues. 
 
 ## Reporting a Vulnerability
 

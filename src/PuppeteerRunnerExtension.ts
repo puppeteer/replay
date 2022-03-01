@@ -33,6 +33,16 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
     this.timeout = opts?.timeout || 5000;
   }
 
+  async #ensureAutomationEmulatation(pageOrFrame: Page | Frame) {
+    try {
+      await pageOrFrame
+        .client()
+        .send('Emulation.setAutomationOverride', { enabled: true });
+    } catch {
+      // ignore errors as not all versions support this command.
+    }
+  }
+
   async runStep(step: Step, flow: UserFlow): Promise<void> {
     const timeout = step.timeout || this.timeout;
     const page = this.page;
@@ -57,6 +67,8 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
     if (!pageOrFrame) {
       throw new Error('Target is not found for step: ' + JSON.stringify(step));
     }
+
+    await this.#ensureAutomationEmulatation(pageOrFrame);
 
     const frame = await getFrame(pageOrFrame, step);
 
@@ -568,6 +580,10 @@ interface ElementHandle<ElementType extends Element>
   asElement(): ElementHandle<ElementType> | null;
 }
 
+interface CDPSession {
+  send(command: string, opts: { enabled: boolean }): Promise<unknown>;
+}
+
 interface Page {
   setDefaultTimeout(timeout: number): void;
   frames(): Frame[];
@@ -586,6 +602,7 @@ interface Page {
     selector: string
   ): Promise<Array<ElementHandle<T>>>;
   waitForFrame(url: string, opts: { timeout: number }): Promise<Frame>;
+  client(): CDPSession;
 }
 
 interface Frame {
@@ -606,4 +623,5 @@ interface Frame {
   $$<T extends Element = Element>(
     selector: string
   ): Promise<Array<ElementHandle<T>>>;
+  client(): CDPSession;
 }

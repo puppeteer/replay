@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.2](https://github.com/puppeteer/replay/compare/v0.0.1...v0.0.2) (2022-03-01)
+
+
+### Features
+
+* emulate automation mode ([#35](https://github.com/puppeteer/replay/issues/35)) ([6caa57a](https://github.com/puppeteer/replay/commit/6caa57a2d71a7fdcec7c0406c6e808ccd95376ad))
+
 ### 0.0.1 (2022-02-22)
 
 

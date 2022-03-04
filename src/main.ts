@@ -18,7 +18,7 @@
  * @packageDocumentation
  */
 export * as Schema from './Schema.js';
-export { parse } from './SchemaUtils.js';
+export { parse, parseStep } from './SchemaUtils.js';
 export { StringifyExtension } from './StringifyExtension.js';
 export { stringify, StringifyOptions } from './stringify.js';
 export { LineWriter } from './LineWriter.js';

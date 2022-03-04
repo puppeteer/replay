@@ -130,6 +130,28 @@ describe('Runner', () => {
     assert.strictEqual(page.url(), `${HTTP_PREFIX}/main2.html`);
   });
 
+  it.only('should be able to replay click steps on SVG path elements', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/svg.html`,
+          },
+          {
+            type: 'click',
+            selectors: ['svg > path'],
+            offsetX: 1,
+            offsetY: 1,
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+  });
+
   it('should be able to replay click steps on checkboxes', async () => {
     const runner = await createRunner(
       {

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/puppeteer/replay/compare/v0.0.2...v0.0.3) (2022-03-07)
+
+
+### Features
+
+* expose parseStep ([#37](https://github.com/puppeteer/replay/issues/37)) ([54e8561](https://github.com/puppeteer/replay/commit/54e8561bf6acbcae1df0062ab31dad3c20d5d00d))
+
 ### [0.0.2](https://github.com/puppeteer/replay/compare/v0.0.1...v0.0.2) (2022-03-01)
 
 

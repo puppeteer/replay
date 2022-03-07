@@ -25,6 +25,7 @@
 
 - [createRunner](README.md#createrunner)
 - [parse](README.md#parse)
+- [parseStep](README.md#parsestep)
 - [stringify](README.md#stringify)
 
 ## Functions
@@ -67,6 +68,27 @@ ___
 #### Defined in
 
 [SchemaUtils.ts:452](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L452)
+
+___
+
+### parseStep
+
+▸ **parseStep**(`step`, `idx?`): [`Step`](modules/Schema.md#step)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `step` | `unknown` |
+| `idx?` | `number` |
+
+#### Returns
+
+[`Step`](modules/Schema.md#step)
+
+#### Defined in
+
+[SchemaUtils.ts:380](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L380)
 
 ___
 

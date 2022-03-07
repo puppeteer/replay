@@ -166,4 +166,4 @@ ___
 
 #### Defined in
 
-[PuppeteerRunnerExtension.ts:36](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L36)
+[PuppeteerRunnerExtension.ts:46](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L46)

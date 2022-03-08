@@ -13,6 +13,7 @@
   },
   "scripts": {
     "test": "cross-env TS_NODE_PROJECT=test/tsconfig.json mocha --config .mocharc.cjs",
+    "test:headful": "cross-env PUPPETEER_HEADFUL=true npm run test",
     "test:coverage": "c8 npm run test",
     "eslint": "([ \"$CI\" = true ] && eslint --ext js --ext ts --quiet -f codeframe . || eslint --ext js --ext ts .)",
     "eslint-fix": "eslint --ext js --ext ts --fix .",

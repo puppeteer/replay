@@ -45,9 +45,40 @@ jobs:
 
       - name: Run tests
         uses: nick-invision/retry@v2
-        env:
-          CHROMIUM: true
         with:
           max_attempts: 3
           command: npm run test
+          timeout_minutes: 10
+  headful-checks:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [16]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install dependencies
+        # TODO: replace install with ci once https://github.com/conventional-changelog/standard-version/issues/883 is fixed.
+        run: |
+          sudo apt-get install xvfb
+          npm install
+
+      - name: Build
+        run: |
+          npm run build
+
+      - name: Run tests in headful
+        uses: nick-invision/retry@v2
+        with:
+          max_attempts: 3
+          command: xvfb-run --auto-servernum npm run test:headful
           timeout_minutes: 10

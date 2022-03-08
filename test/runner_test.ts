@@ -50,8 +50,9 @@ describe('Runner', () => {
     const servers = await createServers();
     httpServer = servers.httpServer;
     httpsServer = servers.httpsServer;
+    const headless = process.env.PUPPETEER_HEADFUL !== 'true';
     browser = await puppeteer.launch({
-      headless: true,
+      headless,
     });
   });
 

@@ -130,7 +130,7 @@ describe('Runner', () => {
     assert.strictEqual(page.url(), `${HTTP_PREFIX}/main2.html`);
   });
 
-  it.only('should be able to replay click steps on SVG path elements', async () => {
+  it('should be able to replay click steps on SVG path elements', async () => {
     const runner = await createRunner(
       {
         title: 'test',

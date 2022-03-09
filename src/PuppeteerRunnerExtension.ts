@@ -326,19 +326,45 @@ async function scrollIntoViewIfNeeded(
   timeout: number
 ): Promise<void> {
   await waitForConnected(element, timeout);
-  const isInViewport = await element.isIntersectingViewport({ threshold: 0 });
+  const isSvg = await element.evaluate((element: Element) => {
+    /* c8 ignore next 1 */
+    return element instanceof SVGElement;
+  });
+  const intersectionTarget = isSvg
+    ? await getOwnerSVGElement(element)
+    : element;
+  const isInViewport = intersectionTarget
+    ? await intersectionTarget.isIntersectingViewport({ threshold: 0 })
+    : false;
   if (isInViewport) {
     return;
   }
+  await scrollIntoView(element);
+  if (intersectionTarget) {
+    await waitForInViewport(intersectionTarget, timeout);
+  }
+}
+
+async function getOwnerSVGElement(
+  element: ElementHandle<Element>
+): Promise<ElementHandle<Element> | null> {
+  return (
+    await element.evaluateHandle((element: Element) => {
+      /* c8 ignore next 1 */
+      return (element as SVGElement).ownerSVGElement;
+    })
+  ).asElement();
+}
+
+async function scrollIntoView(element: ElementHandle<Element>): Promise<void> {
   await element.evaluate((element: Element) => {
-    /* c8 ignore next 1 */
+    /* c8 ignore next 5 */
     element.scrollIntoView({
       block: 'center',
       inline: 'center',
       behavior: 'auto',
     });
   });
-  await waitForInViewport(element, timeout);
 }
 
 async function waitForConnected(

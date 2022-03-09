@@ -31,6 +31,7 @@ import { Step, UserFlow } from '../src/Schema.js';
 
 const HTTP_PORT = 8907;
 const HTTP_PREFIX = `http://localhost:${HTTP_PORT}`;
+const OOPIF_PREFIX = `http://oopifdomain:${HTTP_PORT}`;
 const HTTPS_PORT = HTTP_PORT + 1;
 
 async function createServers() {
@@ -53,6 +54,7 @@ describe('Runner', () => {
     const headless = process.env.PUPPETEER_HEADFUL !== 'true';
     browser = await puppeteer.launch({
       headless,
+      args: ['--site-per-process', '--host-rules=MAP oopifdomain 127.0.0.1'],
     });
   });
 
@@ -708,5 +710,46 @@ describe('Runner', () => {
       extension.getLog(),
       'beforeAll,beforeStep0,runStep0,afterStep0,afterAll'
     );
+  });
+
+  it('should record interactions with OOPIFs', async () => {
+    const runner = await createRunner(
+      {
+        title: 'Test Recording',
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/oopif.html`,
+            assertedEvents: [
+              {
+                title: '',
+                type: 'navigation',
+                url: `${HTTP_PREFIX}/oopif.html`,
+              },
+            ],
+          },
+          {
+            type: 'click',
+            target: `${OOPIF_PREFIX}/iframe1.html`,
+            selectors: [['aria/To iframe 2'], ['body > a']],
+            offsetX: 1,
+            offsetY: 1,
+            assertedEvents: [
+              {
+                type: 'navigation',
+                title: '',
+                url: `${OOPIF_PREFIX}/iframe2.html`,
+              },
+            ],
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+    const frame = page
+      .frames()
+      .find((frame) => frame.url() === `${OOPIF_PREFIX}/iframe2.html`);
+    assert.ok(frame, 'Frame that the target page navigated to is not found');
   });
 });

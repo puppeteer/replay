@@ -752,4 +752,47 @@ describe('Runner', () => {
       .find((frame) => frame.url() === `${OOPIF_PREFIX}/iframe2.html`);
     assert.ok(frame, 'Frame that the target page navigated to is not found');
   });
+
+  it('should replay navigations from local from to OOPIF', async () => {
+    const runner = await createRunner(
+      {
+        title: 'Test Recording',
+        timeout: 3000,
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/local-to-oopif.html`,
+            assertedEvents: [
+              {
+                title: '',
+                type: 'navigation',
+                url: `${HTTP_PREFIX}/local-to-oopif.html`,
+              },
+            ],
+          },
+          {
+            type: 'click',
+            frame: [0],
+            selectors: [['aria/To iframe 2']],
+            offsetX: 1,
+            offsetY: 1,
+            // TODO(alexrudenko): make the navigation assertions work.
+            // assertedEvents: [
+            //   {
+            //     type: 'navigation',
+            //     title: '',
+            //     url: `${OOPIF_PREFIX}/iframe2.html`,
+            //   },
+            // ],
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+    const frame = page.waitForFrame(
+      (frame) => frame.url() === `${OOPIF_PREFIX}/iframe2.html`
+    );
+    assert.ok(frame, 'Frame that the target page navigated to is not found');
+  });
 });

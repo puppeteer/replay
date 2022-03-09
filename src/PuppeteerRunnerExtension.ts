@@ -43,14 +43,18 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
     }
   }
 
+  #getTimeoutForStep(step: Step, flow: UserFlow): number {
+    return step.timeout || flow.timeout || this.timeout;
+  }
+
   async runStep(step: Step, flow: UserFlow): Promise<void> {
-    const timeout = step.timeout || this.timeout;
+    const timeout = this.#getTimeoutForStep(step, flow);
     const page = this.page;
     const browser = this.browser;
-    const waitForVisible = true;
 
     const targetPage = await getTargetPageForStep(browser, page, step, timeout);
     let targetFrame: Frame | null = null;
+
     if (!targetPage && step.target) {
       const frames = page.frames();
       for (const f of frames) {
@@ -63,21 +67,35 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         targetFrame = await page.waitForFrame(step.target, { timeout });
       }
     }
-    const pageOrFrame = targetPage || targetFrame;
-    if (!pageOrFrame) {
+    const targetPageOrFrame = targetFrame || targetPage;
+    if (!targetPageOrFrame) {
       throw new Error('Target is not found for step: ' + JSON.stringify(step));
     }
+    await this.#ensureAutomationEmulatation(targetPageOrFrame);
+    const localFrame = await getFrame(targetPageOrFrame, step);
+    await this.runStepInFrame(
+      step,
+      page,
+      targetPageOrFrame,
+      localFrame,
+      timeout
+    );
+  }
 
-    await this.#ensureAutomationEmulatation(pageOrFrame);
-
-    const frame = await getFrame(pageOrFrame, step);
-
-    const assertedEventsPromise = waitForEvents(pageOrFrame, step, timeout);
+  async runStepInFrame(
+    step: Step,
+    mainPage: Page,
+    targetPageOrFrame: Page | Frame,
+    localFrame: Frame,
+    timeout: number
+  ): Promise<void> {
+    const waitForVisible = true;
+    const assertedEventsPromise = waitForEvents(localFrame, step, timeout);
 
     switch (step.type) {
       case 'click':
         {
-          const element = await waitForSelectors(step.selectors, frame, {
+          const element = await waitForSelectors(step.selectors, localFrame, {
             timeout,
             visible: waitForVisible,
           });
@@ -96,31 +114,31 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         break;
       case 'emulateNetworkConditions':
         {
-          await page.emulateNetworkConditions(step);
+          await mainPage.emulateNetworkConditions(step);
         }
         break;
       case 'keyDown':
         {
-          await page.keyboard.down(step.key);
-          await page.waitForTimeout(100);
+          await mainPage.keyboard.down(step.key);
+          await mainPage.waitForTimeout(100);
         }
         break;
       case 'keyUp':
         {
-          await page.keyboard.up(step.key);
-          await page.waitForTimeout(100);
+          await mainPage.keyboard.up(step.key);
+          await mainPage.waitForTimeout(100);
         }
         break;
       case 'close':
         {
-          if ('close' in pageOrFrame) {
-            await pageOrFrame.close();
+          if ('close' in targetPageOrFrame) {
+            await targetPageOrFrame.close();
           }
         }
         break;
       case 'change':
         {
-          const element = await waitForSelectors(step.selectors, frame, {
+          const element = await waitForSelectors(step.selectors, localFrame, {
             timeout,
             visible: waitForVisible,
           });
@@ -164,14 +182,14 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         }
         break;
       case 'setViewport': {
-        if ('setViewport' in pageOrFrame) {
-          await pageOrFrame.setViewport(step);
+        if ('setViewport' in targetPageOrFrame) {
+          await targetPageOrFrame.setViewport(step);
         }
         break;
       }
       case 'scroll': {
         if ('selectors' in step) {
-          const element = await waitForSelectors(step.selectors, frame, {
+          const element = await waitForSelectors(step.selectors, localFrame, {
             timeout,
             visible: waitForVisible,
           });
@@ -187,7 +205,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
           );
           await element.dispose();
         } else {
-          await frame.evaluate(
+          await localFrame.evaluate(
             (x, y) => {
               /* c8 ignore next 1 */
               window.scroll(x, y);
@@ -199,12 +217,12 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         break;
       }
       case 'navigate': {
-        await frame.goto(step.url);
+        await localFrame.goto(step.url);
         break;
       }
       case 'waitForElement': {
         try {
-          await waitForElement(step, frame, timeout);
+          await waitForElement(step, localFrame, timeout);
         } catch (err) {
           if ((err as Error).message === 'Timed out') {
             throw new Error(
@@ -217,7 +235,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         break;
       }
       case 'waitForExpression': {
-        await frame.waitForFunction(step.expression, {
+        await localFrame.waitForFunction(step.expression, {
           timeout,
         });
         break;
@@ -276,7 +294,7 @@ async function getTargetPageForStep(
 }
 
 async function waitForEvents(
-  targetPage: Page | Frame,
+  pageOrFrame: Page | Frame,
   step: Step,
   timeout: number
 ): Promise<void> {
@@ -286,7 +304,7 @@ async function waitForEvents(
       switch (event.type) {
         case 'navigation': {
           promises.push(
-            targetPage.waitForNavigation({
+            pageOrFrame.waitForNavigation({
               timeout,
             })
           );

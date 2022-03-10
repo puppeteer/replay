@@ -82,6 +82,9 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
     );
   }
 
+  /**
+   * @internal
+   */
   async runStepInFrame(
     step: Step,
     mainPage: Page,

@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/puppeteer/replay/compare/v0.0.3...v0.0.4) (2022-03-10)
+
+
+### Features
+
+* **PuppeteerRunnerExtension:** improve handling of SVG elements ([#41](https://github.com/puppeteer/replay/issues/41)) ([d709140](https://github.com/puppeteer/replay/commit/d7091409b2d86cbaaacb3b952d6686cc3fcdd4ec))
+
+
+### Bug Fixes
+
+* assert events for iframe navigations ([#44](https://github.com/puppeteer/replay/issues/44)) ([7817792](https://github.com/puppeteer/replay/commit/781779219e92efa17a125ddacdb9e81b57584645))
+
 ### [0.0.3](https://github.com/puppeteer/replay/compare/v0.0.2...v0.0.3) (2022-03-07)
 
 

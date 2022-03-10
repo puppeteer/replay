@@ -51,7 +51,7 @@
     "mime": "3.0.0",
     "mocha": "9.2.1",
     "prettier": "2.5.1",
-    "puppeteer": "13.5.0",
+    "puppeteer": "13.5.1",
     "rimraf": "3.0.2",
     "standard-version": "git+https://github.com:conventional-changelog/standard-version.git#v9.4.0",
     "ts-node": "10.7.0",

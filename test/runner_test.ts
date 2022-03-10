@@ -776,14 +776,13 @@ describe('Runner', () => {
             selectors: [['aria/To iframe 2']],
             offsetX: 1,
             offsetY: 1,
-            // TODO(alexrudenko): make the navigation assertions work.
-            // assertedEvents: [
-            //   {
-            //     type: 'navigation',
-            //     title: '',
-            //     url: `${OOPIF_PREFIX}/iframe2.html`,
-            //   },
-            // ],
+            assertedEvents: [
+              {
+                type: 'navigation',
+                title: '',
+                url: `${OOPIF_PREFIX}/iframe2.html`,
+              },
+            ],
           },
         ],
       },

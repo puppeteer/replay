@@ -267,6 +267,42 @@ describe('Runner', () => {
     assert.strictEqual(value, 'O2');
   });
 
+  it('should close the select dropdown after the click + change', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/select.html`,
+          },
+          {
+            type: 'click',
+            target: 'main',
+            selectors: ['aria/Select'],
+            offsetX: 1,
+            offsetY: 1,
+          },
+          {
+            type: 'change',
+            target: 'main',
+            selectors: ['aria/Select'],
+            value: 'O2',
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+    const value = await page.$eval(
+      '#select',
+      (e) => (e as HTMLSelectElement).value
+    );
+    assert.strictEqual(value, 'O2');
+    // Unfortunately, there is no way to assert that the select dropdown is opened or closed (AFAIK).
+    // So this behaviour needs to be checked visually in headful mode or we need to have screenshot tests.
+  });
+
   it('should be able to replay change events on non-text inputs', async () => {
     const runner = await createRunner(
       {

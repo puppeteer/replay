@@ -171,6 +171,16 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
               step.value
             );
             await element.type(textToType);
+            // If we type into a select element, blur and re-focus the
+            // element to make sure that the previously opened select
+            // dropdown is closed.
+            await element.evaluateHandle((el: Element) => {
+              const htmlEl = el as HTMLElement;
+              if (htmlEl.tagName === 'SELECT') {
+                htmlEl.blur();
+                htmlEl.focus();
+              }
+            });
           } else {
             await element.focus();
             await element.evaluate((el: Element, value: string) => {

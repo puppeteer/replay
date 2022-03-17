@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/puppeteer/replay/compare/v0.0.4...v0.0.5) (2022-03-17)
+
+
+### Bug Fixes
+
+* waiting for events should start right before the main step action ([#57](https://github.com/puppeteer/replay/issues/57)) ([9f33e61](https://github.com/puppeteer/replay/commit/9f33e6153464729772be392cabb7b12c00bab330))
+
 ### [0.0.4](https://github.com/puppeteer/replay/compare/v0.0.3...v0.0.4) (2022-03-10)
 
 

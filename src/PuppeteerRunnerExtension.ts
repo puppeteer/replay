@@ -93,7 +93,10 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
     timeout: number
   ): Promise<void> {
     const waitForVisible = true;
-    const assertedEventsPromise = waitForEvents(localFrame, step, timeout);
+    let assertedEventsPromise = null;
+    const startWaitingForEvents = () => {
+      assertedEventsPromise = waitForEvents(localFrame, step, timeout);
+    };
 
     switch (step.type) {
       case 'click':
@@ -106,6 +109,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
             throw new Error('Could not find element: ' + step.selectors[0]);
           }
           await scrollIntoViewIfNeeded(element, timeout);
+          startWaitingForEvents();
           await element.click({
             offset: {
               x: step.offsetX,
@@ -117,17 +121,20 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         break;
       case 'emulateNetworkConditions':
         {
+          startWaitingForEvents();
           await mainPage.emulateNetworkConditions(step);
         }
         break;
       case 'keyDown':
         {
+          startWaitingForEvents();
           await mainPage.keyboard.down(step.key);
           await mainPage.waitForTimeout(100);
         }
         break;
       case 'keyUp':
         {
+          startWaitingForEvents();
           await mainPage.keyboard.up(step.key);
           await mainPage.waitForTimeout(100);
         }
@@ -135,6 +142,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
       case 'close':
         {
           if ('close' in targetPageOrFrame) {
+            startWaitingForEvents();
             await targetPageOrFrame.close();
           }
         }
@@ -150,6 +158,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
             /* c8 ignore next 1 */
             (el: Element) => (el as HTMLInputElement).type
           );
+          startWaitingForEvents();
           if (typeableInputTypes.has(inputType)) {
             const textToType = await element.evaluate(
               (el: Element, newValue: string) => {
@@ -196,6 +205,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         break;
       case 'setViewport': {
         if ('setViewport' in targetPageOrFrame) {
+          startWaitingForEvents();
           await targetPageOrFrame.setViewport(step);
         }
         break;
@@ -207,6 +217,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
             visible: waitForVisible,
           });
           await scrollIntoViewIfNeeded(element, timeout);
+          startWaitingForEvents();
           await element.evaluate(
             (e: Element, x: number, y: number) => {
               /* c8 ignore next 2 */
@@ -218,6 +229,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
           );
           await element.dispose();
         } else {
+          startWaitingForEvents();
           await localFrame.evaluate(
             (x, y) => {
               /* c8 ignore next 1 */
@@ -230,11 +242,13 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         break;
       }
       case 'navigate': {
+        startWaitingForEvents();
         await localFrame.goto(step.url);
         break;
       }
       case 'waitForElement': {
         try {
+          startWaitingForEvents();
           await waitForElement(step, localFrame, timeout);
         } catch (err) {
           if ((err as Error).message === 'Timed out') {
@@ -248,6 +262,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         break;
       }
       case 'waitForExpression': {
+        startWaitingForEvents();
         await localFrame.waitForFunction(step.expression, {
           timeout,
         });

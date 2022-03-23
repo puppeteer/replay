@@ -212,9 +212,6 @@ export interface UserFlow {
   steps: Step[];
 }
 
-/**
- * @internal
- */
 export type Key =
   | '0'
   | '1'

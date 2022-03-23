@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/puppeteer/replay/compare/v0.0.5...v0.1.0) (2022-03-23)
+
+
+### Bug Fixes
+
+* expose Key to make sure it's included in types ([#64](https://github.com/puppeteer/replay/issues/64)) ([4693f7d](https://github.com/puppeteer/replay/commit/4693f7d24084eb4eb93f6c2da540571a891cb360)), closes [#63](https://github.com/puppeteer/replay/issues/63)
+
 ### [0.0.5](https://github.com/puppeteer/replay/compare/v0.0.4...v0.0.5) (2022-03-17)
 
 

@@ -24,7 +24,27 @@ If you want to replay recordings using Puppeteer, install Puppeteer as well:
 npm install puppeteer --save
 ```
 
-## [Replay a recording stored in a file using Puppeteer](/examples/replay-from-file-using-puppeteer/main.js)
+## Replay a recording stored in a file using Puppeteer
+
+Using CLI + npx:
+
+```
+npx @puppeteer/replay recording.json
+```
+
+Using CLI + package.json:
+
+In your `package.json` add a new script to invoke the `replay` command:
+
+```
+{
+  "scripts": {
+    "replay": "replay recording.json"
+  }
+}
+```
+
+Using [the replay lib API](/examples/replay-from-file-using-puppeteer/main.js):
 
 ```js
 import { createRunner, parse } from '@puppeteer/replay';

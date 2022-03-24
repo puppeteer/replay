@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/puppeteer/replay/compare/v0.1.0...v0.1.1) (2022-03-24)
+
+
+### Features
+
+* implement a CLI to run multiple JSON files ([#66](https://github.com/puppeteer/replay/issues/66)) ([eedd349](https://github.com/puppeteer/replay/commit/eedd349453256ad533b8c04273dd2181559b46fa))
+
 ## [0.1.0](https://github.com/puppeteer/replay/compare/v0.0.5...v0.1.0) (2022-03-23)
 
 

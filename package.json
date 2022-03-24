@@ -4,6 +4,7 @@
   "description": "Replay is a library which provides an API to replay and stringify recordings created using Chrome DevTools Recorder](https://developer.chrome.com/docs/devtools/recorder/)",
   "main": "lib/main.js",
   "types": "lib/main.d.ts",
+  "bin": "./lib/cli.js",
   "repository": "github:puppeteer/replay",
   "directories": {
     "doc": "docs"
@@ -58,5 +59,13 @@
     "typedoc": "0.22.13",
     "typedoc-plugin-markdown": "3.11.14",
     "typescript": "4.6.2"
+  },
+  "peerDependencies": {
+    "puppeteer": "^13.5.1"
+  },
+  "peerDependenciesMeta": {
+    "puppeteer": {
+      "optional": true
+    }
   }
 }

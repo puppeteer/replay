@@ -36,7 +36,7 @@ Using CLI + package.json:
 
 In your `package.json` add a new script to invoke the `replay` command:
 
-```
+```json
 {
   "scripts": {
     "replay": "replay recording.json"

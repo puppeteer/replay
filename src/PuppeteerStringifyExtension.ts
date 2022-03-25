@@ -145,8 +145,12 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
   #appendChangeStep(out: LineWriter, step: ChangeStep): void {
     this.#appendWaitForSelector(out, step);
     out.appendLine('const type = await element.evaluate(el => el.type);');
+    out.appendLine(`if (["select-one"].includes(type)) {`);
+    out.appendLine(`  await element.select(${formatAsJSLiteral(step.value)});`);
     out.appendLine(
-      `if (${JSON.stringify(Array.from(typeableInputTypes))}.includes(type)) {`
+      `} else if (${JSON.stringify(
+        Array.from(typeableInputTypes)
+      )}.includes(type)) {`
     );
     out.appendLine(`  await element.type(${formatAsJSLiteral(step.value)});`);
     out.appendLine('} else {');

@@ -67,7 +67,7 @@ ___
 
 #### Defined in
 
-[SchemaUtils.ts:452](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L452)
+[SchemaUtils.ts:451](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L451)
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 #### Defined in
 
-[SchemaUtils.ts:380](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L380)
+[SchemaUtils.ts:379](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L379)
 
 ___
 

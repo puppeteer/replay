@@ -47,7 +47,6 @@ export function assertAllStepTypesAreHandled(s: Step): never {
 
 export const typeableInputTypes = new Set([
   'textarea',
-  'select-one',
   'text',
   'url',
   'tel',

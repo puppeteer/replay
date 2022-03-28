@@ -115,7 +115,9 @@ describe('PuppeteerStringifyExtension', () => {
   const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
   await scrollIntoViewIfNeeded(element, timeout);
   const type = await element.evaluate(el => el.type);
-  if (["textarea","select-one","text","url","tel","search","password","number","email"].includes(type)) {
+  if (["select-one"].includes(type)) {
+    await element.select("Hello World");
+  } else if (["textarea","text","url","tel","search","password","number","email"].includes(type)) {
     await element.type("Hello World");
   } else {
     await element.focus();
@@ -148,7 +150,9 @@ describe('PuppeteerStringifyExtension', () => {
   const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
   await scrollIntoViewIfNeeded(element, timeout);
   const type = await element.evaluate(el => el.type);
-  if (["textarea","select-one","text","url","tel","search","password","number","email"].includes(type)) {
+  if (["select-one"].includes(type)) {
+    await element.select("#333333");
+  } else if (["textarea","text","url","tel","search","password","number","email"].includes(type)) {
     await element.type("#333333");
   } else {
     await element.focus();

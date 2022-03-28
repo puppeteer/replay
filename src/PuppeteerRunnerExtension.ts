@@ -15,7 +15,14 @@
  */
 
 import { RunnerExtension } from './RunnerExtension.js';
-import { UserFlow, Step, WaitForElementStep, Selector, Key } from './Schema.js';
+import {
+  UserFlow,
+  Step,
+  WaitForElementStep,
+  Selector,
+  Key,
+  ChangeStep,
+} from './Schema.js';
 import {
   assertAllStepTypesAreHandled,
   typeableInputTypes,
@@ -159,46 +166,12 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
             (el: Element) => (el as HTMLInputElement).type
           );
           startWaitingForEvents();
-          if (typeableInputTypes.has(inputType)) {
-            const textToType = await element.evaluate(
-              (el: Element, newValue: string) => {
-                /* c8 ignore next 13 */
-                const input = el as HTMLInputElement;
-                if (
-                  newValue.length <= input.value.length ||
-                  !newValue.startsWith(input.value)
-                ) {
-                  input.value = '';
-                  return newValue;
-                }
-                const originalValue = input.value;
-                // Move cursor to the end of the common prefix.
-                input.value = '';
-                input.value = originalValue;
-                return newValue.substring(originalValue.length);
-              },
-              step.value
-            );
-            await element.type(textToType);
-            // If we type into a select element, blur and re-focus the
-            // element to make sure that the previously opened select
-            // dropdown is closed.
-            await element.evaluateHandle((el: Element) => {
-              const htmlEl = el as HTMLElement;
-              if (htmlEl.tagName === 'SELECT') {
-                htmlEl.blur();
-                htmlEl.focus();
-              }
-            });
+          if (inputType === 'select-one') {
+            await this.changeSelectElement(step, element);
+          } else if (typeableInputTypes.has(inputType)) {
+            await this.typeIntoElement(step, element);
           } else {
-            await element.focus();
-            await element.evaluate((el: Element, value: string) => {
-              /* c8 ignore next 4 */
-              const input = el as HTMLInputElement;
-              input.value = value;
-              input.dispatchEvent(new Event('input', { bubbles: true }));
-              input.dispatchEvent(new Event('change', { bubbles: true }));
-            }, step.value);
+            await this.changeElementValue(step, element);
           }
           await element.dispose();
         }
@@ -277,6 +250,59 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
     }
 
     await assertedEventsPromise;
+  }
+
+  /**
+   * @internal
+   */
+  async typeIntoElement(step: ChangeStep, element: ElementHandle<Element>) {
+    const textToType = await element.evaluate(
+      (el: Element, newValue: string) => {
+        /* c8 ignore next 13 */
+        const input = el as HTMLInputElement;
+        if (
+          newValue.length <= input.value.length ||
+          !newValue.startsWith(input.value)
+        ) {
+          input.value = '';
+          return newValue;
+        }
+        const originalValue = input.value;
+        // Move cursor to the end of the common prefix.
+        input.value = '';
+        input.value = originalValue;
+        return newValue.substring(originalValue.length);
+      },
+      step.value
+    );
+    await element.type(textToType);
+  }
+
+  /**
+   * @internal
+   */
+  async changeElementValue(step: ChangeStep, element: ElementHandle<Element>) {
+    await element.focus();
+    await element.evaluate((el: Element, value: string) => {
+      /* c8 ignore next 4 */
+      const input = el as HTMLInputElement;
+      input.value = value;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }, step.value);
+  }
+
+  /**
+   * @internal
+   */
+  async changeSelectElement(step: ChangeStep, element: ElementHandle<Element>) {
+    await element.select(step.value);
+    await element.evaluateHandle((el: Element) => {
+      /* c8 ignore next 3 */
+      const htmlEl = el as HTMLElement;
+      htmlEl.blur();
+      htmlEl.focus();
+    });
   }
 }
 
@@ -650,6 +676,7 @@ interface ElementHandle<ElementType extends Element>
     }
   ): Promise<ElementHandle<Element> | null>;
   asElement(): ElementHandle<ElementType> | null;
+  select(...args: string[]): Promise<unknown>;
 }
 
 interface CDPSession {

@@ -57,7 +57,7 @@
     "standard-version": "git+https://github.com:conventional-changelog/standard-version.git#v9.4.0",
     "ts-node": "10.7.0",
     "typedoc": "0.22.14",
-    "typedoc-plugin-markdown": "3.11.14",
+    "typedoc-plugin-markdown": "3.12.0",
     "typescript": "4.6.3"
   },
   "peerDependencies": {

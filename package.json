@@ -48,7 +48,7 @@
     "eslint-config-google": "0.14.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-tsdoc": "0.2.14",
+    "eslint-plugin-tsdoc": "0.2.16",
     "mime": "3.0.0",
     "mocha": "9.2.2",
     "prettier": "2.6.2",

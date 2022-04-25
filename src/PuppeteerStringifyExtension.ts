@@ -31,11 +31,13 @@ import type {
   NavigateStep,
   WaitForElementStep,
   WaitForExpressionStep,
+  DoubleClickStep,
 } from './Schema.js';
 import { StringifyExtension } from './StringifyExtension.js';
 
 import {
   assertAllStepTypesAreHandled,
+  mouseButtonMap,
   typeableInputTypes,
 } from './SchemaUtils.js';
 
@@ -137,9 +139,32 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
 
   #appendClickStep(out: LineWriter, step: ClickStep): void {
     this.#appendWaitForSelector(out, step);
-    out.appendLine(
-      `await element.click({ offset: { x: ${step.offsetX}, y: ${step.offsetY}} });`
-    );
+    out.appendLine('await element.click({');
+    if (step.duration) {
+      out.appendLine(`  delay: ${step.duration},`);
+    }
+    if (step.button) {
+      out.appendLine(`  button: ${mouseButtonMap.get(step.button)},`);
+    }
+    out.appendLine('  offset: {');
+    out.appendLine(`    x: ${step.offsetX},`);
+    out.appendLine(`    x: ${step.offsetY},`);
+    out.appendLine('  },');
+    out.appendLine('});');
+  }
+
+  #appendDoubleClickStep(out: LineWriter, step: DoubleClickStep): void {
+    this.#appendWaitForSelector(out, step);
+    out.appendLine('await element.click({');
+    out.appendLine(`  clickCount: 2,`);
+    if (step.button) {
+      out.appendLine(`  button: ${mouseButtonMap.get(step.button)},`);
+    }
+    out.appendLine('  offset: {');
+    out.appendLine(`    x: ${step.offsetX},`);
+    out.appendLine(`    x: ${step.offsetY},`);
+    out.appendLine('  },');
+    out.appendLine('});');
   }
 
   #appendChangeStep(out: LineWriter, step: ChangeStep): void {
@@ -221,6 +246,8 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     switch (step.type) {
       case 'click':
         return this.#appendClickStep(out, step);
+      case 'doubleClick':
+        return this.#appendDoubleClickStep(out, step);
       case 'change':
         return this.#appendChangeStep(out, step);
       case 'emulateNetworkConditions':

@@ -38,6 +38,8 @@ import type {
   StepWithTarget,
   Target,
   UserFlow,
+  ClickAttributes,
+  DoubleClickStep,
 } from './Schema.js';
 
 export function assertAllStepTypesAreHandled(s: never): never;
@@ -54,6 +56,19 @@ export const typeableInputTypes = new Set([
   'password',
   'number',
   'email',
+]);
+
+export const pointerDeviceTypes = new Set(['mouse', 'pen', 'touch']);
+
+export const mouseButtonMap = new Map<
+  string,
+  'left' | 'middle' | 'right' | 'back' | 'forward'
+>([
+  ['primary', 'left'],
+  ['auxiliary', 'middle'],
+  ['secondary', 'right'],
+  ['back', 'back'],
+  ['forward', 'forward'],
 ]);
 
 function hasProperty<KeyType extends PropertyKey>(
@@ -249,12 +264,46 @@ function parseStepWithSelectors(type: string, step: object): StepWithSelectors {
   };
 }
 
+function parseClickAttributes(step: object): ClickAttributes {
+  const attributes: ClickAttributes = {
+    offsetX: parseNumber(step, 'offsetX'),
+    offsetY: parseNumber(step, 'offsetY'),
+  };
+  const deviceType = parseOptionalString(step, 'deviceType');
+  if (deviceType && !pointerDeviceTypes.has(deviceType)) {
+    throw new Error(
+      `'deviceType' for click steps must be one of the following: ${[
+        ...pointerDeviceTypes,
+      ].join(', ')}`
+    );
+  }
+  attributes.deviceType = deviceType as ClickAttributes['deviceType'];
+  const button = parseOptionalString(step, 'button');
+  if (button && !mouseButtonMap.has(button)) {
+    throw new Error(
+      `'button' for click steps must be one of the following: ${[
+        ...mouseButtonMap.keys(),
+      ].join(', ')}`
+    );
+  }
+  attributes.button = button as ClickAttributes['button'];
+  return attributes;
+}
+
 function parseClickStep(step: object): ClickStep {
   return {
     ...parseStepWithSelectors('click', step),
+    ...parseClickAttributes(step),
     type: 'click',
-    offsetX: parseNumber(step, 'offsetX'),
-    offsetY: parseNumber(step, 'offsetY'),
+    duration: parseOptionalNumber(step, 'duration'),
+  };
+}
+
+function parseDoubleClickStep(step: object): DoubleClickStep {
+  return {
+    ...parseStepWithSelectors('doubleClick', step),
+    ...parseClickAttributes(step),
+    type: 'doubleClick',
   };
 }
 
@@ -397,6 +446,8 @@ export function parseStep(step: unknown, idx?: number): Step {
   switch (step.type) {
     case 'click':
       return parseClickStep(step);
+    case 'doubleClick':
+      return parseDoubleClickStep(step);
     case 'change':
       return parseChangeStep(step);
     case 'keyDown':

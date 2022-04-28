@@ -107,6 +107,16 @@ function isIntegerArray(data: unknown): data is number[] {
   return isArray(data) && data.every((item) => Number.isInteger(item));
 }
 
+function isKnownDeviceType(
+  data: unknown
+): data is ClickAttributes['deviceType'] {
+  return typeof data === 'string' && pointerDeviceTypes.has(data);
+}
+
+function isKnownMouseButton(data: unknown): data is ClickAttributes['button'] {
+  return typeof data === 'string' && mouseButtonMap.has(data);
+}
+
 function parseTarget(step: object): Target | undefined {
   if (hasProperty(step, 'target') && isString(step.target)) {
     return step.target;
@@ -270,23 +280,23 @@ function parseClickAttributes(step: object): ClickAttributes {
     offsetY: parseNumber(step, 'offsetY'),
   };
   const deviceType = parseOptionalString(step, 'deviceType');
-  if (deviceType && !pointerDeviceTypes.has(deviceType)) {
+  if (!isKnownDeviceType(deviceType)) {
     throw new Error(
       `'deviceType' for click steps must be one of the following: ${[
         ...pointerDeviceTypes,
       ].join(', ')}`
     );
   }
-  attributes.deviceType = deviceType as ClickAttributes['deviceType'];
+  attributes.deviceType = deviceType;
   const button = parseOptionalString(step, 'button');
-  if (button && !mouseButtonMap.has(button)) {
+  if (!isKnownMouseButton(button)) {
     throw new Error(
       `'button' for click steps must be one of the following: ${[
         ...mouseButtonMap.keys(),
       ].join(', ')}`
     );
   }
-  attributes.button = button as ClickAttributes['button'];
+  attributes.button = button;
   return attributes;
 }
 

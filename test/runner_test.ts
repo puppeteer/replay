@@ -41,13 +41,6 @@ async function createServers() {
   return { httpServer, httpsServer };
 }
 
-declare global {
-  // eslint-disable-next-line no-unused-vars
-  interface Window {
-    buttonClicks: number[];
-  }
-}
-
 describe('Runner', () => {
   let browser: puppeteer.Browser;
   let page: puppeteer.Page;
@@ -159,16 +152,19 @@ describe('Runner', () => {
       new PuppeteerRunnerExtension(browser, page)
     );
     await runner.run();
-    assert.strictEqual(
-      await page.evaluate(
-        () =>
-          window.buttonClicks[0] === 0 &&
-          window.buttonClicks[1] === 1 &&
-          window.buttonClicks[2] === 2 &&
-          window.buttonClicks[3] === 3 &&
-          window.buttonClicks[4] === 4
-      ),
-      true
+    assert.isTrue(
+      await page.evaluate(() => {
+        const context = window as unknown as {
+          buttonClicks: number[];
+        };
+        return (
+          context.buttonClicks[0] === 0 &&
+          context.buttonClicks[1] === 1 &&
+          context.buttonClicks[2] === 2 &&
+          context.buttonClicks[3] === 3 &&
+          context.buttonClicks[4] === 4
+        );
+      })
     );
   });
 
@@ -214,9 +210,8 @@ describe('Runner', () => {
       new PuppeteerRunnerExtension(browser, page)
     );
     await runner.run();
-    assert.strictEqual(
-      await page.evaluate(() => document.querySelector('input')?.checked),
-      true
+    assert.isTrue(
+      await page.evaluate(() => document.querySelector('input')?.checked)
     );
   });
 

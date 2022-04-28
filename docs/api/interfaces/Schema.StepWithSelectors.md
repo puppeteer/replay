@@ -10,6 +10,8 @@
 
   ↳ **`StepWithSelectors`**
 
+  ↳↳ [`DoubleClickStep`](Schema.DoubleClickStep.md)
+
   ↳↳ [`ClickStep`](Schema.ClickStep.md)
 
   ↳↳ [`ChangeStep`](Schema.ChangeStep.md)

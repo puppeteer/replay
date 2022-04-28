@@ -4,15 +4,17 @@
 
 [Schema](../modules/Schema.md).WaitForExpressionStep
 
-`waitForExpression` allows for a JavaScript expression to resolve to truthy value.
+`waitForExpression` allows for a JavaScript expression to resolve to truthy
+value.
 
-For example, the following step pauses for two seconds and then resolves to true
-allowing the replay to continue.
+For example, the following step pauses for two seconds and then resolves to
+true allowing the replay to continue.
 
 ```
 {
   "type": "waitForElement",
-  "expression": "new Promise(resole => setTimeout(() => resolve(true), 2000))",
+  "expression": "new Promise(resolve => setTimeout(() => resolve(true),
+2000))",
 }
 ```
 
@@ -55,7 +57,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:190](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L190)
+[Schema.ts:215](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L215)
 
 ___
 
@@ -115,4 +117,4 @@ ___
 
 #### Defined in
 
-[Schema.ts:189](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L189)
+[Schema.ts:214](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L214)

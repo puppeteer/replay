@@ -55,7 +55,7 @@
 
 #### Defined in
 
-[PuppeteerStringifyExtension.ts:60](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L60)
+[PuppeteerStringifyExtension.ts:62](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L62)
 
 ___
 
@@ -106,7 +106,7 @@ ___
 
 #### Defined in
 
-[PuppeteerStringifyExtension.ts:43](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L43)
+[PuppeteerStringifyExtension.ts:45](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L45)
 
 ___
 
@@ -158,4 +158,4 @@ ___
 
 #### Defined in
 
-[PuppeteerStringifyExtension.ts:66](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L66)
+[PuppeteerStringifyExtension.ts:68](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L68)

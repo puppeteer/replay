@@ -1,8 +1,8 @@
-[@puppeteer/replay](../README.md) / [Schema](../modules/Schema.md) / ClickStep
+[@puppeteer/replay](../README.md) / [Schema](../modules/Schema.md) / DoubleClickStep
 
-# Interface: ClickStep
+# Interface: DoubleClickStep
 
-[Schema](../modules/Schema.md).ClickStep
+[Schema](../modules/Schema.md).DoubleClickStep
 
 ## Hierarchy
 
@@ -10,23 +10,22 @@
 
 - [`StepWithSelectors`](Schema.StepWithSelectors.md)
 
-  ↳ **`ClickStep`**
+  ↳ **`DoubleClickStep`**
 
 ## Table of contents
 
 ### Properties
 
-- [assertedEvents](Schema.ClickStep.md#assertedevents)
-- [button](Schema.ClickStep.md#button)
-- [deviceType](Schema.ClickStep.md#devicetype)
-- [duration](Schema.ClickStep.md#duration)
-- [frame](Schema.ClickStep.md#frame)
-- [offsetX](Schema.ClickStep.md#offsetx)
-- [offsetY](Schema.ClickStep.md#offsety)
-- [selectors](Schema.ClickStep.md#selectors)
-- [target](Schema.ClickStep.md#target)
-- [timeout](Schema.ClickStep.md#timeout)
-- [type](Schema.ClickStep.md#type)
+- [assertedEvents](Schema.DoubleClickStep.md#assertedevents)
+- [button](Schema.DoubleClickStep.md#button)
+- [deviceType](Schema.DoubleClickStep.md#devicetype)
+- [frame](Schema.DoubleClickStep.md#frame)
+- [offsetX](Schema.DoubleClickStep.md#offsetx)
+- [offsetY](Schema.DoubleClickStep.md#offsety)
+- [selectors](Schema.DoubleClickStep.md#selectors)
+- [target](Schema.DoubleClickStep.md#target)
+- [timeout](Schema.DoubleClickStep.md#timeout)
+- [type](Schema.DoubleClickStep.md#type)
 
 ## Properties
 
@@ -73,19 +72,6 @@ Pointer type for the event. Defaults to 'mouse'.
 #### Defined in
 
 [Schema.ts:58](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L58)
-
-___
-
-### duration
-
-• `Optional` **duration**: `number`
-
-Delay (in ms) between the mouse up and mouse down of the click. Defaults to
-50ms.
-
-#### Defined in
-
-[Schema.ts:85](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L85)
 
 ___
 
@@ -185,7 +171,7 @@ ___
 
 ### type
 
-• **type**: ``"click"``
+• **type**: ``"doubleClick"``
 
 #### Overrides
 
@@ -193,4 +179,4 @@ ___
 
 #### Defined in
 
-[Schema.ts:80](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L80)
+[Schema.ts:76](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L76)

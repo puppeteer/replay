@@ -8,9 +8,11 @@
 
 - [BaseStep](../interfaces/Schema.BaseStep.md)
 - [ChangeStep](../interfaces/Schema.ChangeStep.md)
+- [ClickAttributes](../interfaces/Schema.ClickAttributes.md)
 - [ClickStep](../interfaces/Schema.ClickStep.md)
 - [CloseStep](../interfaces/Schema.CloseStep.md)
 - [CustomStepParams](../interfaces/Schema.CustomStepParams.md)
+- [DoubleClickStep](../interfaces/Schema.DoubleClickStep.md)
 - [EmulateNetworkConditionsStep](../interfaces/Schema.EmulateNetworkConditionsStep.md)
 - [KeyDownStep](../interfaces/Schema.KeyDownStep.md)
 - [KeyUpStep](../interfaces/Schema.KeyUpStep.md)
@@ -58,7 +60,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:193](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L193)
+[Schema.ts:218](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L218)
 
 ___
 
@@ -68,7 +70,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:131](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L131)
+[Schema.ts:153](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L153)
 
 ___
 
@@ -88,7 +90,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:215](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L215)
+[Schema.ts:240](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L240)
 
 ___
 
@@ -108,7 +110,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:118](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L118)
+[Schema.ts:140](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L140)
 
 ___
 
@@ -128,7 +130,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:195](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L195)
+[Schema.ts:220](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L220)
 
 ___
 
@@ -158,8 +160,8 @@ ___
 
 ### UserStep
 
-Ƭ **UserStep**: [`ClickStep`](../interfaces/Schema.ClickStep.md) \| [`ChangeStep`](../interfaces/Schema.ChangeStep.md) \| [`EmulateNetworkConditionsStep`](../interfaces/Schema.EmulateNetworkConditionsStep.md) \| [`KeyDownStep`](../interfaces/Schema.KeyDownStep.md) \| [`KeyUpStep`](../interfaces/Schema.KeyUpStep.md) \| [`CloseStep`](../interfaces/Schema.CloseStep.md) \| [`SetViewportStep`](../interfaces/Schema.SetViewportStep.md) \| [`ScrollStep`](Schema.md#scrollstep) \| [`NavigateStep`](../interfaces/Schema.NavigateStep.md) \| [`CustomStep`](Schema.md#customstep)
+Ƭ **UserStep**: [`ChangeStep`](../interfaces/Schema.ChangeStep.md) \| [`ClickStep`](../interfaces/Schema.ClickStep.md) \| [`CloseStep`](../interfaces/Schema.CloseStep.md) \| [`CustomStep`](Schema.md#customstep) \| [`DoubleClickStep`](../interfaces/Schema.DoubleClickStep.md) \| [`EmulateNetworkConditionsStep`](../interfaces/Schema.EmulateNetworkConditionsStep.md) \| [`KeyDownStep`](../interfaces/Schema.KeyDownStep.md) \| [`KeyUpStep`](../interfaces/Schema.KeyUpStep.md) \| [`NavigateStep`](../interfaces/Schema.NavigateStep.md) \| [`ScrollStep`](Schema.md#scrollstep) \| [`SetViewportStep`](../interfaces/Schema.SetViewportStep.md)
 
 #### Defined in
 
-[Schema.ts:135](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L135)
+[Schema.ts:157](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L157)

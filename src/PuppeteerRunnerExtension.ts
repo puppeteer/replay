@@ -25,6 +25,7 @@ import {
 } from './Schema.js';
 import {
   assertAllStepTypesAreHandled,
+  mouseButtonMap,
   typeableInputTypes,
 } from './SchemaUtils.js';
 
@@ -106,6 +107,28 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
     };
 
     switch (step.type) {
+      case 'doubleClick':
+        {
+          const element = await waitForSelectors(step.selectors, localFrame, {
+            timeout,
+            visible: waitForVisible,
+          });
+          if (!element) {
+            throw new Error('Could not find element: ' + step.selectors[0]);
+          }
+          await scrollIntoViewIfNeeded(element, timeout);
+          startWaitingForEvents();
+          await element.click({
+            clickCount: 2,
+            button: step.button && mouseButtonMap.get(step.button),
+            offset: {
+              x: step.offsetX,
+              y: step.offsetY,
+            },
+          });
+          await element.dispose();
+        }
+        break;
       case 'click':
         {
           const element = await waitForSelectors(step.selectors, localFrame, {
@@ -118,6 +141,8 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
           await scrollIntoViewIfNeeded(element, timeout);
           startWaitingForEvents();
           await element.click({
+            delay: step.duration,
+            button: step.button && mouseButtonMap.get(step.button),
             offset: {
               x: step.offsetX,
               y: step.offsetY,
@@ -657,6 +682,9 @@ interface ElementHandle<ElementType extends Element>
   isIntersectingViewport(opts: { threshold: number }): Promise<boolean>;
   dispose(): Promise<void>;
   click(opts: {
+    delay?: number;
+    button?: 'left' | 'right' | 'middle' | 'back' | 'forward';
+    clickCount?: number;
     offset: {
       x: number;
       y: number;

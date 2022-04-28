@@ -103,7 +103,7 @@ describe('Runner', () => {
     assert.strictEqual(page.url(), `${HTTP_PREFIX}/empty.html`);
   });
 
-  it('should be able to replay click steps', async () => {
+  it('should be able to replay mouse click steps', async () => {
     const runner = await createRunner(
       {
         title: 'test',
@@ -114,22 +114,58 @@ describe('Runner', () => {
           },
           {
             type: 'click',
-            selectors: ['a[href="main2.html"]'],
+            button: 'primary',
+            selectors: ['#test'],
             offsetX: 1,
             offsetY: 1,
-            assertedEvents: [
-              {
-                type: 'navigation',
-                url: `${HTTP_PREFIX}/main2.html`,
-              },
-            ],
+          },
+          {
+            type: 'click',
+            button: 'auxiliary',
+            selectors: ['#test'],
+            offsetX: 1,
+            offsetY: 1,
+          },
+          {
+            type: 'click',
+            button: 'secondary',
+            selectors: ['#test'],
+            offsetX: 1,
+            offsetY: 1,
+          },
+          {
+            type: 'click',
+            button: 'back',
+            selectors: ['#test'],
+            offsetX: 1,
+            offsetY: 1,
+          },
+          {
+            type: 'click',
+            button: 'forward',
+            selectors: ['#test'],
+            offsetX: 1,
+            offsetY: 1,
           },
         ],
       },
       new PuppeteerRunnerExtension(browser, page)
     );
     await runner.run();
-    assert.strictEqual(page.url(), `${HTTP_PREFIX}/main2.html`);
+    assert.isTrue(
+      await page.evaluate(() => {
+        const context = window as unknown as {
+          buttonClicks: number[];
+        };
+        return (
+          context.buttonClicks[0] === 0 &&
+          context.buttonClicks[1] === 1 &&
+          context.buttonClicks[2] === 2 &&
+          context.buttonClicks[3] === 3 &&
+          context.buttonClicks[4] === 4
+        );
+      })
+    );
   });
 
   it('should be able to replay click steps on SVG path elements', async () => {
@@ -174,9 +210,8 @@ describe('Runner', () => {
       new PuppeteerRunnerExtension(browser, page)
     );
     await runner.run();
-    assert.strictEqual(
-      await page.evaluate(() => document.querySelector('input')?.checked),
-      true
+    assert.isTrue(
+      await page.evaluate(() => document.querySelector('input')?.checked)
     );
   });
 

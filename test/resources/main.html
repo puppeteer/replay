@@ -31,6 +31,13 @@
   <button id="selector-attribute" data-devtools-test="selector-attribute">Custom selector attribute</button>
 </div>
 <script>
+  window.buttonClicks = [];
+  const testButton = document.getElementById("test");
+  testButton.addEventListener('mouseup', (event) => {
+    event.preventDefault();
+    window.buttonClicks.push(event.button);
+  });
+
   window.addEventListener('submit', (event) => {
     if(!event.target.classList.contains('submittable')) {
       event.preventDefault();

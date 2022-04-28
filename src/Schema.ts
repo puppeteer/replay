@@ -51,16 +51,38 @@ export interface StepWithSelectors extends StepWithFrame {
   selectors: Selector[];
 }
 
-export interface ClickStep extends StepWithSelectors {
-  type: 'click';
+export interface ClickAttributes {
   /**
-   * in px, relative to the top-left corner of the element content box. Defaults to the center of the element
+   * Pointer type for the event. Defaults to 'mouse'.
+   */
+  deviceType?: 'mouse' | 'pen' | 'touch';
+  /**
+   * Defaults to 'primary' if the device type is a mouse.
+   */
+  button?: 'primary' | 'auxiliary' | 'secondary' | 'back' | 'forward';
+  /**
+   * in px, relative to the top-left corner of the element content box. Defaults
+   * to the center of the element
    */
   offsetX: number;
   /**
-   * in px, relative to the top-left corner of the element content box. Defaults to the center of the element
+   * in px, relative to the top-left corner of the element content box. Defaults
+   * to the center of the element
    */
   offsetY: number;
+}
+
+export interface DoubleClickStep extends ClickAttributes, StepWithSelectors {
+  type: 'doubleClick';
+}
+
+export interface ClickStep extends ClickAttributes, StepWithSelectors {
+  type: 'click';
+  /**
+   * Delay (in ms) between the mouse up and mouse down of the click. Defaults to
+   * 50ms.
+   */
+  duration?: number;
 }
 
 export interface ChangeStep extends StepWithSelectors {
@@ -133,20 +155,21 @@ export type CustomStep =
   | (CustomStepParams & StepWithFrame);
 
 export type UserStep =
-  | ClickStep
   | ChangeStep
+  | ClickStep
+  | CloseStep
+  | CustomStep
+  | DoubleClickStep
   | EmulateNetworkConditionsStep
   | KeyDownStep
   | KeyUpStep
-  | CloseStep
-  | SetViewportStep
-  | ScrollStep
   | NavigateStep
-  | CustomStep;
+  | ScrollStep
+  | SetViewportStep;
 
 /**
- * `waitForElement` allows waiting for the presence (or absence) of the number of
- * elements identified by the selector.
+ * `waitForElement` allows waiting for the presence (or absence) of the number
+ * of elements identified by the selector.
  *
  * For example, the following step would wait for less than three elements
  * to be on the page that match the selector `.my-class`.
@@ -173,15 +196,17 @@ export interface WaitForElementStep extends StepWithSelectors {
 }
 
 /**
- * `waitForExpression` allows for a JavaScript expression to resolve to truthy value.
+ * `waitForExpression` allows for a JavaScript expression to resolve to truthy
+ * value.
  *
- * For example, the following step pauses for two seconds and then resolves to true
- * allowing the replay to continue.
+ * For example, the following step pauses for two seconds and then resolves to
+ * true allowing the replay to continue.
  *
  * ```
  * {
  *   "type": "waitForElement",
- *   "expression": "new Promise(resole => setTimeout(() => resolve(true), 2000))",
+ *   "expression": "new Promise(resolve => setTimeout(() => resolve(true),
+ * 2000))",
  * }
  * ```
  */

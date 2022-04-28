@@ -14,9 +14,9 @@
     limitations under the License.
  */
 
+import snapshot from 'snap-shot-it';
 import { LineWriterImpl } from '../src/LineWriterImpl.js';
 import { PuppeteerStringifyExtension } from '../src/PuppeteerStringifyExtension.js';
-import { assert } from 'chai';
 
 describe('PuppeteerStringifyExtension', () => {
   const ext = new PuppeteerStringifyExtension();
@@ -33,16 +33,7 @@ describe('PuppeteerStringifyExtension', () => {
 
     const writer = new LineWriterImpl('  ');
     await ext.stringifyStep(writer, step, flow);
-    assert.deepEqual(
-      writer.toString(),
-      `{
-  const targetPage = page;
-  const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
-  await scrollIntoViewIfNeeded(element, timeout);
-  await element.click({ offset: { x: 1, y: 1} });
-}
-`
-    );
+    snapshot(writer.toString());
   });
 
   it('should print the correct script for asserted events', async () => {
@@ -58,19 +49,7 @@ describe('PuppeteerStringifyExtension', () => {
 
     const writer = new LineWriterImpl('  ');
     await ext.stringifyStep(writer, step, flow);
-    assert.deepEqual(
-      writer.toString(),
-      `{
-  const targetPage = page;
-  const promises = [];
-  promises.push(targetPage.waitForNavigation());
-  const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
-  await scrollIntoViewIfNeeded(element, timeout);
-  await element.click({ offset: { x: 1, y: 1} });
-  await Promise.all(promises);
-}
-`
-    );
+    snapshot(writer.toString());
   });
 
   it('should print the correct script with a chain selector', async () => {
@@ -85,16 +64,7 @@ describe('PuppeteerStringifyExtension', () => {
 
     const writer = new LineWriterImpl('  ');
     await ext.stringifyStep(writer, step, flow);
-    assert.deepEqual(
-      writer.toString(),
-      `{
-  const targetPage = page;
-  const element = await waitForSelectors([["aria/Test","aria/Test2"]], targetPage, { timeout, visible: true });
-  await scrollIntoViewIfNeeded(element, timeout);
-  await element.click({ offset: { x: 1, y: 1} });
-}
-`
-    );
+    snapshot(writer.toString());
   });
 
   it('should print the correct script for a change step', async () => {
@@ -108,28 +78,7 @@ describe('PuppeteerStringifyExtension', () => {
 
     const writer = new LineWriterImpl('  ');
     await ext.stringifyStep(writer, step, flow);
-    assert.deepEqual(
-      writer.toString(),
-      `{
-  const targetPage = page;
-  const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
-  await scrollIntoViewIfNeeded(element, timeout);
-  const type = await element.evaluate(el => el.type);
-  if (["select-one"].includes(type)) {
-    await element.select("Hello World");
-  } else if (["textarea","text","url","tel","search","password","number","email"].includes(type)) {
-    await element.type("Hello World");
-  } else {
-    await element.focus();
-    await element.evaluate((el, value) => {
-      el.value = value;
-      el.dispatchEvent(new Event('input', { bubbles: true }));
-      el.dispatchEvent(new Event('change', { bubbles: true }));
-    }, "Hello World");
-  }
-}
-`
-    );
+    snapshot(writer.toString());
   });
 
   it('should print the correct script for a change step for non-text inputs', async () => {
@@ -143,27 +92,6 @@ describe('PuppeteerStringifyExtension', () => {
 
     const writer = new LineWriterImpl('  ');
     await ext.stringifyStep(writer, step, flow);
-    assert.deepEqual(
-      writer.toString(),
-      `{
-  const targetPage = page;
-  const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
-  await scrollIntoViewIfNeeded(element, timeout);
-  const type = await element.evaluate(el => el.type);
-  if (["select-one"].includes(type)) {
-    await element.select("#333333");
-  } else if (["textarea","text","url","tel","search","password","number","email"].includes(type)) {
-    await element.type("#333333");
-  } else {
-    await element.focus();
-    await element.evaluate((el, value) => {
-      el.value = value;
-      el.dispatchEvent(new Event('input', { bubbles: true }));
-      el.dispatchEvent(new Event('change', { bubbles: true }));
-    }, "#333333");
-  }
-}
-`
-    );
+    snapshot(writer.toString());
   });
 });

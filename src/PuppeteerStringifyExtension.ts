@@ -148,7 +148,7 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     }
     out.appendLine('  offset: {');
     out.appendLine(`    x: ${step.offsetX},`);
-    out.appendLine(`    x: ${step.offsetY},`);
+    out.appendLine(`    y: ${step.offsetY},`);
     out.appendLine('  },');
     out.appendLine('});');
   }
@@ -162,7 +162,7 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     }
     out.appendLine('  offset: {');
     out.appendLine(`    x: ${step.offsetX},`);
-    out.appendLine(`    x: ${step.offsetY},`);
+    out.appendLine(`    y: ${step.offsetY},`);
     out.appendLine('  },');
     out.appendLine('});');
   }

@@ -41,6 +41,12 @@ async function createServers() {
   return { httpServer, httpsServer };
 }
 
+declare global {
+  interface Window {
+    buttonClicks: number[];
+  }
+}
+
 describe('Runner', () => {
   let browser: puppeteer.Browser;
   let page: puppeteer.Page;
@@ -103,7 +109,7 @@ describe('Runner', () => {
     assert.strictEqual(page.url(), `${HTTP_PREFIX}/empty.html`);
   });
 
-  it('should be able to replay click steps', async () => {
+  it('should be able to replay mouse click steps', async () => {
     const runner = await createRunner(
       {
         title: 'test',
@@ -114,22 +120,55 @@ describe('Runner', () => {
           },
           {
             type: 'click',
-            selectors: ['a[href="main2.html"]'],
+            button: 'primary',
+            selectors: ['#test'],
             offsetX: 1,
             offsetY: 1,
-            assertedEvents: [
-              {
-                type: 'navigation',
-                url: `${HTTP_PREFIX}/main2.html`,
-              },
-            ],
+          },
+          {
+            type: 'click',
+            button: 'auxiliary',
+            selectors: ['#test'],
+            offsetX: 1,
+            offsetY: 1,
+          },
+          {
+            type: 'click',
+            button: 'secondary',
+            selectors: ['#test'],
+            offsetX: 1,
+            offsetY: 1,
+          },
+          {
+            type: 'click',
+            button: 'back',
+            selectors: ['#test'],
+            offsetX: 1,
+            offsetY: 1,
+          },
+          {
+            type: 'click',
+            button: 'forward',
+            selectors: ['#test'],
+            offsetX: 1,
+            offsetY: 1,
           },
         ],
       },
       new PuppeteerRunnerExtension(browser, page)
     );
     await runner.run();
-    assert.strictEqual(page.url(), `${HTTP_PREFIX}/main2.html`);
+    assert.strictEqual(
+      await page.evaluate(
+        () =>
+          window.buttonClicks[0] === 0 &&
+          window.buttonClicks[1] === 1 &&
+          window.buttonClicks[2] === 2 &&
+          window.buttonClicks[3] === 3 &&
+          window.buttonClicks[4] === 4
+      ),
+      true
+    );
   });
 
   it('should be able to replay click steps on SVG path elements', async () => {

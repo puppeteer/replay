@@ -42,6 +42,7 @@ async function createServers() {
 }
 
 declare global {
+  // eslint-disable-next-line no-unused-vars
   interface Window {
     buttonClicks: number[];
   }

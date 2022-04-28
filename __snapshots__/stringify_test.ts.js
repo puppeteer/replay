@@ -157,9 +157,11 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   await browser.close();
 })();
 
-`
+`;
 
-exports['stringify should print the correct script for a emulateNetworkCondition step 1'] = `
+exports[
+  'stringify should print the correct script for a emulateNetworkCondition step 1'
+] = `
 const puppeteer = require('puppeteer'); // v13.0.0 or later
 
 (async () => {
@@ -323,9 +325,11 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   await browser.close();
 })();
 
-`
+`;
 
-exports['stringify should print the correct script if the target is not the main page 1'] = `
+exports[
+  'stringify should print the correct script if the target is not the main page 1'
+] = `
 const puppeteer = require('puppeteer'); // v13.0.0 or later
 
 (async () => {
@@ -493,7 +497,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   await browser.close();
 })();
 
-`
+`;
 
 exports['stringify should use step and flow timeouts 1'] = `
 const puppeteer = require('puppeteer'); // v13.0.0 or later
@@ -664,9 +668,11 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   await browser.close();
 })();
 
-`
+`;
 
-exports['stringify should print the correct script if the step is within an iframe 1'] = `
+exports[
+  'stringify should print the correct script if the step is within an iframe 1'
+] = `
 const puppeteer = require('puppeteer'); // v13.0.0 or later
 
 (async () => {
@@ -835,7 +841,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   await browser.close();
 })();
 
-`
+`;
 
 exports['stringify should print the correct script for a keydown step 1'] = `
 const puppeteer = require('puppeteer'); // v13.0.0 or later
@@ -996,7 +1002,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   await browser.close();
 })();
 
-`
+`;
 
 exports['stringify should print the correct script for a keyup step 1'] = `
 const puppeteer = require('puppeteer'); // v13.0.0 or later
@@ -1157,7 +1163,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   await browser.close();
 })();
 
-`
+`;
 
 exports['stringify should print the correct script for scroll events 1'] = `
 const puppeteer = require('puppeteer'); // v13.0.0 or later
@@ -1324,9 +1330,11 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   await browser.close();
 })();
 
-`
+`;
 
-exports['stringify should print the correct script for waitForElement steps 1'] = `
+exports[
+  'stringify should print the correct script for waitForElement steps 1'
+] = `
 const puppeteer = require('puppeteer'); // v13.0.0 or later
 
 (async () => {
@@ -1485,9 +1493,11 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   await browser.close();
 })();
 
-`
+`;
 
-exports['stringify should print the correct script for waitForExpression steps 1'] = `
+exports[
+  'stringify should print the correct script for waitForExpression steps 1'
+] = `
 const puppeteer = require('puppeteer'); // v13.0.0 or later
 
 (async () => {
@@ -1646,4 +1656,4 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   await browser.close();
 })();
 
-`
+`;

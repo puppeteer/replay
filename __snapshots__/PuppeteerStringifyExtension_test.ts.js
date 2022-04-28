@@ -1,4 +1,6 @@
-exports['PuppeteerStringifyExtension should print the correct script for a click step 1'] = `
+exports[
+  'PuppeteerStringifyExtension should print the correct script for a click step 1'
+] = `
 {
   const targetPage = page;
   const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
@@ -11,9 +13,11 @@ exports['PuppeteerStringifyExtension should print the correct script for a click
   });
 }
 
-`
+`;
 
-exports['PuppeteerStringifyExtension should print the correct script for asserted events 1'] = `
+exports[
+  'PuppeteerStringifyExtension should print the correct script for asserted events 1'
+] = `
 {
   const targetPage = page;
   const promises = [];
@@ -29,9 +33,11 @@ exports['PuppeteerStringifyExtension should print the correct script for asserte
   await Promise.all(promises);
 }
 
-`
+`;
 
-exports['PuppeteerStringifyExtension should print the correct script with a chain selector 1'] = `
+exports[
+  'PuppeteerStringifyExtension should print the correct script with a chain selector 1'
+] = `
 {
   const targetPage = page;
   const element = await waitForSelectors([["aria/Test","aria/Test2"]], targetPage, { timeout, visible: true });
@@ -44,9 +50,11 @@ exports['PuppeteerStringifyExtension should print the correct script with a chai
   });
 }
 
-`
+`;
 
-exports['PuppeteerStringifyExtension should print the correct script for a change step 1'] = `
+exports[
+  'PuppeteerStringifyExtension should print the correct script for a change step 1'
+] = `
 {
   const targetPage = page;
   const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
@@ -66,9 +74,11 @@ exports['PuppeteerStringifyExtension should print the correct script for a chang
   }
 }
 
-`
+`;
 
-exports['PuppeteerStringifyExtension should print the correct script for a change step for non-text inputs 1'] = `
+exports[
+  'PuppeteerStringifyExtension should print the correct script for a change step for non-text inputs 1'
+] = `
 {
   const targetPage = page;
   const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
@@ -88,4 +98,4 @@ exports['PuppeteerStringifyExtension should print the correct script for a chang
   }
 }
 
-`
+`;

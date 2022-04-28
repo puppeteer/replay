@@ -49,3 +49,15 @@ Apache header:
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
+## For library maintainers
+
+### How to release a new version
+
+1. Open a PR containing the result of running `npm run release`. This should automatically update change log, bump the version and commit the changes.
+2. After the PR lands, [create a new release](https://github.com/puppeteer/replay/releases/new):
+    1. Specify a new tag in the format `v$VERSION` (e.g., `v0.1`).
+    2. Specify the release title as `$VERSION` (e.g., `0.1`).
+    3. Copy the part of the changelog corresponding to the current version to the description.
+
+Once the release is created, a GitHub Actions job will automatically publish the new release to npm.

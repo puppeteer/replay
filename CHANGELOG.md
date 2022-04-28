@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/puppeteer/replay/compare/v0.1.1...v0.1.2) (2022-04-28)
+
+
+### Features
+
+* improved pointer events ([e76d828](https://github.com/puppeteer/replay/commit/e76d8283cdd09b494c41d7b0cdf8a2b386cfbf92))
+* use Puppeteer's select to change select elements ([#72](https://github.com/puppeteer/replay/issues/72)) ([0b4e052](https://github.com/puppeteer/replay/commit/0b4e0527cc70b992fd24608c976fde0ba1b60f39))
+
 ### [0.1.1](https://github.com/puppeteer/replay/compare/v0.1.0...v0.1.1) (2022-03-24)
 
 

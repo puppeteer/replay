@@ -10,7 +10,7 @@
     "doc": "docs"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=14"
   },
   "scripts": {
     "test": "cross-env TS_NODE_PROJECT=test/tsconfig.json mocha --config .mocharc.cjs",

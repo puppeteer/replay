@@ -204,7 +204,7 @@ export interface WaitForElementStep extends StepWithSelectors {
  *
  * ```
  * {
- *   "type": "waitForElement",
+ *   "type": "waitForExpression",
  *   "expression": "new Promise(resolve => setTimeout(() => resolve(true),
  * 2000))",
  * }

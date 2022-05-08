@@ -23,8 +23,19 @@ If you want to replay recordings using Puppeteer, install Puppeteer as well:
 ```
 npm install puppeteer --save
 ```
+## Using Puppeteer Replay?
 
-## Replay a recording stored in a file using Puppeteer
+There are 3 ways to use it:
+
+- **CLI**. Replay [exported JSON user flows](https://developer.chrome.com/docs/devtools/recorder/#export-flows) with a line of command.
+- **Customization**. Customize how a recording is run (e.g. capture screenshots after each step, intergrate with 3rd party libraries).
+- **Transformation**. Customize how a recording is stringified. (e.g transform [JSON user flows](https://developer.chrome.com/docs/devtools/recorder/#export-flows) into other format (e.g. [Cypress](https://github.com/cypress-io/cypress-chrome-recorder) test script)
+
+### Replay a recording
+
+Replay an [exported JSON user flow](https://developer.chrome.com/docs/devtools/recorder/#export-flows) with Puppeteer.
+
+Download this example [JSON user flow](https://storage.googleapis.com/web-dev-uploads/file/dPDCek3EhZgLQPGtEG3y0fTn4v82/vzQbv2rUfTz2DEmx06Gv.json) and replay it.
 
 Using CLI + npx:
 

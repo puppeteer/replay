@@ -53,6 +53,8 @@ In your `package.json` add a new script to invoke the `replay` command:
 }
 ```
 
+**Note:** for the both CLI and `package.json` usage, you can set a `PUPPETEER_HEADFUL` environment variable in order to run "headful".
+
 Using [the replay lib API](/examples/replay-from-file-using-puppeteer/main.js):
 
 ```js

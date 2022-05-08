@@ -8,7 +8,7 @@
 
 ###### [API](https://github.com/puppeteer/replay/blob/main/docs/api) | [Contributing](https://github.com/puppeteer/replay/blob/main/docs/contributing.md)
 
-> Replay is a library which provides an API to replay and stringify recordings created using [Chrome DevTools Recorder](https://developer.chrome.com/docs/devtools/recorder/)
+> Puppeteer Replay is a library which provides an API to replay and stringify recordings created using [Chrome DevTools Recorder](https://developer.chrome.com/docs/devtools/recorder/)
 
 ## Installation
 
@@ -23,19 +23,17 @@ If you want to replay recordings using Puppeteer, install Puppeteer as well:
 ```
 npm install puppeteer --save
 ```
-## Using Puppeteer Replay?
+## Getting started with Puppeteer Replay
 
-There are 3 ways to use it:
+You can use Puppeteer Replay:
 
-- **CLI**. Replay [exported JSON user flows](https://developer.chrome.com/docs/devtools/recorder/#export-flows) with a line of command.
-- **Customization**. Customize how a recording is run (e.g. capture screenshots after each step, intergrate with 3rd party libraries).
-- **Transformation**. Customize how a recording is stringified. (e.g transform [JSON user flows](https://developer.chrome.com/docs/devtools/recorder/#export-flows) into other format (e.g. [Cypress](https://github.com/cypress-io/cypress-chrome-recorder) test script)
+1. **Replay recording**. Replay recording with CLI or using [the replay lib API](/examples/replay-from-file-using-puppeteer/main.js).
+2. **Customize replay**. Customize how a recording is run (e.g. capture screenshots after each step, intergrate with 3rd party libraries).
+3. **Transform recoding**. Customize how a recording is stringified. (e.g transform/convert the recording into other format (e.g. [Cypress](https://github.com/cypress-io/cypress-chrome-recorder) test script)
 
-### Replay a recording
+### 1. Replay recording
 
-Replay an [exported JSON user flow](https://developer.chrome.com/docs/devtools/recorder/#export-flows) with Puppeteer.
-
-Download this example [JSON user flow](https://storage.googleapis.com/web-dev-uploads/file/dPDCek3EhZgLQPGtEG3y0fTn4v82/vzQbv2rUfTz2DEmx06Gv.json) and replay it.
+Download this [example recording](https://storage.googleapis.com/web-dev-uploads/file/dPDCek3EhZgLQPGtEG3y0fTn4v82/vzQbv2rUfTz2DEmx06Gv.json).
 
 Using CLI + npx:
 

@@ -56,7 +56,7 @@ Defaults to 'primary' if the device type is a mouse.
 
 #### Defined in
 
-[Schema.ts:62](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L62)
+[Schema.ts:74](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L74)
 
 ___
 
@@ -72,7 +72,7 @@ Pointer type for the event. Defaults to 'mouse'.
 
 #### Defined in
 
-[Schema.ts:58](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L58)
+[Schema.ts:70](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L70)
 
 ___
 
@@ -85,7 +85,7 @@ Delay (in ms) between the mouse up and mouse down of the click. Defaults to
 
 #### Defined in
 
-[Schema.ts:85](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L85)
+[Schema.ts:97](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L97)
 
 ___
 
@@ -118,7 +118,7 @@ to the center of the element
 
 #### Defined in
 
-[Schema.ts:67](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L67)
+[Schema.ts:79](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L79)
 
 ___
 
@@ -135,7 +135,7 @@ to the center of the element
 
 #### Defined in
 
-[Schema.ts:72](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L72)
+[Schema.ts:84](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L84)
 
 ___
 
@@ -143,13 +143,24 @@ ___
 
 • **selectors**: [`Selector`](../modules/Schema.md#selector)[]
 
+A list of alternative selectors that lead to selection of a single element to perform the step on.
+Currently, we support CSS selectors and ARIA selectors (start with 'aria/'). Each selector
+could be a string or an array of strings. If it's a string, it means that the selector points directly to the target
+element. If it's an array, the last element is the selector for the target element and the preceeding selectors
+point to the ancestor elements. If the parent element is a shadow root host, the subsequent
+selector is evaluated only against the shadow DOM of the host (i.e., `parent.shadowRoot.querySelector`). If the parent
+element is not a shadow root host, the subsequent selector is evaluated in the regular DOM (i.e., `parent.querySelector`).
+
+During the execution, it's recommended that the implementation tries out all of the alternative selectors to improve
+reliability of the replay as some selectors might get outdated over time.
+
 #### Inherited from
 
 [StepWithSelectors](Schema.StepWithSelectors.md).[selectors](Schema.StepWithSelectors.md#selectors)
 
 #### Defined in
 
-[Schema.ts:51](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L51)
+[Schema.ts:63](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L63)
 
 ___
 
@@ -193,4 +204,4 @@ ___
 
 #### Defined in
 
-[Schema.ts:80](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L80)
+[Schema.ts:92](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L92)

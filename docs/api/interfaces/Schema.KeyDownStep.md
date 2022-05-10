@@ -42,7 +42,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:102](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L102)
+[Schema.ts:114](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L114)
 
 ___
 
@@ -86,4 +86,4 @@ ___
 
 #### Defined in
 
-[Schema.ts:101](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L101)
+[Schema.ts:113](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L113)

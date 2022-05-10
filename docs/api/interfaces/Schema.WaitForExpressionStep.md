@@ -12,7 +12,7 @@ true allowing the replay to continue.
 
 ```
 {
-  "type": "waitForElement",
+  "type": "waitForExpression",
   "expression": "new Promise(resolve => setTimeout(() => resolve(true),
 2000))",
 }
@@ -57,7 +57,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:215](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L215)
+[Schema.ts:225](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L225)
 
 ___
 
@@ -117,4 +117,4 @@ ___
 
 #### Defined in
 
-[Schema.ts:214](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L214)
+[Schema.ts:224](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L224)

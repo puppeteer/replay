@@ -10,8 +10,6 @@
 
   ↳ **`ScrollPageStep`**
 
-  ↳↳ [`ScrollElementStep`](Schema.ScrollElementStep.md)
-
 ## Table of contents
 
 ### Properties
@@ -96,7 +94,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:125](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L125)
+[Schema.ts:137](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L137)
 
 ___
 
@@ -108,7 +106,7 @@ Absolute scroll x position in px. Defaults to 0
 
 #### Defined in
 
-[Schema.ts:129](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L129)
+[Schema.ts:141](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L141)
 
 ___
 
@@ -120,4 +118,4 @@ Absolute scroll y position in px. Defaults to 0
 
 #### Defined in
 
-[Schema.ts:133](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L133)
+[Schema.ts:145](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L145)

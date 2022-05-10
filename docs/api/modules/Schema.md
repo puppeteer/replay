@@ -18,7 +18,6 @@
 - [KeyUpStep](../interfaces/Schema.KeyUpStep.md)
 - [NavigateStep](../interfaces/Schema.NavigateStep.md)
 - [NavigationEvent](../interfaces/Schema.NavigationEvent.md)
-- [ScrollElementStep](../interfaces/Schema.ScrollElementStep.md)
 - [ScrollPageStep](../interfaces/Schema.ScrollPageStep.md)
 - [SetViewportStep](../interfaces/Schema.SetViewportStep.md)
 - [StepWithFrame](../interfaces/Schema.StepWithFrame.md)
@@ -36,6 +35,7 @@
 - [FrameSelector](Schema.md#frameselector)
 - [Key](Schema.md#key)
 - [Pattern](Schema.md#pattern)
+- [ScrollElementStep](Schema.md#scrollelementstep)
 - [ScrollStep](Schema.md#scrollstep)
 - [Selector](Schema.md#selector)
 - [Step](Schema.md#step)
@@ -60,7 +60,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:218](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L218)
+[Schema.ts:228](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L228)
 
 ___
 
@@ -70,7 +70,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:153](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L153)
+[Schema.ts:163](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L163)
 
 ___
 
@@ -90,7 +90,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:240](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L240)
+[Schema.ts:250](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L250)
 
 ___
 
@@ -104,13 +104,23 @@ ___
 
 ___
 
-### ScrollStep
+### ScrollElementStep
 
-Ƭ **ScrollStep**: [`ScrollPageStep`](../interfaces/Schema.ScrollPageStep.md) \| [`ScrollElementStep`](../interfaces/Schema.ScrollElementStep.md)
+Ƭ **ScrollElementStep**: [`ScrollPageStep`](../interfaces/Schema.ScrollPageStep.md) & [`StepWithSelectors`](../interfaces/Schema.StepWithSelectors.md)
 
 #### Defined in
 
-[Schema.ts:140](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L140)
+[Schema.ts:148](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L148)
+
+___
+
+### ScrollStep
+
+Ƭ **ScrollStep**: [`ScrollPageStep`](../interfaces/Schema.ScrollPageStep.md) \| [`ScrollElementStep`](Schema.md#scrollelementstep)
+
+#### Defined in
+
+[Schema.ts:150](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L150)
 
 ___
 
@@ -130,7 +140,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:220](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L220)
+[Schema.ts:230](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L230)
 
 ___
 
@@ -164,4 +174,4 @@ ___
 
 #### Defined in
 
-[Schema.ts:157](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L157)
+[Schema.ts:167](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L167)

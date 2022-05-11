@@ -14,13 +14,13 @@
     limitations under the License.
  */
 
+import type { Browser, Page, Frame, ElementHandle } from 'puppeteer';
 import { RunnerExtension } from './RunnerExtension.js';
 import {
   UserFlow,
   Step,
   WaitForElementStep,
   Selector,
-  Key,
   ChangeStep,
 } from './Schema.js';
 import {
@@ -622,133 +622,4 @@ async function waitForFunction(
     await new Promise((resolve) => setTimeout(resolve, 100));
   }
   throw new Error('Timed out');
-}
-
-// Partial description of Puppeteer API below to allow runtime dependencies.
-type EvaluateFn<T = any> = string | ((arg1: T, ...args: any[]) => any);
-type EvaluateFnReturnType<T extends EvaluateFn> = T extends (
-  ...args: any[]
-) => infer R
-  ? R
-  : any;
-type SerializableOrJSHandle = Serializable | JSHandle;
-type JSONArray = readonly Serializable[];
-interface JSONObject {
-  [key: string]: Serializable;
-}
-type Serializable =
-  | number
-  | string
-  | boolean
-  | null
-  | BigInt
-  | JSONArray
-  | JSONObject;
-type UnwrapPromiseLike<T> = T extends PromiseLike<infer U> ? U : T;
-
-interface Target {
-  url(): string;
-  page(): Promise<Page | null>;
-}
-
-export interface WaitForTargetOptions {
-  /**
-   * Maximum wait time in milliseconds. Pass `0` to disable the timeout.
-   * @defaultValue 30 seconds.
-   */
-  timeout?: number;
-}
-
-interface Browser {
-  close(): Promise<void>;
-  waitForTarget(
-    predicate: (x: Target) => boolean,
-    options?: WaitForTargetOptions
-  ): Promise<Target>;
-}
-
-interface JSHandle<HandleObjectType = unknown> {
-  // TODO: fix the type of evaluate.
-  evaluate<T extends EvaluateFn<HandleObjectType>>(
-    ...args: any[]
-  ): Promise<UnwrapPromiseLike<EvaluateFnReturnType<T>>>;
-  // TODO: fix the type of evaluateHandle.
-  evaluateHandle(...args: any[]): Promise<JSHandle<Element>>;
-  asElement(): ElementHandle<Element> | null;
-}
-
-interface ElementHandle<ElementType extends Element>
-  extends JSHandle<ElementType> {
-  isIntersectingViewport(opts: { threshold: number }): Promise<boolean>;
-  dispose(): Promise<void>;
-  click(opts: {
-    delay?: number;
-    button?: 'left' | 'right' | 'middle' | 'back' | 'forward';
-    clickCount?: number;
-    offset: {
-      x: number;
-      y: number;
-    };
-  }): Promise<void>;
-  type(input: string): Promise<void>;
-  focus(): Promise<void>;
-  $$<T extends Element = Element>(
-    selector: string
-  ): Promise<Array<ElementHandle<T>>>;
-  waitForSelector(
-    selector: string,
-    options?: {
-      visible?: boolean;
-      hidden?: boolean;
-      timeout?: number;
-    }
-  ): Promise<ElementHandle<Element> | null>;
-  asElement(): ElementHandle<ElementType> | null;
-  select(...args: string[]): Promise<unknown>;
-}
-
-interface CDPSession {
-  send(command: string, opts: { enabled: boolean }): Promise<unknown>;
-}
-
-interface Page {
-  setDefaultTimeout(timeout: number): void;
-  frames(): Frame[];
-  emulateNetworkConditions(conditions: any): void;
-  keyboard: {
-    type(value: string): Promise<void>;
-    down(key: Key): Promise<void>;
-    up(key: Key): Promise<void>;
-  };
-  waitForTimeout(timeout: number): Promise<void>;
-  close(): Promise<void>;
-  setViewport(viewport: any): Promise<void>;
-  mainFrame(): Frame;
-  waitForNavigation(opts: { timeout: number }): Promise<unknown>;
-  $$<T extends Element = Element>(
-    selector: string
-  ): Promise<Array<ElementHandle<T>>>;
-  waitForFrame(url: string, opts: { timeout: number }): Promise<Frame>;
-  client(): CDPSession;
-}
-
-interface Frame {
-  waitForSelector(
-    part: string,
-    options: WaitForOptions
-  ): Promise<ElementHandle<Element> | null>;
-  isOOPFrame(): boolean;
-  url(): string;
-  evaluate<T extends EvaluateFn>(
-    pageFunction: T,
-    ...args: SerializableOrJSHandle[]
-  ): Promise<UnwrapPromiseLike<EvaluateFnReturnType<T>>>;
-  goto(url: string): Promise<unknown>;
-  waitForFunction(expr: string, opts: { timeout: number }): Promise<unknown>;
-  childFrames(): Frame[];
-  waitForNavigation(opts: { timeout: number }): Promise<unknown>;
-  $$<T extends Element = Element>(
-    selector: string
-  ): Promise<Array<ElementHandle<T>>>;
-  client(): CDPSession;
 }

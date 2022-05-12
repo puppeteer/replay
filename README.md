@@ -70,7 +70,7 @@ await runner.run();
 
 ## 2. Customize replay
 
-The library offers way to customize how a recording is run. You can extend
+The library offers a way to customize how a recording is run. You can extend
 the `PuppeteerRunnerExtension` class as shown in the example below.
 
 Full example of the `PuppeteerRunnerExtension`: [link](/examples/extend-runner/main.js)

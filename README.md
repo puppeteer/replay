@@ -31,7 +31,7 @@ You can use Puppeteer Replay to:
 2. **Customize replay**. Customize how a recording is run (e.g. capture screenshots after each step, intergrate with 3rd party libraries).
 3. **Transform recoding**. Customize how a recording is stringified. (e.g. transform the recording into other format like [Cypress test script](https://github.com/cypress-io/cypress-chrome-recorder))
 
-### 1. Replay recording
+## 1. Replay recording
 
 Download this [example recording](https://storage.googleapis.com/web-dev-uploads/file/dPDCek3EhZgLQPGtEG3y0fTn4v82/vzQbv2rUfTz2DEmx06Gv.json).
 
@@ -68,7 +68,7 @@ const runner = await createRunner(recording);
 await runner.run();
 ```
 
-### 2. Customize replay
+## 2. Customize replay
 
 The library offers way to customize how a recording is run. You can extend
 the `PuppeteerRunnerExtension` class as shown in the example below.
@@ -126,11 +126,11 @@ await browser.close();
 ```
 
 
-### 3. Transform recording
+## 3. Transform recording
 
 You can customize how a recording is stringified and use it to transform the recording format.
 
-#### Stringify a recording as a Puppeteer script
+### Stringify a recording as a Puppeteer script
 
 ```js
 import { stringify } from '@puppeteer/replay';
@@ -141,7 +141,7 @@ console.log(await stringify({
 }));
 ```
 
-#### Customize how a recording is stringified
+### Customize how a recording is stringified
 
 You can customize how a recording is stringified by extending the `PuppeteerStringifyExtension` class as shown in the example below.
 

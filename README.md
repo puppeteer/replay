@@ -28,7 +28,7 @@ npm install puppeteer --save
 You can use Puppeteer Replay to:
 
 1. **Replay recording**. Replay recording with CLI or using [the replay lib API](/examples/replay-from-file-using-puppeteer/main.js).
-2. **Customize replay**. Customize how a recording is run (e.g. capture screenshots after each step, intergrate with 3rd party libraries).
+2. **Customize replay**. Customize how a recording is run. For example, capture screenshots after each step or integrate with 3rd party libraries.
 3. **Transform recoding**. Customize how a recording is stringified. For example, transform the recording into another format, like [Cypress test script](https://github.com/cypress-io/cypress-chrome-recorder))
 
 ## 1. Replay recording

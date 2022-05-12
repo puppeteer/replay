@@ -33,7 +33,7 @@ You can use Puppeteer Replay to:
 
 ## 1. Replay recording
 
-Download this [example recording](https://storage.googleapis.com/web-dev-uploads/file/dPDCek3EhZgLQPGtEG3y0fTn4v82/vzQbv2rUfTz2DEmx06Gv.json).
+Download this [example recording](https://storage.googleapis.com/web-dev-uploads/file/dPDCek3EhZgLQPGtEG3y0fTn4v82/vzQbv2rUfTz2DEmx06Gv.json) and save it as `recording.json`.
 
 Using CLI + npx:
 

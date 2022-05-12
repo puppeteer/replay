@@ -8,7 +8,7 @@
 
 ###### [API](https://github.com/puppeteer/replay/blob/main/docs/api) | [Contributing](https://github.com/puppeteer/replay/blob/main/docs/contributing.md)
 
-> Replay is a library which provides an API to replay and stringify recordings created using [Chrome DevTools Recorder](https://developer.chrome.com/docs/devtools/recorder/)
+> Puppeteer Replay is a library that provides an API to replay and stringify recordings created using [Chrome DevTools Recorder](https://developer.chrome.com/docs/devtools/recorder/)
 
 ## Installation
 
@@ -23,8 +23,17 @@ If you want to replay recordings using Puppeteer, install Puppeteer as well:
 ```
 npm install puppeteer --save
 ```
+## Getting started with Puppeteer Replay
 
-## Replay a recording stored in a file using Puppeteer
+You can use Puppeteer Replay to:
+
+1. **Replay recording**. Replay recording with CLI or using [the replay lib API](/examples/replay-from-file-using-puppeteer/main.js).
+2. **Customize replay**. Customize how a recording is run. For example, capture screenshots after each step or integrate with 3rd party libraries.
+3. **Transform recoding**. Customize how a recording is stringified. For example, transform the recording into another format, like [Cypress test script](https://github.com/cypress-io/cypress-chrome-recorder))
+
+## 1. Replay recording
+
+Download this [example recording](https://storage.googleapis.com/web-dev-uploads/file/dPDCek3EhZgLQPGtEG3y0fTn4v82/vzQbv2rUfTz2DEmx06Gv.json) and save it as `recording.json`.
 
 Using CLI + npx:
 
@@ -59,22 +68,12 @@ const runner = await createRunner(recording);
 await runner.run();
 ```
 
-## [Stringify a recording as a Puppeteer script](/examples/extend-stringify/main.js)
+## 2. Customize replay
 
-```js
-import { stringify } from '@puppeteer/replay';
+The library offers a way to customize how a recording is run. You can extend
+the `PuppeteerRunnerExtension` class as shown in the example below.
 
-console.log(await stringify({
-  title: 'Test recording',
-  steps: [],
-}));
-```
-
-## [Customize how a recording is run](/examples/extend-runner/main.js)
-
-The library offers way to customize how a recording is run. You can extend
-the `PuppeteerRunnerExtension` class as shown in the example below or you
-can extend the `RunnerExtension` class and define a completely new behaviour.
+Full example of the `PuppeteerRunnerExtension`: [link](/examples/extend-runner/main.js)
 
 ```js
 import { createRunner, PuppeteerRunnerExtension } from '../../lib/main.js';
@@ -126,10 +125,30 @@ await runner.run();
 await browser.close();
 ```
 
-## [Customize how a recording is stringified](/examples/extend-stringify/main.js)
+
+## 3. Transform recording
+
+You can customize how a recording is stringified and use it to transform the recording format.
+
+### Stringify a recording as a Puppeteer script
 
 ```js
-import { stringify, PuppeteerStringifyExtension } from '../../lib/main.js';
+import { stringify } from '@puppeteer/replay';
+
+console.log(await stringify({
+  title: 'Test recording',
+  steps: [],
+}));
+```
+
+### Customize how a recording is stringified
+
+You can customize how a recording is stringified by extending the `PuppeteerStringifyExtension` class as shown in the example below.
+
+Full example of `PuppeteerStringifyExtension` : [link](/examples/extend-stringify/main.js)
+
+```js
+import { stringify, PuppeteerStringifyExtension } from '@puppeteer/replay';
 
 class Extension extends PuppeteerStringifyExtension {
   // beforeAllSteps?(out: LineWriter, flow: UserFlow): Promise<void>;

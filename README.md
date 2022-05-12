@@ -132,8 +132,6 @@ You can customize how a recording is stringified and use it to transform the rec
 
 #### Stringify a recording as a Puppeteer script
 
-Full example: [link](/examples/extend-stringify/main.js)
-
 ```js
 import { stringify } from '@puppeteer/replay';
 
@@ -145,7 +143,9 @@ console.log(await stringify({
 
 #### Customize how a recording is stringified
 
-Full example: [link](/examples/extend-stringify/main.js)
+You can customize how a recording is stringified by extending the `PuppeteerStringifyExtension` class as shown in the example below.
+
+Full example of `PuppeteerStringifyExtension` : [link](/examples/extend-stringify/main.js)
 
 ```js
 import { stringify, PuppeteerStringifyExtension } from '@puppeteer/replay';

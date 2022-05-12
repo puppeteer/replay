@@ -68,22 +68,12 @@ const runner = await createRunner(recording);
 await runner.run();
 ```
 
-## [Stringify a recording as a Puppeteer script](/examples/extend-stringify/main.js)
-
-```js
-import { stringify } from '@puppeteer/replay';
-
-console.log(await stringify({
-  title: 'Test recording',
-  steps: [],
-}));
-```
-
-## [Customize how a recording is run](/examples/extend-runner/main.js)
+### 2. Customize replay
 
 The library offers way to customize how a recording is run. You can extend
-the `PuppeteerRunnerExtension` class as shown in the example below or you
-can extend the `RunnerExtension` class and define a completely new behaviour.
+the `PuppeteerRunnerExtension` class as shown in the example below.
+
+Full example of the `PuppeteerRunnerExtension`: [link](/examples/extend-runner/main.js)
 
 ```js
 import { createRunner, PuppeteerRunnerExtension } from '../../lib/main.js';
@@ -135,10 +125,30 @@ await runner.run();
 await browser.close();
 ```
 
-## [Customize how a recording is stringified](/examples/extend-stringify/main.js)
+
+### 3. Transform recording
+
+You can customize how a recording is stringified and use it to transform the recording format.
+
+#### Stringify a recording as a Puppeteer script
+
+Full example: [link](/examples/extend-stringify/main.js)
 
 ```js
-import { stringify, PuppeteerStringifyExtension } from '../../lib/main.js';
+import { stringify } from '@puppeteer/replay';
+
+console.log(await stringify({
+  title: 'Test recording',
+  steps: [],
+}));
+```
+
+#### Customize how a recording is stringified
+
+Full example: [link](/examples/extend-stringify/main.js)
+
+```js
+import { stringify, PuppeteerStringifyExtension } from '@puppeteer/replay';
 
 class Extension extends PuppeteerStringifyExtension {
   // beforeAllSteps?(out: LineWriter, flow: UserFlow): Promise<void>;

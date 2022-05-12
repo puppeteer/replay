@@ -151,6 +151,21 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
           await element.dispose();
         }
         break;
+      case 'hover':
+        {
+          const element = await waitForSelectors(step.selectors, localFrame, {
+            timeout,
+            visible: waitForVisible,
+          });
+          if (!element) {
+            throw new Error('Could not find element: ' + step.selectors[0]);
+          }
+          await scrollIntoViewIfNeeded(element, timeout);
+          startWaitingForEvents();
+          await element.hover();
+          await element.dispose();
+        }
+        break;
       case 'emulateNetworkConditions':
         {
           startWaitingForEvents();
@@ -691,6 +706,7 @@ interface ElementHandle<ElementType extends Element>
     };
   }): Promise<void>;
   type(input: string): Promise<void>;
+  hover(): Promise<void>;
   focus(): Promise<void>;
   $$<T extends Element = Element>(
     selector: string

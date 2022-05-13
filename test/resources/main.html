@@ -29,6 +29,7 @@
   <button id="synthetic">Trigger Synthetic Event</button>
   <button id="synthetic-handler">Synthetic Event Handler</button>
   <button id="selector-attribute" data-devtools-test="selector-attribute">Custom selector attribute</button>
+  <button id="hover-button">Not hovered</button>
 </div>
 <script>
   window.buttonClicks = [];
@@ -81,4 +82,8 @@
   document.getElementById('form1').addEventListener('submit', () => {
     document.getElementById('form1-result').textContent = 'From 1 Submitted';
   });
+
+  document.getElementById('hover-button').addEventListener('pointerover', (event) => {
+    event.target.textContent = 'Hovered';
+  })
 </script>

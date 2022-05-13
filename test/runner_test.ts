@@ -865,4 +865,39 @@ describe('Runner', () => {
     );
     assert.ok(frame, 'Frame that the target page navigated to is not found');
   });
+
+  it('should replay hovers', async () => {
+    const runner = await createRunner(
+      {
+        title: 'Test Recording',
+        timeout: 3000,
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/main.html`,
+            assertedEvents: [
+              {
+                title: '',
+                type: 'navigation',
+                url: `${HTTP_PREFIX}/main.html`,
+              },
+            ],
+          },
+          {
+            type: 'hover',
+            target: 'main',
+            selectors: [['#hover-button']],
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+    assert.ok(
+      await page.evaluate(
+        () => document.getElementById('hover-button')?.textContent
+      ),
+      'Hovered'
+    );
+  });
 });

@@ -32,6 +32,7 @@ import type {
   WaitForElementStep,
   WaitForExpressionStep,
   DoubleClickStep,
+  HoverStep,
 } from './Schema.js';
 import { StringifyExtension } from './StringifyExtension.js';
 
@@ -167,6 +168,11 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     out.appendLine('});');
   }
 
+  #appendHoverStep(out: LineWriter, step: HoverStep): void {
+    this.#appendWaitForSelector(out, step);
+    out.appendLine('await element.hover();');
+  }
+
   #appendChangeStep(out: LineWriter, step: ChangeStep): void {
     this.#appendWaitForSelector(out, step);
     out.appendLine('const type = await element.evaluate(el => el.type);');
@@ -248,6 +254,8 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
         return this.#appendClickStep(out, step);
       case 'doubleClick':
         return this.#appendDoubleClickStep(out, step);
+      case 'hover':
+        return this.#appendHoverStep(out, step);
       case 'change':
         return this.#appendChangeStep(out, step);
       case 'emulateNetworkConditions':

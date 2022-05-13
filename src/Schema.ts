@@ -63,15 +63,23 @@ export interface StepWithSelectors extends StepWithFrame {
   selectors: Selector[];
 }
 
+export type PointerDeviceType = 'mouse' | 'pen' | 'touch';
+export type PointerButtonType =
+  | 'primary'
+  | 'auxiliary'
+  | 'secondary'
+  | 'back'
+  | 'forward';
+
 export interface ClickAttributes {
   /**
    * Pointer type for the event. Defaults to 'mouse'.
    */
-  deviceType?: 'mouse' | 'pen' | 'touch';
+  deviceType?: PointerDeviceType;
   /**
    * Defaults to 'primary' if the device type is a mouse.
    */
-  button?: 'primary' | 'auxiliary' | 'secondary' | 'back' | 'forward';
+  button?: PointerButtonType;
   /**
    * in px, relative to the top-left corner of the element content box. Defaults
    * to the center of the element
@@ -95,6 +103,10 @@ export interface ClickStep extends ClickAttributes, StepWithSelectors {
    * 50ms.
    */
   duration?: number;
+}
+
+export interface HoverStep extends StepWithSelectors {
+  type: 'hover';
 }
 
 export interface ChangeStep extends StepWithSelectors {
@@ -167,6 +179,7 @@ export type CustomStep =
 export type UserStep =
   | ChangeStep
   | ClickStep
+  | HoverStep
   | CloseStep
   | CustomStep
   | DoubleClickStep

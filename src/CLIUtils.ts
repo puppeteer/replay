@@ -16,14 +16,36 @@
 
 import { parse, createRunner } from './main.js';
 import { readFileSync } from 'fs';
+import { PuppeteerRunnerOwningBrowserExtension } from './PuppeteerRunnerExtension.js';
 
 export function getFilenames(argv: string[]) {
   return argv.slice(2);
 }
 
+export function getHeadlessEnvVar(headless?: string) {
+  if (!headless) {
+    return true;
+  }
+  switch (headless.toLowerCase()) {
+    case '1':
+    case 'true':
+      return true;
+    case 'chrome':
+      return 'chrome';
+    case '0':
+    case 'false':
+      return false;
+    default:
+      throw new Error('PUPPETEER_HEADLESS: unrecognized value');
+  }
+}
+
 export async function runFiles(
   files: string[],
-  opts = { log: false }
+  opts: { log: boolean; headless: boolean | 'chrome' } = {
+    log: false,
+    headless: true,
+  }
 ): Promise<boolean> {
   for (const file of files) {
     opts.log && console.log(`Running ${file}...`);
@@ -31,7 +53,16 @@ export async function runFiles(
       const content = readFileSync(file, 'utf-8');
       const object = JSON.parse(content);
       const recording = parse(object);
-      const runner = await createRunner(recording);
+      const { default: puppeteer } = await import('puppeteer');
+      const browser = await puppeteer.launch({
+        headless: opts.headless,
+      });
+      const page = await browser.newPage();
+      const extension = new PuppeteerRunnerOwningBrowserExtension(
+        browser,
+        page
+      );
+      const runner = await createRunner(recording, extension);
       await runner.run();
       opts.log && console.log(`Finished running ${file}`);
     } catch (err) {

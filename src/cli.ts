@@ -16,12 +16,14 @@
     limitations under the License.
  */
 
-import { getFilenames, runFiles } from './CLIUtils.js';
+import { getFilenames, getHeadlessEnvVar, runFiles } from './CLIUtils.js';
 
 const recordings = getFilenames(process.argv);
 if (!recordings.length) {
   console.log(`Usage: replay filename [filename...]`);
 }
+console.log(process.env.PUPPETEER_HEADLESS);
 await runFiles(recordings, {
   log: true,
+  headless: getHeadlessEnvVar(process.env.PUPPETEER_HEADLESS),
 });

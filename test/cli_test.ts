@@ -14,7 +14,7 @@
     limitations under the License.
  */
 
-import { getFilenames, runFiles } from '../src/CLIUtils.js';
+import { getFilenames, runFiles, getHeadlessEnvVar } from '../src/CLIUtils.js';
 import { assert } from 'chai';
 import path from 'path';
 import url from 'url';
@@ -32,6 +32,19 @@ describe('cli', () => {
         getFilenames(['node', 'script.js', 'file1', 'file2', 'file3']),
         ['file1', 'file2', 'file3']
       );
+    });
+  });
+
+  describe('getHeadlessEnvVar', () => {
+    it('extracts the headless parameter from process.argv', () => {
+      assert.strictEqual(getHeadlessEnvVar(undefined), true);
+      assert.strictEqual(getHeadlessEnvVar('1'), true);
+      assert.strictEqual(getHeadlessEnvVar('true'), true);
+      assert.strictEqual(getHeadlessEnvVar('0'), false);
+      assert.strictEqual(getHeadlessEnvVar('false'), false);
+      assert.strictEqual(getHeadlessEnvVar('chrome'), 'chrome');
+      assert.strictEqual(getHeadlessEnvVar('True'), true);
+      assert.strictEqual(getHeadlessEnvVar('False'), false);
     });
   });
 

@@ -25,25 +25,25 @@
 
 ### button
 
-• `Optional` **button**: ``"primary"`` \| ``"auxiliary"`` \| ``"secondary"`` \| ``"back"`` \| ``"forward"``
+• `Optional` **button**: [`PointerButtonType`](../modules/Schema.md#pointerbuttontype)
 
 Defaults to 'primary' if the device type is a mouse.
 
 #### Defined in
 
-[Schema.ts:74](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L74)
+[Schema.ts:82](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L82)
 
 ___
 
 ### deviceType
 
-• `Optional` **deviceType**: ``"mouse"`` \| ``"pen"`` \| ``"touch"``
+• `Optional` **deviceType**: [`PointerDeviceType`](../modules/Schema.md#pointerdevicetype)
 
 Pointer type for the event. Defaults to 'mouse'.
 
 #### Defined in
 
-[Schema.ts:70](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L70)
+[Schema.ts:78](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L78)
 
 ___
 
@@ -56,7 +56,7 @@ to the center of the element
 
 #### Defined in
 
-[Schema.ts:79](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L79)
+[Schema.ts:87](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L87)
 
 ___
 
@@ -69,4 +69,4 @@ to the center of the element
 
 #### Defined in
 
-[Schema.ts:84](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L84)
+[Schema.ts:92](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L92)

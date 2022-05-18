@@ -14,6 +14,8 @@
 
   ↳↳ [`ClickStep`](Schema.ClickStep.md)
 
+  ↳↳ [`HoverStep`](Schema.HoverStep.md)
+
   ↳↳ [`ChangeStep`](Schema.ChangeStep.md)
 
   ↳↳ [`WaitForElementStep`](Schema.WaitForElementStep.md)

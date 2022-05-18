@@ -55,7 +55,7 @@
     "puppeteer": "14.1.0",
     "rimraf": "3.0.2",
     "snap-shot-it": "7.9.6",
-    "standard-version": "git+https://github.com:conventional-changelog/standard-version.git#v9.4.0",
+    "standard-version": "^9.5.0",
     "ts-node": "10.7.0",
     "typedoc": "0.22.15",
     "typedoc-plugin-markdown": "3.12.1",

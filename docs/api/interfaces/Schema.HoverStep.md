@@ -1,32 +1,25 @@
-[@puppeteer/replay](../README.md) / [Schema](../modules/Schema.md) / ClickStep
+[@puppeteer/replay](../README.md) / [Schema](../modules/Schema.md) / HoverStep
 
-# Interface: ClickStep
+# Interface: HoverStep
 
-[Schema](../modules/Schema.md).ClickStep
+[Schema](../modules/Schema.md).HoverStep
 
 ## Hierarchy
 
-- [`ClickAttributes`](Schema.ClickAttributes.md)
-
 - [`StepWithSelectors`](Schema.StepWithSelectors.md)
 
-  ↳ **`ClickStep`**
+  ↳ **`HoverStep`**
 
 ## Table of contents
 
 ### Properties
 
-- [assertedEvents](Schema.ClickStep.md#assertedevents)
-- [button](Schema.ClickStep.md#button)
-- [deviceType](Schema.ClickStep.md#devicetype)
-- [duration](Schema.ClickStep.md#duration)
-- [frame](Schema.ClickStep.md#frame)
-- [offsetX](Schema.ClickStep.md#offsetx)
-- [offsetY](Schema.ClickStep.md#offsety)
-- [selectors](Schema.ClickStep.md#selectors)
-- [target](Schema.ClickStep.md#target)
-- [timeout](Schema.ClickStep.md#timeout)
-- [type](Schema.ClickStep.md#type)
+- [assertedEvents](Schema.HoverStep.md#assertedevents)
+- [frame](Schema.HoverStep.md#frame)
+- [selectors](Schema.HoverStep.md#selectors)
+- [target](Schema.HoverStep.md#target)
+- [timeout](Schema.HoverStep.md#timeout)
+- [type](Schema.HoverStep.md#type)
 
 ## Properties
 
@@ -44,51 +37,6 @@
 
 ___
 
-### button
-
-• `Optional` **button**: [`PointerButtonType`](../modules/Schema.md#pointerbuttontype)
-
-Defaults to 'primary' if the device type is a mouse.
-
-#### Inherited from
-
-[ClickAttributes](Schema.ClickAttributes.md).[button](Schema.ClickAttributes.md#button)
-
-#### Defined in
-
-[Schema.ts:82](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L82)
-
-___
-
-### deviceType
-
-• `Optional` **deviceType**: [`PointerDeviceType`](../modules/Schema.md#pointerdevicetype)
-
-Pointer type for the event. Defaults to 'mouse'.
-
-#### Inherited from
-
-[ClickAttributes](Schema.ClickAttributes.md).[deviceType](Schema.ClickAttributes.md#devicetype)
-
-#### Defined in
-
-[Schema.ts:78](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L78)
-
-___
-
-### duration
-
-• `Optional` **duration**: `number`
-
-Delay (in ms) between the mouse up and mouse down of the click. Defaults to
-50ms.
-
-#### Defined in
-
-[Schema.ts:105](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L105)
-
-___
-
 ### frame
 
 • `Optional` **frame**: [`FrameSelector`](../modules/Schema.md#frameselector)
@@ -102,40 +50,6 @@ Defaults to main frame
 #### Defined in
 
 [Schema.ts:47](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L47)
-
-___
-
-### offsetX
-
-• **offsetX**: `number`
-
-in px, relative to the top-left corner of the element content box. Defaults
-to the center of the element
-
-#### Inherited from
-
-[ClickAttributes](Schema.ClickAttributes.md).[offsetX](Schema.ClickAttributes.md#offsetx)
-
-#### Defined in
-
-[Schema.ts:87](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L87)
-
-___
-
-### offsetY
-
-• **offsetY**: `number`
-
-in px, relative to the top-left corner of the element content box. Defaults
-to the center of the element
-
-#### Inherited from
-
-[ClickAttributes](Schema.ClickAttributes.md).[offsetY](Schema.ClickAttributes.md#offsety)
-
-#### Defined in
-
-[Schema.ts:92](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L92)
 
 ___
 
@@ -196,7 +110,7 @@ ___
 
 ### type
 
-• **type**: ``"click"``
+• **type**: ``"hover"``
 
 #### Overrides
 
@@ -204,4 +118,4 @@ ___
 
 #### Defined in
 
-[Schema.ts:100](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L100)
+[Schema.ts:109](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L109)

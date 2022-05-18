@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/puppeteer/replay/compare/v0.1.2...v0.1.3) (2022-05-18)
+
+
+### Features
+
+* add `hover` step ([#127](https://github.com/puppeteer/replay/issues/127)) ([d2ceac5](https://github.com/puppeteer/replay/commit/d2ceac5100158bb79f11a18153aa87a3c13ee1f2))
+* support PUPPETEER_HEADLESS variable ([#130](https://github.com/puppeteer/replay/issues/130)) ([041d257](https://github.com/puppeteer/replay/commit/041d257030bb9afe97524e13ad131567a3659300))
+
 ### [0.1.2](https://github.com/puppeteer/replay/compare/v0.1.1...v0.1.2) (2022-04-28)
 
 

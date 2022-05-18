@@ -14,6 +14,7 @@
 - [CustomStepParams](../interfaces/Schema.CustomStepParams.md)
 - [DoubleClickStep](../interfaces/Schema.DoubleClickStep.md)
 - [EmulateNetworkConditionsStep](../interfaces/Schema.EmulateNetworkConditionsStep.md)
+- [HoverStep](../interfaces/Schema.HoverStep.md)
 - [KeyDownStep](../interfaces/Schema.KeyDownStep.md)
 - [KeyUpStep](../interfaces/Schema.KeyUpStep.md)
 - [NavigateStep](../interfaces/Schema.NavigateStep.md)
@@ -35,6 +36,8 @@
 - [FrameSelector](Schema.md#frameselector)
 - [Key](Schema.md#key)
 - [Pattern](Schema.md#pattern)
+- [PointerButtonType](Schema.md#pointerbuttontype)
+- [PointerDeviceType](Schema.md#pointerdevicetype)
 - [ScrollElementStep](Schema.md#scrollelementstep)
 - [ScrollStep](Schema.md#scrollstep)
 - [Selector](Schema.md#selector)
@@ -60,7 +63,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:228](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L228)
+[Schema.ts:241](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L241)
 
 ___
 
@@ -70,7 +73,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:163](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L163)
+[Schema.ts:175](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L175)
 
 ___
 
@@ -90,7 +93,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:250](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L250)
+[Schema.ts:263](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L263)
 
 ___
 
@@ -104,13 +107,33 @@ ___
 
 ___
 
+### PointerButtonType
+
+Ƭ **PointerButtonType**: ``"primary"`` \| ``"auxiliary"`` \| ``"secondary"`` \| ``"back"`` \| ``"forward"``
+
+#### Defined in
+
+[Schema.ts:67](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L67)
+
+___
+
+### PointerDeviceType
+
+Ƭ **PointerDeviceType**: ``"mouse"`` \| ``"pen"`` \| ``"touch"``
+
+#### Defined in
+
+[Schema.ts:66](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L66)
+
+___
+
 ### ScrollElementStep
 
 Ƭ **ScrollElementStep**: [`ScrollPageStep`](../interfaces/Schema.ScrollPageStep.md) & [`StepWithSelectors`](../interfaces/Schema.StepWithSelectors.md)
 
 #### Defined in
 
-[Schema.ts:148](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L148)
+[Schema.ts:160](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L160)
 
 ___
 
@@ -120,7 +143,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:150](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L150)
+[Schema.ts:162](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L162)
 
 ___
 
@@ -140,7 +163,7 @@ ___
 
 #### Defined in
 
-[Schema.ts:230](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L230)
+[Schema.ts:243](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L243)
 
 ___
 
@@ -170,8 +193,8 @@ ___
 
 ### UserStep
 
-Ƭ **UserStep**: [`ChangeStep`](../interfaces/Schema.ChangeStep.md) \| [`ClickStep`](../interfaces/Schema.ClickStep.md) \| [`CloseStep`](../interfaces/Schema.CloseStep.md) \| [`CustomStep`](Schema.md#customstep) \| [`DoubleClickStep`](../interfaces/Schema.DoubleClickStep.md) \| [`EmulateNetworkConditionsStep`](../interfaces/Schema.EmulateNetworkConditionsStep.md) \| [`KeyDownStep`](../interfaces/Schema.KeyDownStep.md) \| [`KeyUpStep`](../interfaces/Schema.KeyUpStep.md) \| [`NavigateStep`](../interfaces/Schema.NavigateStep.md) \| [`ScrollStep`](Schema.md#scrollstep) \| [`SetViewportStep`](../interfaces/Schema.SetViewportStep.md)
+Ƭ **UserStep**: [`ChangeStep`](../interfaces/Schema.ChangeStep.md) \| [`ClickStep`](../interfaces/Schema.ClickStep.md) \| [`HoverStep`](../interfaces/Schema.HoverStep.md) \| [`CloseStep`](../interfaces/Schema.CloseStep.md) \| [`CustomStep`](Schema.md#customstep) \| [`DoubleClickStep`](../interfaces/Schema.DoubleClickStep.md) \| [`EmulateNetworkConditionsStep`](../interfaces/Schema.EmulateNetworkConditionsStep.md) \| [`KeyDownStep`](../interfaces/Schema.KeyDownStep.md) \| [`KeyUpStep`](../interfaces/Schema.KeyUpStep.md) \| [`NavigateStep`](../interfaces/Schema.NavigateStep.md) \| [`ScrollStep`](Schema.md#scrollstep) \| [`SetViewportStep`](../interfaces/Schema.SetViewportStep.md)
 
 #### Defined in
 
-[Schema.ts:167](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L167)
+[Schema.ts:179](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L179)

@@ -75,4 +75,4 @@ ___
 
 #### Defined in
 
-[Schema.ts:123](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L123)
+[Schema.ts:135](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L135)

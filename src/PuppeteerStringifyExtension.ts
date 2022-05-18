@@ -54,16 +54,16 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     out.appendLine(`const timeout = ${flow.timeout || defaultTimeout};`);
     out.appendLine('page.setDefaultTimeout(timeout);');
     out.appendLine('');
-
-    for (const line of helpers.split('\n')) {
-      out.appendLine(line);
-    }
   }
 
   async afterAllSteps(out: LineWriter, flow: UserFlow) {
     out.appendLine('');
-    out.appendLine('await browser.close();').endBlock();
-    out.appendLine('})();');
+    out.appendLine('await browser.close();');
+    out.appendLine('');
+    for (const line of helpers.split('\n')) {
+      out.appendLine(line);
+    }
+    out.endBlock().appendLine('})();');
   }
 
   async stringifyStep(out: LineWriter, step: Step, flow: UserFlow) {

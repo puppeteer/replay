@@ -103,6 +103,60 @@ describe('Runner', () => {
     assert.strictEqual(page.url(), `${HTTP_PREFIX}/empty.html`);
   });
 
+  it('should navigate to URL with BASE_URL', async () => {
+    process.env.BASE_URL = 'https://';
+
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/empty.html`,
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+
+    try {
+      await runner.run();
+    } catch (error) {
+      assert.instanceOf(
+        error,
+        Error,
+        `invalid URL BASE_URL: ${process.env.BASE_URL}`
+      );
+    }
+
+    delete process.env.BASE_URL;
+  });
+
+  it('should navigate to URL with BASE_URL', async () => {
+    process.env.BASE_URL = 'https://developer.chrome.com';
+
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/docs/devtools/recorder/#open`,
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+
+    await runner.run();
+    assert.strictEqual(
+      page.url(),
+      `https://developer.chrome.com/docs/devtools/recorder/#open`
+    );
+
+    delete process.env.BASE_URL;
+  });
+
   it('should be able to replay mouse click steps', async () => {
     const runner = await createRunner(
       {

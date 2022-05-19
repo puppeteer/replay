@@ -61,6 +61,12 @@ PUPPETEER_HEADLESS=false npx @puppeteer/replay recording.json # runs in headful 
 PUPPETEER_HEADLESS=chrome npx @puppeteer/replay recording.json # runs in the new experimental headless mode.
 ```
 
+Set the `BASE_URL` environment variable to replace your base URL in your recordings. For example,
+
+```
+BASE_URL=localhost:3001 npx @puppeteer/replay recording.json # It will run your recording.json by replacing the base URLs of your URLs with the BASE_URL you provided
+```
+
 Using [the replay lib API](/examples/replay-from-file-using-puppeteer/main.js):
 
 ```js

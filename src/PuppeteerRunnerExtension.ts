@@ -256,7 +256,26 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
       }
       case 'navigate': {
         startWaitingForEvents();
-        await localFrame.goto(step.url);
+        let url = step.url;
+
+        if (process.env.BASE_URL) {
+          try {
+            const baseURL = new URL(process.env.BASE_URL);
+            const givenURL = new URL(step.url);
+            const targetURL = new URL(
+              givenURL.pathname +
+                (givenURL.search || '') +
+                (givenURL.hash || ''),
+              baseURL.origin
+            );
+
+            url = targetURL.href;
+          } catch (error) {
+            throw new Error(`invalid URL BASE_URL: ${process.env.BASE_URL}`);
+          }
+        }
+
+        await localFrame.goto(url);
         break;
       }
       case 'waitForElement': {

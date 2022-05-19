@@ -244,7 +244,7 @@ export type Step = UserStep | AssertionStep;
 
 export interface UserFlow {
   /**
-   * Human-readble title describing the recorder user flow.
+   * Human-readable title describing the recorder user flow.
    */
   title: string;
   /**

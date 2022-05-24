@@ -22,7 +22,6 @@ const recordings = getFilenames(process.argv);
 if (!recordings.length) {
   console.log(`Usage: replay filename [filename...]`);
 }
-console.log(process.env.PUPPETEER_HEADLESS);
 await runFiles(recordings, {
   log: true,
   headless: getHeadlessEnvVar(process.env.PUPPETEER_HEADLESS),

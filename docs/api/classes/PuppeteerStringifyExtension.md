@@ -61,7 +61,7 @@ ___
 
 ### afterEachStep
 
-▸ `Optional` **afterEachStep**(`out`, `step`, `flow`): `Promise`<`void`\>
+▸ `Optional` **afterEachStep**(`out`, `step`, `flow?`): `Promise`<`void`\>
 
 #### Parameters
 
@@ -69,7 +69,7 @@ ___
 | :------ | :------ |
 | `out` | [`LineWriter`](../interfaces/LineWriter.md) |
 | `step` | [`Step`](../modules/Schema.md#step) |
-| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+| `flow?` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 
@@ -112,7 +112,7 @@ ___
 
 ### beforeEachStep
 
-▸ `Optional` **beforeEachStep**(`out`, `step`, `flow`): `Promise`<`void`\>
+▸ `Optional` **beforeEachStep**(`out`, `step`, `flow?`): `Promise`<`void`\>
 
 #### Parameters
 
@@ -120,7 +120,7 @@ ___
 | :------ | :------ |
 | `out` | [`LineWriter`](../interfaces/LineWriter.md) |
 | `step` | [`Step`](../modules/Schema.md#step) |
-| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+| `flow?` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 

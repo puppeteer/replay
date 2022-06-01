@@ -27,6 +27,7 @@
 - [parse](README.md#parse)
 - [parseStep](README.md#parsestep)
 - [stringify](README.md#stringify)
+- [stringifyStep](README.md#stringifystep)
 
 ## Functions
 
@@ -96,6 +97,13 @@ ___
 
 ▸ **stringify**(`flow`, `opts?`): `Promise`<`string`\>
 
+Stringifes an entire recording. The following hooks are invoked with the `flow` parameter containing the entire flow:
+- `beforeAllSteps` (once)
+- `beforeEachStep` (per step)
+- `stringifyStep` (per step)
+- `afterEachStep` (per step)
+- `afterAllSteps` (once)
+
 #### Parameters
 
 | Name | Type |
@@ -109,4 +117,30 @@ ___
 
 #### Defined in
 
-[stringify.ts:27](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L27)
+[stringify.ts:35](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L35)
+
+___
+
+### stringifyStep
+
+▸ **stringifyStep**(`step`, `opts?`): `Promise`<`string`\>
+
+Stringifes a single step. Only the following hooks are invoked with the `flow` parameter as undefined:
+- `beforeEachStep`
+- `stringifyStep`
+- `afterEachStep`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `step` | [`Step`](modules/Schema.md#step) |
+| `opts?` | [`StringifyOptions`](interfaces/StringifyOptions.md) |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[stringify.ts:69](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L69)

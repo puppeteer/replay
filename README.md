@@ -53,13 +53,21 @@ In your `package.json` add a new script to invoke the `replay` command:
 }
 ```
 
-Set the `PUPPETEER_HEADLESS` environment variable to control whether the browser is start in a headful or headless mode. For example,
+Set the `PUPPETEER_HEADLESS` environment variable or `--headless` CLI flag to control whether the browser is start in a headful or headless mode. For example,
 
 ```
 PUPPETEER_HEADLESS=true npx @puppeteer/replay recording.json # runs in headless mode, the default mode.
 PUPPETEER_HEADLESS=false npx @puppeteer/replay recording.json # runs in headful mode.
 PUPPETEER_HEADLESS=chrome npx @puppeteer/replay recording.json # runs in the new experimental headless mode.
 ```
+
+Use the `--extension` CLI flag to provide a [custom replay extension](https://github.com/puppeteer/replay#2-customize-replay) for running the recording. For [example](https://github.com/puppeteer/replay/blob/main/examples/cli-extension/extension.js),
+
+```sh
+npx @puppeteer/replay --extension examples/cli-extension/extension.js recording.json
+```
+
+Run `npx @puppeteer/replay --help` to see all CLI options.
 
 Using [the replay lib API](/examples/replay-from-file-using-puppeteer/main.js):
 

@@ -16,11 +16,10 @@
 
 import { parse, createRunner } from './main.js';
 import { readFileSync } from 'fs';
+import { join, isAbsolute } from 'path';
+import { pathToFileURL } from 'url';
+import { cwd } from 'process';
 import { PuppeteerRunnerOwningBrowserExtension } from './PuppeteerRunnerExtension.js';
-
-export function getFilenames(argv: string[]) {
-  return argv.slice(2);
-}
 
 export function getHeadlessEnvVar(headless?: string) {
   if (!headless) {
@@ -42,11 +41,22 @@ export function getHeadlessEnvVar(headless?: string) {
 
 export async function runFiles(
   files: string[],
-  opts: { log: boolean; headless: boolean | 'chrome' } = {
+  opts: { log: boolean; headless: boolean | 'chrome'; extension?: string } = {
     log: false,
     headless: true,
   }
 ): Promise<boolean> {
+  let Extension = PuppeteerRunnerOwningBrowserExtension;
+  if (opts.extension) {
+    const module = await import(
+      pathToFileURL(
+        isAbsolute(opts.extension)
+          ? opts.extension
+          : join(cwd(), opts.extension)
+      ).toString()
+    );
+    Extension = module.default;
+  }
   for (const file of files) {
     opts.log && console.log(`Running ${file}...`);
     try {
@@ -58,10 +68,7 @@ export async function runFiles(
         headless: opts.headless,
       });
       const page = await browser.newPage();
-      const extension = new PuppeteerRunnerOwningBrowserExtension(
-        browser,
-        page
-      );
+      const extension = new Extension(browser, page);
       const runner = await createRunner(recording, extension);
       await runner.run();
       opts.log && console.log(`Finished running ${file}`);

@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/puppeteer/replay/compare/v0.1.3...v0.2.0) (2022-06-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* flow parameter is now optional in before/after/step hooks.
+
+### Features
+
+* expose stringifyStep ([#163](https://github.com/puppeteer/replay/issues/163)) ([50f595d](https://github.com/puppeteer/replay/commit/50f595dfbe1d9f412cc1aeacca928b17cc1c88e0))
+* publish CJS modules alongside ESM ([#165](https://github.com/puppeteer/replay/issues/165)) ([c40df05](https://github.com/puppeteer/replay/commit/c40df059969ca6722c7e3b6d10919226ed4e41c2))
+* support runner extensions via CLI ([#162](https://github.com/puppeteer/replay/issues/162)) ([22ae2c9](https://github.com/puppeteer/replay/commit/22ae2c9634c446567ce59b38e3a88ab53685f095))
+
+
+### Bug Fixes
+
+* remove extra console.log ([#151](https://github.com/puppeteer/replay/issues/151)) ([242fe16](https://github.com/puppeteer/replay/commit/242fe1607c1cec4dfd740c5c17b396c36894ef00))
+
 ### [0.1.3](https://github.com/puppeteer/replay/compare/v0.1.2...v0.1.3) (2022-05-18)
 
 

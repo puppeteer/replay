@@ -27,7 +27,7 @@ interface Arguments {
   headless?: string;
 }
 
-await yargs(hideBin(process.argv))
+yargs(hideBin(process.argv))
   .command(
     '$0 <files..>',
     'run files',

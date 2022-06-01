@@ -39,6 +39,7 @@
     "@types/chai": "4.3.1",
     "@types/mocha": "9.1.1",
     "@types/node": "17.0.36",
+    "@types/yargs": "17.0.10",
     "@typescript-eslint/eslint-plugin": "5.26.0",
     "@typescript-eslint/parser": "5.27.0",
     "c8": "7.11.3",
@@ -68,5 +69,8 @@
     "puppeteer": {
       "optional": true
     }
+  },
+  "dependencies": {
+    "yargs": "17.5.1"
   }
 }

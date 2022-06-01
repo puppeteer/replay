@@ -14,7 +14,7 @@
     limitations under the License.
  */
 
-import { getFilenames, runFiles, getHeadlessEnvVar } from '../src/CLIUtils.js';
+import { runFiles, getHeadlessEnvVar } from '../src/CLIUtils.js';
 import { assert } from 'chai';
 import path from 'path';
 import url from 'url';
@@ -22,19 +22,6 @@ import url from 'url';
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
 describe('cli', () => {
-  describe('getFilenames', () => {
-    it('extracts filenames from process.argv', () => {
-      assert.deepStrictEqual(getFilenames(['node', 'script.js']), []);
-      assert.deepStrictEqual(getFilenames(['node', 'script.js', 'file1']), [
-        'file1',
-      ]);
-      assert.deepStrictEqual(
-        getFilenames(['node', 'script.js', 'file1', 'file2', 'file3']),
-        ['file1', 'file2', 'file3']
-      );
-    });
-  });
-
   describe('getHeadlessEnvVar', () => {
     it('extracts the headless parameter from process.argv', () => {
       assert.strictEqual(getHeadlessEnvVar(undefined), true);
@@ -52,6 +39,16 @@ describe('cli', () => {
     it('is able to run successfully', async () => {
       assert.isTrue(
         await runFiles([path.join(__dirname, 'resources', 'replay.json')])
+      );
+    });
+
+    it('is able to run successfully with an extension', async () => {
+      assert.isTrue(
+        await runFiles([path.join(__dirname, 'resources', 'replay.json')], {
+          extension: path.join('examples', 'cli-extension', 'extension.js'),
+          headless: true,
+          log: false,
+        })
       );
     });
   });

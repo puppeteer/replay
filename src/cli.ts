@@ -16,13 +16,41 @@
     limitations under the License.
  */
 
-import { getFilenames, getHeadlessEnvVar, runFiles } from './CLIUtils.js';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 
-const recordings = getFilenames(process.argv);
-if (!recordings.length) {
-  console.log(`Usage: replay filename [filename...]`);
+import { getHeadlessEnvVar, runFiles } from './CLIUtils.js';
+
+interface Arguments {
+  files: string[];
+  extension?: string;
+  headless?: string;
 }
-await runFiles(recordings, {
-  log: true,
-  headless: getHeadlessEnvVar(process.env.PUPPETEER_HEADLESS),
-});
+
+await yargs(hideBin(process.argv))
+  .command(
+    '$0 <files..>',
+    'run files',
+    () => {},
+    async (argv) => {
+      const args = argv as unknown as Arguments;
+      await runFiles(args.files, {
+        log: true,
+        headless: getHeadlessEnvVar(
+          args.headless || process.env.PUPPETEER_HEADLESS
+        ),
+        extension: args.extension,
+      });
+    }
+  )
+  .option('headless', {
+    type: 'string',
+    description: "Run using the browser's headless mode.",
+    choices: ['chrome', 'true', '1', '0', 'false'],
+  })
+  .option('extension', {
+    alias: 'ext',
+    type: 'string',
+    description: 'Run using an extension identified by the path.',
+  })
+  .parse();

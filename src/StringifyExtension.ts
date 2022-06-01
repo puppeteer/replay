@@ -23,16 +23,16 @@ export class StringifyExtension {
   async beforeEachStep?(
     out: LineWriter,
     step: Step,
-    flow: UserFlow
+    flow?: UserFlow
   ): Promise<void> {}
   async stringifyStep(
     out: LineWriter,
     step: Step,
-    flow: UserFlow
+    flow?: UserFlow
   ): Promise<void> {}
   async afterEachStep?(
     out: LineWriter,
     step: Step,
-    flow: UserFlow
+    flow?: UserFlow
   ): Promise<void> {}
 }

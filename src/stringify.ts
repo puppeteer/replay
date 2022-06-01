@@ -16,7 +16,7 @@
 
 import { LineWriterImpl } from './LineWriterImpl.js';
 import { PuppeteerStringifyExtension } from './PuppeteerStringifyExtension.js';
-import type { UserFlow } from './Schema.js';
+import type { Step, UserFlow } from './Schema.js';
 import { StringifyExtension } from './StringifyExtension.js';
 
 export interface StringifyOptions {
@@ -24,6 +24,14 @@ export interface StringifyOptions {
   indentation?: string;
 }
 
+/**
+ * Stringifes an entire recording. The following hooks are invoked with the `flow` parameter containing the entire flow:
+ * - `beforeAllSteps` (once)
+ * - `beforeEachStep` (per step)
+ * - `stringifyStep` (per step)
+ * - `afterEachStep` (per step)
+ * - `afterAllSteps` (once)
+ */
 export async function stringify(
   flow: UserFlow,
   opts?: StringifyOptions
@@ -48,6 +56,35 @@ export async function stringify(
     await ext.afterEachStep?.(out, step, flow);
   }
   await ext.afterAllSteps?.(out, flow);
+
+  return out.toString();
+}
+
+/**
+ * Stringifes a single step. Only the following hooks are invoked with the `flow` parameter as undefined:
+ * - `beforeEachStep`
+ * - `stringifyStep`
+ * - `afterEachStep`
+ */
+export async function stringifyStep(
+  step: Step,
+  opts?: StringifyOptions
+): Promise<string> {
+  if (!opts) {
+    opts = {};
+  }
+  let ext = opts.extension;
+  if (!ext) {
+    ext = new PuppeteerStringifyExtension();
+  }
+  if (!opts.indentation) {
+    opts.indentation = '  ';
+  }
+  const out = new LineWriterImpl(opts.indentation);
+
+  await ext.beforeEachStep?.(out, step);
+  await ext.stringifyStep(out, step);
+  await ext.afterEachStep?.(out, step);
 
   return out.toString();
 }

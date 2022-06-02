@@ -1,4 +1,4 @@
-import { PuppeteerRunnerExtension } from '../../lib/main.js';
+import { PuppeteerRunnerExtension } from '../../lib/index.js';
 
 export default class Extension extends PuppeteerRunnerExtension {
   async beforeAllSteps(flow) {

@@ -1,7 +1,7 @@
 const {
   createRunner,
   PuppeteerRunnerExtension,
-} = require('../../lib/cjs/main.js');
+} = require('../../lib/cjs/index.js');
 const puppeteer = require('puppeteer');
 
 async function main() {

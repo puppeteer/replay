@@ -14,20 +14,20 @@
     limitations under the License.
  */
 
-import { RunnerExtension } from './RunnerExtension.js';
 import {
-  UserFlow,
-  Step,
-  WaitForElementStep,
-  Selector,
-  Key,
   ChangeStep,
+  Key,
+  Selector,
+  Step,
+  UserFlow,
+  WaitForElementStep,
 } from './Schema.js';
 import {
   assertAllStepTypesAreHandled,
   mouseButtonMap,
   typeableInputTypes,
 } from './SchemaUtils.js';
+import { RunnerExtension } from './RunnerExtension.js';
 
 export class PuppeteerRunnerExtension extends RunnerExtension {
   protected browser: Browser;
@@ -36,6 +36,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
 
   constructor(browser: Browser, page: Page, opts?: { timeout?: number }) {
     super();
+
     this.browser = browser;
     this.page = page;
     this.timeout = opts?.timeout || 5000;
@@ -55,7 +56,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
     return step.timeout || flow.timeout || this.timeout;
   }
 
-  async runStep(step: Step, flow: UserFlow): Promise<void> {
+  override async runStep(step: Step, flow: UserFlow): Promise<void> {
     const timeout = this.#getTimeoutForStep(step, flow);
     const page = this.page;
     const browser = this.browser;
@@ -347,17 +348,22 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
 }
 
 export class PuppeteerRunnerOwningBrowserExtension extends PuppeteerRunnerExtension {
-  async afterAllSteps() {
+  override async afterAllSteps() {
     await this.browser.close();
   }
 }
 
 async function getFrame(pageOrFrame: Page | Frame, step: Step): Promise<Frame> {
-  let frame =
+  let frame: Frame | undefined =
     'mainFrame' in pageOrFrame ? pageOrFrame.mainFrame() : pageOrFrame;
   if ('frame' in step && step.frame) {
     for (const index of step.frame) {
       frame = frame.childFrames()[index];
+      if (!frame) {
+        throw new Error(
+          `Child frame at ${index} of ${step.type} does not exist`
+        );
+      }
     }
   }
   return frame;
@@ -534,7 +540,7 @@ async function waitForSelector(
   }
   let element = null;
   for (let i = 0; i < selector.length; i++) {
-    const part = selector[i];
+    const part = selector[i]!;
     if (!element) {
       element = await frame.waitForSelector(part, options);
     } else {
@@ -587,7 +593,7 @@ async function querySelectorAll(
   }
   let elements: ElementHandle<Element>[] = [];
   for (let i = 0; i < selector.length; i++) {
-    const part = selector[i];
+    const part = selector[i]!;
     if (i === 0) {
       elements = await frame.$$(part);
     } else {

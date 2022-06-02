@@ -1,4 +1,4 @@
-import { createRunner, PuppeteerRunnerExtension } from '../../lib/main.js';
+import { createRunner, PuppeteerRunnerExtension } from '../../lib/index.js';
 import puppeteer from 'puppeteer';
 
 const browser = await puppeteer.launch({

@@ -39,7 +39,7 @@ describe('stringifyStep', () => {
 
       async beforeEachStep(
         out: LineWriter,
-        step: Step,
+        _step: Step,
         flow?: UserFlow
       ): Promise<void> {
         out.appendLine('beforeStep ' + flow);
@@ -47,7 +47,7 @@ describe('stringifyStep', () => {
 
       async stringifyStep(
         out: LineWriter,
-        step: Step,
+        _step: Step,
         flow?: UserFlow
       ): Promise<void> {
         out.appendLine('stringifyStep ' + flow);
@@ -55,7 +55,7 @@ describe('stringifyStep', () => {
 
       async afterEachStep(
         out: LineWriter,
-        step: Step,
+        _step: Step,
         flow?: UserFlow
       ): Promise<void> {
         out.appendLine('afterStep ' + flow);

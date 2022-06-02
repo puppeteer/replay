@@ -14,12 +14,12 @@
     limitations under the License.
  */
 
-import { LineWriterImpl } from '../src/LineWriterImpl.js';
+import { InMemoryLineWriter } from '../src/InMemoryLineWriter.js';
 import { assert } from 'chai';
 
-describe('LineWriterImpl', () => {
+describe('InMemoryLineWriter', () => {
   it('should open and close blocks', () => {
-    const out = new LineWriterImpl('  ');
+    const out = new InMemoryLineWriter('  ');
     out.appendLine('{').startBlock();
     out.appendLine('console.log("test");');
     out.endBlock().appendLine('}');

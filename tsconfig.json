@@ -7,9 +7,9 @@
     "strict": true,
     "skipLibCheck": false,
     "outDir": "lib",
-    "declaration": true,
     "moduleResolution": "Node",
     "stripInternal": true
   },
-  "include": ["src/**/*"]
+  "include": ["src"],
+  "exclude": ["src/cli.ts", "src/CLIUtils.ts"]
 }

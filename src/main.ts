@@ -25,4 +25,5 @@ export { LineWriter } from './LineWriter.js';
 export { RunnerExtension } from './RunnerExtension.js';
 export { createRunner, Runner } from './Runner.js';
 export { PuppeteerRunnerExtension } from './PuppeteerRunnerExtension.js';
+export { PuppeteerRunnerOwningBrowserExtension } from './PuppeteerRunnerExtension.js';
 export { PuppeteerStringifyExtension } from './PuppeteerStringifyExtension.js';

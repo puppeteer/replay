@@ -51,7 +51,7 @@ describe('Runner', () => {
     const servers = await createServers();
     httpServer = servers.httpServer;
     httpsServer = servers.httpsServer;
-    const headless = process.env.PUPPETEER_HEADFUL !== 'true';
+    const headless = process.env['PUPPETEER_HEADFUL'] !== 'true';
     browser = await puppeteer.launch({
       headless,
       args: ['--site-per-process', '--host-rules=MAP oopifdomain 127.0.0.1'],
@@ -705,14 +705,14 @@ describe('Runner', () => {
   });
 
   it('should run steps partially', async () => {
-    class DummyExtension implements RunnerExtension {
+    class DummyExtension extends RunnerExtension {
       #log: string[] = [];
 
       getLog(): string {
         return this.#log.join(',');
       }
 
-      async runStep(step: Step, flow: UserFlow): Promise<void> {
+      override async runStep(step: Step, flow: UserFlow): Promise<void> {
         this.#log.push(flow.steps.indexOf(step).toString(10));
       }
     }

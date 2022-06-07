@@ -39,28 +39,28 @@ export class Runner {
       stepIdx = this.#flow.steps.length;
     }
     if (this.#nextStep === 0) {
-      await this.#extension.beforeAllSteps?.(this.#flow);
+      await this.#extension.beforeAllSteps(this.#flow);
     }
     while (
       this.#nextStep < stepIdx &&
       this.#nextStep < this.#flow.steps.length
     ) {
-      await this.#extension.beforeEachStep?.(
-        this.#flow.steps[this.#nextStep],
+      await this.#extension.beforeEachStep(
+        this.#flow.steps[this.#nextStep]!,
         this.#flow
       );
       await this.#extension.runStep(
-        this.#flow.steps[this.#nextStep],
+        this.#flow.steps[this.#nextStep]!,
         this.#flow
       );
-      await this.#extension.afterEachStep?.(
-        this.#flow.steps[this.#nextStep],
+      await this.#extension.afterEachStep(
+        this.#flow.steps[this.#nextStep]!,
         this.#flow
       );
       this.#nextStep++;
     }
     if (this.#nextStep >= this.#flow.steps.length) {
-      await this.#extension.afterAllSteps?.(this.#flow);
+      await this.#extension.afterAllSteps(this.#flow);
       return true;
     }
 

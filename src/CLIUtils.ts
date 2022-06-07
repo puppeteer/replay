@@ -14,7 +14,7 @@
     limitations under the License.
  */
 
-import { parse, createRunner } from './main.js';
+import { parse, createRunner } from './index.js';
 import { readFileSync } from 'fs';
 import { join, isAbsolute } from 'path';
 import { pathToFileURL } from 'url';

@@ -14,13 +14,15 @@
     limitations under the License.
  */
 
-import { LineWriterImpl } from './LineWriterImpl.js';
+import { InMemoryLineWriter } from './InMemoryLineWriter.js';
+import { LineWriter } from './LineWriter.js';
 import { PuppeteerStringifyExtension } from './PuppeteerStringifyExtension.js';
 import type { Step, UserFlow } from './Schema.js';
 import { StringifyExtension } from './StringifyExtension.js';
 
 export interface StringifyOptions {
   extension?: StringifyExtension;
+  writer?: LineWriter;
   indentation?: string;
 }
 
@@ -39,23 +41,26 @@ export async function stringify(
   if (!opts) {
     opts = {};
   }
-  let ext = opts.extension;
-  if (!ext) {
-    ext = new PuppeteerStringifyExtension();
+  if (!opts.extension) {
+    opts.extension = new PuppeteerStringifyExtension();
   }
+  const ext = opts.extension;
 
   if (!opts.indentation) {
     opts.indentation = '  ';
   }
-  const out = new LineWriterImpl(opts.indentation);
-
-  await ext.beforeAllSteps?.(out, flow);
-  for (const step of flow.steps) {
-    await ext.beforeEachStep?.(out, step, flow);
-    await ext.stringifyStep(out, step, flow);
-    await ext.afterEachStep?.(out, step, flow);
+  if (!opts.writer) {
+    opts.writer = new InMemoryLineWriter(opts.indentation);
   }
-  await ext.afterAllSteps?.(out, flow);
+  const out = opts.writer;
+
+  await ext.beforeAllSteps(out, flow);
+  for (const step of flow.steps) {
+    await ext.beforeEachStep(out, step, flow);
+    await ext.stringifyStep(out, step, flow);
+    await ext.afterEachStep(out, step, flow);
+  }
+  await ext.afterAllSteps(out, flow);
 
   return out.toString();
 }
@@ -80,11 +85,11 @@ export async function stringifyStep(
   if (!opts.indentation) {
     opts.indentation = '  ';
   }
-  const out = new LineWriterImpl(opts.indentation);
+  const out = new InMemoryLineWriter(opts.indentation);
 
-  await ext.beforeEachStep?.(out, step);
+  await ext.beforeEachStep(out, step);
   await ext.stringifyStep(out, step);
-  await ext.afterEachStep?.(out, step);
+  await ext.afterEachStep(out, step);
 
   return out.toString();
 }

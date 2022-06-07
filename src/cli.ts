@@ -37,7 +37,7 @@ yargs(hideBin(process.argv))
       await runFiles(args.files, {
         log: true,
         headless: getHeadlessEnvVar(
-          args.headless || process.env.PUPPETEER_HEADLESS
+          args.headless || process.env['PUPPETEER_HEADLESS']
         ),
         extension: args.extension,
       });

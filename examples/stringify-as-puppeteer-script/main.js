@@ -1,4 +1,4 @@
-import { stringify } from '../../lib/main.js';
+import { stringify } from '../../lib/index.js';
 
 console.log(
   await stringify({

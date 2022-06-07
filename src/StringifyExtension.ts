@@ -17,22 +17,25 @@
 import { LineWriter } from './LineWriter.js';
 import { Step, UserFlow } from './Schema.js';
 
+/**
+ * @public
+ */
 export class StringifyExtension {
-  async beforeAllSteps?(out: LineWriter, flow: UserFlow): Promise<void> {}
-  async afterAllSteps?(out: LineWriter, flow: UserFlow): Promise<void> {}
-  async beforeEachStep?(
-    out: LineWriter,
-    step: Step,
-    flow?: UserFlow
+  async beforeAllSteps(_out: LineWriter, _flow: UserFlow): Promise<void> {}
+  async afterAllSteps(_out: LineWriter, _flow: UserFlow): Promise<void> {}
+  async beforeEachStep(
+    _out: LineWriter,
+    _step: Step,
+    _flow?: UserFlow
   ): Promise<void> {}
   async stringifyStep(
-    out: LineWriter,
-    step: Step,
-    flow?: UserFlow
+    _out: LineWriter,
+    _step: Step,
+    _flow?: UserFlow
   ): Promise<void> {}
-  async afterEachStep?(
-    out: LineWriter,
-    step: Step,
-    flow?: UserFlow
+  async afterEachStep(
+    _out: LineWriter,
+    _step: Step,
+    _flow?: UserFlow
   ): Promise<void> {}
 }

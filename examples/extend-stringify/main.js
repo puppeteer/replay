@@ -1,4 +1,4 @@
-import { stringify, PuppeteerStringifyExtension } from '../../lib/main.js';
+import { stringify, PuppeteerStringifyExtension } from '../../lib/index.js';
 
 class Extension extends PuppeteerStringifyExtension {
   // beforeAllSteps?(out: LineWriter, flow: UserFlow): Promise<void>;

@@ -21,6 +21,7 @@ If you want to replay recordings using Puppeteer, install Puppeteer as well:
 ```
 npm install puppeteer --save
 ```
+
 ## Getting started with Puppeteer Replay
 
 You can use Puppeteer Replay to:
@@ -90,7 +91,7 @@ the `PuppeteerRunnerExtension` class as shown in the example below.
 Full example of the `PuppeteerRunnerExtension`: [link](/examples/extend-runner/main.js)
 
 ```js
-import { createRunner, PuppeteerRunnerExtension } from '../../lib/main.js';
+import { createRunner, PuppeteerRunnerExtension } from '../../lib/index.js';
 import puppeteer from 'puppeteer';
 
 const browser = await puppeteer.launch({
@@ -139,7 +140,6 @@ await runner.run();
 await browser.close();
 ```
 
-
 ## 3. Transform recording
 
 You can customize how a recording is stringified and use it to transform the recording format.
@@ -149,10 +149,12 @@ You can customize how a recording is stringified and use it to transform the rec
 ```js
 import { stringify } from '@puppeteer/replay';
 
-console.log(await stringify({
-  title: 'Test recording',
-  steps: [],
-}));
+console.log(
+  await stringify({
+    title: 'Test recording',
+    steps: [],
+  })
+);
 ```
 
 ### Customize how a recording is stringified
@@ -210,7 +212,6 @@ console.log(
   )
 );
 ```
-
 
 ## CommonJS modules
 

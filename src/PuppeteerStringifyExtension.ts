@@ -14,6 +14,7 @@
     limitations under the License.
  */
 
+import { StringifyExtension } from './StringifyExtension.js';
 import type { LineWriter } from './LineWriter.js';
 import type {
   Step,
@@ -34,7 +35,6 @@ import type {
   DoubleClickStep,
   HoverStep,
 } from './Schema.js';
-import { StringifyExtension } from './StringifyExtension.js';
 
 import {
   assertAllStepTypesAreHandled,
@@ -43,7 +43,9 @@ import {
 } from './SchemaUtils.js';
 
 export class PuppeteerStringifyExtension extends StringifyExtension {
-  async beforeAllSteps(out: LineWriter, flow: UserFlow) {
+  override async beforeAllSteps(out: LineWriter, flow: UserFlow) {
+    super.beforeAllSteps(out, flow);
+
     out.appendLine(
       "const puppeteer = require('puppeteer'); // v13.0.0 or later"
     );
@@ -56,7 +58,9 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     out.appendLine('');
   }
 
-  async afterAllSteps(out: LineWriter, flow: UserFlow) {
+  override async afterAllSteps(out: LineWriter, flow: UserFlow) {
+    super.afterAllSteps(out, flow);
+
     out.appendLine('');
     out.appendLine('await browser.close();');
     out.appendLine('');
@@ -66,7 +70,9 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     out.endBlock().appendLine('})();');
   }
 
-  async stringifyStep(out: LineWriter, step: Step, flow: UserFlow) {
+  override async stringifyStep(out: LineWriter, step: Step, flow: UserFlow) {
+    super.stringifyStep(out, step, flow);
+
     out.appendLine('{').startBlock();
     if (step.timeout !== undefined) {
       out.appendLine(`const timeout = ${step.timeout};`);

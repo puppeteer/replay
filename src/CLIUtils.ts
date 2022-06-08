@@ -14,12 +14,12 @@
     limitations under the License.
  */
 
-import { parse, createRunner } from './main.js';
+import { parse, createRunner } from '../lib/main.js';
 import { readFileSync } from 'fs';
 import { join, isAbsolute } from 'path';
 import { pathToFileURL } from 'url';
 import { cwd } from 'process';
-import { PuppeteerRunnerOwningBrowserExtension } from './PuppeteerRunnerExtension.js';
+import { PuppeteerRunnerOwningBrowserExtension } from '../lib/main.js';
 
 export function getHeadlessEnvVar(headless?: string) {
   if (!headless) {

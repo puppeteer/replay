@@ -32,11 +32,7 @@
     "release": "standard-version"
   },
   "files": [
-    "lib/types.d.ts",
-    "lib/**/*.d.ts",
-    "lib/**/*.d.ts.map",
-    "lib/**/*.js",
-    "lib/**/*.js.map"
+    "lib"
   ],
   "author": "Chrome DevTools authors",
   "license": "Apache-2.0",

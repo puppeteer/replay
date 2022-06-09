@@ -211,7 +211,6 @@ console.log(
 );
 ```
 
-
 ## Others
 
 ### Write code in CommonJS modules
@@ -238,3 +237,4 @@ To load the example into Chrome DevTools. Follow these steps:
 Click and watch the video demo below:
 
 [![Demo video that shows how to extend export options in Recorder panel by adding a Chrome extension](https://user-images.githubusercontent.com/5917927/172872574-15ad8bea-142a-4972-bf1d-bf1379a955ba.png)](https://youtu.be/TCxIfbxgypQ)
+

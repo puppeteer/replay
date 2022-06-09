@@ -224,17 +224,17 @@ const { stringify } = require('@puppeteer/replay/cjs');
 
 ### Create a Chrome extension for Recorder
 
-You can create a Chrome extension for [Recorder](https://goo.gle/devtools-recorder). Refer to the [Chrome Extensions documentation](https://developer.chrome.com/docs/extensions/mv3/devtools/) for more details on how to extending DevTools.
+You can create a Chrome extension for [Recorder](https://goo.gle/devtools-recorder). Refer to the [Chrome Extensions documentation](https://developer.chrome.com/docs/extensions/mv3/devtools/) for more details on how to extend DevTools.
 
 This repository contains an [example extension](https://github.com/puppeteer/replay/tree/main/examples/chrome-extension). Once installed, the Recorder will have a new export option **Export as a Custom JSON script** in the [export dropdown](https://developer.chrome.com/docs/devtools/recorder/#export-flows).
 
-To load the example into Chrome DevTools. Follow these steps:-
+To load the example into Chrome DevTools. Follow these steps:
 
 1. Download the [chrome-extension](https://github.com/puppeteer/replay/tree/main/examples/chrome-extension) folder.
 2. [Load the folder as unpacked extension](https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked) in Chrome. 
 3. [Open a recording](https://developer.chrome.com/docs/devtools/recorder/#record) in the Recorder.
-4. Click on [export](https://developer.chrome.com/docs/devtools/recorder/#export-flows). A new **Export as a Custom JSON script** menu is added.
+4. Click on [export](https://developer.chrome.com/docs/devtools/recorder/#export-flows). Now you can see a new **Export as a Custom JSON script** action in the export menu.
 
 Click and watch the video demo below:
 
-[![Watch the video demo](https://user-images.githubusercontent.com/5917927/172872574-15ad8bea-142a-4972-bf1d-bf1379a955ba.png)](https://youtu.be/TCxIfbxgypQ)
+[![Demo video that shows how to extend export options in Recorder panel by adding a Chrome extension](https://user-images.githubusercontent.com/5917927/172872574-15ad8bea-142a-4972-bf1d-bf1379a955ba.png)](https://youtu.be/TCxIfbxgypQ)

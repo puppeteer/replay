@@ -1,6 +1,6 @@
 {
   "name": "@puppeteer/replay",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Replay is a library which provides an API to replay and stringify recordings created using Chrome DevTools Recorder](https://developer.chrome.com/docs/devtools/recorder/)",
   "main": "lib/main.js",
   "types": "lib/main.d.ts",

@@ -233,7 +233,7 @@ To load the example into Chrome DevTools. Follow these steps:
 1. Download the [chrome-extension](https://github.com/puppeteer/replay/tree/main/examples/chrome-extension) folder.
 2. [Load the folder as unpacked extension](https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked) in Chrome. 
 3. [Open a recording](https://developer.chrome.com/docs/devtools/recorder/#record) in the Recorder.
-4. Click on [export](https://developer.chrome.com/docs/devtools/recorder/#export-flows). Now you can see a new **Export as a Custom JSON script** action in the export menu.
+4. Click on [export](https://developer.chrome.com/docs/devtools/recorder/#export-flows). Now you can see a new **Export as a Custom JSON script** option in the export menu.
 
 Click and watch the video demo below:
 

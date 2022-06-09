@@ -210,12 +210,3 @@ console.log(
   )
 );
 ```
-
-
-## CommonJS modules
-
-If you want to use CommonJS modules, `require` the code from `@puppeteer/replay/cjs`. For example,
-
-```js
-const { stringify } = require('@puppeteer/replay/cjs');
-```

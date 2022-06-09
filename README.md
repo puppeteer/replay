@@ -221,7 +221,7 @@ If you want to use CommonJS modules, `require` the code from `@puppeteer/replay/
 const { stringify } = require('@puppeteer/replay/cjs');
 ```
 
-### Create a Chrome extension for Recorder
+### Create a Chrome extension for Recorder (Available from Chrome 104 onwards)
 
 You can create a Chrome extension for [Recorder](https://goo.gle/devtools-recorder). Refer to the [Chrome Extensions documentation](https://developer.chrome.com/docs/extensions/mv3/devtools/) for more details on how to extend DevTools.
 

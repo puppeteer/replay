@@ -86,6 +86,20 @@ describe('Runner', () => {
     await runner.run();
   });
 
+  it('should run return true when all the steps are run', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+
+    const isFinished = await runner.run();
+
+    assert.isTrue(isFinished);
+  });
+
   it('should navigate to the right URL', async () => {
     const runner = await createRunner(
       {
@@ -704,42 +718,6 @@ describe('Runner', () => {
     await runner.run();
   });
 
-  it('should run steps partially', async () => {
-    class DummyExtension implements RunnerExtension {
-      #log: string[] = [];
-
-      getLog(): string {
-        return this.#log.join(',');
-      }
-
-      async runStep(step: Step, flow: UserFlow): Promise<void> {
-        this.#log.push(flow.steps.indexOf(step).toString(10));
-      }
-    }
-    const extension = new DummyExtension();
-    const runner = await createRunner(
-      {
-        title: 'test',
-        steps: [
-          { type: 'customStep', name: 'step1', parameters: {} },
-          { type: 'customStep', name: 'step2', parameters: {} },
-          { type: 'customStep', name: 'step3', parameters: {} },
-        ],
-      },
-      extension
-    );
-    assert.strictEqual(await runner.run(-1), false);
-    assert.strictEqual(extension.getLog(), '');
-    assert.strictEqual(await runner.run(0), false);
-    assert.strictEqual(extension.getLog(), '');
-    assert.strictEqual(await runner.run(1), false);
-    assert.strictEqual(extension.getLog(), '0');
-    assert.strictEqual(await runner.run(3), true);
-    assert.strictEqual(extension.getLog(), '0,1,2');
-    assert.strictEqual(await runner.run(), true);
-    assert.strictEqual(extension.getLog(), '0,1,2');
-  });
-
   it('should run all extension hooks', async () => {
     class DummyExtension implements RunnerExtension {
       #log: string[] = [];
@@ -899,5 +877,119 @@ describe('Runner', () => {
       ),
       'Hovered'
     );
+  });
+
+  describe('abort', () => {
+    it('should abort execution of remaining steps', async () => {
+      class AbortAfterFirstStepExtension extends RunnerExtension {
+        ranSteps = 0;
+        #abortFn?: Function;
+
+        setAbortFn(abortFn: Function) {
+          this.#abortFn = abortFn;
+        }
+
+        async runStep(step: Step, flow: UserFlow) {
+          if (flow.steps.indexOf(step) === 0) {
+            this.#abortFn?.();
+          }
+
+          await super.runStep(step, flow);
+          this.ranSteps++;
+        }
+      }
+      const extension = new AbortAfterFirstStepExtension();
+      const runner = await createRunner(
+        {
+          title: 'test',
+          steps: [
+            { type: 'customStep', name: 'step1', parameters: {} },
+            { type: 'customStep', name: 'step2', parameters: {} },
+            { type: 'customStep', name: 'step3', parameters: {} },
+          ],
+        },
+        extension
+      );
+      extension.setAbortFn(() => runner.abort());
+
+      await runner.run();
+
+      assert.strictEqual(extension.ranSteps, 1);
+    });
+
+    it('should run afterAllSteps if the execution is aborted', async () => {
+      class AbortAfterFirstStepExtension extends RunnerExtension {
+        isAfterAllStepsRan = false;
+        #abortFn?: Function;
+
+        setAbortFn(abortFn: Function) {
+          this.#abortFn = abortFn;
+        }
+
+        async runStep(step: Step, flow: UserFlow) {
+          if (flow.steps.indexOf(step) === 0) {
+            this.#abortFn?.();
+          }
+
+          await super.runStep(step, flow);
+        }
+
+        async afterAllSteps() {
+          this.isAfterAllStepsRan = true;
+        }
+      }
+      const extension = new AbortAfterFirstStepExtension();
+      const runner = await createRunner(
+        {
+          title: 'test',
+          steps: [
+            { type: 'customStep', name: 'step1', parameters: {} },
+            { type: 'customStep', name: 'step2', parameters: {} },
+            { type: 'customStep', name: 'step3', parameters: {} },
+          ],
+        },
+        extension
+      );
+      extension.setAbortFn(() => runner.abort());
+
+      await runner.run();
+
+      assert.isTrue(extension.isAfterAllStepsRan);
+    });
+
+    it('should return false when the execution is aborted before all the steps are executed', async () => {
+      class AbortAfterFirstStepExtension extends RunnerExtension {
+        #abortFn?: Function;
+
+        setAbortFn(abortFn: Function) {
+          this.#abortFn = abortFn;
+        }
+
+        async runStep(step: Step, flow: UserFlow) {
+          if (flow.steps.indexOf(step) === 0) {
+            this.#abortFn?.();
+          }
+
+          await super.runStep(step, flow);
+        }
+      }
+      const extension = new AbortAfterFirstStepExtension();
+      const runner = await createRunner(
+        {
+          title: 'test',
+          steps: [
+            { type: 'customStep', name: 'step1', parameters: {} },
+            { type: 'customStep', name: 'step2', parameters: {} },
+            { type: 'customStep', name: 'step3', parameters: {} },
+          ],
+        },
+        extension
+      );
+      extension.setAbortFn(() => runner.abort());
+
+      const isFinished = await runner.run();
+
+      assert.isFalse(isFinished);
+    });
   });
 });

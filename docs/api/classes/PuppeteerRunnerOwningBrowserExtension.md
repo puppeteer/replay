@@ -1,34 +1,32 @@
-[@puppeteer/replay](../README.md) / PuppeteerRunnerExtension
+[@puppeteer/replay](../README.md) / PuppeteerRunnerOwningBrowserExtension
 
-# Class: PuppeteerRunnerExtension
+# Class: PuppeteerRunnerOwningBrowserExtension
 
 ## Hierarchy
 
-- [`RunnerExtension`](RunnerExtension.md)
+- [`PuppeteerRunnerExtension`](PuppeteerRunnerExtension.md)
 
-  ↳ **`PuppeteerRunnerExtension`**
-
-  ↳↳ [`PuppeteerRunnerOwningBrowserExtension`](PuppeteerRunnerOwningBrowserExtension.md)
+  ↳ **`PuppeteerRunnerOwningBrowserExtension`**
 
 ## Table of contents
 
 ### Constructors
 
-- [constructor](PuppeteerRunnerExtension.md#constructor)
+- [constructor](PuppeteerRunnerOwningBrowserExtension.md#constructor)
 
 ### Methods
 
-- [afterAllSteps](PuppeteerRunnerExtension.md#afterallsteps)
-- [afterEachStep](PuppeteerRunnerExtension.md#aftereachstep)
-- [beforeAllSteps](PuppeteerRunnerExtension.md#beforeallsteps)
-- [beforeEachStep](PuppeteerRunnerExtension.md#beforeeachstep)
-- [runStep](PuppeteerRunnerExtension.md#runstep)
+- [afterAllSteps](PuppeteerRunnerOwningBrowserExtension.md#afterallsteps)
+- [afterEachStep](PuppeteerRunnerOwningBrowserExtension.md#aftereachstep)
+- [beforeAllSteps](PuppeteerRunnerOwningBrowserExtension.md#beforeallsteps)
+- [beforeEachStep](PuppeteerRunnerOwningBrowserExtension.md#beforeeachstep)
+- [runStep](PuppeteerRunnerOwningBrowserExtension.md#runstep)
 
 ## Constructors
 
 ### constructor
 
-• **new PuppeteerRunnerExtension**(`browser`, `page`, `opts?`)
+• **new PuppeteerRunnerOwningBrowserExtension**(`browser`, `page`, `opts?`)
 
 #### Parameters
 
@@ -39,9 +37,9 @@
 | `opts?` | `Object` |
 | `opts.timeout?` | `number` |
 
-#### Overrides
+#### Inherited from
 
-[RunnerExtension](RunnerExtension.md).[constructor](RunnerExtension.md#constructor)
+[PuppeteerRunnerExtension](PuppeteerRunnerExtension.md).[constructor](PuppeteerRunnerExtension.md#constructor)
 
 #### Defined in
 
@@ -51,25 +49,19 @@
 
 ### afterAllSteps
 
-▸ `Optional` **afterAllSteps**(`flow`): `Promise`<`void`\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+▸ **afterAllSteps**(): `Promise`<`void`\>
 
 #### Returns
 
 `Promise`<`void`\>
 
-#### Inherited from
+#### Overrides
 
-[RunnerExtension](RunnerExtension.md).[afterAllSteps](RunnerExtension.md#afterallsteps)
+[PuppeteerRunnerExtension](PuppeteerRunnerExtension.md).[afterAllSteps](PuppeteerRunnerExtension.md#afterallsteps)
 
 #### Defined in
 
-[RunnerExtension.ts:21](https://github.com/puppeteer/replay/blob/main/src/RunnerExtension.ts#L21)
+[PuppeteerRunnerExtension.ts:350](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L350)
 
 ___
 
@@ -90,7 +82,7 @@ ___
 
 #### Inherited from
 
-[RunnerExtension](RunnerExtension.md).[afterEachStep](RunnerExtension.md#aftereachstep)
+[PuppeteerRunnerExtension](PuppeteerRunnerExtension.md).[afterEachStep](PuppeteerRunnerExtension.md#aftereachstep)
 
 #### Defined in
 
@@ -114,7 +106,7 @@ ___
 
 #### Inherited from
 
-[RunnerExtension](RunnerExtension.md).[beforeAllSteps](RunnerExtension.md#beforeallsteps)
+[PuppeteerRunnerExtension](PuppeteerRunnerExtension.md).[beforeAllSteps](PuppeteerRunnerExtension.md#beforeallsteps)
 
 #### Defined in
 
@@ -139,7 +131,7 @@ ___
 
 #### Inherited from
 
-[RunnerExtension](RunnerExtension.md).[beforeEachStep](RunnerExtension.md#beforeeachstep)
+[PuppeteerRunnerExtension](PuppeteerRunnerExtension.md).[beforeEachStep](PuppeteerRunnerExtension.md#beforeeachstep)
 
 #### Defined in
 
@@ -162,9 +154,9 @@ ___
 
 `Promise`<`void`\>
 
-#### Overrides
+#### Inherited from
 
-[RunnerExtension](RunnerExtension.md).[runStep](RunnerExtension.md#runstep)
+[PuppeteerRunnerExtension](PuppeteerRunnerExtension.md).[runStep](PuppeteerRunnerExtension.md#runstep)
 
 #### Defined in
 

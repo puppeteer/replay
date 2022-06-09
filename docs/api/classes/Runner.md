@@ -6,24 +6,37 @@
 
 ### Methods
 
+- [abort](Runner.md#abort)
 - [run](Runner.md#run)
 
 ## Methods
 
+### abort
+
+▸ **abort**(): `void`
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[Runner.ts:35](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L35)
+
+___
+
 ### run
 
-▸ **run**(`stepIdx?`): `Promise`<`boolean`\>
+▸ **run**(): `Promise`<`boolean`\>
 
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `stepIdx?` | `number` | Run the flow up until the step with the `stepIdx` index. |
+Run all the steps in the flow
 
 #### Returns
 
 `Promise`<`boolean`\>
 
+whether all the steps are run or the execution is aborted
+
 #### Defined in
 
-[Runner.ts:37](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L37)
+[Runner.ts:43](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L43)

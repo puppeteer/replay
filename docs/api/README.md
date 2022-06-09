@@ -11,6 +11,7 @@
 ### Classes
 
 - [PuppeteerRunnerExtension](classes/PuppeteerRunnerExtension.md)
+- [PuppeteerRunnerOwningBrowserExtension](classes/PuppeteerRunnerOwningBrowserExtension.md)
 - [PuppeteerStringifyExtension](classes/PuppeteerStringifyExtension.md)
 - [Runner](classes/Runner.md)
 - [RunnerExtension](classes/RunnerExtension.md)
@@ -48,7 +49,7 @@
 
 #### Defined in
 
-[Runner.ts:71](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L71)
+[Runner.ts:67](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L67)
 
 ___
 

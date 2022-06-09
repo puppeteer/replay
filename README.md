@@ -225,7 +225,7 @@ const { stringify } = require('@puppeteer/replay/cjs');
 
 You can create a Chrome extension for [Recorder](https://goo.gle/devtools-recorder). Refer to the [Chrome Extensions documentation](https://developer.chrome.com/docs/extensions/mv3/devtools/) for more details on how to extend DevTools.
 
-This feature only available from Chrome 104 onwards. Check your current Chrome version with `chrome://version`. Consider install [Chrome Canary](https://www.google.com/chrome/canary/) to test the latest features in Chrome.
+This feature only available from Chrome 104 onwards. Check your current Chrome version with `chrome://version`. Consider install [Chrome Canary](https://www.google.com/chrome/canary/) to try out the latest bleeding edge features in Chrome.
 
 This repository contains an [example extension](https://github.com/puppeteer/replay/tree/main/examples/chrome-extension). Once installed, the Recorder will have a new export option **Export as a Custom JSON script** in the [export dropdown](https://developer.chrome.com/docs/devtools/recorder/#export-flows).
 

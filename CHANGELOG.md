@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/puppeteer/replay/compare/v0.2.0...v0.3.0) (2022-06-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* add `abort` function to `Runner` and remove `stepIdx` from `run` (#175)
+
+### Features
+
+* add `abort` function to `Runner` and remove `stepIdx` from `run` ([#175](https://github.com/puppeteer/replay/issues/175)) ([087d9ce](https://github.com/puppeteer/replay/commit/087d9ce99c52ed295681d3f9667c7d98488e95a3))
+* bundle types ([#172](https://github.com/puppeteer/replay/issues/172)) ([adb3fd0](https://github.com/puppeteer/replay/commit/adb3fd01fe1c4bf7a6b1b3a5314971b091d6b066))
+
 ## [0.2.0](https://github.com/puppeteer/replay/compare/v0.1.3...v0.2.0) (2022-06-01)
 
 

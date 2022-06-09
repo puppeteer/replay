@@ -21,6 +21,7 @@ import { UserFlow } from './Schema.js';
 export class Runner {
   #flow: UserFlow;
   #extension: RunnerExtension;
+  #aborted: boolean = false;
   #nextStep = 0;
 
   /**
@@ -31,40 +32,35 @@ export class Runner {
     this.#extension = extension;
   }
 
+  abort(): void {
+    this.#aborted = true;
+  }
+
   /**
-   * @param stepIdx - Run the flow up until the step with the `stepIdx` index.
+   * Run all the steps in the flow
+   * @returns whether all the steps are run or the execution is aborted
    */
-  async run(stepIdx?: number): Promise<boolean> {
-    if (stepIdx === undefined) {
-      stepIdx = this.#flow.steps.length;
-    }
-    if (this.#nextStep === 0) {
-      await this.#extension.beforeAllSteps?.(this.#flow);
-    }
-    while (
-      this.#nextStep < stepIdx &&
-      this.#nextStep < this.#flow.steps.length
-    ) {
+  async run(): Promise<boolean> {
+    this.#aborted = false;
+    await this.#extension.beforeAllSteps?.(this.#flow);
+
+    let nextStep = 0;
+    while (nextStep < this.#flow.steps.length && !this.#aborted) {
       await this.#extension.beforeEachStep?.(
-        this.#flow.steps[this.#nextStep],
+        this.#flow.steps[nextStep],
         this.#flow
       );
-      await this.#extension.runStep(
-        this.#flow.steps[this.#nextStep],
-        this.#flow
-      );
+      await this.#extension.runStep(this.#flow.steps[nextStep], this.#flow);
       await this.#extension.afterEachStep?.(
-        this.#flow.steps[this.#nextStep],
+        this.#flow.steps[nextStep],
         this.#flow
       );
-      this.#nextStep++;
-    }
-    if (this.#nextStep >= this.#flow.steps.length) {
-      await this.#extension.afterAllSteps?.(this.#flow);
-      return true;
+      nextStep++;
     }
 
-    return false;
+    await this.#extension.afterAllSteps?.(this.#flow);
+
+    return nextStep >= this.#flow.steps.length;
   }
 }
 

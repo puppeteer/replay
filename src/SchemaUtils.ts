@@ -40,6 +40,7 @@ import type {
   UserFlow,
   ClickAttributes,
   DoubleClickStep,
+  HoverStep,
 } from './Schema.js';
 
 export function assertAllStepTypesAreHandled(s: never): never;
@@ -323,6 +324,13 @@ function parseDoubleClickStep(step: object): DoubleClickStep {
   };
 }
 
+function parseHoverStep(step: object): HoverStep {
+  return {
+    ...parseStepWithSelectors('hover', step),
+    type: 'hover',
+  };
+}
+
 function parseChangeStep(step: object): ChangeStep {
   return {
     ...parseStepWithSelectors('click', step),
@@ -464,6 +472,8 @@ export function parseStep(step: unknown, idx?: number): Step {
       return parseClickStep(step);
     case 'doubleClick':
       return parseDoubleClickStep(step);
+    case 'hover':
+      return parseHoverStep(step);
     case 'change':
       return parseChangeStep(step);
     case 'keyDown':

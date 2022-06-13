@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/puppeteer/replay/compare/v0.3.0...v0.3.1) (2022-06-13)
+
+
+### Bug Fixes
+
+* add `cjs` files to package.json files ([#177](https://github.com/puppeteer/replay/issues/177)) ([da90137](https://github.com/puppeteer/replay/commit/da901376f4a164a2567e8e966a6599053b679e36))
+* add hover to schema parser ([#182](https://github.com/puppeteer/replay/issues/182)) ([5f3e390](https://github.com/puppeteer/replay/commit/5f3e3901f2a2cfb3bb2e4e25106faed6ab735541))
+
 ## [0.3.0](https://github.com/puppeteer/replay/compare/v0.2.0...v0.3.0) (2022-06-09)
 
 

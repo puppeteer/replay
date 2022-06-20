@@ -10,6 +10,6 @@ export class RecorderPlugin {
 /* eslint-disable no-undef */
 chrome.devtools.recorder.registerRecorderExtensionPlugin(
   new RecorderPlugin(),
-  /* name=*/ 'CustomJSON',
+  /* name=*/ 'Custom JSON',
   /* mediaType=*/ 'application/json'
 );

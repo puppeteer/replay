@@ -25,7 +25,7 @@ const __dirname = path.dirname(__filename);
 import { createRunner } from '../src/Runner.js';
 import { PuppeteerRunnerExtension } from '../src/PuppeteerRunnerExtension.js';
 
-import { TestServer } from '../third_party/testserver/index.js';
+import { TestServer } from '../third_party/testserver/lib/index.js';
 import { RunnerExtension } from '../src/RunnerExtension.js';
 import { Step, UserFlow } from '../src/Schema.js';
 
@@ -51,7 +51,7 @@ describe('Runner', () => {
     const servers = await createServers();
     httpServer = servers.httpServer;
     httpsServer = servers.httpsServer;
-    const headless = process.env.PUPPETEER_HEADFUL !== 'true';
+    const headless = process.env['PUPPETEER_HEADFUL'] !== 'true';
     browser = await puppeteer.launch({
       headless,
       args: ['--site-per-process', '--host-rules=MAP oopifdomain 127.0.0.1'],
@@ -889,7 +889,7 @@ describe('Runner', () => {
           this.#abortFn = abortFn;
         }
 
-        async runStep(step: Step, flow: UserFlow) {
+        override async runStep(step: Step, flow: UserFlow) {
           if (flow.steps.indexOf(step) === 0) {
             this.#abortFn?.();
           }
@@ -926,7 +926,7 @@ describe('Runner', () => {
           this.#abortFn = abortFn;
         }
 
-        async runStep(step: Step, flow: UserFlow) {
+        override async runStep(step: Step, flow: UserFlow) {
           if (flow.steps.indexOf(step) === 0) {
             this.#abortFn?.();
           }
@@ -934,7 +934,7 @@ describe('Runner', () => {
           await super.runStep(step, flow);
         }
 
-        async afterAllSteps() {
+        override async afterAllSteps() {
           this.isAfterAllStepsRan = true;
         }
       }
@@ -965,7 +965,7 @@ describe('Runner', () => {
           this.#abortFn = abortFn;
         }
 
-        async runStep(step: Step, flow: UserFlow) {
+        override async runStep(step: Step, flow: UserFlow) {
           if (flow.steps.indexOf(step) === 0) {
             this.#abortFn?.();
           }

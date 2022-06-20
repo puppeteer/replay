@@ -55,7 +55,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
     return step.timeout || flow.timeout || this.timeout;
   }
 
-  async runStep(step: Step, flow: UserFlow): Promise<void> {
+  override async runStep(step: Step, flow: UserFlow): Promise<void> {
     const timeout = this.#getTimeoutForStep(step, flow);
     const page = this.page;
     const browser = this.browser;
@@ -347,7 +347,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
 }
 
 export class PuppeteerRunnerOwningBrowserExtension extends PuppeteerRunnerExtension {
-  async afterAllSteps() {
+  override async afterAllSteps() {
     await this.browser.close();
   }
 }
@@ -357,7 +357,7 @@ async function getFrame(pageOrFrame: Page | Frame, step: Step): Promise<Frame> {
     'mainFrame' in pageOrFrame ? pageOrFrame.mainFrame() : pageOrFrame;
   if ('frame' in step && step.frame) {
     for (const index of step.frame) {
-      frame = frame.childFrames()[index];
+      frame = frame.childFrames()[index]!;
     }
   }
   return frame;
@@ -534,7 +534,7 @@ async function waitForSelector(
   }
   let element = null;
   for (let i = 0; i < selector.length; i++) {
-    const part = selector[i];
+    const part = selector[i]!;
     if (!element) {
       element = await frame.waitForSelector(part, options);
     } else {
@@ -587,7 +587,7 @@ async function querySelectorAll(
   }
   let elements: ElementHandle<Element>[] = [];
   for (let i = 0; i < selector.length; i++) {
-    const part = selector[i];
+    const part = selector[i]!;
     if (i === 0) {
       elements = await frame.$$(part);
     } else {

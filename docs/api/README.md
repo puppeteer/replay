@@ -49,7 +49,7 @@
 
 #### Defined in
 
-[Runner.ts:67](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L67)
+[Runner.ts:61](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L61)
 
 ---
 
@@ -119,7 +119,7 @@ Stringifes an entire recording. The following hooks are invoked with the `flow` 
 
 #### Defined in
 
-[stringify.ts:35](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L35)
+[stringify.ts:37](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L37)
 
 ---
 
@@ -146,4 +146,4 @@ Stringifes a single step. Only the following hooks are invoked with the `flow` p
 
 #### Defined in
 
-[stringify.ts:69](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L69)
+[stringify.ts:64](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L64)

@@ -16,7 +16,7 @@
 
 import { LineWriter } from './LineWriter.js';
 
-export class LineWriterImpl implements LineWriter {
+export class InMemoryLineWriter implements LineWriter {
   #indentation: string;
   #currentIndentation = 0;
   #lines: string[] = [];

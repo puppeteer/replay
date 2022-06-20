@@ -14,13 +14,15 @@
     limitations under the License.
  */
 
-import { LineWriterImpl } from './LineWriterImpl.js';
+import { InMemoryLineWriter } from './InMemoryLineWriter.js';
+import { LineWriter } from './LineWriter.js';
 import { PuppeteerStringifyExtension } from './PuppeteerStringifyExtension.js';
 import type { Step, UserFlow } from './Schema.js';
 import { StringifyExtension } from './StringifyExtension.js';
 
 export interface StringifyOptions {
   extension?: StringifyExtension;
+  writer?: LineWriter;
   indentation?: string;
 }
 
@@ -39,15 +41,8 @@ export async function stringify(
   if (!opts) {
     opts = {};
   }
-  let ext = opts.extension;
-  if (!ext) {
-    ext = new PuppeteerStringifyExtension();
-  }
-
-  if (!opts.indentation) {
-    opts.indentation = '  ';
-  }
-  const out = new LineWriterImpl(opts.indentation);
+  const ext = opts.extension ?? new PuppeteerStringifyExtension();
+  const out = opts.writer ?? new InMemoryLineWriter(opts.indentation ?? '  ');
 
   await ext.beforeAllSteps?.(out, flow);
   for (const step of flow.steps) {
@@ -80,7 +75,7 @@ export async function stringifyStep(
   if (!opts.indentation) {
     opts.indentation = '  ';
   }
-  const out = new LineWriterImpl(opts.indentation);
+  const out = new InMemoryLineWriter(opts.indentation);
 
   await ext.beforeEachStep?.(out, step);
   await ext.stringifyStep(out, step);

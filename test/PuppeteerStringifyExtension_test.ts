@@ -15,7 +15,7 @@
  */
 
 import snapshot from 'snap-shot-it';
-import { LineWriterImpl } from '../src/LineWriterImpl.js';
+import { InMemoryLineWriter } from '../src/InMemoryLineWriter.js';
 import { PuppeteerStringifyExtension } from '../src/PuppeteerStringifyExtension.js';
 
 describe('PuppeteerStringifyExtension', () => {
@@ -31,7 +31,7 @@ describe('PuppeteerStringifyExtension', () => {
     };
     const flow = { title: 'test', steps: [step] };
 
-    const writer = new LineWriterImpl('  ');
+    const writer = new InMemoryLineWriter('  ');
     await ext.stringifyStep(writer, step, flow);
     snapshot(writer.toString());
   });
@@ -47,7 +47,7 @@ describe('PuppeteerStringifyExtension', () => {
     };
     const flow = { title: 'test', steps: [step] };
 
-    const writer = new LineWriterImpl('  ');
+    const writer = new InMemoryLineWriter('  ');
     await ext.stringifyStep(writer, step, flow);
     snapshot(writer.toString());
   });
@@ -62,7 +62,7 @@ describe('PuppeteerStringifyExtension', () => {
     };
     const flow = { title: 'test', steps: [step] };
 
-    const writer = new LineWriterImpl('  ');
+    const writer = new InMemoryLineWriter('  ');
     await ext.stringifyStep(writer, step, flow);
     snapshot(writer.toString());
   });
@@ -76,7 +76,7 @@ describe('PuppeteerStringifyExtension', () => {
     };
     const flow = { title: 'test', steps: [step] };
 
-    const writer = new LineWriterImpl('  ');
+    const writer = new InMemoryLineWriter('  ');
     await ext.stringifyStep(writer, step, flow);
     snapshot(writer.toString());
   });
@@ -90,7 +90,7 @@ describe('PuppeteerStringifyExtension', () => {
     };
     const flow = { title: 'test', steps: [step] };
 
-    const writer = new LineWriterImpl('  ');
+    const writer = new InMemoryLineWriter('  ');
     await ext.stringifyStep(writer, step, flow);
     snapshot(writer.toString());
   });

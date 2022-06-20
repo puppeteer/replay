@@ -39,7 +39,7 @@
 
 [Schema.ts:33](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L33)
 
-___
+---
 
 ### deviceScaleFactor
 
@@ -49,7 +49,7 @@ ___
 
 [Schema.ts:142](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L142)
 
-___
+---
 
 ### hasTouch
 
@@ -59,7 +59,7 @@ ___
 
 [Schema.ts:144](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L144)
 
-___
+---
 
 ### height
 
@@ -69,7 +69,7 @@ ___
 
 [Schema.ts:141](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L141)
 
-___
+---
 
 ### isLandscape
 
@@ -79,7 +79,7 @@ ___
 
 [Schema.ts:145](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L145)
 
-___
+---
 
 ### isMobile
 
@@ -89,7 +89,7 @@ ___
 
 [Schema.ts:143](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L143)
 
-___
+---
 
 ### target
 
@@ -105,7 +105,7 @@ Defaults to main
 
 [Schema.ts:40](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L40)
 
-___
+---
 
 ### timeout
 
@@ -119,11 +119,11 @@ ___
 
 [Schema.ts:32](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L32)
 
-___
+---
 
 ### type
 
-• **type**: ``"setViewport"``
+• **type**: `"setViewport"`
 
 #### Overrides
 
@@ -133,7 +133,7 @@ ___
 
 [Schema.ts:139](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L139)
 
-___
+---
 
 ### width
 

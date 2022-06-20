@@ -32,8 +32,8 @@ limitations under the License.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name   | Type     |
+| :----- | :------- |
 | `line` | `string` |
 
 #### Returns
@@ -44,7 +44,7 @@ limitations under the License.
 
 [LineWriter.ts:18](https://github.com/puppeteer/replay/blob/main/src/LineWriter.ts#L18)
 
-___
+---
 
 ### endBlock
 
@@ -58,7 +58,7 @@ ___
 
 [LineWriter.ts:20](https://github.com/puppeteer/replay/blob/main/src/LineWriter.ts#L20)
 
-___
+---
 
 ### startBlock
 

@@ -36,7 +36,7 @@
 
 [Schema.ts:33](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L33)
 
-___
+---
 
 ### frame
 
@@ -52,7 +52,7 @@ Defaults to main frame
 
 [Schema.ts:47](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L47)
 
-___
+---
 
 ### selectors
 
@@ -77,7 +77,7 @@ reliability of the replay as some selectors might get outdated over time.
 
 [Schema.ts:63](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L63)
 
-___
+---
 
 ### target
 
@@ -93,7 +93,7 @@ Defaults to main
 
 [Schema.ts:40](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L40)
 
-___
+---
 
 ### timeout
 
@@ -107,11 +107,11 @@ ___
 
 [Schema.ts:32](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L32)
 
-___
+---
 
 ### type
 
-• **type**: ``"change"``
+• **type**: `"change"`
 
 #### Overrides
 
@@ -121,7 +121,7 @@ ___
 
 [Schema.ts:113](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L113)
 
-___
+---
 
 ### value
 

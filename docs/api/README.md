@@ -38,9 +38,9 @@
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `flow` | [`UserFlow`](interfaces/Schema.UserFlow.md) |
+| Name         | Type                                            |
+| :----------- | :---------------------------------------------- |
+| `flow`       | [`UserFlow`](interfaces/Schema.UserFlow.md)     |
 | `extension?` | [`RunnerExtension`](classes/RunnerExtension.md) |
 
 #### Returns
@@ -51,7 +51,7 @@
 
 [Runner.ts:67](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L67)
 
-___
+---
 
 ### parse
 
@@ -59,8 +59,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name   | Type      |
+| :----- | :-------- |
 | `data` | `unknown` |
 
 #### Returns
@@ -71,7 +71,7 @@ ___
 
 [SchemaUtils.ts:528](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L528)
 
-___
+---
 
 ### parseStep
 
@@ -79,10 +79,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name   | Type      |
+| :----- | :-------- |
 | `step` | `unknown` |
-| `idx?` | `number` |
+| `idx?` | `number`  |
 
 #### Returns
 
@@ -92,13 +92,14 @@ ___
 
 [SchemaUtils.ts:452](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L452)
 
-___
+---
 
 ### stringify
 
 ▸ **stringify**(`flow`, `opts?`): `Promise`<`string`\>
 
 Stringifes an entire recording. The following hooks are invoked with the `flow` parameter containing the entire flow:
+
 - `beforeAllSteps` (once)
 - `beforeEachStep` (per step)
 - `stringifyStep` (per step)
@@ -107,9 +108,9 @@ Stringifes an entire recording. The following hooks are invoked with the `flow` 
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `flow` | [`UserFlow`](interfaces/Schema.UserFlow.md) |
+| Name    | Type                                                 |
+| :------ | :--------------------------------------------------- |
+| `flow`  | [`UserFlow`](interfaces/Schema.UserFlow.md)          |
 | `opts?` | [`StringifyOptions`](interfaces/StringifyOptions.md) |
 
 #### Returns
@@ -120,22 +121,23 @@ Stringifes an entire recording. The following hooks are invoked with the `flow` 
 
 [stringify.ts:35](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L35)
 
-___
+---
 
 ### stringifyStep
 
 ▸ **stringifyStep**(`step`, `opts?`): `Promise`<`string`\>
 
 Stringifes a single step. Only the following hooks are invoked with the `flow` parameter as undefined:
+
 - `beforeEachStep`
 - `stringifyStep`
 - `afterEachStep`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `step` | [`Step`](modules/Schema.md#step) |
+| Name    | Type                                                 |
+| :------ | :--------------------------------------------------- |
+| `step`  | [`Step`](modules/Schema.md#step)                     |
 | `opts?` | [`StringifyOptions`](interfaces/StringifyOptions.md) |
 
 #### Returns

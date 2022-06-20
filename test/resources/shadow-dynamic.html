@@ -18,7 +18,7 @@
   class CustomElement extends HTMLElement {
     constructor() {
       super();
-      const shadow = this.attachShadow({mode: 'open'});
+      const shadow = this.attachShadow({ mode: 'open' });
       shadow.innerHTML = `<button id="test">Click me</button>`;
     }
   }

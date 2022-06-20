@@ -6,8 +6,8 @@ updates:
       interval: daily
     open-pull-requests-limit: 3
     allow:
-      - dependency-name: "puppeteer"
-      - dependency-type: "production"
+      - dependency-name: 'puppeteer'
+      - dependency-type: 'production'
   - package-ecosystem: github-actions
     directory: '/'
     schedule:

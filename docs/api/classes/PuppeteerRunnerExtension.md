@@ -32,12 +32,12 @@
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `browser` | `Browser` |
-| `page` | `Page` |
-| `opts?` | `Object` |
-| `opts.timeout?` | `number` |
+| Name            | Type      |
+| :-------------- | :-------- |
+| `browser`       | `Browser` |
+| `page`          | `Page`    |
+| `opts?`         | `Object`  |
+| `opts.timeout?` | `number`  |
 
 #### Overrides
 
@@ -55,8 +55,8 @@
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name   | Type                                           |
+| :----- | :--------------------------------------------- |
 | `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
@@ -71,7 +71,7 @@
 
 [RunnerExtension.ts:21](https://github.com/puppeteer/replay/blob/main/src/RunnerExtension.ts#L21)
 
-___
+---
 
 ### afterEachStep
 
@@ -79,9 +79,9 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `step` | [`Step`](../modules/Schema.md#step) |
+| Name   | Type                                           |
+| :----- | :--------------------------------------------- |
+| `step` | [`Step`](../modules/Schema.md#step)            |
 | `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
@@ -96,7 +96,7 @@ ___
 
 [RunnerExtension.ts:24](https://github.com/puppeteer/replay/blob/main/src/RunnerExtension.ts#L24)
 
-___
+---
 
 ### beforeAllSteps
 
@@ -104,8 +104,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name   | Type                                           |
+| :----- | :--------------------------------------------- |
 | `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
@@ -120,7 +120,7 @@ ___
 
 [RunnerExtension.ts:20](https://github.com/puppeteer/replay/blob/main/src/RunnerExtension.ts#L20)
 
-___
+---
 
 ### beforeEachStep
 
@@ -128,9 +128,9 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `step` | [`Step`](../modules/Schema.md#step) |
+| Name   | Type                                           |
+| :----- | :--------------------------------------------- |
+| `step` | [`Step`](../modules/Schema.md#step)            |
 | `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
@@ -145,7 +145,7 @@ ___
 
 [RunnerExtension.ts:22](https://github.com/puppeteer/replay/blob/main/src/RunnerExtension.ts#L22)
 
-___
+---
 
 ### runStep
 
@@ -153,9 +153,9 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `step` | [`Step`](../modules/Schema.md#step) |
+| Name   | Type                                           |
+| :----- | :--------------------------------------------- |
+| `step` | [`Step`](../modules/Schema.md#step)            |
 | `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns

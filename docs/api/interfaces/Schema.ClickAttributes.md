@@ -33,7 +33,7 @@ Defaults to 'primary' if the device type is a mouse.
 
 [Schema.ts:82](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L82)
 
-___
+---
 
 ### deviceType
 
@@ -45,7 +45,7 @@ Pointer type for the event. Defaults to 'mouse'.
 
 [Schema.ts:78](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L78)
 
-___
+---
 
 ### offsetX
 
@@ -58,7 +58,7 @@ to the center of the element
 
 [Schema.ts:87](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L87)
 
-___
+---
 
 ### offsetY
 

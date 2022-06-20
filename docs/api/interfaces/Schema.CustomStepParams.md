@@ -22,7 +22,7 @@
 
 [Schema.ts:171](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L171)
 
-___
+---
 
 ### parameters
 
@@ -32,11 +32,11 @@ ___
 
 [Schema.ts:172](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L172)
 
-___
+---
 
 ### type
 
-• **type**: ``"customStep"``
+• **type**: `"customStep"`
 
 #### Defined in
 

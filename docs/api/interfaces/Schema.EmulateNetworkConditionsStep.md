@@ -36,7 +36,7 @@
 
 [Schema.ts:33](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L33)
 
-___
+---
 
 ### download
 
@@ -46,7 +46,7 @@ ___
 
 [Schema.ts:119](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L119)
 
-___
+---
 
 ### latency
 
@@ -56,7 +56,7 @@ ___
 
 [Schema.ts:121](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L121)
 
-___
+---
 
 ### target
 
@@ -72,7 +72,7 @@ Defaults to main
 
 [Schema.ts:40](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L40)
 
-___
+---
 
 ### timeout
 
@@ -86,11 +86,11 @@ ___
 
 [Schema.ts:32](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L32)
 
-___
+---
 
 ### type
 
-• **type**: ``"emulateNetworkConditions"``
+• **type**: `"emulateNetworkConditions"`
 
 #### Overrides
 
@@ -100,7 +100,7 @@ ___
 
 [Schema.ts:118](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L118)
 
-___
+---
 
 ### upload
 

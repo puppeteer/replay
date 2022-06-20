@@ -43,7 +43,7 @@ import {
 } from './SchemaUtils.js';
 
 export class PuppeteerStringifyExtension extends StringifyExtension {
-  async beforeAllSteps(out: LineWriter, flow: UserFlow) {
+  override async beforeAllSteps(out: LineWriter, flow: UserFlow) {
     out.appendLine(
       "const puppeteer = require('puppeteer'); // v13.0.0 or later"
     );
@@ -56,7 +56,7 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     out.appendLine('');
   }
 
-  async afterAllSteps(out: LineWriter, flow: UserFlow) {
+  override async afterAllSteps(out: LineWriter, flow: UserFlow) {
     out.appendLine('');
     out.appendLine('await browser.close();');
     out.appendLine('');
@@ -66,7 +66,7 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     out.endBlock().appendLine('})();');
   }
 
-  async stringifyStep(out: LineWriter, step: Step, flow: UserFlow) {
+  override async stringifyStep(out: LineWriter, step: Step, flow: UserFlow) {
     out.appendLine('{').startBlock();
     if (step.timeout !== undefined) {
       out.appendLine(`const timeout = ${step.timeout};`);
@@ -222,7 +222,7 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     );
   }
 
-  #appendCloseStep(out: LineWriter, _step: CloseStep): void {
+  #appendCloseStep(out: LineWriter, step: CloseStep): void {
     out.appendLine('await targetPage.close()');
   }
 

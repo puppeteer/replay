@@ -22,7 +22,6 @@ export class Runner {
   #flow: UserFlow;
   #extension: RunnerExtension;
   #aborted: boolean = false;
-  #nextStep = 0;
 
   /**
    * @internal
@@ -44,23 +43,18 @@ export class Runner {
     this.#aborted = false;
     await this.#extension.beforeAllSteps?.(this.#flow);
 
-    let nextStep = 0;
-    while (nextStep < this.#flow.steps.length && !this.#aborted) {
-      await this.#extension.beforeEachStep?.(
-        this.#flow.steps[nextStep],
-        this.#flow
-      );
-      await this.#extension.runStep(this.#flow.steps[nextStep], this.#flow);
-      await this.#extension.afterEachStep?.(
-        this.#flow.steps[nextStep],
-        this.#flow
-      );
-      nextStep++;
+    let nextStepIndex = 0;
+    while (nextStepIndex < this.#flow.steps.length && !this.#aborted) {
+      const nextStep = this.#flow.steps[nextStepIndex]!;
+      await this.#extension.beforeEachStep?.(nextStep, this.#flow);
+      await this.#extension.runStep(nextStep, this.#flow);
+      await this.#extension.afterEachStep?.(nextStep, this.#flow);
+      nextStepIndex++;
     }
 
     await this.#extension.afterAllSteps?.(this.#flow);
 
-    return nextStep >= this.#flow.steps.length;
+    return nextStepIndex >= this.#flow.steps.length;
   }
 }
 

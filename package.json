@@ -20,16 +20,17 @@
     "node": ">=14"
   },
   "scripts": {
-    "test": "cross-env TS_NODE_PROJECT=test/tsconfig.json mocha --config .mocharc.cjs",
+    "test": "npm run build:testserver && cross-env TS_NODE_PROJECT=test/tsconfig.json mocha --config .mocharc.cjs",
     "test:headful": "cross-env PUPPETEER_HEADFUL=true npm run test",
     "test:coverage": "c8 npm run test",
     "lint": "npm run lint:format",
     "lint:format": "prettier --check . && npm run eslint",
     "format": "prettier --write . && eslint --ext js --ext ts --fix .",
     "eslint": "([ \"$CI\" = true ] && eslint --ext js --ext ts --quiet -f codeframe . || eslint --ext js --ext ts .)",
-    "docs": "typedoc --readme none --gitRevision main --externalPattern --excludeExternals --excludeProtected --excludePrivate --plugin typedoc-plugin-markdown --out docs/api src/main.ts",
+    "docs": "typedoc --readme none --gitRevision main --externalPattern --excludeExternals --excludeProtected --excludePrivate --plugin typedoc-plugin-markdown --out docs/api src/main.ts && npm run format",
     "clean": "rimraf lib",
-    "build": "npm run clean && rollup --config rollup.config.ts --configPlugin typescript"
+    "build": "npm run clean && rollup --config rollup.config.ts --configPlugin typescript",
+    "build:testserver": "cd third_party/testserver && npm run build"
   },
   "files": [
     "lib"
@@ -40,8 +41,10 @@
   "devDependencies": {
     "@rollup/plugin-typescript": "8.3.2",
     "@types/chai": "4.3.1",
+    "@types/mime": "^2.0.3",
     "@types/mocha": "9.1.1",
     "@types/node": "17.0.36",
+    "@types/ws": "^8.5.3",
     "@types/yargs": "17.0.10",
     "@typescript-eslint/eslint-plugin": "5.26.0",
     "@typescript-eslint/parser": "5.27.0",

@@ -8,3 +8,4 @@ package.json
 docs-dist/
 website/
 coverage/
+CHANGELOG.md

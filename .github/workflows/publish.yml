@@ -1,15 +1,15 @@
-name: publish-on-tag
-
-permissions: read-all
+name: Publish
 
 on:
   push:
     tags:
-      - '*'
+      - v*
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v3

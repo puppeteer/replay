@@ -44,7 +44,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
   async #ensureAutomationEmulatation(pageOrFrame: Page | Frame) {
     try {
       await pageOrFrame
-        .client()
+        ._client()
         .send('Emulation.setAutomationOverride', { enabled: true });
     } catch {
       // ignore errors as not all versions support this command.

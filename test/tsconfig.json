@@ -5,5 +5,5 @@
     "checkJs": false,
     "noEmit": true
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts"]
 }

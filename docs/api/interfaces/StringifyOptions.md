@@ -19,7 +19,7 @@
 
 [stringify.ts:23](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L23)
 
-___
+---
 
 ### indentation
 

@@ -55,7 +55,7 @@
 
 [Schema.ts:28](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L28)
 
-___
+---
 
 ### AssertionStep
 
@@ -65,7 +65,7 @@ ___
 
 [Schema.ts:241](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L241)
 
-___
+---
 
 ### CustomStep
 
@@ -75,7 +75,7 @@ ___
 
 [Schema.ts:175](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L175)
 
-___
+---
 
 ### FrameSelector
 
@@ -85,17 +85,17 @@ ___
 
 [Schema.ts:20](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L20)
 
-___
+---
 
 ### Key
 
-Ƭ **Key**: ``"0"`` \| ``"1"`` \| ``"2"`` \| ``"3"`` \| ``"4"`` \| ``"5"`` \| ``"6"`` \| ``"7"`` \| ``"8"`` \| ``"9"`` \| ``"Power"`` \| ``"Eject"`` \| ``"Abort"`` \| ``"Help"`` \| ``"Backspace"`` \| ``"Tab"`` \| ``"Numpad5"`` \| ``"NumpadEnter"`` \| ``"Enter"`` \| ``"\r"`` \| ``"\n"`` \| ``"ShiftLeft"`` \| ``"ShiftRight"`` \| ``"ControlLeft"`` \| ``"ControlRight"`` \| ``"AltLeft"`` \| ``"AltRight"`` \| ``"Pause"`` \| ``"CapsLock"`` \| ``"Escape"`` \| ``"Convert"`` \| ``"NonConvert"`` \| ``"Space"`` \| ``"Numpad9"`` \| ``"PageUp"`` \| ``"Numpad3"`` \| ``"PageDown"`` \| ``"End"`` \| ``"Numpad1"`` \| ``"Home"`` \| ``"Numpad7"`` \| ``"ArrowLeft"`` \| ``"Numpad4"`` \| ``"Numpad8"`` \| ``"ArrowUp"`` \| ``"ArrowRight"`` \| ``"Numpad6"`` \| ``"Numpad2"`` \| ``"ArrowDown"`` \| ``"Select"`` \| ``"Open"`` \| ``"PrintScreen"`` \| ``"Insert"`` \| ``"Numpad0"`` \| ``"Delete"`` \| ``"NumpadDecimal"`` \| ``"Digit0"`` \| ``"Digit1"`` \| ``"Digit2"`` \| ``"Digit3"`` \| ``"Digit4"`` \| ``"Digit5"`` \| ``"Digit6"`` \| ``"Digit7"`` \| ``"Digit8"`` \| ``"Digit9"`` \| ``"KeyA"`` \| ``"KeyB"`` \| ``"KeyC"`` \| ``"KeyD"`` \| ``"KeyE"`` \| ``"KeyF"`` \| ``"KeyG"`` \| ``"KeyH"`` \| ``"KeyI"`` \| ``"KeyJ"`` \| ``"KeyK"`` \| ``"KeyL"`` \| ``"KeyM"`` \| ``"KeyN"`` \| ``"KeyO"`` \| ``"KeyP"`` \| ``"KeyQ"`` \| ``"KeyR"`` \| ``"KeyS"`` \| ``"KeyT"`` \| ``"KeyU"`` \| ``"KeyV"`` \| ``"KeyW"`` \| ``"KeyX"`` \| ``"KeyY"`` \| ``"KeyZ"`` \| ``"MetaLeft"`` \| ``"MetaRight"`` \| ``"ContextMenu"`` \| ``"NumpadMultiply"`` \| ``"NumpadAdd"`` \| ``"NumpadSubtract"`` \| ``"NumpadDivide"`` \| ``"F1"`` \| ``"F2"`` \| ``"F3"`` \| ``"F4"`` \| ``"F5"`` \| ``"F6"`` \| ``"F7"`` \| ``"F8"`` \| ``"F9"`` \| ``"F10"`` \| ``"F11"`` \| ``"F12"`` \| ``"F13"`` \| ``"F14"`` \| ``"F15"`` \| ``"F16"`` \| ``"F17"`` \| ``"F18"`` \| ``"F19"`` \| ``"F20"`` \| ``"F21"`` \| ``"F22"`` \| ``"F23"`` \| ``"F24"`` \| ``"NumLock"`` \| ``"ScrollLock"`` \| ``"AudioVolumeMute"`` \| ``"AudioVolumeDown"`` \| ``"AudioVolumeUp"`` \| ``"MediaTrackNext"`` \| ``"MediaTrackPrevious"`` \| ``"MediaStop"`` \| ``"MediaPlayPause"`` \| ``"Semicolon"`` \| ``"Equal"`` \| ``"NumpadEqual"`` \| ``"Comma"`` \| ``"Minus"`` \| ``"Period"`` \| ``"Slash"`` \| ``"Backquote"`` \| ``"BracketLeft"`` \| ``"Backslash"`` \| ``"BracketRight"`` \| ``"Quote"`` \| ``"AltGraph"`` \| ``"Props"`` \| ``"Cancel"`` \| ``"Clear"`` \| ``"Shift"`` \| ``"Control"`` \| ``"Alt"`` \| ``"Accept"`` \| ``"ModeChange"`` \| ``" "`` \| ``"Print"`` \| ``"Execute"`` \| ``"\u0000"`` \| ``"a"`` \| ``"b"`` \| ``"c"`` \| ``"d"`` \| ``"e"`` \| ``"f"`` \| ``"g"`` \| ``"h"`` \| ``"i"`` \| ``"j"`` \| ``"k"`` \| ``"l"`` \| ``"m"`` \| ``"n"`` \| ``"o"`` \| ``"p"`` \| ``"q"`` \| ``"r"`` \| ``"s"`` \| ``"t"`` \| ``"u"`` \| ``"v"`` \| ``"w"`` \| ``"x"`` \| ``"y"`` \| ``"z"`` \| ``"Meta"`` \| ``"*"`` \| ``"+"`` \| ``"-"`` \| ``"/"`` \| ``";"`` \| ``"="`` \| ``","`` \| ``"."`` \| ``"`"`` \| ``"["`` \| ``"\\"`` \| ``"]"`` \| ``"'"`` \| ``"Attn"`` \| ``"CrSel"`` \| ``"ExSel"`` \| ``"EraseEof"`` \| ``"Play"`` \| ``"ZoomOut"`` \| ``")"`` \| ``"!"`` \| ``"@"`` \| ``"#"`` \| ``"$"`` \| ``"%"`` \| ``"^"`` \| ``"&"`` \| ``"("`` \| ``"A"`` \| ``"B"`` \| ``"C"`` \| ``"D"`` \| ``"E"`` \| ``"F"`` \| ``"G"`` \| ``"H"`` \| ``"I"`` \| ``"J"`` \| ``"K"`` \| ``"L"`` \| ``"M"`` \| ``"N"`` \| ``"O"`` \| ``"P"`` \| ``"Q"`` \| ``"R"`` \| ``"S"`` \| ``"T"`` \| ``"U"`` \| ``"V"`` \| ``"W"`` \| ``"X"`` \| ``"Y"`` \| ``"Z"`` \| ``":"`` \| ``"<"`` \| ``"_"`` \| ``">"`` \| ``"?"`` \| ``"~"`` \| ``"{"`` \| ``"|"`` \| ``"}"`` \| ``"\""`` \| ``"SoftLeft"`` \| ``"SoftRight"`` \| ``"Camera"`` \| ``"Call"`` \| ``"EndCall"`` \| ``"VolumeDown"`` \| ``"VolumeUp"``
+Ƭ **Key**: `"0"` \| `"1"` \| `"2"` \| `"3"` \| `"4"` \| `"5"` \| `"6"` \| `"7"` \| `"8"` \| `"9"` \| `"Power"` \| `"Eject"` \| `"Abort"` \| `"Help"` \| `"Backspace"` \| `"Tab"` \| `"Numpad5"` \| `"NumpadEnter"` \| `"Enter"` \| `"\r"` \| `"\n"` \| `"ShiftLeft"` \| `"ShiftRight"` \| `"ControlLeft"` \| `"ControlRight"` \| `"AltLeft"` \| `"AltRight"` \| `"Pause"` \| `"CapsLock"` \| `"Escape"` \| `"Convert"` \| `"NonConvert"` \| `"Space"` \| `"Numpad9"` \| `"PageUp"` \| `"Numpad3"` \| `"PageDown"` \| `"End"` \| `"Numpad1"` \| `"Home"` \| `"Numpad7"` \| `"ArrowLeft"` \| `"Numpad4"` \| `"Numpad8"` \| `"ArrowUp"` \| `"ArrowRight"` \| `"Numpad6"` \| `"Numpad2"` \| `"ArrowDown"` \| `"Select"` \| `"Open"` \| `"PrintScreen"` \| `"Insert"` \| `"Numpad0"` \| `"Delete"` \| `"NumpadDecimal"` \| `"Digit0"` \| `"Digit1"` \| `"Digit2"` \| `"Digit3"` \| `"Digit4"` \| `"Digit5"` \| `"Digit6"` \| `"Digit7"` \| `"Digit8"` \| `"Digit9"` \| `"KeyA"` \| `"KeyB"` \| `"KeyC"` \| `"KeyD"` \| `"KeyE"` \| `"KeyF"` \| `"KeyG"` \| `"KeyH"` \| `"KeyI"` \| `"KeyJ"` \| `"KeyK"` \| `"KeyL"` \| `"KeyM"` \| `"KeyN"` \| `"KeyO"` \| `"KeyP"` \| `"KeyQ"` \| `"KeyR"` \| `"KeyS"` \| `"KeyT"` \| `"KeyU"` \| `"KeyV"` \| `"KeyW"` \| `"KeyX"` \| `"KeyY"` \| `"KeyZ"` \| `"MetaLeft"` \| `"MetaRight"` \| `"ContextMenu"` \| `"NumpadMultiply"` \| `"NumpadAdd"` \| `"NumpadSubtract"` \| `"NumpadDivide"` \| `"F1"` \| `"F2"` \| `"F3"` \| `"F4"` \| `"F5"` \| `"F6"` \| `"F7"` \| `"F8"` \| `"F9"` \| `"F10"` \| `"F11"` \| `"F12"` \| `"F13"` \| `"F14"` \| `"F15"` \| `"F16"` \| `"F17"` \| `"F18"` \| `"F19"` \| `"F20"` \| `"F21"` \| `"F22"` \| `"F23"` \| `"F24"` \| `"NumLock"` \| `"ScrollLock"` \| `"AudioVolumeMute"` \| `"AudioVolumeDown"` \| `"AudioVolumeUp"` \| `"MediaTrackNext"` \| `"MediaTrackPrevious"` \| `"MediaStop"` \| `"MediaPlayPause"` \| `"Semicolon"` \| `"Equal"` \| `"NumpadEqual"` \| `"Comma"` \| `"Minus"` \| `"Period"` \| `"Slash"` \| `"Backquote"` \| `"BracketLeft"` \| `"Backslash"` \| `"BracketRight"` \| `"Quote"` \| `"AltGraph"` \| `"Props"` \| `"Cancel"` \| `"Clear"` \| `"Shift"` \| `"Control"` \| `"Alt"` \| `"Accept"` \| `"ModeChange"` \| `" "` \| `"Print"` \| `"Execute"` \| `"\u0000"` \| `"a"` \| `"b"` \| `"c"` \| `"d"` \| `"e"` \| `"f"` \| `"g"` \| `"h"` \| `"i"` \| `"j"` \| `"k"` \| `"l"` \| `"m"` \| `"n"` \| `"o"` \| `"p"` \| `"q"` \| `"r"` \| `"s"` \| `"t"` \| `"u"` \| `"v"` \| `"w"` \| `"x"` \| `"y"` \| `"z"` \| `"Meta"` \| `"*"` \| `"+"` \| `"-"` \| `"/"` \| `";"` \| `"="` \| `","` \| `"."` \| `` "`" `` \| `"["` \| `"\\"` \| `"]"` \| `"'"` \| `"Attn"` \| `"CrSel"` \| `"ExSel"` \| `"EraseEof"` \| `"Play"` \| `"ZoomOut"` \| `")"` \| `"!"` \| `"@"` \| `"#"` \| `"$"` \| `"%"` \| `"^"` \| `"&"` \| `"("` \| `"A"` \| `"B"` \| `"C"` \| `"D"` \| `"E"` \| `"F"` \| `"G"` \| `"H"` \| `"I"` \| `"J"` \| `"K"` \| `"L"` \| `"M"` \| `"N"` \| `"O"` \| `"P"` \| `"Q"` \| `"R"` \| `"S"` \| `"T"` \| `"U"` \| `"V"` \| `"W"` \| `"X"` \| `"Y"` \| `"Z"` \| `":"` \| `"<"` \| `"_"` \| `">"` \| `"?"` \| `"~"` \| `"{"` \| `"|"` \| `"}"` \| `"\""` \| `"SoftLeft"` \| `"SoftRight"` \| `"Camera"` \| `"Call"` \| `"EndCall"` \| `"VolumeDown"` \| `"VolumeUp"`
 
 #### Defined in
 
 [Schema.ts:263](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L263)
 
-___
+---
 
 ### Pattern
 
@@ -105,27 +105,27 @@ ___
 
 [Schema.ts:18](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L18)
 
-___
+---
 
 ### PointerButtonType
 
-Ƭ **PointerButtonType**: ``"primary"`` \| ``"auxiliary"`` \| ``"secondary"`` \| ``"back"`` \| ``"forward"``
+Ƭ **PointerButtonType**: `"primary"` \| `"auxiliary"` \| `"secondary"` \| `"back"` \| `"forward"`
 
 #### Defined in
 
 [Schema.ts:67](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L67)
 
-___
+---
 
 ### PointerDeviceType
 
-Ƭ **PointerDeviceType**: ``"mouse"`` \| ``"pen"`` \| ``"touch"``
+Ƭ **PointerDeviceType**: `"mouse"` \| `"pen"` \| `"touch"`
 
 #### Defined in
 
 [Schema.ts:66](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L66)
 
-___
+---
 
 ### ScrollElementStep
 
@@ -135,7 +135,7 @@ ___
 
 [Schema.ts:160](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L160)
 
-___
+---
 
 ### ScrollStep
 
@@ -145,7 +145,7 @@ ___
 
 [Schema.ts:162](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L162)
 
-___
+---
 
 ### Selector
 
@@ -155,7 +155,7 @@ ___
 
 [Schema.ts:19](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L19)
 
-___
+---
 
 ### Step
 
@@ -165,7 +165,7 @@ ___
 
 [Schema.ts:243](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L243)
 
-___
+---
 
 ### Target
 
@@ -189,7 +189,7 @@ limitations under the License.
 
 [Schema.ts:17](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L17)
 
-___
+---
 
 ### UserStep
 

@@ -23,7 +23,7 @@
 
 [Runner.ts:35](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L35)
 
-___
+---
 
 ### run
 

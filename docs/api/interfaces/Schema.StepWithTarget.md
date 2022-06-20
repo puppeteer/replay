@@ -47,7 +47,7 @@
 
 [Schema.ts:33](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L33)
 
-___
+---
 
 ### target
 
@@ -59,7 +59,7 @@ Defaults to main
 
 [Schema.ts:40](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L40)
 
-___
+---
 
 ### timeout
 
@@ -73,7 +73,7 @@ ___
 
 [Schema.ts:32](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L32)
 
-___
+---
 
 ### type
 

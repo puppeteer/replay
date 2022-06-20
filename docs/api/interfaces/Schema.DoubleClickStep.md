@@ -41,7 +41,7 @@
 
 [Schema.ts:33](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L33)
 
-___
+---
 
 ### button
 
@@ -57,7 +57,7 @@ Defaults to 'primary' if the device type is a mouse.
 
 [Schema.ts:82](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L82)
 
-___
+---
 
 ### deviceType
 
@@ -73,7 +73,7 @@ Pointer type for the event. Defaults to 'mouse'.
 
 [Schema.ts:78](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L78)
 
-___
+---
 
 ### frame
 
@@ -89,7 +89,7 @@ Defaults to main frame
 
 [Schema.ts:47](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L47)
 
-___
+---
 
 ### offsetX
 
@@ -106,7 +106,7 @@ to the center of the element
 
 [Schema.ts:87](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L87)
 
-___
+---
 
 ### offsetY
 
@@ -123,7 +123,7 @@ to the center of the element
 
 [Schema.ts:92](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L92)
 
-___
+---
 
 ### selectors
 
@@ -148,7 +148,7 @@ reliability of the replay as some selectors might get outdated over time.
 
 [Schema.ts:63](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L63)
 
-___
+---
 
 ### target
 
@@ -164,7 +164,7 @@ Defaults to main
 
 [Schema.ts:40](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L40)
 
-___
+---
 
 ### timeout
 
@@ -178,11 +178,11 @@ ___
 
 [Schema.ts:32](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L32)
 
-___
+---
 
 ### type
 
-• **type**: ``"doubleClick"``
+• **type**: `"doubleClick"`
 
 #### Overrides
 

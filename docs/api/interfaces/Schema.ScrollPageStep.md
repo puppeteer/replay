@@ -36,7 +36,7 @@
 
 [Schema.ts:33](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L33)
 
-___
+---
 
 ### frame
 
@@ -52,7 +52,7 @@ Defaults to main frame
 
 [Schema.ts:47](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L47)
 
-___
+---
 
 ### target
 
@@ -68,7 +68,7 @@ Defaults to main
 
 [Schema.ts:40](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L40)
 
-___
+---
 
 ### timeout
 
@@ -82,11 +82,11 @@ ___
 
 [Schema.ts:32](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L32)
 
-___
+---
 
 ### type
 
-• **type**: ``"scroll"``
+• **type**: `"scroll"`
 
 #### Overrides
 
@@ -96,7 +96,7 @@ ___
 
 [Schema.ts:149](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L149)
 
-___
+---
 
 ### x
 
@@ -108,7 +108,7 @@ Absolute scroll x position in px. Defaults to 0
 
 [Schema.ts:153](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L153)
 
-___
+---
 
 ### y
 

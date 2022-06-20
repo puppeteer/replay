@@ -16,10 +16,16 @@
 -->
 <div>
   <button id="test">Test Button</button>
-  <form id="form1"><button id="form-button" type="submit">Form Button</button></form>
+  <form id="form1">
+    <button id="form-button" type="submit">Form Button</button>
+  </form>
   <div id="form1-result"></div>
-  <form class="form2"><button><span id="span">Hello World</span></button></form>
-  <form><div><span id="span2">Hello</span> World</div></form>
+  <form class="form2">
+    <button><span id="span">Hello World</span></button>
+  </form>
+  <form>
+    <div><span id="span2">Hello</span> World</div>
+  </form>
   <label for="input">Input</label>
   <form><input id="input" /></form>
   <a id="shadow-root" role="link">Hello&nbsp;</a>
@@ -28,26 +34,28 @@
   <a href="main2.html">Page 2</a>
   <button id="synthetic">Trigger Synthetic Event</button>
   <button id="synthetic-handler">Synthetic Event Handler</button>
-  <button id="selector-attribute" data-devtools-test="selector-attribute">Custom selector attribute</button>
+  <button id="selector-attribute" data-devtools-test="selector-attribute">
+    Custom selector attribute
+  </button>
   <button id="hover-button">Not hovered</button>
 </div>
 <script>
   window.buttonClicks = [];
-  const testButton = document.getElementById("test");
+  const testButton = document.getElementById('test');
   testButton.addEventListener('mouseup', (event) => {
     event.preventDefault();
     window.buttonClicks.push(event.button);
   });
 
   window.addEventListener('submit', (event) => {
-    if(!event.target.classList.contains('submittable')) {
+    if (!event.target.classList.contains('submittable')) {
       event.preventDefault();
     }
   });
   const link = document.getElementById('shadow-root');
   const span1 = document.createElement('span');
   link.append(span1);
-  const shadow = span1.attachShadow({mode: 'open'});
+  const shadow = span1.attachShadow({ mode: 'open' });
   const span2 = document.createElement('span');
   span2.id = 'inner-span';
   span2.textContent = 'World';
@@ -67,7 +75,11 @@
   innerIframe.contentDocument.body.append(innerIframeButton);
 
   document.getElementById('popup').addEventListener('click', () => {
-    window.open('popup.html', 'Window Name ' + new Date(), 'resizable,scrollbars,status,width=200,height=200');
+    window.open(
+      'popup.html',
+      'Window Name ' + new Date(),
+      'resizable,scrollbars,status,width=200,height=200'
+    );
   });
 
   document.getElementById('synthetic').addEventListener('click', () => {
@@ -83,7 +95,9 @@
     document.getElementById('form1-result').textContent = 'From 1 Submitted';
   });
 
-  document.getElementById('hover-button').addEventListener('pointerover', (event) => {
-    event.target.textContent = 'Hovered';
-  })
+  document
+    .getElementById('hover-button')
+    .addEventListener('pointerover', (event) => {
+      event.target.textContent = 'Hovered';
+    });
 </script>

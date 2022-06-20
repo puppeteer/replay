@@ -49,7 +49,7 @@ true allowing the replay to continue.
 
 [Schema.ts:33](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L33)
 
-___
+---
 
 ### expression
 
@@ -59,7 +59,7 @@ ___
 
 [Schema.ts:238](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L238)
 
-___
+---
 
 ### frame
 
@@ -75,7 +75,7 @@ Defaults to main frame
 
 [Schema.ts:47](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L47)
 
-___
+---
 
 ### target
 
@@ -91,7 +91,7 @@ Defaults to main
 
 [Schema.ts:40](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L40)
 
-___
+---
 
 ### timeout
 
@@ -105,11 +105,11 @@ ___
 
 [Schema.ts:32](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L32)
 
-___
+---
 
 ### type
 
-• **type**: ``"waitForExpression"``
+• **type**: `"waitForExpression"`
 
 #### Overrides
 

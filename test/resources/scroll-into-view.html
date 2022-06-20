@@ -15,7 +15,8 @@
     limitations under the License.
 -->
 <style>
-  html, body {
+  html,
+  body {
     scroll-behavior: smooth;
     height: 200vh;
     display: flex;
@@ -25,10 +26,10 @@
 <script>
   // Wait for onload to make sure navigation is handled in the test script before the button is added.
   window.onload = () => {
-    document.body.innerHTML = '<button onclick="this.innerText = `clicked`" style="display: none; align-self: flex-end;">click</button>';
+    document.body.innerHTML =
+      '<button onclick="this.innerText = `clicked`" style="display: none; align-self: flex-end;">click</button>';
     queueMicrotask(() => {
       document.querySelector('button').style.display = 'block';
     });
-  }
+  };
 </script>
-

@@ -27,7 +27,7 @@ selector `[data-testid=value]` for the element `<div data-testid=value>`.
 
 [Schema.ts:259](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L259)
 
-___
+---
 
 ### steps
 
@@ -37,7 +37,7 @@ ___
 
 [Schema.ts:260](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L260)
 
-___
+---
 
 ### timeout
 
@@ -49,7 +49,7 @@ Timeout in milliseconds.
 
 [Schema.ts:253](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L253)
 
-___
+---
 
 ### title
 

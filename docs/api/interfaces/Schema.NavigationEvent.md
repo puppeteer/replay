@@ -22,17 +22,17 @@
 
 [Schema.ts:25](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L25)
 
-___
+---
 
 ### type
 
-• **type**: ``"navigation"``
+• **type**: `"navigation"`
 
 #### Defined in
 
 [Schema.ts:23](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L23)
 
-___
+---
 
 ### url
 

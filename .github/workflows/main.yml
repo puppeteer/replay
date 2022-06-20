@@ -1,6 +1,7 @@
 name: run-checks
 
-permissions: read-all
+permissions:
+  contents: read
 
 on:
   push:
@@ -9,6 +10,10 @@ on:
   pull_request:
     branches:
       - main
+
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
 
 jobs:
   main-checks:

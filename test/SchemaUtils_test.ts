@@ -67,6 +67,14 @@ describe('SchemaUtils', () => {
             offsetY: 46,
           },
           {
+            type: 'hover',
+            selectors: [
+              ['aria/Google'],
+              ['body > div.L3eUgb > div.o3j99.LLD4me.yr19Zb.LS8OJ > div > img'],
+            ],
+            target: 'main',
+          },
+          {
             type: 'click',
             selectors: [
               ['aria/Images'],
@@ -137,6 +145,14 @@ describe('SchemaUtils', () => {
             target: 'main',
             offsetX: 213.5,
             offsetY: 46,
+          },
+          {
+            type: 'hover',
+            selectors: [
+              ['aria/Google'],
+              ['body > div.L3eUgb > div.o3j99.LLD4me.yr19Zb.LS8OJ > div > img'],
+            ],
+            target: 'main',
           },
           {
             type: 'click',

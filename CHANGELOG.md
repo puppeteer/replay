@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/puppeteer/replay/compare/v0.3.1...v0.4.0) (2022-06-20)
+
+
+### Features
+
+* allow custom line writers ([#197](https://github.com/puppeteer/replay/issues/197)) ([4c945b5](https://github.com/puppeteer/replay/commit/4c945b56636ab1fc74698b76120518783abc1377))
+
 ### [0.3.1](https://github.com/puppeteer/replay/compare/v0.3.0...v0.3.1) (2022-06-13)
 
 ### Bug Fixes

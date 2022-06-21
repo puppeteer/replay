@@ -8,6 +8,7 @@
 
 - [extension](StringifyOptions.md#extension)
 - [indentation](StringifyOptions.md#indentation)
+- [writer](StringifyOptions.md#writer)
 
 ## Properties
 
@@ -17,7 +18,7 @@
 
 #### Defined in
 
-[stringify.ts:23](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L23)
+[stringify.ts:24](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L24)
 
 ---
 
@@ -27,4 +28,14 @@
 
 #### Defined in
 
-[stringify.ts:24](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L24)
+[stringify.ts:26](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L26)
+
+---
+
+### writer
+
+• `Optional` **writer**: [`LineWriter`](LineWriter.md)
+
+#### Defined in
+
+[stringify.ts:25](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L25)

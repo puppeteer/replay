@@ -21,7 +21,7 @@
 
 #### Defined in
 
-[Runner.ts:35](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L35)
+[Runner.ts:34](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L34)
 
 ---
 
@@ -39,4 +39,4 @@ whether all the steps are run or the execution is aborted
 
 #### Defined in
 
-[Runner.ts:43](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L43)
+[Runner.ts:42](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L42)

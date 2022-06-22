@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/puppeteer/replay/compare/v0.4.0...v0.5.0) (2022-06-22)
+
+
+### Features
+
+* run all recording files in directory with cli ([#184](https://github.com/puppeteer/replay/issues/184)) ([5261098](https://github.com/puppeteer/replay/commit/526109832b8a7ec375b6f53a39680f00d4f847b4))
+
+
+### Bug Fixes
+
+* make cjs the main package entrypoint ([#203](https://github.com/puppeteer/replay/issues/203)) ([4d10066](https://github.com/puppeteer/replay/commit/4d100669237fda6664901b4cb09414b00e73779a))
+
 ## [0.4.0](https://github.com/puppeteer/replay/compare/v0.3.1...v0.4.0) (2022-06-20)
 
 

@@ -52,6 +52,24 @@ In your `package.json` add a new script to invoke the `replay` command:
 }
 ```
 
+You can also give folder name as a parameter to run all the files in a folder.
+
+Using CLI + npx:
+
+```bash
+npx @puppeteer/replay all-recordings # runs all recordings in the "all-recordings" folder.
+```
+
+Using CLI + package.json:
+
+```json
+{
+  "scripts": {
+    "replay": "replay all-recordings"
+  }
+}
+```
+
 Set the `PUPPETEER_HEADLESS` environment variable or `--headless` CLI flag to control whether the browser is start in a headful or headless mode. For example,
 
 ```

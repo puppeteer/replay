@@ -16,8 +16,7 @@
 
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-
-import { getHeadlessEnvVar, runFiles } from './CLIUtils.js';
+import { getHeadlessEnvVar, getRecordingPaths, runFiles } from './CLIUtils.js';
 
 interface Arguments {
   files: string[];
@@ -32,7 +31,9 @@ yargs(hideBin(process.argv))
     () => {},
     async (argv) => {
       const args = argv as unknown as Arguments;
-      await runFiles(args.files, {
+      const recordingPaths = getRecordingPaths(args.files);
+
+      await runFiles(recordingPaths, {
         log: true,
         headless: getHeadlessEnvVar(
           args.headless || process.env.PUPPETEER_HEADLESS

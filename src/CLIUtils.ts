@@ -16,11 +16,13 @@
 
 import { parse, createRunner } from '../lib/main.js';
 import { readFileSync, readdirSync, lstatSync } from 'fs';
-import { join, isAbsolute, extname } from 'path';
+import { join, isAbsolute, extname, relative } from 'path';
 import { pathToFileURL } from 'url';
 import { cwd } from 'process';
 import { PuppeteerRunnerOwningBrowserExtension } from '../lib/main.js';
 import { Browser } from 'puppeteer';
+import Table from 'cli-table3';
+import colors from 'colors';
 
 export function getJSONFilesFromFolder(path: string): string[] {
   return readdirSync(path)
@@ -75,13 +77,67 @@ export function getHeadlessEnvVar(headless?: string) {
   }
 }
 
+type Result = {
+  startedAt: Date;
+  file: string;
+  finishedAt: Date;
+  passed: boolean;
+  title: string;
+};
+
+export function createStatusReport(results: Result[]): Table.Table {
+  const table = new Table({
+    head: ['Title', 'Status', 'File', 'Duration'],
+    chars: {
+      top: '═',
+      'top-mid': '╤',
+      'top-left': '╔',
+      'top-right': '╗',
+      bottom: '═',
+      'bottom-mid': '╧',
+      'bottom-left': '╚',
+      'bottom-right': '╝',
+      left: '║',
+      'left-mid': '╟',
+      mid: '─',
+      'mid-mid': '┼',
+      right: '║',
+      'right-mid': '╢',
+      middle: '│',
+    },
+    style: {
+      head: ['bold'],
+    },
+  });
+
+  const resultTextColor = colors.white;
+  for (const result of results) {
+    const row: string[] = [];
+
+    const duration =
+      result.finishedAt?.getTime()! - result.startedAt.getTime() || 0;
+    const status = result.passed
+      ? resultTextColor.bgGreen(' Passed ')
+      : resultTextColor.bgRed(' Failed ');
+
+    row.push(result.title);
+    row.push(status);
+    row.push(relative(process.cwd(), result.file));
+    row.push(`${duration}ms`);
+
+    table.push(row);
+  }
+
+  return table;
+}
+
 export async function runFiles(
   files: string[],
   opts: { log: boolean; headless: boolean | 'chrome'; extension?: string } = {
     log: false,
     headless: true,
   }
-): Promise<void> {
+): Promise<boolean> {
   let Extension = PuppeteerRunnerOwningBrowserExtension;
   let browser: Browser | undefined;
 
@@ -95,12 +151,24 @@ export async function runFiles(
     );
     Extension = module.default;
   }
+
+  const results: Result[] = [];
   for (const file of files) {
+    const result: Result = {
+      title: '',
+      startedAt: new Date(),
+      finishedAt: new Date(),
+      file,
+      passed: true,
+    };
+
     opts.log && console.log(`Running ${file}...`);
     try {
       const content = readFileSync(file, 'utf-8');
       const object = JSON.parse(content);
       const recording = parse(object);
+      result['title'] = recording.title;
+
       const { default: puppeteer } = await import('puppeteer');
       browser = await puppeteer.launch({
         headless: opts.headless,
@@ -112,9 +180,19 @@ export async function runFiles(
       opts.log && console.log(`Finished running ${file}`);
     } catch (err) {
       opts.log && console.error(`Error running ${file}`, err);
-      throw err;
+      result['passed'] = false;
     } finally {
+      result['finishedAt'] = new Date();
+      results.push(result);
+
       await browser?.close();
     }
   }
+
+  if (opts.log) {
+    const statusReport = createStatusReport(results);
+    console.log(statusReport.toString());
+  }
+
+  return results.every((result) => result.passed);
 }

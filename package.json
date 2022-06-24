@@ -79,6 +79,8 @@
     }
   },
   "dependencies": {
+    "cli-table3": "^0.6.2",
+    "colors": "^1.4.0",
     "yargs": "17.5.1"
   }
 }

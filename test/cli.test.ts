@@ -15,6 +15,7 @@
  */
 
 import {
+  createStatusReport,
   runFiles,
   getHeadlessEnvVar,
   getRecordingPaths,
@@ -23,6 +24,8 @@ import {
 import { assert } from 'chai';
 import path from 'path';
 import url from 'url';
+import { HorizontalTableRow } from 'cli-table3';
+import colors from 'colors';
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
@@ -34,14 +37,11 @@ enum Status {
 async function getStatus(
   asyncFn: () => Promise<unknown>
 ): Promise<typeof Status['Success'] | typeof Status['Error']> {
-  let error = undefined;
-  try {
-    await asyncFn();
-  } catch (err) {
-    error = err;
-  }
+  const result = await asyncFn();
 
-  return error ? Status.Error : Status.Success;
+  if (!result) return Status.Error;
+
+  return Status.Success;
 }
 
 describe('cli', () => {
@@ -112,6 +112,46 @@ describe('cli', () => {
       const files = getJSONFilesFromFolder(path.join(__dirname, 'resources'));
 
       assert.isTrue(files.every((file) => file.endsWith('.json')));
+    });
+  });
+
+  describe('createStatusReport', () => {
+    it('is able to create a successful status report', () => {
+      const date = new Date();
+      const result = {
+        startedAt: date,
+        file: path.join(__dirname, 'resources', 'replay-fail.json'),
+        finishedAt: new Date(date.getTime() + 1000),
+        passed: true,
+        title: 'Test run',
+      };
+      const [statusReport] = createStatusReport([result]);
+      const [title, status, file, duration] =
+        statusReport as HorizontalTableRow;
+
+      assert.strictEqual(status, colors.white.bgGreen(' Passed '));
+      assert.strictEqual(duration, '1000ms');
+      assert.isString(file);
+      assert.strictEqual(title, result.title);
+    });
+
+    it('is able to create a failed status report', () => {
+      const date = new Date();
+      const result = {
+        startedAt: date,
+        file: path.join(__dirname, 'resources', 'replay-fail.json'),
+        finishedAt: date,
+        passed: false,
+        title: 'Test run',
+      };
+      const [statusReport] = createStatusReport([result]);
+      const [title, status, file, duration] =
+        statusReport as HorizontalTableRow;
+
+      assert.strictEqual(status, colors.white.bgRed(' Failed '));
+      assert.strictEqual(duration, '0ms');
+      assert.isString(file);
+      assert.strictEqual(title, result.title);
     });
   });
 });

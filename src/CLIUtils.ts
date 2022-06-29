@@ -20,6 +20,7 @@ import { join, isAbsolute, extname } from 'path';
 import { pathToFileURL } from 'url';
 import { cwd } from 'process';
 import { PuppeteerRunnerOwningBrowserExtension } from '../lib/main.js';
+import { Browser } from 'puppeteer';
 
 export function getJSONFilesFromFolder(path: string): string[] {
   return readdirSync(path)
@@ -80,8 +81,10 @@ export async function runFiles(
     log: false,
     headless: true,
   }
-): Promise<boolean> {
+): Promise<void> {
   let Extension = PuppeteerRunnerOwningBrowserExtension;
+  let browser: Browser | undefined;
+
   if (opts.extension) {
     const module = await import(
       pathToFileURL(
@@ -99,7 +102,7 @@ export async function runFiles(
       const object = JSON.parse(content);
       const recording = parse(object);
       const { default: puppeteer } = await import('puppeteer');
-      const browser = await puppeteer.launch({
+      browser = await puppeteer.launch({
         headless: opts.headless,
       });
       const page = await browser.newPage();
@@ -109,8 +112,9 @@ export async function runFiles(
       opts.log && console.log(`Finished running ${file}`);
     } catch (err) {
       opts.log && console.error(`Error running ${file}`, err);
-      return false;
+      throw err;
+    } finally {
+      await browser?.close();
     }
   }
-  return true;
 }

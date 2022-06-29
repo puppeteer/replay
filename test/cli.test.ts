@@ -26,6 +26,26 @@ import url from 'url';
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
+// TODO(ergunsh): There was an issue with Eslint saying enums are not used
+// After fixing it, update this to be an enum
+const Status = {
+  Success: 1,
+  Error: 0,
+} as const;
+
+async function getStatus(
+  asyncFn: () => Promise<unknown>
+): Promise<typeof Status['Success'] | typeof Status['Error']> {
+  let error = undefined;
+  try {
+    await asyncFn();
+  } catch (err) {
+    error = err;
+  }
+
+  return error ? Status.Error : Status.Success;
+}
+
 describe('cli', () => {
   describe('getHeadlessEnvVar', () => {
     it('extracts the headless parameter from process.argv', () => {
@@ -42,33 +62,36 @@ describe('cli', () => {
 
   describe('runFiles', () => {
     it('is able to run successfully', async () => {
-      assert.isTrue(
-        await runFiles([path.join(__dirname, 'resources', 'replay.json')])
+      const result = await getStatus(() =>
+        runFiles([path.join(__dirname, 'resources', 'replay.json')])
       );
+      assert.strictEqual(result, Status.Success);
     });
 
     it('is not able to run', async () => {
-      assert.isFalse(
-        await runFiles([path.join(__dirname, 'resources', 'replay-fail.json')])
+      const result = await getStatus(() =>
+        runFiles([path.join(__dirname, 'resources', 'replay-fail.json')])
       );
+      assert.strictEqual(result, Status.Error);
     });
 
     it('is able to run able to run folder of recordings', async () => {
       const recordings = getJSONFilesFromFolder(
         path.join(__dirname, 'resources')
       );
-
-      assert.isFalse(await runFiles([...recordings]));
+      const result = await getStatus(() => runFiles([...recordings]));
+      assert.strictEqual(result, Status.Error);
     });
 
     it('is able to run successfully with an extension', async () => {
-      assert.isTrue(
-        await runFiles([path.join(__dirname, 'resources', 'replay.json')], {
+      const result = await getStatus(() =>
+        runFiles([path.join(__dirname, 'resources', 'replay.json')], {
           extension: path.join('examples', 'cli-extension', 'extension.js'),
           headless: true,
           log: false,
         })
       );
+      assert.strictEqual(result, Status.Success);
     });
   });
 

@@ -16,7 +16,31 @@
 
 import { PuppeteerRunnerOwningBrowserExtension } from './PuppeteerRunnerExtension.js';
 import { RunnerExtension } from './RunnerExtension.js';
-import { UserFlow } from './Schema.js';
+import {
+  UserFlow,
+  Step,
+  ClickStep,
+  SetViewportStep,
+  KeyDownStep,
+  KeyUpStep,
+  HoverStep,
+  CloseStep,
+  EmulateNetworkConditionsStep,
+  ChangeStep,
+  DoubleClickStep,
+  NavigateStep,
+  ScrollStep,
+} from './Schema.js';
+
+async function _runStepWithHooks(
+  extension: RunnerExtension,
+  step: Step,
+  flow?: UserFlow
+) {
+  await extension.beforeEachStep?.(step, flow);
+  await extension.runStep(step, flow);
+  await extension.afterEachStep?.(step, flow);
+}
 
 export class Runner {
   #flow: UserFlow;
@@ -35,26 +59,113 @@ export class Runner {
     this.#aborted = true;
   }
 
+  async runStep(step: Step): Promise<void> {
+    await _runStepWithHooks(this.#extension, step);
+  }
+
+  async click(step: Omit<ClickStep, 'type'>): Promise<void> {
+    await this.runStep({
+      type: 'click',
+      ...step,
+    });
+  }
+
+  async hover(step: Omit<HoverStep, 'type'>): Promise<void> {
+    await this.runStep({
+      type: 'hover',
+      ...step,
+    });
+  }
+
+  async keyDown(step: Omit<KeyDownStep, 'type'>): Promise<void> {
+    await this.runStep({
+      type: 'keyDown',
+      ...step,
+    });
+  }
+
+  async keyUp(step: Omit<KeyUpStep, 'type'>): Promise<void> {
+    await this.runStep({
+      type: 'keyUp',
+      ...step,
+    });
+  }
+
+  async setViewport(step: Omit<SetViewportStep, 'type'>): Promise<void> {
+    await this.runStep({
+      type: 'setViewport',
+      ...step,
+    });
+  }
+
+  async close(step: Omit<CloseStep, 'type'>): Promise<void> {
+    await this.runStep({
+      type: 'close',
+      ...step,
+    });
+  }
+
+  async emulateNetworkConditions(
+    step: Omit<EmulateNetworkConditionsStep, 'type'>
+  ): Promise<void> {
+    await this.runStep({
+      type: 'emulateNetworkConditions',
+      ...step,
+    });
+  }
+
+  async change(step: Omit<ChangeStep, 'type'>): Promise<void> {
+    await this.runStep({
+      type: 'change',
+      ...step,
+    });
+  }
+
+  async doubleClick(step: Omit<DoubleClickStep, 'type'>): Promise<void> {
+    await this.runStep({
+      type: 'doubleClick',
+      ...step,
+    });
+  }
+
+  async navigate(step: Omit<NavigateStep, 'type'>): Promise<void> {
+    await this.runStep({
+      type: 'navigate',
+      ...step,
+    });
+  }
+
+  async scroll(step: Omit<ScrollStep, 'type'>): Promise<void> {
+    await this.#extension.runStep({
+      type: 'scroll',
+      ...step,
+    });
+  }
+
   /**
    * Run all the steps in the flow
    * @returns whether all the steps are run or the execution is aborted
    */
   async run(): Promise<boolean> {
     this.#aborted = false;
+
     await this.#extension.beforeAllSteps?.(this.#flow);
 
-    let nextStepIndex = 0;
-    while (nextStepIndex < this.#flow.steps.length && !this.#aborted) {
-      const nextStep = this.#flow.steps[nextStepIndex]!;
-      await this.#extension.beforeEachStep?.(nextStep, this.#flow);
-      await this.#extension.runStep(nextStep, this.#flow);
-      await this.#extension.afterEachStep?.(nextStep, this.#flow);
-      nextStepIndex++;
+    if (this.#aborted) {
+      return false;
+    }
+
+    for (const step of this.#flow.steps) {
+      if (this.#aborted) {
+        await this.#extension.afterAllSteps?.(this.#flow);
+        return false;
+      }
+      await _runStepWithHooks(this.#extension, step, this.#flow);
     }
 
     await this.#extension.afterAllSteps?.(this.#flow);
 
-    return nextStepIndex >= this.#flow.steps.length;
+    return true;
   }
 }
 
@@ -62,13 +173,17 @@ export async function createRunner(
   flow: UserFlow,
   extension?: RunnerExtension
 ) {
-  if (!extension) {
-    const { default: puppeteer } = await import('puppeteer');
-    const browser = await puppeteer.launch({
-      headless: true,
-    });
-    const page = await browser.newPage();
-    extension = new PuppeteerRunnerOwningBrowserExtension(browser, page);
-  }
-  return new Runner(flow, extension);
+  return new Runner(
+    flow,
+    extension ?? (await createPuppeteerRunnerOwningBrowserExtension())
+  );
+}
+
+async function createPuppeteerRunnerOwningBrowserExtension() {
+  const { default: puppeteer } = await import('puppeteer');
+  const browser = await puppeteer.launch({
+    headless: true,
+  });
+  const page = await browser.newPage();
+  return new PuppeteerRunnerOwningBrowserExtension(browser, page);
 }

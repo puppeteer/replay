@@ -323,7 +323,7 @@ limitations under the License.
 
 #### Defined in
 
-[Runner.ts:61](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L61)
+[Runner.ts:172](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L172)
 
 ---
 

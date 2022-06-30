@@ -55,11 +55,11 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
     }
   }
 
-  #getTimeoutForStep(step: Step, flow: UserFlow): number {
-    return step.timeout || flow.timeout || this.timeout;
+  #getTimeoutForStep(step: Step, flow?: UserFlow): number {
+    return step.timeout || flow?.timeout || this.timeout;
   }
 
-  override async runStep(step: Step, flow: UserFlow): Promise<void> {
+  override async runStep(step: Step, flow?: UserFlow): Promise<void> {
     const timeout = this.#getTimeoutForStep(step, flow);
     const page = this.page;
     const browser = this.browser;

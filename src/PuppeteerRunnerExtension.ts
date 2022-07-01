@@ -14,7 +14,9 @@
     limitations under the License.
  */
 
-import { Browser, Page, Frame, ElementHandle } from 'puppeteer';
+import { Browser, ElementHandle, Frame, Page } from 'puppeteer';
+import { Page as InternalPage } from 'puppeteer/lib/esm/puppeteer/common/Page.js';
+import { Frame as InternalFrame } from 'puppeteer/lib/esm/puppeteer/common/FrameManager.js';
 import { RunnerExtension } from './RunnerExtension.js';
 import {
   UserFlow,
@@ -43,7 +45,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
 
   async #ensureAutomationEmulatation(pageOrFrame: Page | Frame) {
     try {
-      await pageOrFrame
+      await (pageOrFrame as unknown as InternalPage | InternalFrame)
         ._client()
         .send('Emulation.setAutomationOverride', { enabled: true });
     } catch {

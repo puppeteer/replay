@@ -17,6 +17,8 @@ module.exports = {
     'no-redeclare': 0,
     'valid-jsdoc': 0, // Figure jsdoc once we look into documentation.
     'tsdoc/syntax': 'warn',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
   },
   ignorePatterns: ['third_party/**/*'],
 };

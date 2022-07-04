@@ -26,12 +26,10 @@ import url from 'url';
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
-// TODO(ergunsh): There was an issue with Eslint saying enums are not used
-// After fixing it, update this to be an enum
-const Status = {
-  Success: 1,
-  Error: 0,
-} as const;
+enum Status {
+  Success = 1,
+  Error = 0,
+}
 
 async function getStatus(
   asyncFn: () => Promise<unknown>

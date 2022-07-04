@@ -7,3 +7,4 @@ yarn.lock
 lib
 coverage/
 package-lock.json
+tsconfig.tsbuildinfo

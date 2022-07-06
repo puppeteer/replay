@@ -43,7 +43,7 @@
 
 #### Defined in
 
-[PuppeteerRunnerExtension.ts:37](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L37)
+[PuppeteerRunnerExtension.ts:39](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L39)
 
 ## Methods
 
@@ -61,7 +61,7 @@
 
 #### Defined in
 
-[PuppeteerRunnerExtension.ts:350](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L350)
+[PuppeteerRunnerExtension.ts:361](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L361)
 
 ---
 
@@ -160,4 +160,4 @@
 
 #### Defined in
 
-[PuppeteerRunnerExtension.ts:58](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L58)
+[PuppeteerRunnerExtension.ts:60](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L60)

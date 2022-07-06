@@ -15,15 +15,15 @@
  */
 
 import { Browser, ElementHandle, Frame, Page } from 'puppeteer';
-import { Page as InternalPage } from 'puppeteer/lib/esm/puppeteer/common/Page.js';
 import { Frame as InternalFrame } from 'puppeteer/lib/esm/puppeteer/common/FrameManager.js';
+import { Page as InternalPage } from 'puppeteer/lib/esm/puppeteer/common/Page.js';
 import { RunnerExtension } from './RunnerExtension.js';
 import {
-  UserFlow,
-  Step,
-  WaitForElementStep,
-  Selector,
   ChangeStep,
+  Selector,
+  Step,
+  UserFlow,
+  WaitForElementStep,
 } from './Schema.js';
 import {
   assertAllStepTypesAreHandled,
@@ -198,14 +198,15 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         break;
       case 'change':
         {
-          const element = await waitForSelectors(step.selectors, localFrame, {
+          const element = (await waitForSelectors(step.selectors, localFrame, {
             timeout,
             visible: waitForVisible,
-          });
+          })) as ElementHandle<HTMLInputElement>;
           await scrollIntoViewIfNeeded(element, timeout);
           const inputType = await element.evaluate(
-            /* c8 ignore next 1 */
-            (el: Element) => (el as HTMLInputElement).type
+            /* c8 ignore start */
+            (el) => el.type
+            /* c8 ignore stop */
           );
           startWaitingForEvents();
           if (inputType === 'select-one') {
@@ -234,10 +235,11 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
           await scrollIntoViewIfNeeded(element, timeout);
           startWaitingForEvents();
           await element.evaluate(
-            (e: Element, x: number, y: number) => {
-              /* c8 ignore next 2 */
+            (e, x, y) => {
+              /* c8 ignore start */
               e.scrollTop = y;
               e.scrollLeft = x;
+              /* c8 ignore stop */
             },
             step.x || 0,
             step.y || 0
@@ -247,8 +249,9 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
           startWaitingForEvents();
           await localFrame.evaluate(
             (x, y) => {
-              /* c8 ignore next 1 */
+              /* c8 ignore start */
               window.scroll(x, y);
+              /* c8 ignore stop */
             },
             step.x || 0,
             step.y || 0
@@ -297,53 +300,59 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
   /**
    * @internal
    */
-  async typeIntoElement(step: ChangeStep, element: ElementHandle<Element>) {
-    const textToType = await element.evaluate(
-      (el: Element, newValue: string) => {
-        /* c8 ignore next 13 */
-        const input = el as HTMLInputElement;
-        if (
-          newValue.length <= input.value.length ||
-          !newValue.startsWith(input.value)
-        ) {
-          input.value = '';
-          return newValue;
-        }
-        const originalValue = input.value;
-        // Move cursor to the end of the common prefix.
+  async typeIntoElement(
+    step: ChangeStep,
+    element: ElementHandle<HTMLInputElement>
+  ) {
+    const textToType = await element.evaluate((input, newValue) => {
+      /* c8 ignore start */
+      if (
+        newValue.length <= input.value.length ||
+        !newValue.startsWith(input.value)
+      ) {
         input.value = '';
-        input.value = originalValue;
-        return newValue.substring(originalValue.length);
-      },
-      step.value
-    );
+        return newValue;
+      }
+      const originalValue = input.value;
+      // Move cursor to the end of the common prefix.
+      input.value = '';
+      input.value = originalValue;
+      return newValue.substring(originalValue.length);
+      /* c8 ignore stop */
+    }, step.value);
     await element.type(textToType);
   }
 
   /**
    * @internal
    */
-  async changeElementValue(step: ChangeStep, element: ElementHandle<Element>) {
+  async changeElementValue(
+    step: ChangeStep,
+    element: ElementHandle<HTMLInputElement>
+  ) {
     await element.focus();
-    await element.evaluate((el: Element, value: string) => {
-      /* c8 ignore next 4 */
-      const input = el as HTMLInputElement;
+    await element.evaluate((input, value) => {
+      /* c8 ignore start */
       input.value = value;
       input.dispatchEvent(new Event('input', { bubbles: true }));
       input.dispatchEvent(new Event('change', { bubbles: true }));
+      /* c8 ignore stop */
     }, step.value);
   }
 
   /**
    * @internal
    */
-  async changeSelectElement(step: ChangeStep, element: ElementHandle<Element>) {
+  async changeSelectElement(
+    step: ChangeStep,
+    element: ElementHandle<HTMLElement>
+  ) {
     await element.select(step.value);
-    await element.evaluateHandle((el: Element) => {
-      /* c8 ignore next 3 */
-      const htmlEl = el as HTMLElement;
-      htmlEl.blur();
-      htmlEl.focus();
+    await element.evaluateHandle((e) => {
+      /* c8 ignore start */
+      e.blur();
+      e.focus();
+      /* c8 ignore stop */
     });
   }
 }
@@ -435,17 +444,30 @@ async function waitForElement(
   }, timeout);
 }
 
+const asSVGElementHandle = async (
+  handle: ElementHandle<Element>
+): Promise<ElementHandle<SVGElement> | null> => {
+  if (
+    await handle.evaluate((element) => {
+      /* c8 ignore start */
+      return element instanceof SVGElement;
+      /* c8 ignore stop */
+    })
+  ) {
+    return handle as ElementHandle<SVGElement>;
+  } else {
+    return null;
+  }
+};
+
 async function scrollIntoViewIfNeeded(
   element: ElementHandle<Element>,
   timeout: number
 ): Promise<void> {
   await waitForConnected(element, timeout);
-  const isSvg = await element.evaluate((element: Element) => {
-    /* c8 ignore next 1 */
-    return element instanceof SVGElement;
-  });
-  const intersectionTarget = isSvg
-    ? await getOwnerSVGElement(element)
+  const svgHandle = await asSVGElementHandle(element);
+  const intersectionTarget = svgHandle
+    ? await getOwnerSVGElement(svgHandle)
     : element;
   const isInViewport = intersectionTarget
     ? await intersectionTarget.isIntersectingViewport({ threshold: 0 })
@@ -460,24 +482,24 @@ async function scrollIntoViewIfNeeded(
 }
 
 async function getOwnerSVGElement(
-  element: ElementHandle<Element>
-): Promise<ElementHandle<Element> | null> {
-  return (
-    await element.evaluateHandle((element: Element) => {
-      /* c8 ignore next 1 */
-      return (element as SVGElement).ownerSVGElement;
-    })
-  ).asElement();
+  handle: ElementHandle<SVGElement>
+): Promise<ElementHandle<SVGSVGElement>> {
+  return await handle.evaluateHandle((element) => {
+    /* c8 ignore start */
+    return element.ownerSVGElement!;
+    /* c8 ignore stop */
+  });
 }
 
 async function scrollIntoView(element: ElementHandle<Element>): Promise<void> {
-  await element.evaluate((element: Element) => {
-    /* c8 ignore next 5 */
+  await element.evaluate((element) => {
+    /* c8 ignore start */
     element.scrollIntoView({
       block: 'center',
       inline: 'center',
       behavior: 'auto',
     });
+    /* c8 ignore stop */
   });
 }
 
@@ -486,8 +508,9 @@ async function waitForConnected(
   timeout: number
 ): Promise<void> {
   await waitForFunction(async () => {
-    /* c8 ignore next 1 */
-    return await element.evaluate((el: Element) => el.isConnected);
+    /* c8 ignore start */
+    return await element.evaluate((el) => el.isConnected);
+    /* c8 ignore stop */
   }, timeout);
 }
 
@@ -532,36 +555,24 @@ async function waitForSelector(
     selector = [selector];
   }
   if (!selector.length) {
-    throw new Error('Empty selector provided to waitForSelector');
+    throw new Error('Empty selector provided to `waitForSelector`');
   }
-  let element = null;
-  for (let i = 0; i < selector.length; i++) {
-    const part = selector[i]!;
-    if (!element) {
-      element = await frame.waitForSelector(part, options);
-    } else {
-      const oldElement = element;
-      element = await element.waitForSelector(part, options);
-      await oldElement.dispose();
-    }
-    if (!element) {
+  let handle = await frame.waitForSelector(selector[0]!, options);
+  for (const part of selector.slice(1, selector.length)) {
+    if (!handle) {
       throw new Error('Could not find element: ' + selector.join('>>'));
     }
-    if (i < selector.length - 1) {
-      // if not the last part, try to navigate into shadowRoot
-      const oldElement = element;
-      element = (
-        await element.evaluateHandle((el: Element) =>
-          el.shadowRoot ? el.shadowRoot : el
-        )
-      ).asElement();
-      await oldElement.dispose();
-    }
+    const innerHandle = await handle.evaluateHandle((el) =>
+      el.shadowRoot ? el.shadowRoot : el
+    );
+    handle.dispose();
+    handle = await innerHandle.waitForSelector(part, options);
+    innerHandle.dispose();
   }
-  if (!element) {
-    throw new Error('Could not find element: ' + selector.join('|'));
+  if (!handle) {
+    throw new Error('Could not find element: ' + selector.join('>>'));
   }
-  return element;
+  return handle;
 }
 
 async function querySelectorsAll(
@@ -587,40 +598,29 @@ async function querySelectorAll(
   if (!selector.length) {
     throw new Error('Empty selector provided to querySelectorAll');
   }
-  let elements: ElementHandle<Element>[] = [];
-  for (let i = 0; i < selector.length; i++) {
-    const part = selector[i]!;
-    if (i === 0) {
-      elements = await frame.$$(part);
-    } else {
-      const tmpElements = elements;
-      elements = [];
-      for (const el of tmpElements) {
-        elements.push(...(await el.$$(part)));
-        await el.dispose();
-      }
-    }
-    if (elements.length === 0) {
+  let elementHandles = await frame.$$(selector[0]!);
+  if (!elementHandles.length) {
+    return [];
+  }
+  for (const part of selector.slice(1, selector.length)) {
+    elementHandles = (
+      await Promise.all(
+        elementHandles.map(async (handle) => {
+          const innerHandle = await handle.evaluateHandle((el) =>
+            el.shadowRoot ? el.shadowRoot : el
+          );
+          const elementHandles = await innerHandle.$$(part);
+          innerHandle.dispose();
+          handle.dispose();
+          return elementHandles;
+        })
+      )
+    ).flat();
+    if (!elementHandles.length) {
       return [];
     }
-    if (i < selector.length - 1) {
-      const tmpElements: ElementHandle<Element>[] = [];
-      // if not the last part, try to navigate into shadowRoot
-      for (const el of elements) {
-        const newEl = (
-          await el.evaluateHandle((el: Element) =>
-            el.shadowRoot ? el.shadowRoot : el
-          )
-        ).asElement();
-        if (newEl) {
-          tmpElements.push(newEl);
-        }
-        await el.dispose();
-      }
-      elements = tmpElements;
-    }
   }
-  return elements;
+  return elementHandles;
 }
 
 async function waitForFunction(

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.1](https://github.com/puppeteer/replay/compare/v0.5.0...v0.5.1) (2022-07-06)
+
+
+### Bug Fixes
+
+* close browser after run and throw errors ([#211](https://github.com/puppeteer/replay/issues/211)) ([95a1575](https://github.com/puppeteer/replay/commit/95a1575b897ed87ceef39574911ddcc35bd339be))
+
 ## [0.5.0](https://github.com/puppeteer/replay/compare/v0.4.0...v0.5.0) (2022-06-22)
 
 

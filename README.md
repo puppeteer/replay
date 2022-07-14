@@ -109,7 +109,7 @@ the `PuppeteerRunnerExtension` class as shown in the example below.
 Full example of the `PuppeteerRunnerExtension`: [link](/examples/extend-runner/main.js)
 
 ```js
-import { createRunner, PuppeteerRunnerExtension } from '../../lib/main.js';
+import { createRunner, PuppeteerRunnerExtension } from '@puppeteer/replay';
 import puppeteer from 'puppeteer';
 
 const browser = await puppeteer.launch({

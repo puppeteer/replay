@@ -167,7 +167,7 @@ export async function runFiles(
       const content = readFileSync(file, 'utf-8');
       const object = JSON.parse(content);
       const recording = parse(object);
-      result['title'] = recording.title;
+      result.title = recording.title;
 
       const { default: puppeteer } = await import('puppeteer');
       browser = await puppeteer.launch({
@@ -180,9 +180,9 @@ export async function runFiles(
       opts.log && console.log(`Finished running ${file}`);
     } catch (err) {
       opts.log && console.error(`Error running ${file}`, err);
-      result['passed'] = false;
+      result.passed = false;
     } finally {
-      result['finishedAt'] = new Date();
+      result.finishedAt = new Date();
       results.push(result);
 
       await browser?.close();

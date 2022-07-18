@@ -125,14 +125,14 @@ describe('cli', () => {
         startedAt: date,
         file: path.join(__dirname, 'resources', 'replay-fail.json'),
         finishedAt: new Date(date.getTime() + 1000),
-        passed: true,
+        success: true,
         title: 'Test run',
       };
       const [statusReport] = createStatusReport([result]);
       const [title, status, file, duration] =
         statusReport as HorizontalTableRow;
 
-      assert.strictEqual(status, colors.white.bgGreen(' Passed '));
+      assert.strictEqual(status, colors.white.bgGreen(' Success '));
       assert.strictEqual(duration, '1000ms');
       assert.isString(file);
       assert.strictEqual(title, result.title);
@@ -144,14 +144,14 @@ describe('cli', () => {
         startedAt: date,
         file: path.join(__dirname, 'resources', 'replay-fail.json'),
         finishedAt: date,
-        passed: false,
+        success: false,
         title: 'Test run',
       };
       const [statusReport] = createStatusReport([result]);
       const [title, status, file, duration] =
         statusReport as HorizontalTableRow;
 
-      assert.strictEqual(status, colors.white.bgRed(' Failed '));
+      assert.strictEqual(status, colors.white.bgRed(' Failure '));
       assert.strictEqual(duration, '0ms');
       assert.isString(file);
       assert.strictEqual(title, result.title);

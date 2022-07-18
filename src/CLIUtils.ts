@@ -81,7 +81,7 @@ type Result = {
   startedAt: Date;
   file: string;
   finishedAt: Date;
-  passed: boolean;
+  success: boolean;
   title: string;
 };
 
@@ -116,9 +116,9 @@ export function createStatusReport(results: Result[]): Table.Table {
 
     const duration =
       result.finishedAt?.getTime()! - result.startedAt.getTime() || 0;
-    const status = result.passed
-      ? resultTextColor.bgGreen(' Passed ')
-      : resultTextColor.bgRed(' Failed ');
+    const status = result.success
+      ? resultTextColor.bgGreen(' Success ')
+      : resultTextColor.bgRed(' Failure ');
 
     row.push(result.title);
     row.push(status);
@@ -159,7 +159,7 @@ export async function runFiles(
       startedAt: new Date(),
       finishedAt: new Date(),
       file,
-      passed: true,
+      success: true,
     };
 
     opts.log && console.log(`Running ${file}...`);
@@ -180,7 +180,7 @@ export async function runFiles(
       opts.log && console.log(`Finished running ${file}`);
     } catch (err) {
       opts.log && console.error(`Error running ${file}`, err);
-      result.passed = false;
+      result.success = false;
     } finally {
       result.finishedAt = new Date();
       results.push(result);
@@ -194,7 +194,7 @@ export async function runFiles(
     console.log(statusReport.toString());
   }
 
-  if (results.every((result) => result.passed)) return;
+  if (results.every((result) => result.success)) return;
 
   throw new Error('Some recordings have failed to run.');
 }

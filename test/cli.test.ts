@@ -37,11 +37,14 @@ enum Status {
 async function getStatus(
   asyncFn: () => Promise<unknown>
 ): Promise<typeof Status['Success'] | typeof Status['Error']> {
-  const result = await asyncFn();
+  let error = undefined;
+  try {
+    await asyncFn();
+  } catch (err) {
+    error = err;
+  }
 
-  if (!result) return Status.Error;
-
-  return Status.Success;
+  return error ? Status.Error : Status.Success;
 }
 
 describe('cli', () => {

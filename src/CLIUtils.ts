@@ -137,7 +137,7 @@ export async function runFiles(
     log: false,
     headless: true,
   }
-): Promise<boolean> {
+): Promise<void> {
   let Extension = PuppeteerRunnerOwningBrowserExtension;
   let browser: Browser | undefined;
 
@@ -194,5 +194,7 @@ export async function runFiles(
     console.log(statusReport.toString());
   }
 
-  return results.every((result) => result.passed);
+  if (results.every((result) => result.passed)) return;
+
+  throw new Error('Some recordings have failed to run.');
 }

@@ -17,6 +17,7 @@
 /**
  * @packageDocumentation
  */
+export * from './Schema.js';
 export * as Schema from './Schema.js';
 export { parse, parseStep } from './SchemaUtils.js';
 export { StringifyExtension } from './StringifyExtension.js';

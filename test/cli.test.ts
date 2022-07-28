@@ -25,7 +25,7 @@ import { assert } from 'chai';
 import path from 'path';
 import url from 'url';
 import { HorizontalTableRow } from 'cli-table3';
-import colors from 'colors';
+import { bgGreen, bgRed, white } from 'colorette';
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
@@ -132,7 +132,7 @@ describe('cli', () => {
       const [title, status, file, duration] =
         statusReport as HorizontalTableRow;
 
-      assert.strictEqual(status, colors.white.bgGreen(' Success '));
+      assert.strictEqual(status, white(bgGreen(' Success ')));
       assert.strictEqual(duration, '1000ms');
       assert.isString(file);
       assert.strictEqual(title, result.title);
@@ -151,7 +151,7 @@ describe('cli', () => {
       const [title, status, file, duration] =
         statusReport as HorizontalTableRow;
 
-      assert.strictEqual(status, colors.white.bgRed(' Failure '));
+      assert.strictEqual(status, white(bgRed(' Failure ')));
       assert.strictEqual(duration, '0ms');
       assert.isString(file);
       assert.strictEqual(title, result.title);

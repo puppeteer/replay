@@ -1,8 +1,6 @@
-[@puppeteer/replay](../README.md) / [Schema](../modules/Schema.md) / StepWithTarget
+[@puppeteer/replay](../README.md) / StepWithTarget
 
 # Interface: StepWithTarget
-
-[Schema](../modules/Schema.md).StepWithTarget
 
 ## Hierarchy
 
@@ -10,42 +8,14 @@
 
   ↳ **`StepWithTarget`**
 
-  ↳↳ [`StepWithFrame`](Schema.StepWithFrame.md)
-
-  ↳↳ [`EmulateNetworkConditionsStep`](Schema.EmulateNetworkConditionsStep.md)
-
-  ↳↳ [`KeyDownStep`](Schema.KeyDownStep.md)
-
-  ↳↳ [`KeyUpStep`](Schema.KeyUpStep.md)
-
-  ↳↳ [`CloseStep`](Schema.CloseStep.md)
-
-  ↳↳ [`SetViewportStep`](Schema.SetViewportStep.md)
-
-  ↳↳ [`NavigateStep`](Schema.NavigateStep.md)
-
-  ↳↳ [`StepWithFrame`](StepWithFrame.md)
-
-  ↳↳ [`EmulateNetworkConditionsStep`](EmulateNetworkConditionsStep.md)
-
-  ↳↳ [`KeyDownStep`](KeyDownStep.md)
-
-  ↳↳ [`KeyUpStep`](KeyUpStep.md)
-
-  ↳↳ [`CloseStep`](CloseStep.md)
-
-  ↳↳ [`SetViewportStep`](SetViewportStep.md)
-
-  ↳↳ [`NavigateStep`](NavigateStep.md)
-
 ## Table of contents
 
 ### Properties
 
-- [assertedEvents](Schema.StepWithTarget.md#assertedevents)
-- [target](Schema.StepWithTarget.md#target)
-- [timeout](Schema.StepWithTarget.md#timeout)
-- [type](Schema.StepWithTarget.md#type)
+- [assertedEvents](StepWithTarget.md#assertedevents)
+- [target](StepWithTarget.md#target)
+- [timeout](StepWithTarget.md#timeout)
+- [type](StepWithTarget.md#type)
 
 ## Properties
 

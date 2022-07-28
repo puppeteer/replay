@@ -1,8 +1,6 @@
-[@puppeteer/replay](../README.md) / [Schema](../modules/Schema.md) / StepWithSelectors
+[@puppeteer/replay](../README.md) / StepWithSelectors
 
 # Interface: StepWithSelectors
-
-[Schema](../modules/Schema.md).StepWithSelectors
 
 ## Hierarchy
 
@@ -10,36 +8,16 @@
 
   ↳ **`StepWithSelectors`**
 
-  ↳↳ [`DoubleClickStep`](Schema.DoubleClickStep.md)
-
-  ↳↳ [`ClickStep`](Schema.ClickStep.md)
-
-  ↳↳ [`HoverStep`](Schema.HoverStep.md)
-
-  ↳↳ [`ChangeStep`](Schema.ChangeStep.md)
-
-  ↳↳ [`WaitForElementStep`](Schema.WaitForElementStep.md)
-
-  ↳↳ [`DoubleClickStep`](DoubleClickStep.md)
-
-  ↳↳ [`ClickStep`](ClickStep.md)
-
-  ↳↳ [`HoverStep`](HoverStep.md)
-
-  ↳↳ [`ChangeStep`](ChangeStep.md)
-
-  ↳↳ [`WaitForElementStep`](WaitForElementStep.md)
-
 ## Table of contents
 
 ### Properties
 
-- [assertedEvents](Schema.StepWithSelectors.md#assertedevents)
-- [frame](Schema.StepWithSelectors.md#frame)
-- [selectors](Schema.StepWithSelectors.md#selectors)
-- [target](Schema.StepWithSelectors.md#target)
-- [timeout](Schema.StepWithSelectors.md#timeout)
-- [type](Schema.StepWithSelectors.md#type)
+- [assertedEvents](StepWithSelectors.md#assertedevents)
+- [frame](StepWithSelectors.md#frame)
+- [selectors](StepWithSelectors.md#selectors)
+- [target](StepWithSelectors.md#target)
+- [timeout](StepWithSelectors.md#timeout)
+- [type](StepWithSelectors.md#type)
 
 ## Properties
 

@@ -1,24 +1,14 @@
-[@puppeteer/replay](../README.md) / [Schema](../modules/Schema.md) / BaseStep
+[@puppeteer/replay](../README.md) / BaseStep
 
 # Interface: BaseStep
-
-[Schema](../modules/Schema.md).BaseStep
-
-## Hierarchy
-
-- **`BaseStep`**
-
-  ↳ [`StepWithTarget`](Schema.StepWithTarget.md)
-
-  ↳ [`StepWithTarget`](StepWithTarget.md)
 
 ## Table of contents
 
 ### Properties
 
-- [assertedEvents](Schema.BaseStep.md#assertedevents)
-- [timeout](Schema.BaseStep.md#timeout)
-- [type](Schema.BaseStep.md#type)
+- [assertedEvents](BaseStep.md#assertedevents)
+- [timeout](BaseStep.md#timeout)
+- [type](BaseStep.md#type)
 
 ## Properties
 

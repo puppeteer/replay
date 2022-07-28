@@ -1,36 +1,24 @@
-[@puppeteer/replay](../README.md) / [Schema](../modules/Schema.md) / StepWithFrame
+[@puppeteer/replay](../README.md) / EmulateNetworkConditionsStep
 
-# Interface: StepWithFrame
-
-[Schema](../modules/Schema.md).StepWithFrame
+# Interface: EmulateNetworkConditionsStep
 
 ## Hierarchy
 
 - [`StepWithTarget`](Schema.StepWithTarget.md)
 
-  ↳ **`StepWithFrame`**
-
-  ↳↳ [`StepWithSelectors`](Schema.StepWithSelectors.md)
-
-  ↳↳ [`ScrollPageStep`](Schema.ScrollPageStep.md)
-
-  ↳↳ [`WaitForExpressionStep`](Schema.WaitForExpressionStep.md)
-
-  ↳↳ [`StepWithSelectors`](StepWithSelectors.md)
-
-  ↳↳ [`ScrollPageStep`](ScrollPageStep.md)
-
-  ↳↳ [`WaitForExpressionStep`](WaitForExpressionStep.md)
+  ↳ **`EmulateNetworkConditionsStep`**
 
 ## Table of contents
 
 ### Properties
 
-- [assertedEvents](Schema.StepWithFrame.md#assertedevents)
-- [frame](Schema.StepWithFrame.md#frame)
-- [target](Schema.StepWithFrame.md#target)
-- [timeout](Schema.StepWithFrame.md#timeout)
-- [type](Schema.StepWithFrame.md#type)
+- [assertedEvents](EmulateNetworkConditionsStep.md#assertedevents)
+- [download](EmulateNetworkConditionsStep.md#download)
+- [latency](EmulateNetworkConditionsStep.md#latency)
+- [target](EmulateNetworkConditionsStep.md#target)
+- [timeout](EmulateNetworkConditionsStep.md#timeout)
+- [type](EmulateNetworkConditionsStep.md#type)
+- [upload](EmulateNetworkConditionsStep.md#upload)
 
 ## Properties
 
@@ -48,15 +36,23 @@
 
 ---
 
-### frame
+### download
 
-• `Optional` **frame**: [`FrameSelector`](../modules/Schema.md#frameselector)
-
-Defaults to main frame
+• **download**: `number`
 
 #### Defined in
 
-[Schema.ts:47](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L47)
+[Schema.ts:119](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L119)
+
+---
+
+### latency
+
+• **latency**: `number`
+
+#### Defined in
+
+[Schema.ts:121](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L121)
 
 ---
 
@@ -92,12 +88,22 @@ Defaults to main
 
 ### type
 
-• **type**: `string`
+• **type**: `"emulateNetworkConditions"`
 
-#### Inherited from
+#### Overrides
 
 [StepWithTarget](Schema.StepWithTarget.md).[type](Schema.StepWithTarget.md#type)
 
 #### Defined in
 
-[Schema.ts:31](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L31)
+[Schema.ts:118](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L118)
+
+---
+
+### upload
+
+• **upload**: `number`
+
+#### Defined in
+
+[Schema.ts:120](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L120)

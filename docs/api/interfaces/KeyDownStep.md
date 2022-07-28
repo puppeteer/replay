@@ -1,36 +1,22 @@
-[@puppeteer/replay](../README.md) / [Schema](../modules/Schema.md) / StepWithFrame
+[@puppeteer/replay](../README.md) / KeyDownStep
 
-# Interface: StepWithFrame
-
-[Schema](../modules/Schema.md).StepWithFrame
+# Interface: KeyDownStep
 
 ## Hierarchy
 
 - [`StepWithTarget`](Schema.StepWithTarget.md)
 
-  ↳ **`StepWithFrame`**
-
-  ↳↳ [`StepWithSelectors`](Schema.StepWithSelectors.md)
-
-  ↳↳ [`ScrollPageStep`](Schema.ScrollPageStep.md)
-
-  ↳↳ [`WaitForExpressionStep`](Schema.WaitForExpressionStep.md)
-
-  ↳↳ [`StepWithSelectors`](StepWithSelectors.md)
-
-  ↳↳ [`ScrollPageStep`](ScrollPageStep.md)
-
-  ↳↳ [`WaitForExpressionStep`](WaitForExpressionStep.md)
+  ↳ **`KeyDownStep`**
 
 ## Table of contents
 
 ### Properties
 
-- [assertedEvents](Schema.StepWithFrame.md#assertedevents)
-- [frame](Schema.StepWithFrame.md#frame)
-- [target](Schema.StepWithFrame.md#target)
-- [timeout](Schema.StepWithFrame.md#timeout)
-- [type](Schema.StepWithFrame.md#type)
+- [assertedEvents](KeyDownStep.md#assertedevents)
+- [key](KeyDownStep.md#key)
+- [target](KeyDownStep.md#target)
+- [timeout](KeyDownStep.md#timeout)
+- [type](KeyDownStep.md#type)
 
 ## Properties
 
@@ -48,15 +34,13 @@
 
 ---
 
-### frame
+### key
 
-• `Optional` **frame**: [`FrameSelector`](../modules/Schema.md#frameselector)
-
-Defaults to main frame
+• **key**: [`Key`](../modules/Schema.md#key)
 
 #### Defined in
 
-[Schema.ts:47](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L47)
+[Schema.ts:126](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L126)
 
 ---
 
@@ -92,12 +76,12 @@ Defaults to main
 
 ### type
 
-• **type**: `string`
+• **type**: `"keyDown"`
 
-#### Inherited from
+#### Overrides
 
 [StepWithTarget](Schema.StepWithTarget.md).[type](Schema.StepWithTarget.md#type)
 
 #### Defined in
 
-[Schema.ts:31](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L31)
+[Schema.ts:125](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L125)

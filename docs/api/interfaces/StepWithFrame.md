@@ -1,8 +1,6 @@
-[@puppeteer/replay](../README.md) / [Schema](../modules/Schema.md) / StepWithFrame
+[@puppeteer/replay](../README.md) / StepWithFrame
 
 # Interface: StepWithFrame
-
-[Schema](../modules/Schema.md).StepWithFrame
 
 ## Hierarchy
 
@@ -10,27 +8,15 @@
 
   ↳ **`StepWithFrame`**
 
-  ↳↳ [`StepWithSelectors`](Schema.StepWithSelectors.md)
-
-  ↳↳ [`ScrollPageStep`](Schema.ScrollPageStep.md)
-
-  ↳↳ [`WaitForExpressionStep`](Schema.WaitForExpressionStep.md)
-
-  ↳↳ [`StepWithSelectors`](StepWithSelectors.md)
-
-  ↳↳ [`ScrollPageStep`](ScrollPageStep.md)
-
-  ↳↳ [`WaitForExpressionStep`](WaitForExpressionStep.md)
-
 ## Table of contents
 
 ### Properties
 
-- [assertedEvents](Schema.StepWithFrame.md#assertedevents)
-- [frame](Schema.StepWithFrame.md#frame)
-- [target](Schema.StepWithFrame.md#target)
-- [timeout](Schema.StepWithFrame.md#timeout)
-- [type](Schema.StepWithFrame.md#type)
+- [assertedEvents](StepWithFrame.md#assertedevents)
+- [frame](StepWithFrame.md#frame)
+- [target](StepWithFrame.md#target)
+- [timeout](StepWithFrame.md#timeout)
+- [type](StepWithFrame.md#type)
 
 ## Properties
 

@@ -1,29 +1,15 @@
-[@puppeteer/replay](../README.md) / [Schema](../modules/Schema.md) / ClickAttributes
+[@puppeteer/replay](../README.md) / ClickAttributes
 
 # Interface: ClickAttributes
-
-[Schema](../modules/Schema.md).ClickAttributes
-
-## Hierarchy
-
-- **`ClickAttributes`**
-
-  ↳ [`DoubleClickStep`](Schema.DoubleClickStep.md)
-
-  ↳ [`ClickStep`](Schema.ClickStep.md)
-
-  ↳ [`DoubleClickStep`](DoubleClickStep.md)
-
-  ↳ [`ClickStep`](ClickStep.md)
 
 ## Table of contents
 
 ### Properties
 
-- [button](Schema.ClickAttributes.md#button)
-- [deviceType](Schema.ClickAttributes.md#devicetype)
-- [offsetX](Schema.ClickAttributes.md#offsetx)
-- [offsetY](Schema.ClickAttributes.md#offsety)
+- [button](ClickAttributes.md#button)
+- [deviceType](ClickAttributes.md#devicetype)
+- [offsetX](ClickAttributes.md#offsetx)
+- [offsetY](ClickAttributes.md#offsety)
 
 ## Properties
 

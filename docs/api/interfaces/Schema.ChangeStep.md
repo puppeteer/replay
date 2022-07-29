@@ -61,7 +61,7 @@ Defaults to main frame
 A list of alternative selectors that lead to selection of a single element to perform the step on.
 Currently, we support CSS selectors and ARIA selectors (start with 'aria/'). Each selector
 could be a string or an array of strings. If it's a string, it means that the selector points directly to the target
-element. If it's an array, the last element is the selector for the target element and the preceeding selectors
+element. If it's an array, the last element is the selector for the target element and the preceding selectors
 point to the ancestor elements. If the parent element is a shadow root host, the subsequent
 selector is evaluated only against the shadow DOM of the host (i.e., `parent.shadowRoot.querySelector`). If the parent
 element is not a shadow root host, the subsequent selector is evaluated in the regular DOM (i.e., `parent.querySelector`).

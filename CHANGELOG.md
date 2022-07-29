@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.0](https://github.com/puppeteer/replay/compare/v0.5.1...v0.6.0) (2022-07-29)
+
+
+### Features
+
+* implement status report ([#224](https://github.com/puppeteer/replay/issues/224)) ([d9c368f](https://github.com/puppeteer/replay/commit/d9c368fc6c2328d9c111f0708fd2ba180525d38d))
+
 ## [0.5.1](https://github.com/puppeteer/replay/compare/v0.5.0...v0.5.1) (2022-07-06)
 
 

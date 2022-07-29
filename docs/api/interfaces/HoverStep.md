@@ -1,45 +1,23 @@
-[@puppeteer/replay](../README.md) / [Schema](../modules/Schema.md) / StepWithSelectors
+[@puppeteer/replay](../README.md) / HoverStep
 
-# Interface: StepWithSelectors
-
-[Schema](../modules/Schema.md).StepWithSelectors
+# Interface: HoverStep
 
 ## Hierarchy
 
-- [`StepWithFrame`](Schema.StepWithFrame.md)
+- [`StepWithSelectors`](Schema.StepWithSelectors.md)
 
-  ↳ **`StepWithSelectors`**
-
-  ↳↳ [`DoubleClickStep`](Schema.DoubleClickStep.md)
-
-  ↳↳ [`ClickStep`](Schema.ClickStep.md)
-
-  ↳↳ [`HoverStep`](Schema.HoverStep.md)
-
-  ↳↳ [`ChangeStep`](Schema.ChangeStep.md)
-
-  ↳↳ [`WaitForElementStep`](Schema.WaitForElementStep.md)
-
-  ↳↳ [`DoubleClickStep`](DoubleClickStep.md)
-
-  ↳↳ [`ClickStep`](ClickStep.md)
-
-  ↳↳ [`HoverStep`](HoverStep.md)
-
-  ↳↳ [`ChangeStep`](ChangeStep.md)
-
-  ↳↳ [`WaitForElementStep`](WaitForElementStep.md)
+  ↳ **`HoverStep`**
 
 ## Table of contents
 
 ### Properties
 
-- [assertedEvents](Schema.StepWithSelectors.md#assertedevents)
-- [frame](Schema.StepWithSelectors.md#frame)
-- [selectors](Schema.StepWithSelectors.md#selectors)
-- [target](Schema.StepWithSelectors.md#target)
-- [timeout](Schema.StepWithSelectors.md#timeout)
-- [type](Schema.StepWithSelectors.md#type)
+- [assertedEvents](HoverStep.md#assertedevents)
+- [frame](HoverStep.md#frame)
+- [selectors](HoverStep.md#selectors)
+- [target](HoverStep.md#target)
+- [timeout](HoverStep.md#timeout)
+- [type](HoverStep.md#type)
 
 ## Properties
 
@@ -49,7 +27,7 @@
 
 #### Inherited from
 
-[StepWithFrame](Schema.StepWithFrame.md).[assertedEvents](Schema.StepWithFrame.md#assertedevents)
+[StepWithSelectors](Schema.StepWithSelectors.md).[assertedEvents](Schema.StepWithSelectors.md#assertedevents)
 
 #### Defined in
 
@@ -65,7 +43,7 @@ Defaults to main frame
 
 #### Inherited from
 
-[StepWithFrame](Schema.StepWithFrame.md).[frame](Schema.StepWithFrame.md#frame)
+[StepWithSelectors](Schema.StepWithSelectors.md).[frame](Schema.StepWithSelectors.md#frame)
 
 #### Defined in
 
@@ -88,6 +66,10 @@ element is not a shadow root host, the subsequent selector is evaluated in the r
 During the execution, it's recommended that the implementation tries out all of the alternative selectors to improve
 reliability of the replay as some selectors might get outdated over time.
 
+#### Inherited from
+
+[StepWithSelectors](Schema.StepWithSelectors.md).[selectors](Schema.StepWithSelectors.md#selectors)
+
 #### Defined in
 
 [Schema.ts:63](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L63)
@@ -102,7 +84,7 @@ Defaults to main
 
 #### Inherited from
 
-[StepWithFrame](Schema.StepWithFrame.md).[target](Schema.StepWithFrame.md#target)
+[StepWithSelectors](Schema.StepWithSelectors.md).[target](Schema.StepWithSelectors.md#target)
 
 #### Defined in
 
@@ -116,7 +98,7 @@ Defaults to main
 
 #### Inherited from
 
-[StepWithFrame](Schema.StepWithFrame.md).[timeout](Schema.StepWithFrame.md#timeout)
+[StepWithSelectors](Schema.StepWithSelectors.md).[timeout](Schema.StepWithSelectors.md#timeout)
 
 #### Defined in
 
@@ -126,12 +108,12 @@ Defaults to main
 
 ### type
 
-• **type**: `string`
+• **type**: `"hover"`
 
-#### Inherited from
+#### Overrides
 
-[StepWithFrame](Schema.StepWithFrame.md).[type](Schema.StepWithFrame.md#type)
+[StepWithSelectors](Schema.StepWithSelectors.md).[type](Schema.StepWithSelectors.md#type)
 
 #### Defined in
 
-[Schema.ts:31](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L31)
+[Schema.ts:109](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L109)

@@ -1,36 +1,22 @@
-[@puppeteer/replay](../README.md) / [Schema](../modules/Schema.md) / StepWithFrame
+[@puppeteer/replay](../README.md) / NavigateStep
 
-# Interface: StepWithFrame
-
-[Schema](../modules/Schema.md).StepWithFrame
+# Interface: NavigateStep
 
 ## Hierarchy
 
 - [`StepWithTarget`](Schema.StepWithTarget.md)
 
-  ↳ **`StepWithFrame`**
-
-  ↳↳ [`StepWithSelectors`](Schema.StepWithSelectors.md)
-
-  ↳↳ [`ScrollPageStep`](Schema.ScrollPageStep.md)
-
-  ↳↳ [`WaitForExpressionStep`](Schema.WaitForExpressionStep.md)
-
-  ↳↳ [`StepWithSelectors`](StepWithSelectors.md)
-
-  ↳↳ [`ScrollPageStep`](ScrollPageStep.md)
-
-  ↳↳ [`WaitForExpressionStep`](WaitForExpressionStep.md)
+  ↳ **`NavigateStep`**
 
 ## Table of contents
 
 ### Properties
 
-- [assertedEvents](Schema.StepWithFrame.md#assertedevents)
-- [frame](Schema.StepWithFrame.md#frame)
-- [target](Schema.StepWithFrame.md#target)
-- [timeout](Schema.StepWithFrame.md#timeout)
-- [type](Schema.StepWithFrame.md#type)
+- [assertedEvents](NavigateStep.md#assertedevents)
+- [target](NavigateStep.md#target)
+- [timeout](NavigateStep.md#timeout)
+- [type](NavigateStep.md#type)
+- [url](NavigateStep.md#url)
 
 ## Properties
 
@@ -45,18 +31,6 @@
 #### Defined in
 
 [Schema.ts:33](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L33)
-
----
-
-### frame
-
-• `Optional` **frame**: [`FrameSelector`](../modules/Schema.md#frameselector)
-
-Defaults to main frame
-
-#### Defined in
-
-[Schema.ts:47](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L47)
 
 ---
 
@@ -92,12 +66,22 @@ Defaults to main
 
 ### type
 
-• **type**: `string`
+• **type**: `"navigate"`
 
-#### Inherited from
+#### Overrides
 
 [StepWithTarget](Schema.StepWithTarget.md).[type](Schema.StepWithTarget.md#type)
 
 #### Defined in
 
-[Schema.ts:31](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L31)
+[Schema.ts:165](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L165)
+
+---
+
+### url
+
+• **url**: `string`
+
+#### Defined in
+
+[Schema.ts:166](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L166)

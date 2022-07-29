@@ -1,36 +1,21 @@
-[@puppeteer/replay](../README.md) / [Schema](../modules/Schema.md) / StepWithFrame
+[@puppeteer/replay](../README.md) / CloseStep
 
-# Interface: StepWithFrame
-
-[Schema](../modules/Schema.md).StepWithFrame
+# Interface: CloseStep
 
 ## Hierarchy
 
 - [`StepWithTarget`](Schema.StepWithTarget.md)
 
-  ↳ **`StepWithFrame`**
-
-  ↳↳ [`StepWithSelectors`](Schema.StepWithSelectors.md)
-
-  ↳↳ [`ScrollPageStep`](Schema.ScrollPageStep.md)
-
-  ↳↳ [`WaitForExpressionStep`](Schema.WaitForExpressionStep.md)
-
-  ↳↳ [`StepWithSelectors`](StepWithSelectors.md)
-
-  ↳↳ [`ScrollPageStep`](ScrollPageStep.md)
-
-  ↳↳ [`WaitForExpressionStep`](WaitForExpressionStep.md)
+  ↳ **`CloseStep`**
 
 ## Table of contents
 
 ### Properties
 
-- [assertedEvents](Schema.StepWithFrame.md#assertedevents)
-- [frame](Schema.StepWithFrame.md#frame)
-- [target](Schema.StepWithFrame.md#target)
-- [timeout](Schema.StepWithFrame.md#timeout)
-- [type](Schema.StepWithFrame.md#type)
+- [assertedEvents](CloseStep.md#assertedevents)
+- [target](CloseStep.md#target)
+- [timeout](CloseStep.md#timeout)
+- [type](CloseStep.md#type)
 
 ## Properties
 
@@ -45,18 +30,6 @@
 #### Defined in
 
 [Schema.ts:33](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L33)
-
----
-
-### frame
-
-• `Optional` **frame**: [`FrameSelector`](../modules/Schema.md#frameselector)
-
-Defaults to main frame
-
-#### Defined in
-
-[Schema.ts:47](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L47)
 
 ---
 
@@ -92,12 +65,12 @@ Defaults to main
 
 ### type
 
-• **type**: `string`
+• **type**: `"close"`
 
-#### Inherited from
+#### Overrides
 
 [StepWithTarget](Schema.StepWithTarget.md).[type](Schema.StepWithTarget.md#type)
 
 #### Defined in
 
-[Schema.ts:31](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L31)
+[Schema.ts:135](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L135)

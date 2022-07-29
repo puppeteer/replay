@@ -51,13 +51,13 @@
 
 ### afterAllSteps
 
-▸ `Optional` **afterAllSteps**(`flow`): `Promise`<`void`\>
+▸ `Optional` **afterAllSteps**(`flow?`): `Promise`<`void`\>
 
 #### Parameters
 
-| Name   | Type                                           |
-| :----- | :--------------------------------------------- |
-| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+| Name    | Type                                           |
+| :------ | :--------------------------------------------- |
+| `flow?` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 
@@ -75,14 +75,14 @@
 
 ### afterEachStep
 
-▸ `Optional` **afterEachStep**(`step`, `flow`): `Promise`<`void`\>
+▸ `Optional` **afterEachStep**(`step`, `flow?`): `Promise`<`void`\>
 
 #### Parameters
 
-| Name   | Type                                           |
-| :----- | :--------------------------------------------- |
-| `step` | [`Step`](../modules/Schema.md#step)            |
-| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+| Name    | Type                                           |
+| :------ | :--------------------------------------------- |
+| `step`  | [`Step`](../modules/Schema.md#step)            |
+| `flow?` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 
@@ -100,13 +100,13 @@
 
 ### beforeAllSteps
 
-▸ `Optional` **beforeAllSteps**(`flow`): `Promise`<`void`\>
+▸ `Optional` **beforeAllSteps**(`flow?`): `Promise`<`void`\>
 
 #### Parameters
 
-| Name   | Type                                           |
-| :----- | :--------------------------------------------- |
-| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+| Name    | Type                                           |
+| :------ | :--------------------------------------------- |
+| `flow?` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 
@@ -124,14 +124,14 @@
 
 ### beforeEachStep
 
-▸ `Optional` **beforeEachStep**(`step`, `flow`): `Promise`<`void`\>
+▸ `Optional` **beforeEachStep**(`step`, `flow?`): `Promise`<`void`\>
 
 #### Parameters
 
-| Name   | Type                                           |
-| :----- | :--------------------------------------------- |
-| `step` | [`Step`](../modules/Schema.md#step)            |
-| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+| Name    | Type                                           |
+| :------ | :--------------------------------------------- |
+| `step`  | [`Step`](../modules/Schema.md#step)            |
+| `flow?` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 
@@ -149,14 +149,14 @@
 
 ### runStep
 
-▸ **runStep**(`step`, `flow`): `Promise`<`void`\>
+▸ **runStep**(`step`, `flow?`): `Promise`<`void`\>
 
 #### Parameters
 
-| Name   | Type                                           |
-| :----- | :--------------------------------------------- |
-| `step` | [`Step`](../modules/Schema.md#step)            |
-| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+| Name    | Type                                           |
+| :------ | :--------------------------------------------- |
+| `step`  | [`Step`](../modules/Schema.md#step)            |
+| `flow?` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 

@@ -60,13 +60,23 @@
 - [Target](README.md#target)
 - [UserStep](README.md#userstep)
 
+### Variables
+
+- [maxTimeout](README.md#maxtimeout)
+- [minTimeout](README.md#mintimeout)
+- [mouseButtonMap](README.md#mousebuttonmap)
+- [pointerDeviceTypes](README.md#pointerdevicetypes)
+- [typeableInputTypes](README.md#typeableinputtypes)
+
 ### Functions
 
+- [assertAllStepTypesAreHandled](README.md#assertallsteptypesarehandled)
 - [createRunner](README.md#createrunner)
 - [parse](README.md#parse)
 - [parseStep](README.md#parsestep)
 - [stringify](README.md#stringify)
 - [stringifyStep](README.md#stringifystep)
+- [validTimeout](README.md#validtimeout)
 
 ## Type aliases
 
@@ -222,7 +232,77 @@ limitations under the License.
 
 [Schema.ts:179](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L179)
 
+## Variables
+
+### maxTimeout
+
+• `Const` **maxTimeout**: `30000`
+
+#### Defined in
+
+[SchemaUtils.ts:524](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L524)
+
+---
+
+### minTimeout
+
+• `Const` **minTimeout**: `1`
+
+#### Defined in
+
+[SchemaUtils.ts:523](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L523)
+
+---
+
+### mouseButtonMap
+
+• `Const` **mouseButtonMap**: `ReadonlyMap`<`string`, `"left"` \| `"middle"` \| `"right"` \| `"back"` \| `"forward"`\>
+
+#### Defined in
+
+[SchemaUtils.ts:68](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L68)
+
+---
+
+### pointerDeviceTypes
+
+• `Const` **pointerDeviceTypes**: `ReadonlySet`<`string`\>
+
+#### Defined in
+
+[SchemaUtils.ts:62](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L62)
+
+---
+
+### typeableInputTypes
+
+• `Const` **typeableInputTypes**: `ReadonlySet`<`string`\>
+
+#### Defined in
+
+[SchemaUtils.ts:51](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L51)
+
 ## Functions
+
+### assertAllStepTypesAreHandled
+
+▸ **assertAllStepTypesAreHandled**(`s`): `never`
+
+#### Parameters
+
+| Name | Type    |
+| :--- | :------ |
+| `s`  | `never` |
+
+#### Returns
+
+`never`
+
+#### Defined in
+
+[SchemaUtils.ts:46](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L46)
+
+---
 
 ### createRunner
 
@@ -261,7 +341,7 @@ limitations under the License.
 
 #### Defined in
 
-[SchemaUtils.ts:528](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L528)
+[SchemaUtils.ts:532](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L532)
 
 ---
 
@@ -282,7 +362,7 @@ limitations under the License.
 
 #### Defined in
 
-[SchemaUtils.ts:452](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L452)
+[SchemaUtils.ts:456](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L456)
 
 ---
 
@@ -339,3 +419,23 @@ Stringifes a single step. Only the following hooks are invoked with the `flow` p
 #### Defined in
 
 [stringify.ts:64](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L64)
+
+---
+
+### validTimeout
+
+▸ **validTimeout**(`timeout`): `boolean`
+
+#### Parameters
+
+| Name      | Type     |
+| :-------- | :------- |
+| `timeout` | `number` |
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[SchemaUtils.ts:528](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L528)

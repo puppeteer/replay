@@ -204,6 +204,28 @@ describe('Runner', () => {
     await runner.run();
   });
 
+  it('should be able to click elements inside invisible parents', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/invisible-parent.html`,
+          },
+          {
+            type: 'click',
+            selectors: [['.parent', '.child']],
+            offsetX: 1,
+            offsetY: 1,
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+  });
+
   it('should be able to replay click steps on checkboxes', async () => {
     const runner = await createRunner(
       {

@@ -557,7 +557,11 @@ async function waitForSelector(
   if (!selector.length) {
     throw new Error('Empty selector provided to `waitForSelector`');
   }
-  let handle = await frame.waitForSelector(selector[0]!, options);
+  let isLastPart = selector.length === 1;
+  let handle = await frame.waitForSelector(selector[0]!, {
+    ...options,
+    visible: isLastPart && options.visible,
+  });
   for (const part of selector.slice(1, selector.length)) {
     if (!handle) {
       throw new Error('Could not find element: ' + selector.join('>>'));
@@ -566,7 +570,11 @@ async function waitForSelector(
       el.shadowRoot ? el.shadowRoot : el
     );
     handle.dispose();
-    handle = await innerHandle.waitForSelector(part, options);
+    isLastPart = selector[selector.length - 1] === part;
+    handle = await innerHandle.waitForSelector(part, {
+      ...options,
+      visible: isLastPart && options.visible,
+    });
     innerHandle.dispose();
   }
   if (!handle) {

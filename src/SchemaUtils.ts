@@ -48,7 +48,7 @@ export function assertAllStepTypesAreHandled(s: Step): never {
   throw new Error(`Unknown step type: ${s.type}`);
 }
 
-export const typeableInputTypes = new Set([
+export const typeableInputTypes: ReadonlySet<string> = new Set([
   'textarea',
   'text',
   'url',
@@ -59,12 +59,16 @@ export const typeableInputTypes = new Set([
   'email',
 ]);
 
-export const pointerDeviceTypes = new Set(['mouse', 'pen', 'touch']);
+export const pointerDeviceTypes: ReadonlySet<string> = new Set([
+  'mouse',
+  'pen',
+  'touch',
+]);
 
-export const mouseButtonMap = new Map<
+export const mouseButtonMap: ReadonlyMap<
   string,
   'left' | 'middle' | 'right' | 'back' | 'forward'
->([
+> = new Map([
   ['primary', 'left'],
   ['auxiliary', 'middle'],
   ['secondary', 'right'],

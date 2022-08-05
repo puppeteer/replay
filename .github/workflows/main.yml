@@ -36,9 +36,8 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install dependencies
-        # TODO: replace install with ci once https://github.com/conventional-changelog/standard-version/issues/883 is fixed.
         run: |
-          npm install
+          npm ci
 
       - name: Build
         run: |
@@ -72,10 +71,9 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install dependencies
-        # TODO: replace install with ci once https://github.com/conventional-changelog/standard-version/issues/883 is fixed.
         run: |
           sudo apt-get install xvfb
-          npm install
+          npm ci
 
       - name: Build
         run: |

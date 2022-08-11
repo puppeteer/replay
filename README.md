@@ -241,7 +241,9 @@ console.log(
 
 ### Create a Chrome extension for Recorder (Available from Chrome 104 onwards)
 
-You can create a Chrome extension for [Recorder](https://goo.gle/devtools-recorder). Refer to the [Chrome Extensions documentation](https://developer.chrome.com/docs/extensions/mv3/devtools/) for more details on how to extend DevTools.
+You can create a Chrome extension for [Recorder](https://goo.gle/devtools-recorder). For example, the [WebPageTest extension](https://blog.webpagetest.org/posts/introducing-the-new-webpagetest-recorder-chrome-extension/) let’s you export user flows from the Recorder directly as WebPageTest Custom scripts.
+
+Refer to the [Chrome Extensions documentation](https://developer.chrome.com/docs/extensions/mv3/devtools/) for more details on how to extend DevTools.
 
 This feature only available from Chrome 104 onwards. Check your current Chrome version with `chrome://version`. Consider installing [Chrome Canary](https://www.google.com/chrome/canary/) to try out cutting-edge features in Chrome.
 

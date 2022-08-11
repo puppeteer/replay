@@ -28,7 +28,12 @@ You can use Puppeteer Replay to:
 
 1. **Replay recording**. Replay recording with CLI or using [the replay lib API](/examples/replay-from-file-using-puppeteer/main.js).
 2. **Customize replay**. Customize how a recording is run. For example, capture screenshots after each step or integrate with 3rd party libraries.
-3. **Transform recoding**. Customize how a recording is stringified. For example, transform the recording into another format, like [Cypress test script](https://github.com/cypress-io/cypress-chrome-recorder))
+3. **Transform recoding**. Customize how a recording is stringified. For example, transform the recording into another format.
+
+Also, you can use third-party integrations that build on top of `@puppeteer/replay`, which includes:
+
+- [Cypress Chrome Recorder](https://github.com/cypress-io/cypress-chrome-recorder). You can use it to convert user flow JSON files to Cypress test scripts. Watch this [demo](https://youtu.be/4qYs2bMz4GI) to see it in action.
+- [Replay with TestCafe](https://testcafe.io/documentation/403998/guides/experimental-capabilities/chrome-replay-support). You can use TestCafe to replay user flow JSON files and generate test reports for these recordings.
 
 ## 1. Replay recording
 

@@ -156,7 +156,10 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     }
     throw new Error('Timed out');
   }
-})();
+})().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
 
 `;
 
@@ -325,7 +328,10 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     }
     throw new Error('Timed out');
   }
-})();
+})().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
 
 `;
 
@@ -498,7 +504,10 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     }
     throw new Error('Timed out');
   }
-})();
+})().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
 
 `;
 
@@ -670,7 +679,10 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     }
     throw new Error('Timed out');
   }
-})();
+})().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
 
 `;
 
@@ -844,7 +856,10 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     }
     throw new Error('Timed out');
   }
-})();
+})().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
 
 `;
 
@@ -1006,7 +1021,10 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     }
     throw new Error('Timed out');
   }
-})();
+})().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
 
 `;
 
@@ -1168,7 +1186,10 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     }
     throw new Error('Timed out');
   }
-})();
+})().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
 
 `;
 
@@ -1336,7 +1357,10 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     }
     throw new Error('Timed out');
   }
-})();
+})().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
 
 `;
 
@@ -1500,7 +1524,10 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     }
     throw new Error('Timed out');
   }
-})();
+})().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
 
 `;
 
@@ -1664,6 +1691,9 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     }
     throw new Error('Timed out');
   }
-})();
+})().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
 
 `;

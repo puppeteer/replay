@@ -16,3 +16,12 @@
 -->
 <h1>Page 2</h1>
 <a href="main.html">Back to Page 1</a>
+<button id="test">Test button</button>
+<script>
+  const testButton = document.getElementById('test');
+  testButton.onclick = () => {
+    const text = document.createElement('div');
+    text.textContent = 'Button clicked';
+    document.body.append(text);
+  }
+</script>

@@ -63,7 +63,10 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     for (const line of helpers.split('\n')) {
       out.appendLine(line);
     }
-    out.endBlock().appendLine('})();');
+    out.endBlock().appendLine('})().catch(err => {').startBlock();
+    out.appendLine('console.error(err);');
+    out.appendLine('process.exit(1);');
+    out.endBlock().appendLine('});');
   }
 
   override async stringifyStep(out: LineWriter, step: Step, flow: UserFlow) {
@@ -145,7 +148,7 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
       out.appendLine(`  delay: ${step.duration},`);
     }
     if (step.button) {
-      out.appendLine(`  button: ${mouseButtonMap.get(step.button)},`);
+      out.appendLine(`  button: '${mouseButtonMap.get(step.button)}',`);
     }
     out.appendLine('  offset: {');
     out.appendLine(`    x: ${step.offsetX},`);
@@ -159,7 +162,7 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     out.appendLine('await element.click({');
     out.appendLine(`  clickCount: 2,`);
     if (step.button) {
-      out.appendLine(`  button: ${mouseButtonMap.get(step.button)},`);
+      out.appendLine(`  button: '${mouseButtonMap.get(step.button)}',`);
     }
     out.appendLine('  offset: {');
     out.appendLine(`    x: ${step.offsetX},`);

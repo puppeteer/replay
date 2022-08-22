@@ -158,4 +158,4 @@
 
 #### Defined in
 
-[PuppeteerStringifyExtension.ts:69](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L69)
+[PuppeteerStringifyExtension.ts:72](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L72)

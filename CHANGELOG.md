@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/puppeteer/replay/compare/v0.6.2...v1.0.0) (2022-08-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* this version is compatible with Puppeteer >= v16.2.0
+
+### Features
+
+* update Puppeteer to v16.2.0 ([#269](https://github.com/puppeteer/replay/issues/269)) ([347b5fb](https://github.com/puppeteer/replay/commit/347b5fbaa3a559689420131fd0af57be64a4bf18))
+
 ## [0.6.2](https://github.com/puppeteer/replay/compare/v0.6.1...v0.6.2) (2022-08-22)
 
 

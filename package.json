@@ -56,6 +56,7 @@
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-tsdoc": "0.2.16",
+    "lighthouse": "9.5.0-dev.20220818",
     "mime": "3.0.0",
     "mocha": "10.0.0",
     "prettier": "2.6.2",
@@ -68,8 +69,7 @@
     "tslib": "2.4.0",
     "typedoc": "0.22.15",
     "typedoc-plugin-markdown": "3.12.1",
-    "typescript": "4.6.4",
-    "lighthouse": "9.5.0-dev.20220818"
+    "typescript": "4.6.4"
   },
   "peerDependencies": {
     "puppeteer": ">=16.2.0"

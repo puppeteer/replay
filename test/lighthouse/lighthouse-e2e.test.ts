@@ -33,12 +33,12 @@ import FlowResult from 'lighthouse/types/lhr/flow';
 
 const HTTP_PORT = 8907;
 const HTTP_PREFIX = `http://localhost:${HTTP_PORT}`;
-const FLOW_JSON_REGEX = /window\.__LIGHTHOUSE_FLOW_JSON__ = (.*);<\/script>/;
 const TMP_DIR = `${__dirname}/../../.tmp/lighthouse`;
+const FLOW_JSON_REGEX = /window\.__LIGHTHOUSE_FLOW_JSON__ = (.*);<\/script>/;
 
 const execFileAsync = promisify(execFile);
 
-describe.only('Lighthouse stringify e2e', function () {
+describe('Lighthouse stringify Puppeteer script', function () {
   // eslint-disable-next-line no-invalid-this
   this.timeout(60_000);
 

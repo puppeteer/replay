@@ -52,14 +52,14 @@ describe.only('Lighthouse stringify e2e', function () {
     fs.mkdirSync(TMP_DIR, { recursive: true });
   });
 
-  beforeEach(async () => {
+  beforeEach(() => {
     testTmpDir = fs.mkdtempSync(`${TMP_DIR}/lighthouse-`);
     scriptPath = `${testTmpDir}/stringified.cjs`;
   });
 
   after(async () => {
     await httpServer.stop();
-    // fs.rmSync(tmpDir, { recursive: true, force: true });
+    fs.rmSync(testTmpDir, { recursive: true, force: true });
   });
 
   it('generates a valid desktop flow report', async () => {
@@ -150,8 +150,7 @@ describe.only('Lighthouse stringify e2e', function () {
       ['navigation', 'timespan', 'navigation', 'timespan']
     );
 
-    for (const step of flowResult.steps) {
-      const lhr = step.lhr;
+    for (const { lhr } of flowResult.steps) {
       assert.equal(lhr.configSettings.formFactor, 'desktop');
       assert.ok(lhr.configSettings.screenEmulation.disabled);
 

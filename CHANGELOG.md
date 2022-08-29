@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/puppeteer/replay/compare/v1.0.0...v1.1.0) (2022-08-29)
+
+
+### Features
+
+* Lighthouse stringify extension ([#272](https://github.com/puppeteer/replay/issues/272)) ([4ce0267](https://github.com/puppeteer/replay/commit/4ce026752cbecc712e2f83b8c06eb3999d8a97de))
+
 ## [1.0.0](https://github.com/puppeteer/replay/compare/v0.6.2...v1.0.0) (2022-08-22)
 
 

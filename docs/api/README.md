@@ -10,6 +10,7 @@
 
 ### Classes
 
+- [LighthouseStringifyExtension](classes/LighthouseStringifyExtension.md)
 - [PuppeteerRunnerExtension](classes/PuppeteerRunnerExtension.md)
 - [PuppeteerRunnerOwningBrowserExtension](classes/PuppeteerRunnerOwningBrowserExtension.md)
 - [PuppeteerStringifyExtension](classes/PuppeteerStringifyExtension.md)

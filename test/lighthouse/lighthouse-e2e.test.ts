@@ -82,10 +82,10 @@ async function generateFlowResultViaRunner(
   const runner = await createRunner(flow, lighthouseExtension);
   const result = await runner.run();
 
-  assert.ok(result);
-
   await page.close();
   await browser.close();
+
+  assert.ok(result);
 
   return lighthouseExtension.createFlowResult();
 }

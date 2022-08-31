@@ -15,17 +15,25 @@
  */
 
 import { PuppeteerRunnerExtension } from '../PuppeteerRunnerExtension.js';
-
 import type { Step, UserFlow } from '../Schema.js';
-
-import desktopConfig from 'lighthouse/core/config/desktop-config.js';
-import { startFlow } from 'lighthouse/core/fraggle-rock/api.js';
 import { isMobileFlow, isNavigationStep } from './helpers.js';
+
+// @ts-expect-error Lighthouse doesn't expose types.
+import desktopConfig from 'lighthouse/core/config/desktop-config.js';
+// @ts-expect-error Lighthouse doesn't expose types.
+import { startFlow } from 'lighthouse/core/fraggle-rock/api.js';
 
 export class LighthouseRunnerExtension extends PuppeteerRunnerExtension {
   #isTimespanRunning = false;
   #isNavigationRunning = false;
-  #lhFlow: any;
+  #lhFlow?: any;
+
+  async generateFlowResult() {
+    if (!this.#lhFlow) {
+      throw new Error('Cannot get flow result before running the flow');
+    }
+    return this.#lhFlow.createFlowResult();
+  }
 
   override async beforeAllSteps(flow: UserFlow) {
     await super.beforeAllSteps?.(flow);

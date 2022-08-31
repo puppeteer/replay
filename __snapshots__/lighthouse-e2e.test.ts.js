@@ -1,5 +1,5 @@
 exports[
-  'Lighthouse stringify Puppeteer script generates a valid desktop flow report 1'
+  'Lighthouse e2e tests via stringify generates a valid desktop flow report 1'
 ] = `
 const fs = require('fs');
 const puppeteer = require('puppeteer'); // v13.0.0 or later

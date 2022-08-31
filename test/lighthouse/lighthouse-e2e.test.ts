@@ -25,10 +25,13 @@ const __dirname = path.dirname(__filename);
 import { TestServer } from '../../third_party/testserver/lib/index.js';
 import { UserFlow } from '../../src/Schema.js';
 import { LighthouseStringifyExtension } from '../../src/lighthouse/LighthouseStringifyExtension.js';
+import { LighthouseRunnerExtension } from '../../src/lighthouse/LighthouseRunnerExtension.js';
 import { stringify } from '../../src/stringify.js';
+import { createRunner } from '../../src/Runner.js';
 import snapshot from 'snap-shot-it';
 import { execFile } from 'child_process';
 import { promisify } from 'util';
+import puppeteer from 'puppeteer';
 import FlowResult from 'lighthouse/types/lhr/flow';
 
 const HTTP_PORT = 8907;
@@ -38,7 +41,7 @@ const FLOW_JSON_REGEX = /window\.__LIGHTHOUSE_FLOW_JSON__ = (.*);<\/script>/;
 
 const execFileAsync = promisify(execFile);
 
-async function generateFlowResultViaStringify(
+export async function generateFlowResultViaStringify(
   flow: UserFlow
 ): Promise<FlowResult> {
   fs.mkdirSync(TMP_DIR, { recursive: true });
@@ -69,7 +72,25 @@ async function generateFlowResultViaStringify(
   return JSON.parse(flowResultJson);
 }
 
-describe('Lighthouse stringify Puppeteer script', function () {
+async function generateFlowResultViaRunner(
+  flow: UserFlow
+): Promise<FlowResult> {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+
+  const lighthouseExtension = new LighthouseRunnerExtension(browser, page);
+  const runner = await createRunner(flow, lighthouseExtension);
+  const result = await runner.run();
+
+  assert.ok(result);
+
+  await page.close();
+  await browser.close();
+
+  return lighthouseExtension.generateFlowResult();
+}
+
+describe('Lighthouse e2e tests', function () {
   // eslint-disable-next-line no-invalid-this
   this.timeout(60_000);
 
@@ -84,84 +105,93 @@ describe('Lighthouse stringify Puppeteer script', function () {
     await httpServer.stop();
   });
 
-  it('generates a valid desktop flow report', async () => {
-    const desktopReplayJson: UserFlow = {
-      title: 'Test desktop',
-      steps: [
-        {
-          type: 'setViewport',
-          width: 757,
-          height: 988,
-          deviceScaleFactor: 1,
-          isMobile: false,
-          hasTouch: false,
-          isLandscape: false,
-        },
-        {
-          type: 'navigate',
-          url: `${HTTP_PREFIX}/main.html`,
-        },
-        {
-          type: 'click',
-          button: 'primary',
-          selectors: ['#test'],
-          offsetX: 1,
-          offsetY: 1,
-        },
-        {
-          type: 'click',
-          button: 'auxiliary',
-          selectors: ['#test'],
-          offsetX: 1,
-          offsetY: 1,
-        },
-        {
-          type: 'click',
-          selectors: ['a[href="main2.html"]'],
-          offsetX: 1,
-          offsetY: 1,
-          assertedEvents: [
+  for (const executionType of ['stringify', 'runner']) {
+    const generateFlowResult =
+      executionType === 'stringify'
+        ? generateFlowResultViaStringify
+        : generateFlowResultViaRunner;
+
+    describe(`via ${executionType}`, function () {
+      it('generates a valid desktop flow report', async () => {
+        const desktopReplayJson: UserFlow = {
+          title: 'Test desktop',
+          steps: [
             {
-              type: 'navigation',
+              type: 'setViewport',
+              width: 757,
+              height: 988,
+              deviceScaleFactor: 1,
+              isMobile: false,
+              hasTouch: false,
+              isLandscape: false,
+            },
+            {
+              type: 'navigate',
+              url: `${HTTP_PREFIX}/main.html`,
+            },
+            {
+              type: 'click',
+              button: 'primary',
+              selectors: ['#test'],
+              offsetX: 1,
+              offsetY: 1,
+            },
+            {
+              type: 'click',
+              button: 'auxiliary',
+              selectors: ['#test'],
+              offsetX: 1,
+              offsetY: 1,
+            },
+            {
+              type: 'click',
+              selectors: ['a[href="main2.html"]'],
+              offsetX: 1,
+              offsetY: 1,
+              assertedEvents: [
+                {
+                  type: 'navigation',
+                },
+              ],
+            },
+            {
+              type: 'click',
+              button: 'primary',
+              selectors: ['#test'],
+              offsetX: 1,
+              offsetY: 1,
+            },
+            {
+              type: 'click',
+              button: 'primary',
+              selectors: ['#test'],
+              offsetX: 1,
+              offsetY: 1,
             },
           ],
-        },
-        {
-          type: 'click',
-          button: 'primary',
-          selectors: ['#test'],
-          offsetX: 1,
-          offsetY: 1,
-        },
-        {
-          type: 'click',
-          button: 'primary',
-          selectors: ['#test'],
-          offsetX: 1,
-          offsetY: 1,
-        },
-      ],
-    };
+        };
 
-    const flowResult = await generateFlowResultViaStringify(desktopReplayJson);
+        const flowResult = await generateFlowResult(desktopReplayJson);
 
-    assert.equal(flowResult.name, desktopReplayJson.title);
-    assert.deepStrictEqual(
-      flowResult.steps.map((step) => step.lhr.gatherMode),
-      ['navigation', 'timespan', 'navigation', 'timespan']
-    );
+        assert.equal(flowResult.name, desktopReplayJson.title);
+        assert.deepStrictEqual(
+          flowResult.steps.map((step) => step.lhr.gatherMode),
+          ['navigation', 'timespan', 'navigation', 'timespan']
+        );
 
-    for (const { lhr } of flowResult.steps) {
-      assert.equal(lhr.configSettings.formFactor, 'desktop');
-      assert.ok(lhr.configSettings.screenEmulation.disabled);
+        for (const { lhr } of flowResult.steps) {
+          assert.equal(lhr.configSettings.formFactor, 'desktop');
+          assert.ok(lhr.configSettings.screenEmulation.disabled);
 
-      const auditList = Object.values(lhr.audits);
-      const erroredAudits = auditList.filter(
-        (audit) => audit.displayValue === 'error'
-      );
+          const auditList = Object.values(lhr.audits);
+          const erroredAudits = auditList.filter(
+            (audit) => audit.displayValue === 'error'
+          );
 
-      assert.isAtLeast(auditList.length, 10);
-      assert.equal(erroredAudits.length, 0);
-    }
-  });
+          assert.isAtLeast(auditList.length, 10);
+          assert.equal(erroredAudits.length, 0);
+        }
+      });
+    });
+  }
 });

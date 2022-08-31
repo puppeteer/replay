@@ -28,7 +28,7 @@ export class LighthouseRunnerExtension extends PuppeteerRunnerExtension {
   #isNavigationRunning = false;
   #lhFlow?: any;
 
-  async generateFlowResult() {
+  async createFlowResult() {
     if (!this.#lhFlow) {
       throw new Error('Cannot get flow result before running the flow');
     }

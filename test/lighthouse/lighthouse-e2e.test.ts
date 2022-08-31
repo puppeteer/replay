@@ -87,7 +87,7 @@ async function generateFlowResultViaRunner(
   await page.close();
   await browser.close();
 
-  return lighthouseExtension.generateFlowResult();
+  return lighthouseExtension.createFlowResult();
 }
 
 const LIGHTHOUSE_RUNNERS = {

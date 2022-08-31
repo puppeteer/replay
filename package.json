@@ -72,10 +72,14 @@
     "typescript": "4.6.4"
   },
   "peerDependencies": {
-    "puppeteer": ">=16.2.0"
+    "puppeteer": ">=16.2.0",
+    "lighthouse": ">=10.0.0"
   },
   "peerDependenciesMeta": {
     "puppeteer": {
+      "optional": true
+    },
+    "lighthouse": {
       "optional": true
     }
   },

@@ -90,7 +90,12 @@ async function generateFlowResultViaRunner(
   return lighthouseExtension.generateFlowResult();
 }
 
-describe('Lighthouse e2e tests', function () {
+const LIGHTHOUSE_RUNNERS = {
+  stringify: generateFlowResultViaStringify,
+  runner: generateFlowResultViaRunner,
+};
+
+describe('Lighthouse user flow', function () {
   // eslint-disable-next-line no-invalid-this
   this.timeout(60_000);
 
@@ -105,13 +110,9 @@ describe('Lighthouse e2e tests', function () {
     await httpServer.stop();
   });
 
-  for (const executionType of ['stringify', 'runner']) {
-    const generateFlowResult =
-      executionType === 'stringify'
-        ? generateFlowResultViaStringify
-        : generateFlowResultViaRunner;
-
-    describe(`via ${executionType}`, function () {
+  // We want to verify that the replay runner and stringified script both generate the same result.
+  for (const [name, lighthouseRunner] of Object.entries(LIGHTHOUSE_RUNNERS)) {
+    describe(`via ${name}`, () => {
       it('generates a valid desktop flow report', async () => {
         const desktopReplayJson: UserFlow = {
           title: 'Test desktop',
@@ -171,7 +172,7 @@ describe('Lighthouse e2e tests', function () {
           ],
         };
 
-        const flowResult = await generateFlowResult(desktopReplayJson);
+        const flowResult = await lighthouseRunner(desktopReplayJson);
 
         assert.equal(flowResult.name, desktopReplayJson.title);
         assert.deepStrictEqual(

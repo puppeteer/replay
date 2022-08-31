@@ -22,13 +22,14 @@ import { isMobileFlow, isNavigationStep } from './helpers.js';
 import desktopConfig from 'lighthouse/core/config/desktop-config.js';
 // @ts-expect-error Lighthouse doesn't expose types.
 import { startFlow } from 'lighthouse/core/fraggle-rock/api.js';
+import FlowResult from 'lighthouse/types/lhr/flow';
 
 export class LighthouseRunnerExtension extends PuppeteerRunnerExtension {
   #isTimespanRunning = false;
   #isNavigationRunning = false;
   #lhFlow?: any;
 
-  async createFlowResult() {
+  async createFlowResult(): Promise<FlowResult> {
     if (!this.#lhFlow) {
       throw new Error('Cannot get flow result before running the flow');
     }

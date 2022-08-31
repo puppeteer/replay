@@ -59,6 +59,7 @@ export class LighthouseRunnerExtension extends PuppeteerRunnerExtension {
       await this.#lhFlow.endNavigation();
       this.#isNavigationRunning = false;
     }
+    await super.afterEachStep?.(step, flow);
   }
 
   override async afterAllSteps(flow: UserFlow) {

@@ -38,28 +38,50 @@ const FLOW_JSON_REGEX = /window\.__LIGHTHOUSE_FLOW_JSON__ = (.*);<\/script>/;
 
 const execFileAsync = promisify(execFile);
 
+async function generateFlowResultViaStringify(
+  flow: UserFlow
+): Promise<FlowResult> {
+  fs.mkdirSync(TMP_DIR, { recursive: true });
+  const testTmpDir = fs.mkdtempSync(`${TMP_DIR}/lighthouse-`);
+  const scriptPath = `${testTmpDir}/stringified.cjs`;
+
+  const scriptContents = await stringify(flow, {
+    extension: new LighthouseStringifyExtension(),
+  });
+
+  snapshot(scriptContents);
+  fs.writeFileSync(scriptPath, scriptContents);
+
+  const { stdout, stderr } = await execFileAsync('node', [scriptPath], {
+    timeout: 50_000,
+  });
+
+  // Ensure script didn't quietly report an issue.
+  assert.strictEqual(stdout, '');
+  assert.strictEqual(stderr, '');
+
+  const reportHtml = fs.readFileSync(`${testTmpDir}/flow.report.html`, 'utf-8');
+  const flowResultJson = FLOW_JSON_REGEX.exec(reportHtml)?.[1];
+  if (!flowResultJson) throw new Error('Could not find flow json');
+
+  fs.rmSync(testTmpDir, { recursive: true, force: true });
+
+  return JSON.parse(flowResultJson);
+}
+
 describe('Lighthouse stringify Puppeteer script', function () {
   // eslint-disable-next-line no-invalid-this
   this.timeout(60_000);
 
-  let testTmpDir = '';
-  let scriptPath = '';
   let httpServer: TestServer;
 
   before(async () => {
     const resources = path.join(__dirname, '../resources');
     httpServer = await TestServer.create(resources, HTTP_PORT);
-    fs.mkdirSync(TMP_DIR, { recursive: true });
-  });
-
-  beforeEach(() => {
-    testTmpDir = fs.mkdtempSync(`${TMP_DIR}/lighthouse-`);
-    scriptPath = `${testTmpDir}/stringified.cjs`;
   });
 
   after(async () => {
     await httpServer.stop();
-    fs.rmSync(testTmpDir, { recursive: true, force: true });
   });
 
   it('generates a valid desktop flow report', async () => {
@@ -121,29 +143,8 @@ describe('Lighthouse stringify Puppeteer script', function () {
       ],
     };
 
-    const scriptContents = await stringify(desktopReplayJson, {
-      extension: new LighthouseStringifyExtension(),
-    });
+    const flowResult = await generateFlowResultViaStringify(desktopReplayJson);
 
-    snapshot(scriptContents);
-    fs.writeFileSync(scriptPath, scriptContents);
-
-    const { stdout, stderr } = await execFileAsync('node', [scriptPath], {
-      timeout: 50_000,
-    });
-
-    // Ensure script didn't quietly report an issue.
-    assert.strictEqual(stdout, '');
-    assert.strictEqual(stderr, '');
-
-    const reportHtml = fs.readFileSync(
-      `${testTmpDir}/flow.report.html`,
-      'utf-8'
-    );
-    const flowResultJson = FLOW_JSON_REGEX.exec(reportHtml)?.[1];
-    if (!flowResultJson) throw new Error('Could not find flow json');
-
-    const flowResult: FlowResult = JSON.parse(flowResultJson);
     assert.equal(flowResult.name, desktopReplayJson.title);
     assert.deepStrictEqual(
       flowResult.steps.map((step) => step.lhr.gatherMode),

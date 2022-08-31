@@ -22,7 +22,7 @@ import desktopConfig from 'lighthouse/core/config/desktop-config.js';
 import { startFlow } from 'lighthouse/core/fraggle-rock/api.js';
 import { isMobileFlow, isNavigationStep } from './helpers.js';
 
-export class LighthouseStringifyExtension extends PuppeteerRunnerExtension {
+export class LighthouseRunnerExtension extends PuppeteerRunnerExtension {
   #isTimespanRunning = false;
   #isNavigationRunning = false;
   #lhFlow: any;

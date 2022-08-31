@@ -8,6 +8,8 @@
 
   ↳ **`PuppeteerStringifyExtension`**
 
+  ↳↳ [`LighthouseStringifyExtension`](LighthouseStringifyExtension.md)
+
 ## Table of contents
 
 ### Constructors

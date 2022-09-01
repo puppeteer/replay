@@ -18,11 +18,7 @@ import { PuppeteerRunnerExtension } from '../PuppeteerRunnerExtension.js';
 import type { Step, UserFlow } from '../Schema.js';
 import { isMobileFlow, isNavigationStep } from './helpers.js';
 
-// @ts-expect-error Lighthouse doesn't expose types.
-import desktopConfig from 'lighthouse/core/config/desktop-config.js';
-// @ts-expect-error Lighthouse doesn't expose types.
-import { startFlow } from 'lighthouse/core/fraggle-rock/api.js';
-import FlowResult from 'lighthouse/types/lhr/flow';
+import type FlowResult from 'lighthouse/types/lhr/flow';
 
 export class LighthouseRunnerExtension extends PuppeteerRunnerExtension {
   #isTimespanRunning = false;
@@ -39,8 +35,17 @@ export class LighthouseRunnerExtension extends PuppeteerRunnerExtension {
   override async beforeAllSteps(flow: UserFlow) {
     await super.beforeAllSteps?.(flow);
 
+    // @ts-ignore Lighthouse doesn't expose types.
+    const { startFlow } = await import('lighthouse/core/fraggle-rock/api.js');
+
+    let config = undefined;
+    if (!isMobileFlow(flow)) {
+      // @ts-ignore Lighthouse doesn't expose types.
+      config = await import('lighthouse/core/config/default-config.js');
+    }
+
     this.#lhFlow = await startFlow(this.page, {
-      config: isMobileFlow(flow) ? undefined : desktopConfig,
+      config,
       flags: { screenEmulation: { disabled: true } },
       name: flow.title,
     });

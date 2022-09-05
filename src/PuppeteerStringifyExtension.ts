@@ -448,12 +448,13 @@ async function querySelectorAll(selector, frame) {
 
 async function waitForFunction(fn, timeout) {
   let isActive = true;
-  setTimeout(() => {
+  const timeoutId = setTimeout(() => {
     isActive = false;
   }, timeout);
   while (isActive) {
     const result = await fn();
     if (result) {
+      clearTimeout(timeoutId);
       return;
     }
     await new Promise(resolve => setTimeout(resolve, 100));

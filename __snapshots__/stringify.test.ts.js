@@ -144,12 +144,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   async function waitForFunction(fn, timeout) {
     let isActive = true;
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       isActive = false;
     }, timeout);
     while (isActive) {
       const result = await fn();
       if (result) {
+        clearTimeout(timeoutId);
         return;
       }
       await new Promise(resolve => setTimeout(resolve, 100));
@@ -316,12 +317,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   async function waitForFunction(fn, timeout) {
     let isActive = true;
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       isActive = false;
     }, timeout);
     while (isActive) {
       const result = await fn();
       if (result) {
+        clearTimeout(timeoutId);
         return;
       }
       await new Promise(resolve => setTimeout(resolve, 100));
@@ -492,12 +494,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   async function waitForFunction(fn, timeout) {
     let isActive = true;
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       isActive = false;
     }, timeout);
     while (isActive) {
       const result = await fn();
       if (result) {
+        clearTimeout(timeoutId);
         return;
       }
       await new Promise(resolve => setTimeout(resolve, 100));
@@ -667,12 +670,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   async function waitForFunction(fn, timeout) {
     let isActive = true;
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       isActive = false;
     }, timeout);
     while (isActive) {
       const result = await fn();
       if (result) {
+        clearTimeout(timeoutId);
         return;
       }
       await new Promise(resolve => setTimeout(resolve, 100));
@@ -844,12 +848,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   async function waitForFunction(fn, timeout) {
     let isActive = true;
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       isActive = false;
     }, timeout);
     while (isActive) {
       const result = await fn();
       if (result) {
+        clearTimeout(timeoutId);
         return;
       }
       await new Promise(resolve => setTimeout(resolve, 100));
@@ -1009,12 +1014,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   async function waitForFunction(fn, timeout) {
     let isActive = true;
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       isActive = false;
     }, timeout);
     while (isActive) {
       const result = await fn();
       if (result) {
+        clearTimeout(timeoutId);
         return;
       }
       await new Promise(resolve => setTimeout(resolve, 100));
@@ -1174,12 +1180,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   async function waitForFunction(fn, timeout) {
     let isActive = true;
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       isActive = false;
     }, timeout);
     while (isActive) {
       const result = await fn();
       if (result) {
+        clearTimeout(timeoutId);
         return;
       }
       await new Promise(resolve => setTimeout(resolve, 100));
@@ -1345,12 +1352,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   async function waitForFunction(fn, timeout) {
     let isActive = true;
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       isActive = false;
     }, timeout);
     while (isActive) {
       const result = await fn();
       if (result) {
+        clearTimeout(timeoutId);
         return;
       }
       await new Promise(resolve => setTimeout(resolve, 100));
@@ -1512,12 +1520,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   async function waitForFunction(fn, timeout) {
     let isActive = true;
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       isActive = false;
     }, timeout);
     while (isActive) {
       const result = await fn();
       if (result) {
+        clearTimeout(timeoutId);
         return;
       }
       await new Promise(resolve => setTimeout(resolve, 100));
@@ -1679,12 +1688,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   async function waitForFunction(fn, timeout) {
     let isActive = true;
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       isActive = false;
     }, timeout);
     while (isActive) {
       const result = await fn();
       if (result) {
+        clearTimeout(timeoutId);
         return;
       }
       await new Promise(resolve => setTimeout(resolve, 100));

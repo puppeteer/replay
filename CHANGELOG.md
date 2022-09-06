@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.2](https://github.com/puppeteer/replay/compare/v1.1.1...v1.1.2) (2022-09-05)
+
+
+### Bug Fixes
+
+* **waitForFunction:** clearing timeout when callback function returns a truthy value ([#283](https://github.com/puppeteer/replay/issues/283)) ([2d86fbf](https://github.com/puppeteer/replay/commit/2d86fbfc481af108bd5d013427f96b8205528d76))
+
 ## [1.1.1](https://github.com/puppeteer/replay/compare/v1.1.0...v1.1.1) (2022-08-30)
 
 

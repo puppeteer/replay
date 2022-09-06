@@ -112,8 +112,8 @@ describe('Lighthouse user flow', function () {
 
   // We want to verify that the replay runner and stringified script both generate the same result.
   for (const [name, lighthouseRunner] of Object.entries(LIGHTHOUSE_RUNNERS)) {
-    describe(`via ${name}`, () => {
-      it('generates a valid desktop flow report', async () => {
+    describe(`run via ${name}`, () => {
+      it('produces a valid desktop flow report', async () => {
         const desktopReplayJson: UserFlow = {
           title: 'Test desktop',
           steps: [

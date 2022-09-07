@@ -41,7 +41,8 @@ export class LighthouseRunnerExtension extends PuppeteerRunnerExtension {
     let config = undefined;
     if (!isMobileFlow(flow)) {
       // @ts-ignore Lighthouse doesn't expose types.
-      config = await import('lighthouse/core/config/default-config.js');
+      config = (await import('lighthouse/core/config/desktop-config.js'))
+        .default;
     }
 
     this.#lhFlow = await startFlow(this.page, {

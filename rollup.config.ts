@@ -14,6 +14,7 @@ export default [
         format: 'cjs',
       },
     ],
+    external: [/^lighthouse/],
     plugins: [typescript()],
   },
   {

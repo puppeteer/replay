@@ -29,3 +29,4 @@ export { PuppeteerRunnerExtension } from './PuppeteerRunnerExtension.js';
 export { PuppeteerRunnerOwningBrowserExtension } from './PuppeteerRunnerExtension.js';
 export { PuppeteerStringifyExtension } from './PuppeteerStringifyExtension.js';
 export { LighthouseStringifyExtension } from './lighthouse/LighthouseStringifyExtension.js';
+export { LighthouseRunnerExtension } from './lighthouse/LighthouseRunnerExtension.js';

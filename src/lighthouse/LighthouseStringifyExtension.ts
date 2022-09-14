@@ -19,24 +19,13 @@ import { PuppeteerStringifyExtension } from '../PuppeteerStringifyExtension.js';
 import type { LineWriter } from '../LineWriter.js';
 import type { Step, UserFlow } from '../Schema.js';
 
-function isNavigationStep(step: Step): boolean {
-  return Boolean(
-    step.type === 'navigate' ||
-      step.assertedEvents?.some((event) => event.type === 'navigation')
-  );
-}
+import { isNavigationStep, isMobileFlow } from './helpers.js';
 
 export class LighthouseStringifyExtension extends PuppeteerStringifyExtension {
   #isProcessingTimespan = false;
 
   override async beforeAllSteps(out: LineWriter, flow: UserFlow) {
     out.appendLine(`const fs = require('fs');`);
-
-    let isMobile = true;
-    for (const step of flow.steps) {
-      if (step.type !== 'setViewport') continue;
-      isMobile = step.isMobile;
-    }
 
     await super.beforeAllSteps(out, flow);
 
@@ -46,7 +35,7 @@ export class LighthouseStringifyExtension extends PuppeteerStringifyExtension {
       },
     };
     out.appendLine(`const flags = ${JSON.stringify(flags)}`);
-    if (isMobile) {
+    if (isMobileFlow(flow)) {
       out.appendLine(`const config = undefined;`);
     } else {
       // eslint-disable-next-line max-len

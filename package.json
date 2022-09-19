@@ -80,7 +80,7 @@
     }
   },
   "dependencies": {
-    "cli-table3": "0.6.2",
+    "cli-table3": "0.6.3",
     "colorette": "2.0.19",
     "yargs": "17.5.1"
   }

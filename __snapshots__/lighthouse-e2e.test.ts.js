@@ -27,8 +27,8 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   await lhFlow.startTimespan();
   {
     const targetPage = page;
+    await scrollIntoViewIfNeeded(["#test"], targetPage, timeout);
     const element = await waitForSelectors(["#test"], targetPage, { timeout, visible: true });
-    await scrollIntoViewIfNeeded(element, timeout);
     await element.click({
       button: 'left',
       offset: {
@@ -39,8 +39,8 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   }
   {
     const targetPage = page;
+    await scrollIntoViewIfNeeded(["#test"], targetPage, timeout);
     const element = await waitForSelectors(["#test"], targetPage, { timeout, visible: true });
-    await scrollIntoViewIfNeeded(element, timeout);
     await element.click({
       button: 'middle',
       offset: {
@@ -55,8 +55,8 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     const targetPage = page;
     const promises = [];
     promises.push(targetPage.waitForNavigation());
+    await scrollIntoViewIfNeeded(["a[href=\\"main2.html\\"]"], targetPage, timeout);
     const element = await waitForSelectors(["a[href=\\"main2.html\\"]"], targetPage, { timeout, visible: true });
-    await scrollIntoViewIfNeeded(element, timeout);
     await element.click({
       offset: {
         x: 1,
@@ -69,8 +69,8 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   await lhFlow.startTimespan();
   {
     const targetPage = page;
+    await scrollIntoViewIfNeeded(["#test"], targetPage, timeout);
     const element = await waitForSelectors(["#test"], targetPage, { timeout, visible: true });
-    await scrollIntoViewIfNeeded(element, timeout);
     await element.click({
       button: 'left',
       offset: {
@@ -81,8 +81,8 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   }
   {
     const targetPage = page;
+    await scrollIntoViewIfNeeded(["#test"], targetPage, timeout);
     const element = await waitForSelectors(["#test"], targetPage, { timeout, visible: true });
-    await scrollIntoViewIfNeeded(element, timeout);
     await element.click({
       button: 'left',
       offset: {
@@ -108,7 +108,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     throw new Error('Could not find element for selectors: ' + JSON.stringify(selectors));
   }
 
-  async function scrollIntoViewIfNeeded(element, timeout) {
+  async function scrollIntoViewIfNeeded(selectors, frame, timeout) {
+    const element = await waitForSelectors(selectors, frame, { visible: false, timeout });
+    if (!element) {
+      throw new Error(
+        'The element could not be found.'
+      );
+    }
     await waitForConnected(element, timeout);
     const isInViewport = await element.isIntersectingViewport({threshold: 0});
     if (isInViewport) {

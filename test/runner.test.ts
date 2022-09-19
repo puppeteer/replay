@@ -609,6 +609,42 @@ describe('Runner', () => {
     );
   });
 
+  it.only('should be able to replay text selectors', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: 'navigate',
+            url: `${HTTP_PREFIX}/main.html`,
+          },
+          {
+            type: 'setViewport',
+            width: 800,
+            height: 600,
+            isLandscape: false,
+            isMobile: false,
+            deviceScaleFactor: 1,
+            hasTouch: false,
+          },
+          {
+            type: 'click',
+            target: 'main',
+            selectors: ['text/Inp'],
+            offsetX: 1,
+            offsetY: 1,
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+    assert.strictEqual(
+      await page.evaluate(() => document.activeElement?.id),
+      'input'
+    );
+  });
+
   it('should be able to waitForElement', async () => {
     const runner = await createRunner(
       {

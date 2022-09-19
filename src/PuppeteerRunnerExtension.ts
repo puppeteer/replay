@@ -111,6 +111,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
     switch (step.type) {
       case 'doubleClick':
         {
+          await scrollIntoViewIfNeeded(step.selectors, localFrame, timeout);
           const element = await waitForSelectors(step.selectors, localFrame, {
             timeout,
             visible: waitForVisible,
@@ -118,7 +119,6 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
           if (!element) {
             throw new Error('Could not find element: ' + step.selectors[0]);
           }
-          await scrollIntoViewIfNeeded(element, timeout);
           startWaitingForEvents();
           await element.click({
             clickCount: 2,
@@ -133,6 +133,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         break;
       case 'click':
         {
+          await scrollIntoViewIfNeeded(step.selectors, localFrame, timeout);
           const element = await waitForSelectors(step.selectors, localFrame, {
             timeout,
             visible: waitForVisible,
@@ -140,7 +141,6 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
           if (!element) {
             throw new Error('Could not find element: ' + step.selectors[0]);
           }
-          await scrollIntoViewIfNeeded(element, timeout);
           startWaitingForEvents();
           await element.click({
             delay: step.duration,
@@ -155,6 +155,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         break;
       case 'hover':
         {
+          await scrollIntoViewIfNeeded(step.selectors, localFrame, timeout);
           const element = await waitForSelectors(step.selectors, localFrame, {
             timeout,
             visible: waitForVisible,
@@ -162,7 +163,6 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
           if (!element) {
             throw new Error('Could not find element: ' + step.selectors[0]);
           }
-          await scrollIntoViewIfNeeded(element, timeout);
           startWaitingForEvents();
           await element.hover();
           await element.dispose();
@@ -198,11 +198,14 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         break;
       case 'change':
         {
+          await scrollIntoViewIfNeeded(step.selectors, localFrame, timeout);
           const element = (await waitForSelectors(step.selectors, localFrame, {
             timeout,
             visible: waitForVisible,
           })) as ElementHandle<HTMLInputElement>;
-          await scrollIntoViewIfNeeded(element, timeout);
+          if (!element) {
+            throw new Error('Could not find element: ' + step.selectors[0]);
+          }
           const inputType = await element.evaluate(
             /* c8 ignore start */
             (el) => el.type
@@ -228,11 +231,11 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
       }
       case 'scroll': {
         if ('selectors' in step) {
+          await scrollIntoViewIfNeeded(step.selectors, localFrame, timeout);
           const element = await waitForSelectors(step.selectors, localFrame, {
             timeout,
             visible: waitForVisible,
           });
-          await scrollIntoViewIfNeeded(element, timeout);
           startWaitingForEvents();
           await element.evaluate(
             (e, x, y) => {
@@ -461,9 +464,17 @@ const asSVGElementHandle = async (
 };
 
 async function scrollIntoViewIfNeeded(
-  element: ElementHandle<Element>,
+  selectors: Selector[],
+  frame: Frame,
   timeout: number
 ): Promise<void> {
+  const element = await waitForSelectors(selectors, frame, {
+    visible: false,
+    timeout,
+  });
+  if (!element) {
+    throw new Error('The element could not be found.');
+  }
   await waitForConnected(element, timeout);
   const svgHandle = await asSVGElementHandle(element);
   const intersectionTarget = svgHandle

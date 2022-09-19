@@ -3,8 +3,8 @@ exports[
 ] = `
 {
   const targetPage = page;
+  await scrollIntoViewIfNeeded(["aria/Test"], targetPage, timeout);
   const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
-  await scrollIntoViewIfNeeded(element, timeout);
   await element.click({
     offset: {
       x: 1,
@@ -22,8 +22,8 @@ exports[
   const targetPage = page;
   const promises = [];
   promises.push(targetPage.waitForNavigation());
+  await scrollIntoViewIfNeeded(["aria/Test"], targetPage, timeout);
   const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
-  await scrollIntoViewIfNeeded(element, timeout);
   await element.click({
     offset: {
       x: 1,
@@ -40,8 +40,8 @@ exports[
 ] = `
 {
   const targetPage = page;
+  await scrollIntoViewIfNeeded([["aria/Test","aria/Test2"]], targetPage, timeout);
   const element = await waitForSelectors([["aria/Test","aria/Test2"]], targetPage, { timeout, visible: true });
-  await scrollIntoViewIfNeeded(element, timeout);
   await element.click({
     offset: {
       x: 1,
@@ -57,8 +57,8 @@ exports[
 ] = `
 {
   const targetPage = page;
+  await scrollIntoViewIfNeeded(["aria/Test"], targetPage, timeout);
   const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
-  await scrollIntoViewIfNeeded(element, timeout);
   const type = await element.evaluate(el => el.type);
   if (["select-one"].includes(type)) {
     await element.select("Hello World");
@@ -81,8 +81,8 @@ exports[
 ] = `
 {
   const targetPage = page;
+  await scrollIntoViewIfNeeded(["aria/Test"], targetPage, timeout);
   const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
-  await scrollIntoViewIfNeeded(element, timeout);
   const type = await element.evaluate(el => el.type);
   if (["select-one"].includes(type)) {
     await element.select("#333333");

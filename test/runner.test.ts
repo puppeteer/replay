@@ -609,7 +609,7 @@ describe('Runner', () => {
     );
   });
 
-  it.only('should be able to replay text selectors', async () => {
+  it('should be able to replay text selectors', async () => {
     const runner = await createRunner(
       {
         title: 'test',

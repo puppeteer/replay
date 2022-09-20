@@ -18,14 +18,13 @@ import { PuppeteerRunnerExtension } from '../PuppeteerRunnerExtension.js';
 import type { Step, UserFlow } from '../Schema.js';
 import { isMobileFlow, isNavigationStep } from './helpers.js';
 
-import type FlowResult from 'lighthouse/types/lhr/flow';
-
 export class LighthouseRunnerExtension extends PuppeteerRunnerExtension {
   #isTimespanRunning = false;
   #isNavigationRunning = false;
   #lhFlow?: any;
 
-  async createFlowResult(): Promise<FlowResult> {
+  // TODO: Use Lighthouse types once the peer dependency is defined.
+  async createFlowResult(): Promise<any> {
     if (!this.#lhFlow) {
       throw new Error('Cannot get flow result before running the flow');
     }

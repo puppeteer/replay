@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.1](https://github.com/puppeteer/replay/compare/v1.2.0...v1.2.1) (2022-09-20)
+
+
+### Bug Fixes
+
+* ensure the right order of waitForSelector and scrollIntoView ([#303](https://github.com/puppeteer/replay/issues/303)) ([dd35372](https://github.com/puppeteer/replay/commit/dd35372c92c7e798e0f01f03230023e78cea2d04))
+
+## [1.2.0](https://github.com/puppeteer/replay/compare/v1.1.2...v1.2.0) (2022-09-14)
+
+
+### Features
+
+* add Lighthouse runner extension ([#281](https://github.com/puppeteer/replay/issues/281)) ([e3ace90](https://github.com/puppeteer/replay/commit/e3ace909b9400c460abc6738099fb025083a105e))
+
 ## [1.1.2](https://github.com/puppeteer/replay/compare/v1.1.1...v1.1.2) (2022-09-05)
 
 

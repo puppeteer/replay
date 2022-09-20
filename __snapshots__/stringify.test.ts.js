@@ -25,7 +25,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     throw new Error('Could not find element for selectors: ' + JSON.stringify(selectors));
   }
 
-  async function scrollIntoViewIfNeeded(element, timeout) {
+  async function scrollIntoViewIfNeeded(selectors, frame, timeout) {
+    const element = await waitForSelectors(selectors, frame, { visible: false, timeout });
+    if (!element) {
+      throw new Error(
+        'The element could not be found.'
+      );
+    }
     await waitForConnected(element, timeout);
     const isInViewport = await element.isIntersectingViewport({threshold: 0});
     if (isInViewport) {
@@ -198,7 +204,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     throw new Error('Could not find element for selectors: ' + JSON.stringify(selectors));
   }
 
-  async function scrollIntoViewIfNeeded(element, timeout) {
+  async function scrollIntoViewIfNeeded(selectors, frame, timeout) {
+    const element = await waitForSelectors(selectors, frame, { visible: false, timeout });
+    if (!element) {
+      throw new Error(
+        'The element could not be found.'
+      );
+    }
     await waitForConnected(element, timeout);
     const isInViewport = await element.isIntersectingViewport({threshold: 0});
     if (isInViewport) {
@@ -352,8 +364,8 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     const target = await browser.waitForTarget(t => t.url() === "https://localhost/test", { timeout });
     const targetPage = await target.page();
     targetPage.setDefaultTimeout(timeout);
+    await scrollIntoViewIfNeeded(["aria/Test"], targetPage, timeout);
     const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
-    await scrollIntoViewIfNeeded(element, timeout);
     await element.click({
       offset: {
         x: 1,
@@ -375,7 +387,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     throw new Error('Could not find element for selectors: ' + JSON.stringify(selectors));
   }
 
-  async function scrollIntoViewIfNeeded(element, timeout) {
+  async function scrollIntoViewIfNeeded(selectors, frame, timeout) {
+    const element = await waitForSelectors(selectors, frame, { visible: false, timeout });
+    if (!element) {
+      throw new Error(
+        'The element could not be found.'
+      );
+    }
     await waitForConnected(element, timeout);
     const isInViewport = await element.isIntersectingViewport({threshold: 0});
     if (isInViewport) {
@@ -528,8 +546,8 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     const target = await browser.waitForTarget(t => t.url() === "https://localhost/test", { timeout });
     const targetPage = await target.page();
     targetPage.setDefaultTimeout(timeout);
+    await scrollIntoViewIfNeeded(["aria/Test"], targetPage, timeout);
     const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
-    await scrollIntoViewIfNeeded(element, timeout);
     await element.click({
       offset: {
         x: 1,
@@ -551,7 +569,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     throw new Error('Could not find element for selectors: ' + JSON.stringify(selectors));
   }
 
-  async function scrollIntoViewIfNeeded(element, timeout) {
+  async function scrollIntoViewIfNeeded(selectors, frame, timeout) {
+    const element = await waitForSelectors(selectors, frame, { visible: false, timeout });
+    if (!element) {
+      throw new Error(
+        'The element could not be found.'
+      );
+    }
     await waitForConnected(element, timeout);
     const isInViewport = await element.isIntersectingViewport({threshold: 0});
     if (isInViewport) {
@@ -706,8 +730,8 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     let frame = targetPage.mainFrame();
     frame = frame.childFrames()[1];
     frame = frame.childFrames()[1];
+    await scrollIntoViewIfNeeded(["aria/Test"], frame, timeout);
     const element = await waitForSelectors(["aria/Test"], frame, { timeout, visible: true });
-    await scrollIntoViewIfNeeded(element, timeout);
     await element.click({
       offset: {
         x: 1,
@@ -729,7 +753,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     throw new Error('Could not find element for selectors: ' + JSON.stringify(selectors));
   }
 
-  async function scrollIntoViewIfNeeded(element, timeout) {
+  async function scrollIntoViewIfNeeded(selectors, frame, timeout) {
+    const element = await waitForSelectors(selectors, frame, { visible: false, timeout });
+    if (!element) {
+      throw new Error(
+        'The element could not be found.'
+      );
+    }
     await waitForConnected(element, timeout);
     const isInViewport = await element.isIntersectingViewport({threshold: 0});
     if (isInViewport) {
@@ -895,7 +925,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     throw new Error('Could not find element for selectors: ' + JSON.stringify(selectors));
   }
 
-  async function scrollIntoViewIfNeeded(element, timeout) {
+  async function scrollIntoViewIfNeeded(selectors, frame, timeout) {
+    const element = await waitForSelectors(selectors, frame, { visible: false, timeout });
+    if (!element) {
+      throw new Error(
+        'The element could not be found.'
+      );
+    }
     await waitForConnected(element, timeout);
     const isInViewport = await element.isIntersectingViewport({threshold: 0});
     if (isInViewport) {
@@ -1061,7 +1097,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     throw new Error('Could not find element for selectors: ' + JSON.stringify(selectors));
   }
 
-  async function scrollIntoViewIfNeeded(element, timeout) {
+  async function scrollIntoViewIfNeeded(selectors, frame, timeout) {
+    const element = await waitForSelectors(selectors, frame, { visible: false, timeout });
+    if (!element) {
+      throw new Error(
+        'The element could not be found.'
+      );
+    }
     await waitForConnected(element, timeout);
     const isInViewport = await element.isIntersectingViewport({threshold: 0});
     if (isInViewport) {
@@ -1211,8 +1253,8 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   {
     const targetPage = page;
+    await scrollIntoViewIfNeeded(["body > div:nth-child(1)"], targetPage, timeout);
     const element = await waitForSelectors(["body > div:nth-child(1)"], targetPage, { timeout, visible: true });
-    await scrollIntoViewIfNeeded(element, timeout);
     await element.evaluate((el, x, y) => { el.scrollTop = y; el.scrollLeft = x; }, 0, 40);
   }
   {
@@ -1233,7 +1275,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     throw new Error('Could not find element for selectors: ' + JSON.stringify(selectors));
   }
 
-  async function scrollIntoViewIfNeeded(element, timeout) {
+  async function scrollIntoViewIfNeeded(selectors, frame, timeout) {
+    const element = await waitForSelectors(selectors, frame, { visible: false, timeout });
+    if (!element) {
+      throw new Error(
+        'The element could not be found.'
+      );
+    }
     await waitForConnected(element, timeout);
     const isInViewport = await element.isIntersectingViewport({threshold: 0});
     if (isInViewport) {
@@ -1401,7 +1449,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     throw new Error('Could not find element for selectors: ' + JSON.stringify(selectors));
   }
 
-  async function scrollIntoViewIfNeeded(element, timeout) {
+  async function scrollIntoViewIfNeeded(selectors, frame, timeout) {
+    const element = await waitForSelectors(selectors, frame, { visible: false, timeout });
+    if (!element) {
+      throw new Error(
+        'The element could not be found.'
+      );
+    }
     await waitForConnected(element, timeout);
     const isInViewport = await element.isIntersectingViewport({threshold: 0});
     if (isInViewport) {
@@ -1569,7 +1623,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     throw new Error('Could not find element for selectors: ' + JSON.stringify(selectors));
   }
 
-  async function scrollIntoViewIfNeeded(element, timeout) {
+  async function scrollIntoViewIfNeeded(selectors, frame, timeout) {
+    const element = await waitForSelectors(selectors, frame, { visible: false, timeout });
+    if (!element) {
+      throw new Error(
+        'The element could not be found.'
+      );
+    }
     await waitForConnected(element, timeout);
     const isInViewport = await element.isIntersectingViewport({threshold: 0});
     if (isInViewport) {

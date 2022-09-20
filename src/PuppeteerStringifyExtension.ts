@@ -134,11 +134,15 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
 
   #appendWaitForSelector(out: LineWriter, step: StepWithSelectors): void {
     out.appendLine(
+      `await scrollIntoViewIfNeeded(${JSON.stringify(step.selectors)}, ${
+        step.frame ? 'frame' : 'targetPage'
+      }, timeout);`
+    );
+    out.appendLine(
       `const element = await waitForSelectors(${JSON.stringify(
         step.selectors
       )}, ${step.frame ? 'frame' : 'targetPage'}, { timeout, visible: true });`
     );
-    out.appendLine('await scrollIntoViewIfNeeded(element, timeout);');
   }
 
   #appendClickStep(out: LineWriter, step: ClickStep): void {
@@ -329,7 +333,13 @@ const helpers = `async function waitForSelectors(selectors, frame, options) {
   throw new Error('Could not find element for selectors: ' + JSON.stringify(selectors));
 }
 
-async function scrollIntoViewIfNeeded(element, timeout) {
+async function scrollIntoViewIfNeeded(selectors, frame, timeout) {
+  const element = await waitForSelectors(selectors, frame, { visible: false, timeout });
+  if (!element) {
+    throw new Error(
+      'The element could not be found.'
+    );
+  }
   await waitForConnected(element, timeout);
   const isInViewport = await element.isIntersectingViewport({threshold: 0});
   if (isInViewport) {

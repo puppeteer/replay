@@ -28,8 +28,8 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   await lhFlow.startTimespan();
   {
     const targetPage = page;
+    await scrollIntoViewIfNeeded([["#button"]], targetPage, timeout);
     const element = await waitForSelectors([["#button"]], targetPage, { timeout, visible: true });
-    await scrollIntoViewIfNeeded(element, timeout);
     await element.click({
       offset: {
         x: 61,
@@ -74,8 +74,8 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   await lhFlow.startTimespan();
   {
     const targetPage = page;
+    await scrollIntoViewIfNeeded([["#button"]], targetPage, timeout);
     const element = await waitForSelectors([["#button"]], targetPage, { timeout, visible: true });
-    await scrollIntoViewIfNeeded(element, timeout);
     await element.click({
       offset: {
         x: 61,
@@ -133,8 +133,8 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     const targetPage = page;
     const promises = [];
     promises.push(targetPage.waitForNavigation());
+    await scrollIntoViewIfNeeded([["#link"]], targetPage, timeout);
     const element = await waitForSelectors([["#link"]], targetPage, { timeout, visible: true });
-    await scrollIntoViewIfNeeded(element, timeout);
     await element.click({
       offset: {
         x: 61,

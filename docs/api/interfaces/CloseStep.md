@@ -73,4 +73,4 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:135](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L135)
+[Schema.ts:141](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L141)

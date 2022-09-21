@@ -21,7 +21,7 @@ Defaults to 'primary' if the device type is a mouse.
 
 #### Defined in
 
-[Schema.ts:82](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L82)
+[Schema.ts:88](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L88)
 
 ---
 
@@ -33,7 +33,7 @@ Pointer type for the event. Defaults to 'mouse'.
 
 #### Defined in
 
-[Schema.ts:78](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L78)
+[Schema.ts:84](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L84)
 
 ---
 
@@ -46,7 +46,7 @@ to the center of the element
 
 #### Defined in
 
-[Schema.ts:87](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L87)
+[Schema.ts:93](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L93)
 
 ---
 
@@ -59,4 +59,4 @@ to the center of the element
 
 #### Defined in
 
-[Schema.ts:92](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L92)
+[Schema.ts:98](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L98)

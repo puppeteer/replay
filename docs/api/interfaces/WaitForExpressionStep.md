@@ -55,7 +55,7 @@ true allowing the replay to continue.
 
 #### Defined in
 
-[Schema.ts:238](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L238)
+[Schema.ts:244](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L244)
 
 ---
 
@@ -115,4 +115,4 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:237](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L237)
+[Schema.ts:243](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L243)

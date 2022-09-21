@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/puppeteer/replay/compare/v1.2.2...v1.3.0) (2022-09-21)
+
+
+### Features
+
+* XPath and Text selector types are now supported ([#309](https://github.com/puppeteer/replay/issues/309)) ([bc066e5](https://github.com/puppeteer/replay/commit/bc066e5c110d19550bd83f56ec4a5b9a60eeb4cc))
+
 ## [1.2.2](https://github.com/puppeteer/replay/compare/v1.2.1...v1.2.2) (2022-09-20)
 
 

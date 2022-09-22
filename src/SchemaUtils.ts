@@ -405,7 +405,7 @@ function parseScrollStep(step: object): ScrollStep {
 
 function parseNavigateStep(step: object): NavigateStep {
   return {
-    ...parseStepWithTarget('scroll', step),
+    ...parseStepWithTarget('navigate', step),
     type: 'navigate',
     target: parseTarget(step),
     url: parseString(step, 'url'),

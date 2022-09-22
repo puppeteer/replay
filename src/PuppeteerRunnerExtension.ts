@@ -19,9 +19,11 @@ import { Frame as InternalFrame } from 'puppeteer/lib/esm/puppeteer/common/Frame
 import { Page as InternalPage } from 'puppeteer/lib/esm/puppeteer/common/Page.js';
 import { RunnerExtension } from './RunnerExtension.js';
 import {
+  AssertedEventType,
   ChangeStep,
   Selector,
   Step,
+  StepType,
   UserFlow,
   WaitForElementStep,
 } from './Schema.js';
@@ -109,7 +111,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
     };
 
     switch (step.type) {
-      case 'doubleClick':
+      case StepType.DoubleClick:
         {
           await scrollIntoViewIfNeeded(step.selectors, localFrame, timeout);
           const element = await waitForSelectors(step.selectors, localFrame, {
@@ -131,7 +133,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
           await element.dispose();
         }
         break;
-      case 'click':
+      case StepType.Click:
         {
           await scrollIntoViewIfNeeded(step.selectors, localFrame, timeout);
           const element = await waitForSelectors(step.selectors, localFrame, {
@@ -153,7 +155,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
           await element.dispose();
         }
         break;
-      case 'hover':
+      case StepType.Hover:
         {
           await scrollIntoViewIfNeeded(step.selectors, localFrame, timeout);
           const element = await waitForSelectors(step.selectors, localFrame, {
@@ -168,27 +170,27 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
           await element.dispose();
         }
         break;
-      case 'emulateNetworkConditions':
+      case StepType.EmulateNetworkConditions:
         {
           startWaitingForEvents();
           await mainPage.emulateNetworkConditions(step);
         }
         break;
-      case 'keyDown':
+      case StepType.KeyDown:
         {
           startWaitingForEvents();
           await mainPage.keyboard.down(step.key);
           await mainPage.waitForTimeout(100);
         }
         break;
-      case 'keyUp':
+      case StepType.KeyUp:
         {
           startWaitingForEvents();
           await mainPage.keyboard.up(step.key);
           await mainPage.waitForTimeout(100);
         }
         break;
-      case 'close':
+      case StepType.Close:
         {
           if ('close' in targetPageOrFrame) {
             startWaitingForEvents();
@@ -196,7 +198,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
           }
         }
         break;
-      case 'change':
+      case StepType.Change:
         {
           await scrollIntoViewIfNeeded(step.selectors, localFrame, timeout);
           const element = (await waitForSelectors(step.selectors, localFrame, {
@@ -222,14 +224,14 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
           await element.dispose();
         }
         break;
-      case 'setViewport': {
+      case StepType.SetViewport: {
         if ('setViewport' in targetPageOrFrame) {
           startWaitingForEvents();
           await targetPageOrFrame.setViewport(step);
         }
         break;
       }
-      case 'scroll': {
+      case StepType.Scroll: {
         if ('selectors' in step) {
           await scrollIntoViewIfNeeded(step.selectors, localFrame, timeout);
           const element = await waitForSelectors(step.selectors, localFrame, {
@@ -262,12 +264,12 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         }
         break;
       }
-      case 'navigate': {
+      case StepType.Navigate: {
         startWaitingForEvents();
         await localFrame.goto(step.url);
         break;
       }
-      case 'waitForElement': {
+      case StepType.WaitForElement: {
         try {
           startWaitingForEvents();
           await waitForElement(step, localFrame, timeout);
@@ -282,14 +284,14 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         }
         break;
       }
-      case 'waitForExpression': {
+      case StepType.WaitForExpression: {
         startWaitingForEvents();
         await localFrame.waitForFunction(step.expression, {
           timeout,
         });
         break;
       }
-      case 'customStep': {
+      case StepType.CustomStep: {
         // TODO implement these steps
         break;
       }
@@ -410,7 +412,7 @@ async function waitForEvents(
   if (step.assertedEvents) {
     for (const event of step.assertedEvents) {
       switch (event.type) {
-        case 'navigation': {
+        case AssertedEventType.Navigation: {
           promises.push(
             pageOrFrame.waitForNavigation({
               timeout,

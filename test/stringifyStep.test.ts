@@ -17,7 +17,7 @@
 import { stringifyStep } from '../src/stringify.js';
 import { assert } from 'chai';
 import { StringifyExtension } from '../src/StringifyExtension.js';
-import { Step, UserFlow } from '../src/Schema.js';
+import { Step, StepType, UserFlow } from '../src/Schema.js';
 import { LineWriter } from '../src/LineWriter.js';
 import snapshot from 'snap-shot-it';
 
@@ -25,7 +25,7 @@ describe('stringifyStep', () => {
   it('should stringify a single step', async () => {
     snapshot(
       await stringifyStep({
-        type: 'navigate' as const,
+        type: StepType.Navigate as const,
         url: 'https://localhost/',
       })
     );
@@ -69,7 +69,7 @@ describe('stringifyStep', () => {
     const extension = new DummyExtension();
     assert.strictEqual(
       await stringifyStep(
-        { type: 'customStep', name: 'test', parameters: {} },
+        { type: StepType.CustomStep, name: 'test', parameters: {} },
         { extension }
       ),
       [

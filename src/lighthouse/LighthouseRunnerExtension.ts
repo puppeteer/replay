@@ -16,6 +16,7 @@
 
 import { PuppeteerRunnerExtension } from '../PuppeteerRunnerExtension.js';
 import type { Step, UserFlow } from '../Schema.js';
+import { StepType } from '../Schema.js';
 import { isMobileFlow, isNavigationStep } from './helpers.js';
 
 export class LighthouseRunnerExtension extends PuppeteerRunnerExtension {
@@ -53,7 +54,7 @@ export class LighthouseRunnerExtension extends PuppeteerRunnerExtension {
 
   override async beforeEachStep(step: Step, flow: UserFlow) {
     await super.beforeEachStep?.(step, flow);
-    if (step.type === 'setViewport') return;
+    if (step.type === StepType.SetViewport) return;
 
     if (isNavigationStep(step)) {
       if (this.#isTimespanRunning) {

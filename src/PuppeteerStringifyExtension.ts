@@ -16,24 +16,25 @@
 
 import type { LineWriter } from './LineWriter.js';
 import type {
-  Step,
-  ClickStep,
-  StepWithFrame,
-  StepWithSelectors,
   ChangeStep,
-  UserFlow,
+  ClickStep,
+  CloseStep,
+  DoubleClickStep,
   EmulateNetworkConditionsStep,
+  HoverStep,
   KeyDownStep,
   KeyUpStep,
-  CloseStep,
-  SetViewportStep,
-  ScrollStep,
   NavigateStep,
+  ScrollStep,
+  SetViewportStep,
+  Step,
+  StepWithFrame,
+  StepWithSelectors,
+  UserFlow,
   WaitForElementStep,
   WaitForExpressionStep,
-  DoubleClickStep,
-  HoverStep,
 } from './Schema.js';
+import { AssertedEventType, StepType } from './Schema.js';
 import { StringifyExtension } from './StringifyExtension.js';
 
 import {
@@ -79,7 +80,7 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
       out.appendLine('const promises = [];');
       for (const event of step.assertedEvents) {
         switch (event.type) {
-          case 'navigation': {
+          case AssertedEventType.Navigation: {
             out.appendLine(
               `promises.push(${
                 'frame' in step && step.frame ? 'frame' : 'targetPage'
@@ -257,33 +258,33 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
 
   #appendStepType(out: LineWriter, step: Step): void {
     switch (step.type) {
-      case 'click':
+      case StepType.Click:
         return this.#appendClickStep(out, step);
-      case 'doubleClick':
+      case StepType.DoubleClick:
         return this.#appendDoubleClickStep(out, step);
-      case 'hover':
+      case StepType.Hover:
         return this.#appendHoverStep(out, step);
-      case 'change':
+      case StepType.Change:
         return this.#appendChangeStep(out, step);
-      case 'emulateNetworkConditions':
+      case StepType.EmulateNetworkConditions:
         return this.#appendEmulateNetworkConditionsStep(out, step);
-      case 'keyDown':
+      case StepType.KeyDown:
         return this.#appendKeyDownStep(out, step);
-      case 'keyUp':
+      case StepType.KeyUp:
         return this.#appendKeyUpStep(out, step);
-      case 'close':
+      case StepType.Close:
         return this.#appendCloseStep(out, step);
-      case 'setViewport':
+      case StepType.SetViewport:
         return this.#appendViewportStep(out, step);
-      case 'scroll':
+      case StepType.Scroll:
         return this.#appendScrollStep(out, step);
-      case 'navigate':
+      case StepType.Navigate:
         return this.#appendNavigationStep(out, step);
-      case 'waitForElement':
+      case StepType.WaitForElement:
         return this.#appendWaitForElementStep(out, step);
-      case 'waitForExpression':
+      case StepType.WaitForExpression:
         return this.#appendWaitExpressionStep(out, step);
-      case 'customStep':
+      case StepType.CustomStep:
         return; // TODO: implement these
       default:
         return assertAllStepTypesAreHandled(step);

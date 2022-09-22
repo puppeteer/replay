@@ -17,13 +17,14 @@
 import snapshot from 'snap-shot-it';
 import { InMemoryLineWriter } from '../src/InMemoryLineWriter.js';
 import { PuppeteerStringifyExtension } from '../src/PuppeteerStringifyExtension.js';
+import { AssertedEventType, StepType } from '../src/Schema.js';
 
 describe('PuppeteerStringifyExtension', () => {
   const ext = new PuppeteerStringifyExtension();
 
   it('should print the correct script for a click step', async () => {
     const step = {
-      type: 'click' as const,
+      type: StepType.Click as const,
       target: 'main',
       selectors: ['aria/Test'],
       offsetX: 1,
@@ -38,12 +39,12 @@ describe('PuppeteerStringifyExtension', () => {
 
   it('should print the correct script for asserted events', async () => {
     const step = {
-      type: 'click' as const,
+      type: StepType.Click as const,
       target: 'main',
       selectors: ['aria/Test'],
       offsetX: 1,
       offsetY: 1,
-      assertedEvents: [{ type: 'navigation' as const }],
+      assertedEvents: [{ type: AssertedEventType.Navigation as const }],
     };
     const flow = { title: 'test', steps: [step] };
 
@@ -54,7 +55,7 @@ describe('PuppeteerStringifyExtension', () => {
 
   it('should print the correct script with a chain selector', async () => {
     const step = {
-      type: 'click' as const,
+      type: StepType.Click as const,
       target: 'main',
       selectors: [['aria/Test', 'aria/Test2']],
       offsetX: 1,
@@ -69,7 +70,7 @@ describe('PuppeteerStringifyExtension', () => {
 
   it('should print the correct script for a change step', async () => {
     const step = {
-      type: 'change' as const,
+      type: StepType.Change as const,
       target: 'main',
       selectors: ['aria/Test'],
       value: 'Hello World',
@@ -83,7 +84,7 @@ describe('PuppeteerStringifyExtension', () => {
 
   it('should print the correct script for a change step for non-text inputs', async () => {
     const step = {
-      type: 'change' as const,
+      type: StepType.Change as const,
       target: 'main',
       selectors: ['aria/Test'],
       value: '#333333',

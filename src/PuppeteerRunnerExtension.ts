@@ -16,7 +16,7 @@
 
 import { Browser, ElementHandle, Frame, Page } from 'puppeteer';
 import { Frame as InternalFrame } from 'puppeteer/lib/esm/puppeteer/common/Frame.js';
-import { Page as InternalPage } from 'puppeteer/lib/esm/puppeteer/common/Page.js';
+import { CDPPage as InternalPage } from 'puppeteer/lib/esm/puppeteer/common/Page.js';
 import { RunnerExtension } from './RunnerExtension.js';
 import {
   AssertedEventType,

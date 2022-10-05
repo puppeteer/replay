@@ -17,7 +17,7 @@
 import { PuppeteerStringifyExtension } from '../PuppeteerStringifyExtension.js';
 
 import type { LineWriter } from '../LineWriter.js';
-import type { Step, UserFlow } from '../Schema.js';
+import { Step, StepType, UserFlow } from '../Schema.js';
 
 import { isNavigationStep, isMobileFlow } from './helpers.js';
 
@@ -56,7 +56,7 @@ export class LighthouseStringifyExtension extends PuppeteerStringifyExtension {
   }
 
   override async stringifyStep(out: LineWriter, step: Step, flow: UserFlow) {
-    if (step.type === 'setViewport') {
+    if (step.type === StepType.SetViewport) {
       await super.stringifyStep(out, step, flow);
       return;
     }

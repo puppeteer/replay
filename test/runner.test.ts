@@ -27,7 +27,7 @@ import { PuppeteerRunnerExtension } from '../src/PuppeteerRunnerExtension.js';
 
 import { TestServer } from '../third_party/testserver/lib/index.js';
 import { RunnerExtension } from '../src/RunnerExtension.js';
-import { Step, UserFlow } from '../src/Schema.js';
+import { AssertedEventType, Step, StepType, UserFlow } from '../src/Schema.js';
 
 const HTTP_PORT = 8907;
 const HTTP_PREFIX = `http://localhost:${HTTP_PORT}`;
@@ -106,7 +106,7 @@ describe('Runner', () => {
         title: 'test',
         steps: [
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/empty.html`,
           },
         ],
@@ -123,39 +123,39 @@ describe('Runner', () => {
         title: 'test',
         steps: [
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/main.html`,
           },
           {
-            type: 'click',
+            type: StepType.Click,
             button: 'primary',
             selectors: ['#test'],
             offsetX: 1,
             offsetY: 1,
           },
           {
-            type: 'click',
+            type: StepType.Click,
             button: 'auxiliary',
             selectors: ['#test'],
             offsetX: 1,
             offsetY: 1,
           },
           {
-            type: 'click',
+            type: StepType.Click,
             button: 'secondary',
             selectors: ['#test'],
             offsetX: 1,
             offsetY: 1,
           },
           {
-            type: 'click',
+            type: StepType.Click,
             button: 'back',
             selectors: ['#test'],
             offsetX: 1,
             offsetY: 1,
           },
           {
-            type: 'click',
+            type: StepType.Click,
             button: 'forward',
             selectors: ['#test'],
             offsetX: 1,
@@ -188,11 +188,11 @@ describe('Runner', () => {
         title: 'test',
         steps: [
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/svg.html`,
           },
           {
-            type: 'click',
+            type: StepType.Click,
             selectors: ['svg > path'],
             offsetX: 1,
             offsetY: 1,
@@ -210,11 +210,11 @@ describe('Runner', () => {
         title: 'test',
         steps: [
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/invisible-parent.html`,
           },
           {
-            type: 'click',
+            type: StepType.Click,
             selectors: [['.parent', '.child']],
             offsetX: 1,
             offsetY: 1,
@@ -232,11 +232,11 @@ describe('Runner', () => {
         title: 'test',
         steps: [
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/checkbox.html`,
           },
           {
-            type: 'click',
+            type: StepType.Click,
             selectors: ['input'],
             offsetX: 1,
             offsetY: 1,
@@ -257,46 +257,46 @@ describe('Runner', () => {
         title: 'test',
         steps: [
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/input.html`,
           },
           {
-            type: 'keyDown',
+            type: StepType.KeyDown,
             target: 'main',
             key: 'Tab',
           },
           {
-            type: 'keyUp',
+            type: StepType.KeyUp,
             target: 'main',
             key: 'Tab',
           },
           {
-            type: 'keyDown',
+            type: StepType.KeyDown,
             target: 'main',
             key: '1',
           },
           {
-            type: 'keyUp',
+            type: StepType.KeyUp,
             target: 'main',
             key: '1',
           },
           {
-            type: 'keyDown',
+            type: StepType.KeyDown,
             target: 'main',
             key: 'Tab',
           },
           {
-            type: 'keyUp',
+            type: StepType.KeyUp,
             target: 'main',
             key: 'Tab',
           },
           {
-            type: 'keyDown',
+            type: StepType.KeyDown,
             target: 'main',
             key: '2',
           },
           {
-            type: 'keyUp',
+            type: StepType.KeyUp,
             target: 'main',
             key: '2',
           },
@@ -317,11 +317,11 @@ describe('Runner', () => {
         title: 'test',
         steps: [
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/select.html`,
           },
           {
-            type: 'change',
+            type: StepType.Change,
             target: 'main',
             selectors: ['aria/Select'],
             value: 'O2',
@@ -344,18 +344,18 @@ describe('Runner', () => {
         title: 'test',
         steps: [
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/select.html`,
           },
           {
-            type: 'click',
+            type: StepType.Click,
             target: 'main',
             selectors: ['aria/Select'],
             offsetX: 1,
             offsetY: 1,
           },
           {
-            type: 'change',
+            type: StepType.Change,
             target: 'main',
             selectors: ['aria/Select'],
             value: 'O2',
@@ -380,11 +380,11 @@ describe('Runner', () => {
         title: 'test',
         steps: [
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/input.html`,
           },
           {
-            type: 'change',
+            type: StepType.Change,
             target: 'main',
             selectors: ['#color'],
             value: '#333333',
@@ -407,11 +407,11 @@ describe('Runner', () => {
         title: 'test',
         steps: [
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/input.html`,
           },
           {
-            type: 'change',
+            type: StepType.Change,
             target: 'main',
             selectors: ['#prefilled'],
             value: 'cba',
@@ -434,11 +434,11 @@ describe('Runner', () => {
         title: 'test',
         steps: [
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/input.html`,
           },
           {
-            type: 'change',
+            type: StepType.Change,
             target: 'main',
             selectors: ['#partially-prefilled'],
             value: 'abcdef',
@@ -461,11 +461,11 @@ describe('Runner', () => {
         title: 'test',
         steps: [
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/select.html`,
           },
           {
-            type: 'setViewport',
+            type: StepType.SetViewport,
             width: 800,
             height: 600,
             isLandscape: false,
@@ -494,11 +494,11 @@ describe('Runner', () => {
         title: 'test',
         steps: [
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/scroll.html`,
           },
           {
-            type: 'setViewport',
+            type: StepType.SetViewport,
             width: 800,
             height: 600,
             isLandscape: false,
@@ -507,14 +507,14 @@ describe('Runner', () => {
             hasTouch: false,
           },
           {
-            type: 'scroll',
+            type: StepType.Scroll,
             target: 'main',
             selectors: ['body > div:nth-child(1)'],
             x: 0,
             y: 40,
           },
           {
-            type: 'scroll',
+            type: StepType.Scroll,
             target: 'main',
             x: 40,
             y: 40,
@@ -544,7 +544,7 @@ describe('Runner', () => {
         title: 'test',
         steps: [
           {
-            type: 'setViewport',
+            type: StepType.SetViewport,
             width: 800,
             height: 600,
             isLandscape: false,
@@ -553,11 +553,11 @@ describe('Runner', () => {
             hasTouch: false,
           },
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/scroll-into-view.html`,
           },
           {
-            type: 'click',
+            type: StepType.Click,
             selectors: [['button']],
             offsetX: 1,
             offsetY: 1,
@@ -579,11 +579,11 @@ describe('Runner', () => {
         title: 'test',
         steps: [
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/form.html`,
           },
           {
-            type: 'setViewport',
+            type: StepType.SetViewport,
             width: 800,
             height: 600,
             isLandscape: false,
@@ -592,7 +592,7 @@ describe('Runner', () => {
             hasTouch: false,
           },
           {
-            type: 'click',
+            type: StepType.Click,
             target: 'main',
             selectors: ['aria/Name:'],
             offsetX: 1,
@@ -615,11 +615,11 @@ describe('Runner', () => {
         title: 'test',
         steps: [
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/main.html`,
           },
           {
-            type: 'setViewport',
+            type: StepType.SetViewport,
             width: 800,
             height: 600,
             isLandscape: false,
@@ -628,7 +628,7 @@ describe('Runner', () => {
             hasTouch: false,
           },
           {
-            type: 'click',
+            type: StepType.Click,
             target: 'main',
             selectors: ['text/Inp'],
             offsetX: 1,
@@ -651,22 +651,22 @@ describe('Runner', () => {
         title: 'test',
         steps: [
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/shadow-dynamic.html`,
           },
           {
-            type: 'waitForElement',
+            type: StepType.WaitForElement,
             selectors: [['custom-element', 'button']],
           },
           {
-            type: 'click',
+            type: StepType.Click,
             target: 'main',
             selectors: [['custom-element', 'button']],
             offsetX: 1,
             offsetY: 1,
           },
           {
-            type: 'waitForElement',
+            type: StepType.WaitForElement,
             selectors: [['custom-element', 'button']],
             operator: '>=',
             count: 2,
@@ -690,18 +690,18 @@ describe('Runner', () => {
         title: 'test',
         steps: [
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/shadow-dynamic.html`,
           },
           {
-            type: 'click',
+            type: StepType.Click,
             target: 'main',
             selectors: [['custom-element', 'button']],
             offsetX: 1,
             offsetY: 1,
           },
           {
-            type: 'waitForExpression',
+            type: StepType.WaitForExpression,
             target: 'main',
             expression:
               'document.querySelectorAll("custom-element").length === 2',
@@ -724,32 +724,32 @@ describe('Runner', () => {
       title: 'test',
       steps: [
         {
-          type: 'navigate',
+          type: StepType.Navigate,
           url: `${HTTP_PREFIX}/main.html`,
           assertedEvents: [
             {
               title: '',
-              type: 'navigation',
+              type: AssertedEventType.Navigation,
               url: `${HTTP_PREFIX}/main.html`,
             },
           ],
         },
         {
-          type: 'click',
+          type: StepType.Click,
           selectors: [['aria/Open Popup'], ['#popup']],
           target: 'main',
           offsetX: 1,
           offsetY: 1,
         },
         {
-          type: 'click',
+          type: StepType.Click,
           selectors: [['aria/Button in Popup'], ['body > button']],
           target: `${HTTP_PREFIX}/popup.html`,
           offsetX: 1,
           offsetY: 1,
         },
         {
-          type: 'close',
+          type: StepType.Close,
           target: `${HTTP_PREFIX}/popup.html`,
         },
       ],
@@ -808,7 +808,7 @@ describe('Runner', () => {
     const runner = await createRunner(
       {
         title: 'test',
-        steps: [{ type: 'customStep', name: 'step1', parameters: {} }],
+        steps: [{ type: StepType.CustomStep, name: 'step1', parameters: {} }],
       },
       extension
     );
@@ -825,25 +825,25 @@ describe('Runner', () => {
         title: 'Test Recording',
         steps: [
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/oopif.html`,
             assertedEvents: [
               {
                 title: '',
-                type: 'navigation',
+                type: AssertedEventType.Navigation,
                 url: `${HTTP_PREFIX}/oopif.html`,
               },
             ],
           },
           {
-            type: 'click',
+            type: StepType.Click,
             target: `${OOPIF_PREFIX}/iframe1.html`,
             selectors: [['aria/To iframe 2'], ['body > a']],
             offsetX: 1,
             offsetY: 1,
             assertedEvents: [
               {
-                type: 'navigation',
+                type: AssertedEventType.Navigation,
                 title: '',
                 url: `${OOPIF_PREFIX}/iframe2.html`,
               },
@@ -867,25 +867,25 @@ describe('Runner', () => {
         timeout: 3000,
         steps: [
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/local-to-oopif.html`,
             assertedEvents: [
               {
                 title: '',
-                type: 'navigation',
+                type: AssertedEventType.Navigation,
                 url: `${HTTP_PREFIX}/local-to-oopif.html`,
               },
             ],
           },
           {
-            type: 'click',
+            type: StepType.Click,
             frame: [0],
             selectors: [['aria/To iframe 2']],
             offsetX: 1,
             offsetY: 1,
             assertedEvents: [
               {
-                type: 'navigation',
+                type: AssertedEventType.Navigation,
                 title: '',
                 url: `${OOPIF_PREFIX}/iframe2.html`,
               },
@@ -909,18 +909,18 @@ describe('Runner', () => {
         timeout: 3000,
         steps: [
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: `${HTTP_PREFIX}/main.html`,
             assertedEvents: [
               {
                 title: '',
-                type: 'navigation',
+                type: AssertedEventType.Navigation,
                 url: `${HTTP_PREFIX}/main.html`,
               },
             ],
           },
           {
-            type: 'hover',
+            type: StepType.Hover,
             target: 'main',
             selectors: [['#hover-button']],
           },
@@ -961,9 +961,9 @@ describe('Runner', () => {
         {
           title: 'test',
           steps: [
-            { type: 'customStep', name: 'step1', parameters: {} },
-            { type: 'customStep', name: 'step2', parameters: {} },
-            { type: 'customStep', name: 'step3', parameters: {} },
+            { type: StepType.CustomStep, name: 'step1', parameters: {} },
+            { type: StepType.CustomStep, name: 'step2', parameters: {} },
+            { type: StepType.CustomStep, name: 'step3', parameters: {} },
           ],
         },
         extension
@@ -1001,9 +1001,9 @@ describe('Runner', () => {
         {
           title: 'test',
           steps: [
-            { type: 'customStep', name: 'step1', parameters: {} },
-            { type: 'customStep', name: 'step2', parameters: {} },
-            { type: 'customStep', name: 'step3', parameters: {} },
+            { type: StepType.CustomStep, name: 'step1', parameters: {} },
+            { type: StepType.CustomStep, name: 'step2', parameters: {} },
+            { type: StepType.CustomStep, name: 'step3', parameters: {} },
           ],
         },
         extension
@@ -1036,9 +1036,9 @@ describe('Runner', () => {
         {
           title: 'test',
           steps: [
-            { type: 'customStep', name: 'step1', parameters: {} },
-            { type: 'customStep', name: 'step2', parameters: {} },
-            { type: 'customStep', name: 'step3', parameters: {} },
+            { type: StepType.CustomStep, name: 'step1', parameters: {} },
+            { type: StepType.CustomStep, name: 'step2', parameters: {} },
+            { type: StepType.CustomStep, name: 'step3', parameters: {} },
           ],
         },
         extension

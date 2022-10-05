@@ -15,17 +15,20 @@
  */
 
 import type { Step, UserFlow } from '../Schema.js';
+import { AssertedEventType, StepType } from '../Schema.js';
 
 export function isNavigationStep(step: Step): boolean {
   return Boolean(
-    step.type === 'navigate' ||
-      step.assertedEvents?.some((event) => event.type === 'navigation')
+    step.type === StepType.Navigate ||
+      step.assertedEvents?.some(
+        (event) => event.type === AssertedEventType.Navigation
+      )
   );
 }
 
 export function isMobileFlow(flow: UserFlow): boolean {
   for (const step of flow.steps) {
-    if (step.type === 'setViewport') {
+    if (step.type === StepType.SetViewport) {
       return step.isMobile;
     }
   }

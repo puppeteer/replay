@@ -18,12 +18,8 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { assert } from 'chai';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 import { TestServer } from '../../third_party/testserver/lib/index.js';
-import { UserFlow } from '../../src/Schema.js';
+import { AssertedEventType, StepType, UserFlow } from '../../src/Schema.js';
 import { LighthouseStringifyExtension } from '../../src/lighthouse/LighthouseStringifyExtension.js';
 import { LighthouseRunnerExtension } from '../../src/lighthouse/LighthouseRunnerExtension.js';
 import { stringify } from '../../src/stringify.js';
@@ -33,6 +29,9 @@ import { execFile } from 'child_process';
 import { promisify } from 'util';
 import puppeteer from 'puppeteer';
 import FlowResult from 'lighthouse/types/lhr/flow';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const HTTP_PORT = 8907;
 const HTTP_PREFIX = `http://localhost:${HTTP_PORT}`;
@@ -118,7 +117,7 @@ describe('Lighthouse user flow', function () {
           title: 'Test desktop',
           steps: [
             {
-              type: 'setViewport',
+              type: StepType.SetViewport,
               width: 757,
               height: 988,
               deviceScaleFactor: 1,
@@ -127,43 +126,43 @@ describe('Lighthouse user flow', function () {
               isLandscape: false,
             },
             {
-              type: 'navigate',
+              type: StepType.Navigate,
               url: `${HTTP_PREFIX}/main.html`,
             },
             {
-              type: 'click',
+              type: StepType.Click,
               button: 'primary',
               selectors: ['#test'],
               offsetX: 1,
               offsetY: 1,
             },
             {
-              type: 'click',
+              type: StepType.Click,
               button: 'auxiliary',
               selectors: ['#test'],
               offsetX: 1,
               offsetY: 1,
             },
             {
-              type: 'click',
+              type: StepType.Click,
               selectors: ['a[href="main2.html"]'],
               offsetX: 1,
               offsetY: 1,
               assertedEvents: [
                 {
-                  type: 'navigation',
+                  type: AssertedEventType.Navigation,
                 },
               ],
             },
             {
-              type: 'click',
+              type: StepType.Click,
               button: 'primary',
               selectors: ['#test'],
               offsetX: 1,
               offsetY: 1,
             },
             {
-              type: 'click',
+              type: StepType.Click,
               button: 'primary',
               selectors: ['#test'],
               offsetX: 1,

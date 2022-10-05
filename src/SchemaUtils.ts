@@ -16,15 +16,16 @@
 
 import type {
   AssertedEvent,
-  WaitForElementStep,
-  WaitForExpressionStep,
   BaseStep,
   ChangeStep,
+  ClickAttributes,
   ClickStep,
   CloseStep,
   CustomStep,
+  DoubleClickStep,
   EmulateNetworkConditionsStep,
   FrameSelector,
+  HoverStep,
   Key,
   KeyDownStep,
   KeyUpStep,
@@ -38,10 +39,10 @@ import type {
   StepWithTarget,
   Target,
   UserFlow,
-  ClickAttributes,
-  DoubleClickStep,
-  HoverStep,
+  WaitForElementStep,
+  WaitForExpressionStep,
 } from './Schema.js';
+import { AssertedEventType, StepType } from './Schema.js';
 
 export function assertAllStepTypesAreHandled(s: never): never;
 export function assertAllStepTypesAreHandled(s: Step): never {
@@ -223,9 +224,9 @@ function parseAssertedEvent(event: unknown): AssertedEvent {
   if (!hasProperty(event, 'type')) {
     throw new Error('Asserted event is missing type');
   }
-  if (event.type === 'navigation') {
+  if (event.type === AssertedEventType.Navigation) {
     return {
-      type: 'navigation',
+      type: AssertedEventType.Navigation,
       url: parseOptionalString(event, 'url'),
       title: parseOptionalString(event, 'title'),
     };
@@ -240,7 +241,7 @@ function parseAssertedEvents(events: unknown): AssertedEvent[] | undefined {
   return events.map(parseAssertedEvent);
 }
 
-function parseBaseStep(type: string, step: object): BaseStep {
+function parseBaseStep(type: StepType, step: object): BaseStep {
   if (
     hasProperty(step, 'timeout') &&
     isNumber(step.timeout) &&
@@ -260,21 +261,24 @@ function parseBaseStep(type: string, step: object): BaseStep {
   };
 }
 
-function parseStepWithTarget(type: string, step: object): StepWithTarget {
+function parseStepWithTarget(type: StepType, step: object): StepWithTarget {
   return {
     ...parseBaseStep(type, step),
     target: parseTarget(step),
   };
 }
 
-function parseStepWithFrame(type: string, step: object): StepWithFrame {
+function parseStepWithFrame(type: StepType, step: object): StepWithFrame {
   return {
     ...parseStepWithTarget(type, step),
     frame: parseFrame(step),
   };
 }
 
-function parseStepWithSelectors(type: string, step: object): StepWithSelectors {
+function parseStepWithSelectors(
+  type: StepType,
+  step: object
+): StepWithSelectors {
   return {
     ...parseStepWithFrame(type, step),
     selectors: parseSelectors(step),
@@ -313,40 +317,40 @@ function parseClickAttributes(step: object): ClickAttributes {
 
 function parseClickStep(step: object): ClickStep {
   return {
-    ...parseStepWithSelectors('click', step),
+    ...parseStepWithSelectors(StepType.Click, step),
     ...parseClickAttributes(step),
-    type: 'click',
+    type: StepType.Click,
     duration: parseOptionalNumber(step, 'duration'),
   };
 }
 
 function parseDoubleClickStep(step: object): DoubleClickStep {
   return {
-    ...parseStepWithSelectors('doubleClick', step),
+    ...parseStepWithSelectors(StepType.DoubleClick, step),
     ...parseClickAttributes(step),
-    type: 'doubleClick',
+    type: StepType.DoubleClick,
   };
 }
 
 function parseHoverStep(step: object): HoverStep {
   return {
-    ...parseStepWithSelectors('hover', step),
-    type: 'hover',
+    ...parseStepWithSelectors(StepType.Hover, step),
+    type: StepType.Hover,
   };
 }
 
 function parseChangeStep(step: object): ChangeStep {
   return {
-    ...parseStepWithSelectors('click', step),
-    type: 'change',
+    ...parseStepWithSelectors(StepType.Change, step),
+    type: StepType.Change,
     value: parseString(step, 'value'),
   };
 }
 
 function parseKeyDownStep(step: object): KeyDownStep {
   return {
-    ...parseStepWithTarget('keyDown', step),
-    type: 'keyDown',
+    ...parseStepWithTarget(StepType.KeyDown, step),
+    type: StepType.KeyDown,
     // TODO: type-check keys.
     key: parseString(step, 'key') as Key,
   };
@@ -354,8 +358,8 @@ function parseKeyDownStep(step: object): KeyDownStep {
 
 function parseKeyUpStep(step: object): KeyUpStep {
   return {
-    ...parseStepWithTarget('keyUp', step),
-    type: 'keyUp',
+    ...parseStepWithTarget(StepType.KeyUp, step),
+    type: StepType.KeyUp,
     // TODO: type-check keys.
     key: parseString(step, 'key') as Key,
   };
@@ -365,8 +369,8 @@ function parseEmulateNetworkConditionsStep(
   step: object
 ): EmulateNetworkConditionsStep {
   return {
-    ...parseStepWithTarget('emulateNetworkConditions', step),
-    type: 'emulateNetworkConditions',
+    ...parseStepWithTarget(StepType.EmulateNetworkConditions, step),
+    type: StepType.EmulateNetworkConditions,
     download: parseNumber(step, 'download'),
     upload: parseNumber(step, 'upload'),
     latency: parseNumber(step, 'latency'),
@@ -375,15 +379,15 @@ function parseEmulateNetworkConditionsStep(
 
 function parseCloseStep(step: object): CloseStep {
   return {
-    ...parseStepWithTarget('close', step),
-    type: 'close',
+    ...parseStepWithTarget(StepType.Close, step),
+    type: StepType.Close,
   };
 }
 
 function parseSetViewportStep(step: object): SetViewportStep {
   return {
-    ...parseStepWithTarget('setViewport', step),
-    type: 'setViewport',
+    ...parseStepWithTarget(StepType.SetViewport, step),
+    type: StepType.SetViewport,
     width: parseNumber(step, 'width'),
     height: parseNumber(step, 'height'),
     deviceScaleFactor: parseNumber(step, 'deviceScaleFactor'),
@@ -395,8 +399,8 @@ function parseSetViewportStep(step: object): SetViewportStep {
 
 function parseScrollStep(step: object): ScrollStep {
   return {
-    ...parseStepWithFrame('scroll', step),
-    type: 'scroll',
+    ...parseStepWithFrame(StepType.Scroll, step),
+    type: StepType.Scroll,
     x: parseOptionalNumber(step, 'x'),
     y: parseOptionalNumber(step, 'y'),
     selectors: parseOptionalSelectors(step),
@@ -405,8 +409,8 @@ function parseScrollStep(step: object): ScrollStep {
 
 function parseNavigateStep(step: object): NavigateStep {
   return {
-    ...parseStepWithTarget('navigate', step),
-    type: 'navigate',
+    ...parseStepWithTarget(StepType.Navigate, step),
+    type: StepType.Navigate,
     target: parseTarget(step),
     url: parseString(step, 'url'),
   };
@@ -420,8 +424,8 @@ function parseWaitForElementStep(step: object): WaitForElementStep {
     );
   }
   return {
-    ...parseStepWithSelectors('waitForElement', step),
-    type: 'waitForElement',
+    ...parseStepWithSelectors(StepType.WaitForElement, step),
+    type: StepType.WaitForElement,
     operator: operator as '>=' | '==' | '<=' | undefined,
     count: parseOptionalNumber(step, 'count'),
   };
@@ -432,8 +436,8 @@ function parseWaitForExpressionStep(step: object): WaitForExpressionStep {
     throw new Error('waitForExpression step is missing `expression`');
   }
   return {
-    ...parseStepWithFrame('waitForExpression', step),
-    type: 'waitForExpression',
+    ...parseStepWithFrame(StepType.WaitForExpression, step),
+    type: StepType.WaitForExpression,
     expression: parseString(step, 'expression'),
   };
 }
@@ -446,8 +450,8 @@ function parseCustomStep(step: object): CustomStep {
     throw new Error("customStep's name is not a string");
   }
   return {
-    ...parseStepWithFrame('customStep', step),
-    type: 'customStep',
+    ...parseStepWithFrame(StepType.CustomStep, step),
+    type: StepType.CustomStep,
     name: step.name,
     parameters: hasProperty(step, 'parameters') ? step.parameters : undefined,
   };
@@ -472,33 +476,33 @@ export function parseStep(step: unknown, idx?: number): Step {
     );
   }
   switch (step.type) {
-    case 'click':
+    case StepType.Click:
       return parseClickStep(step);
-    case 'doubleClick':
+    case StepType.DoubleClick:
       return parseDoubleClickStep(step);
-    case 'hover':
+    case StepType.Hover:
       return parseHoverStep(step);
-    case 'change':
+    case StepType.Change:
       return parseChangeStep(step);
-    case 'keyDown':
+    case StepType.KeyDown:
       return parseKeyDownStep(step);
-    case 'keyUp':
+    case StepType.KeyUp:
       return parseKeyUpStep(step);
-    case 'emulateNetworkConditions':
+    case StepType.EmulateNetworkConditions:
       return parseEmulateNetworkConditionsStep(step);
-    case 'close':
+    case StepType.Close:
       return parseCloseStep(step);
-    case 'setViewport':
+    case StepType.SetViewport:
       return parseSetViewportStep(step);
-    case 'scroll':
+    case StepType.Scroll:
       return parseScrollStep(step);
-    case 'navigate':
+    case StepType.Navigate:
       return parseNavigateStep(step);
-    case 'customStep':
+    case StepType.CustomStep:
       return parseCustomStep(step);
-    case 'waitForElement':
+    case StepType.WaitForElement:
       return parseWaitForElementStep(step);
-    case 'waitForExpression':
+    case StepType.WaitForExpression:
       return parseWaitForExpressionStep(step);
     default:
       throw new Error(`Step type ${step.type} is not supported`);

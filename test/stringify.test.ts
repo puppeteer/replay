@@ -17,7 +17,7 @@
 import { stringify } from '../src/stringify.js';
 import { assert } from 'chai';
 import { StringifyExtension } from '../src/StringifyExtension.js';
-import { Step, UserFlow } from '../src/Schema.js';
+import { Step, StepType, UserFlow } from '../src/Schema.js';
 import { LineWriter } from '../src/LineWriter.js';
 import snapshot from 'snap-shot-it';
 
@@ -27,7 +27,7 @@ describe('stringify', () => {
       title: 'Test Recording',
       steps: [
         {
-          type: 'navigate' as const,
+          type: StepType.Navigate as const,
           url: 'https://localhost/',
         },
       ],
@@ -40,7 +40,7 @@ describe('stringify', () => {
       title: 'Test Recording',
       steps: [
         {
-          type: 'emulateNetworkConditions' as const,
+          type: StepType.EmulateNetworkConditions as const,
           download: 100,
           upload: 100,
           latency: 999,
@@ -55,7 +55,7 @@ describe('stringify', () => {
       title: 'Test Recording',
       steps: [
         {
-          type: 'click' as const,
+          type: StepType.Click as const,
           target: 'https://localhost/test',
           selectors: ['aria/Test'],
           offsetX: 1,
@@ -72,7 +72,7 @@ describe('stringify', () => {
       timeout: 10000,
       steps: [
         {
-          type: 'click' as const,
+          type: StepType.Click as const,
           target: 'https://localhost/test',
           selectors: ['aria/Test'],
           offsetX: 1,
@@ -89,7 +89,7 @@ describe('stringify', () => {
       title: 'Test Recording',
       steps: [
         {
-          type: 'click' as const,
+          type: StepType.Click as const,
           target: 'main',
           frame: [1, 1],
           selectors: ['aria/Test'],
@@ -128,7 +128,7 @@ describe('stringify', () => {
       title: 'Test Recording',
       steps: [
         {
-          type: 'keyDown' as const,
+          type: StepType.KeyDown as const,
           target: 'main',
           key: 'E' as const,
         },
@@ -142,7 +142,7 @@ describe('stringify', () => {
       title: 'Test Recording',
       steps: [
         {
-          type: 'keyUp' as const,
+          type: StepType.KeyUp as const,
           target: 'main',
           key: 'E' as const,
         },
@@ -156,14 +156,14 @@ describe('stringify', () => {
       title: 'Test Recording',
       steps: [
         {
-          type: 'scroll' as const,
+          type: StepType.Scroll as const,
           target: 'main',
           selectors: ['body > div:nth-child(1)'],
           x: 0,
           y: 40,
         },
         {
-          type: 'scroll' as const,
+          type: StepType.Scroll as const,
           target: 'main',
           x: 40,
           y: 40,
@@ -178,7 +178,7 @@ describe('stringify', () => {
       title: 'Test Recording',
       steps: [
         {
-          type: 'waitForElement' as const,
+          type: StepType.WaitForElement as const,
           selectors: ['body > div:nth-child(1)'],
         },
       ],
@@ -191,7 +191,7 @@ describe('stringify', () => {
       title: 'Test Recording',
       steps: [
         {
-          type: 'waitForExpression' as const,
+          type: StepType.WaitForExpression as const,
           expression: '1 + 2',
         },
       ],
@@ -239,7 +239,7 @@ describe('stringify', () => {
       await stringify(
         {
           title: 'test',
-          steps: [{ type: 'customStep', name: 'test', parameters: {} }],
+          steps: [{ type: StepType.CustomStep, name: 'test', parameters: {} }],
         },
         { extension }
       ),

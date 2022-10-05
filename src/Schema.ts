@@ -19,8 +19,29 @@ export type Pattern = string;
 export type Selector = string | string[];
 export type FrameSelector = number[];
 
+export enum StepType {
+  Change = 'change',
+  Click = 'click',
+  Close = 'close',
+  CustomStep = 'customStep',
+  DoubleClick = 'doubleClick',
+  EmulateNetworkConditions = 'emulateNetworkConditions',
+  Hover = 'hover',
+  KeyDown = 'keyDown',
+  KeyUp = 'keyUp',
+  Navigate = 'navigate',
+  Scroll = 'scroll',
+  SetViewport = 'setViewport',
+  WaitForElement = 'waitForElement',
+  WaitForExpression = 'waitForExpression',
+}
+
+export enum AssertedEventType {
+  Navigation = 'navigation',
+}
+
 export interface NavigationEvent {
-  type: 'navigation';
+  type: AssertedEventType.Navigation;
   url?: Pattern;
   title?: Pattern;
 }
@@ -28,7 +49,7 @@ export interface NavigationEvent {
 export type AssertedEvent = NavigationEvent;
 
 export interface BaseStep {
-  type: string;
+  type: StepType;
   timeout?: number;
   assertedEvents?: AssertedEvent[];
 }
@@ -99,11 +120,11 @@ export interface ClickAttributes {
 }
 
 export interface DoubleClickStep extends ClickAttributes, StepWithSelectors {
-  type: 'doubleClick';
+  type: StepType.DoubleClick;
 }
 
 export interface ClickStep extends ClickAttributes, StepWithSelectors {
-  type: 'click';
+  type: StepType.Click;
   /**
    * Delay (in ms) between the mouse up and mouse down of the click. Defaults to
    * 50ms.
@@ -112,37 +133,37 @@ export interface ClickStep extends ClickAttributes, StepWithSelectors {
 }
 
 export interface HoverStep extends StepWithSelectors {
-  type: 'hover';
+  type: StepType.Hover;
 }
 
 export interface ChangeStep extends StepWithSelectors {
-  type: 'change';
+  type: StepType.Change;
   value: string;
 }
 
 export interface EmulateNetworkConditionsStep extends StepWithTarget {
-  type: 'emulateNetworkConditions';
+  type: StepType.EmulateNetworkConditions;
   download: number;
   upload: number;
   latency: number;
 }
 
 export interface KeyDownStep extends StepWithTarget {
-  type: 'keyDown';
+  type: StepType.KeyDown;
   key: Key;
 }
 
 export interface KeyUpStep extends StepWithTarget {
-  type: 'keyUp';
+  type: StepType.KeyUp;
   key: Key;
 }
 
 export interface CloseStep extends StepWithTarget {
-  type: 'close';
+  type: StepType.Close;
 }
 
 export interface SetViewportStep extends StepWithTarget {
-  type: 'setViewport';
+  type: StepType.SetViewport;
   width: number;
   height: number;
   deviceScaleFactor: number;
@@ -152,7 +173,7 @@ export interface SetViewportStep extends StepWithTarget {
 }
 
 export interface ScrollPageStep extends StepWithFrame {
-  type: 'scroll';
+  type: StepType.Scroll;
   /**
    * Absolute scroll x position in px. Defaults to 0
    */
@@ -168,12 +189,12 @@ export type ScrollElementStep = ScrollPageStep & StepWithSelectors;
 export type ScrollStep = ScrollPageStep | ScrollElementStep;
 
 export interface NavigateStep extends StepWithTarget {
-  type: 'navigate';
+  type: StepType.Navigate;
   url: string;
 }
 
 export interface CustomStepParams {
-  type: 'customStep';
+  type: StepType.CustomStep;
   name: string;
   parameters: unknown;
 }
@@ -213,7 +234,7 @@ export type UserStep =
  * ```
  */
 export interface WaitForElementStep extends StepWithSelectors {
-  type: 'waitForElement';
+  type: StepType.WaitForElement;
   /**
    * Defaults to '=='
    */
@@ -240,7 +261,7 @@ export interface WaitForElementStep extends StepWithSelectors {
  * ```
  */
 export interface WaitForExpressionStep extends StepWithFrame {
-  type: 'waitForExpression';
+  type: StepType.WaitForExpression;
   expression: string;
 }
 

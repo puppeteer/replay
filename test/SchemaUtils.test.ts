@@ -15,6 +15,7 @@
  */
 
 import { parse } from '../src/SchemaUtils.js';
+import { AssertedEventType, StepType } from '../src/Schema.js';
 import { assert } from 'chai';
 
 describe('SchemaUtils', () => {
@@ -104,7 +105,7 @@ describe('SchemaUtils', () => {
         title: 'test',
         steps: [
           {
-            type: 'setViewport',
+            type: StepType.SetViewport,
             width: 735,
             height: 1064,
             deviceScaleFactor: 1,
@@ -113,18 +114,18 @@ describe('SchemaUtils', () => {
             isLandscape: false,
           },
           {
-            type: 'navigate',
+            type: StepType.Navigate,
             url: 'https://www.google.com/',
             assertedEvents: [
               {
-                type: 'navigation',
+                type: AssertedEventType.Navigation,
                 url: 'https://www.google.com/',
                 title: 'Google',
               },
             ],
           },
           {
-            type: 'click',
+            type: StepType.Click,
             selectors: [
               ['aria/Google'],
               ['body > div.L3eUgb > div.o3j99.LLD4me.yr19Zb.LS8OJ > div > img'],
@@ -136,7 +137,7 @@ describe('SchemaUtils', () => {
             offsetY: 46,
           },
           {
-            type: 'doubleClick',
+            type: StepType.DoubleClick,
             selectors: [
               ['aria/Google'],
               ['body > div.L3eUgb > div.o3j99.LLD4me.yr19Zb.LS8OJ > div > img'],
@@ -147,7 +148,7 @@ describe('SchemaUtils', () => {
             offsetY: 46,
           },
           {
-            type: 'hover',
+            type: StepType.Hover,
             selectors: [
               ['aria/Google'],
               ['body > div.L3eUgb > div.o3j99.LLD4me.yr19Zb.LS8OJ > div > img'],
@@ -155,7 +156,7 @@ describe('SchemaUtils', () => {
             target: 'main',
           },
           {
-            type: 'click',
+            type: StepType.Click,
             selectors: [
               ['aria/Images'],
               ['#gb > div > div:nth-child(1) > div > div:nth-child(2) > a'],
@@ -165,14 +166,14 @@ describe('SchemaUtils', () => {
             offsetY: 15,
             assertedEvents: [
               {
-                type: 'navigation',
+                type: AssertedEventType.Navigation,
                 url: 'https://www.google.com/imghp?hl=en&ogbl',
                 title: 'Google Images',
               },
             ],
           },
           {
-            type: 'click',
+            type: StepType.Click,
             selectors: [['aria/Search'], ['#sbtc > div > div.a4bIc > input']],
             target: 'main',
             offsetX: 126,
@@ -226,7 +227,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'setViewport',
+              type: StepType.SetViewport,
               width: 735,
               height: 1064,
               deviceScaleFactor: 1,
@@ -256,7 +257,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'emulateNetworkConditions',
+              type: StepType.EmulateNetworkConditions,
               download: 1,
               upload: 1,
               latency: 1,
@@ -282,7 +283,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'keyDown',
+              type: StepType.KeyDown,
               target: 'main',
               key: 'A',
             },
@@ -306,7 +307,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'waitForElement',
+              type: StepType.WaitForElement,
               selectors: [['aria/Test']],
             },
           ],
@@ -328,7 +329,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'waitForElement',
+              type: StepType.WaitForElement,
               selectors: [['aria/Test']],
               operator: '==',
               count: 1,
@@ -353,7 +354,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'waitForExpression',
+              type: StepType.WaitForExpression,
               expression: '1 + 2',
             },
           ],
@@ -375,7 +376,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'close',
+              type: StepType.Close,
             },
           ],
         }
@@ -398,7 +399,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'customStep',
+              type: StepType.CustomStep,
               name: 'test',
               parameters: ['1', '2'],
             },
@@ -422,7 +423,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'navigate',
+              type: StepType.Navigate,
               url: 'http://localhost',
             },
           ],
@@ -443,7 +444,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'navigate',
+              type: StepType.Navigate,
               url: 'http://localhost',
               target: 'main',
             },
@@ -468,7 +469,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'scroll',
+              type: StepType.Scroll,
               x: 1,
               y: 1,
             },
@@ -489,7 +490,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'scroll',
+              type: StepType.Scroll,
               frame: [1],
             },
           ],
@@ -509,7 +510,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'scroll',
+              type: StepType.Scroll,
               selectors: [['aria/Test']],
             },
           ],
@@ -533,7 +534,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'keyUp',
+              type: StepType.KeyUp,
               target: 'main',
               key: 'A',
             },
@@ -559,7 +560,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'change',
+              type: StepType.Change,
               selectors: [['aria/Test']],
               target: 'main',
               value: 'Test',
@@ -585,7 +586,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'change',
+              type: StepType.Change,
               selectors: [['aria/Test']],
               frame: [1],
               target: 'main',
@@ -610,7 +611,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'change',
+              type: StepType.Change,
               selectors: [['aria/Test']],
               value: 'Test',
             },
@@ -637,7 +638,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'click',
+              type: StepType.Click,
               selectors: [['aria/Test']],
               target: 'main',
               offsetX: 126,
@@ -665,7 +666,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'click',
+              type: StepType.Click,
               selectors: [['aria/Test']],
               frame: [0],
               target: 'main',
@@ -695,7 +696,7 @@ describe('SchemaUtils', () => {
           title: 'test',
           steps: [
             {
-              type: 'click',
+              type: StepType.Click,
               selectors: [['aria/Test']],
               offsetX: 126,
               offsetY: 26.5,

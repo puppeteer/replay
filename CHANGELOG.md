@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.1](https://github.com/puppeteer/replay/compare/v1.3.0...v1.3.1) (2022-10-05)
+
+
+### Bug Fixes
+
+* using the correct ('navigate') step type within the parseNavigateStep method ([#317](https://github.com/puppeteer/replay/issues/317)) ([1131dac](https://github.com/puppeteer/replay/commit/1131dac5f04dcac5a3026f28935c3195b1d3289a))
+
 ## [1.3.0](https://github.com/puppeteer/replay/compare/v1.2.2...v1.3.0) (2022-09-21)
 
 

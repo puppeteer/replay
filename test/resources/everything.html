@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<button id="button" onclick="logEvent(event)" ondblclick="logEvent(event)">
+  Click
+</button>
+<button
+  id="hover"
+  onmouseenter="logEvent(event)"
+  onmouseleave="logEvent(event)"
+>
+  Hover
+</button>
+<input id="input" oncontextmenu="logEvent(event)" onchange="logEvent(event)" />
+<pre id="log"></pre>
+<script>
+  function logStr(str) {
+    log.innerText += str;
+  }
+  function logEvent(event) {
+    logStr(
+      '\n' +
+        event.type +
+        ' targetId=' +
+        event.target.id +
+        ' button=' +
+        event.button +
+        ' value=' +
+        event.target.value
+    );
+  }
+  logStr(`window dimensions ${window.innerWidth}x${window.innerHeight}`);
+  input.addEventListener('contextmenu', (e) => e.preventDefault(), false);
+</script>

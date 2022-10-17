@@ -1,6 +1,8 @@
 import typescript from '@rollup/plugin-typescript';
 import dts from 'rollup-plugin-dts';
 
+const pkg = require('./package.json');
+
 export default [
   {
     input: 'src/main.ts',
@@ -14,7 +16,7 @@ export default [
         format: 'cjs',
       },
     ],
-    external: [/^lighthouse/],
+    external: [...Object.keys(pkg.peerDependencies), /^lighthouse/],
     plugins: [typescript()],
   },
   {
@@ -40,7 +42,15 @@ export default [
       format: 'es',
       banner: '#!/usr/bin/env node',
     },
-    external: ['../lib/main.js'],
+    external: [
+      ...Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies }),
+      '../lib/main.js',
+      'fs',
+      'path',
+      'url',
+      'process',
+      'yargs/helpers',
+    ],
     plugins: [typescript({ tsconfig: 'tsconfig.cli.json' })],
   },
 ];

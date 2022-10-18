@@ -1,23 +1,24 @@
-import typescript from '@rollup/plugin-typescript';
-import dts from 'rollup-plugin-dts';
-
+const typescript = require('@rollup/plugin-typescript').default;
+const dts = require('rollup-plugin-dts').default;
 const pkg = require('./package.json');
 
-export default [
+module.exports = [
   {
     input: 'src/main.ts',
     output: [
       {
         file: 'lib/main.js',
+        sourcemap: true,
         format: 'es',
       },
       {
         file: 'lib/cjs/main.cjs',
+        sourcemap: true,
         format: 'cjs',
       },
     ],
     external: [...Object.keys(pkg.peerDependencies), /^lighthouse/],
-    plugins: [typescript()],
+    plugins: [typescript({ module: 'NodeNext' })],
   },
   {
     input: 'src/main.ts',
@@ -40,6 +41,7 @@ export default [
     output: {
       file: 'lib/cli.js',
       format: 'es',
+      sourcemap: true,
       banner: '#!/usr/bin/env node',
     },
     external: [

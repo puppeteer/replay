@@ -479,11 +479,11 @@ describe('Runner', () => {
     );
     await runner.run();
     assert.strictEqual(
-      await page.evaluate(() => window.visualViewport.width),
+      await page.evaluate(() => window.visualViewport?.width),
       800
     );
     assert.strictEqual(
-      await page.evaluate(() => window.visualViewport.height),
+      await page.evaluate(() => window.visualViewport?.height),
       600
     );
   });

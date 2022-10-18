@@ -28,7 +28,8 @@ import snapshot from 'snap-shot-it';
 import { execFile } from 'child_process';
 import { promisify } from 'util';
 import puppeteer from 'puppeteer';
-import FlowResult from 'lighthouse/types/lhr/flow';
+import FlowResult from 'lighthouse/types/lhr/flow.js';
+import Result from 'lighthouse/types/lhr/lhr.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -179,7 +180,7 @@ describe('Lighthouse user flow', function () {
           ['navigation', 'timespan', 'navigation', 'timespan']
         );
 
-        for (const { lhr } of flowResult.steps) {
+        for (const { lhr } of flowResult.steps as Array<{ lhr: Result }>) {
           assert.equal(lhr.configSettings.formFactor, 'desktop');
           assert.ok(lhr.configSettings.screenEmulation.disabled);
 

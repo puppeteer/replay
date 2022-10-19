@@ -17,7 +17,7 @@ module.exports = [
         format: 'cjs',
       },
     ],
-    external: [...Object.keys(pkg.peerDependencies), /^lighthouse/],
+    external: Object.keys(pkg.peerDependencies),
     plugins: [typescript({ module: 'NodeNext' })],
   },
   {

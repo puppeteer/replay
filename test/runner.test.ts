@@ -946,18 +946,19 @@ describe('Runner', () => {
       },
       new PuppeteerRunnerExtension(browser, page)
     );
-    await runner.navigate({
+    await runner.runStep({
+      type: StepType.Navigate as const,
       url: `${HTTP_PREFIX}/main.html`,
       assertedEvents: [
         {
           title: '',
-          type: 'navigation',
+          type: AssertedEventType.Navigation,
           url: `${HTTP_PREFIX}/main.html`,
         },
       ],
     });
-    await runner.hover({
-      target: 'main',
+    await runner.runStep({
+      type: StepType.Hover as const,
       selectors: [['#hover-button']],
     });
     assert.ok(

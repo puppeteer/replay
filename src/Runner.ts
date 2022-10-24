@@ -16,21 +16,7 @@
 
 import { PuppeteerRunnerOwningBrowserExtension } from './PuppeteerRunnerExtension.js';
 import { RunnerExtension } from './RunnerExtension.js';
-import {
-  UserFlow,
-  Step,
-  ClickStep,
-  SetViewportStep,
-  KeyDownStep,
-  KeyUpStep,
-  HoverStep,
-  CloseStep,
-  EmulateNetworkConditionsStep,
-  ChangeStep,
-  DoubleClickStep,
-  NavigateStep,
-  ScrollStep,
-} from './Schema.js';
+import { UserFlow, Step } from './Schema.js';
 
 async function _runStepWithHooks(
   extension: RunnerExtension,
@@ -61,85 +47,6 @@ export class Runner {
 
   async runStep(step: Step): Promise<void> {
     await _runStepWithHooks(this.#extension, step);
-  }
-
-  async click(step: Omit<ClickStep, 'type'>): Promise<void> {
-    await this.runStep({
-      type: 'click',
-      ...step,
-    });
-  }
-
-  async hover(step: Omit<HoverStep, 'type'>): Promise<void> {
-    await this.runStep({
-      type: 'hover',
-      ...step,
-    });
-  }
-
-  async keyDown(step: Omit<KeyDownStep, 'type'>): Promise<void> {
-    await this.runStep({
-      type: 'keyDown',
-      ...step,
-    });
-  }
-
-  async keyUp(step: Omit<KeyUpStep, 'type'>): Promise<void> {
-    await this.runStep({
-      type: 'keyUp',
-      ...step,
-    });
-  }
-
-  async setViewport(step: Omit<SetViewportStep, 'type'>): Promise<void> {
-    await this.runStep({
-      type: 'setViewport',
-      ...step,
-    });
-  }
-
-  async close(step: Omit<CloseStep, 'type'>): Promise<void> {
-    await this.runStep({
-      type: 'close',
-      ...step,
-    });
-  }
-
-  async emulateNetworkConditions(
-    step: Omit<EmulateNetworkConditionsStep, 'type'>
-  ): Promise<void> {
-    await this.runStep({
-      type: 'emulateNetworkConditions',
-      ...step,
-    });
-  }
-
-  async change(step: Omit<ChangeStep, 'type'>): Promise<void> {
-    await this.runStep({
-      type: 'change',
-      ...step,
-    });
-  }
-
-  async doubleClick(step: Omit<DoubleClickStep, 'type'>): Promise<void> {
-    await this.runStep({
-      type: 'doubleClick',
-      ...step,
-    });
-  }
-
-  async navigate(step: Omit<NavigateStep, 'type'>): Promise<void> {
-    await this.runStep({
-      type: 'navigate',
-      ...step,
-    });
-  }
-
-  async scroll(step: Omit<ScrollStep, 'type'>): Promise<void> {
-    await this.#extension.runStep({
-      type: 'scroll',
-      ...step,
-    });
   }
 
   /**

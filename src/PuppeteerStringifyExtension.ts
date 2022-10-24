@@ -183,26 +183,23 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
 
   #appendChangeStep(out: LineWriter, step: ChangeStep): void {
     this.#appendWaitForSelector(out, step);
-    out.appendLine('const type = await element.evaluate(el => el.type);');
-    out.appendLine(`if (["select-one"].includes(type)) {`);
-    out.appendLine(`  await element.select(${formatAsJSLiteral(step.value)});`);
+    out.appendLine('const inputType = await element.evaluate(el => el.type);');
+    out.appendLine(`if (inputType === 'select-one') {`);
+    out.appendLine(
+      `  await changeSelectElement(element, ${formatAsJSLiteral(step.value)})`
+    );
     out.appendLine(
       `} else if (${JSON.stringify(
         Array.from(typeableInputTypes)
-      )}.includes(type)) {`
+      )}.includes(inputType)) {`
     );
-    out.appendLine(`  await element.type(${formatAsJSLiteral(step.value)});`);
+    out.appendLine(
+      `  await typeIntoElement(element, ${formatAsJSLiteral(step.value)});`
+    );
     out.appendLine('} else {');
-    out.appendLine('  await element.focus();');
-    out.appendLine('  await element.evaluate((el, value) => {');
-    out.appendLine('    el.value = value;');
     out.appendLine(
-      "    el.dispatchEvent(new Event('input', { bubbles: true }));"
+      `  await changeElementValue(element, ${formatAsJSLiteral(step.value)});`
     );
-    out.appendLine(
-      "    el.dispatchEvent(new Event('change', { bubbles: true }));"
-    );
-    out.appendLine(`  }, ${JSON.stringify(step.value)});`);
     out.appendLine('}');
   }
 
@@ -471,4 +468,38 @@ async function waitForFunction(fn, timeout) {
     await new Promise(resolve => setTimeout(resolve, 100));
   }
   throw new Error('Timed out');
+}
+
+async function changeSelectElement(element, value) {
+  await element.select(value);
+  await element.evaluateHandle((e) => {
+    e.blur();
+    e.focus();
+  });
+}
+
+async function changeElementValue(element, value) {
+  await element.focus();
+  await element.evaluate((input, value) => {
+    input.value = value;
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  }, value);
+}
+
+async function typeIntoElement(element, value) {
+  const textToType = await element.evaluate((input, newValue) => {
+    if (
+      newValue.length <= input.value.length ||
+      !newValue.startsWith(input.value)
+    ) {
+      input.value = '';
+      return newValue;
+    }
+    const originalValue = input.value;
+    input.value = '';
+    input.value = originalValue;
+    return newValue.substring(originalValue.length);
+  }, value);
+  await element.type(textToType);
 }`;

@@ -49,8 +49,10 @@ click targetId=button button=0 value=
 click targetId=button button=0 value=
 dblclick targetId=button button=0 value=
 change targetId=input button=undefined value=test
+change targetId=input-prefilled button=undefined value=testSuffix
 contextmenu targetId=input button=2 value=test
-mouseenter targetId=hover button=0 value=`;
+mouseenter targetId=hover button=0 value=
+change targetId=select button=undefined value=optionB`;
 
 describe('Everything', () => {
   let browser: puppeteer.Browser;

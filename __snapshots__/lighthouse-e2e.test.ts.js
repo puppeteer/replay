@@ -66,32 +66,6 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     await Promise.all(promises);
   }
   await lhFlow.endNavigation();
-  await lhFlow.startTimespan();
-  {
-    const targetPage = page;
-    await scrollIntoViewIfNeeded(["#test"], targetPage, timeout);
-    const element = await waitForSelectors(["#test"], targetPage, { timeout, visible: true });
-    await element.click({
-      button: 'left',
-      offset: {
-        x: 1,
-        y: 1,
-      },
-    });
-  }
-  {
-    const targetPage = page;
-    await scrollIntoViewIfNeeded(["#test"], targetPage, timeout);
-    const element = await waitForSelectors(["#test"], targetPage, { timeout, visible: true });
-    await element.click({
-      button: 'left',
-      offset: {
-        x: 1,
-        y: 1,
-      },
-    });
-  }
-  await lhFlow.endTimespan();
   const lhFlowReport = await lhFlow.generateReport();
   fs.writeFileSync(__dirname + '/flow.report.html', lhFlowReport)
 

@@ -1,0 +1,9 @@
+{
+  "title": "wiki",
+  "steps": [
+    {
+      "type": "navigate",
+      "url": "https://www.wikipedia.org/"
+    }
+  ]
+}

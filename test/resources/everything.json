@@ -62,6 +62,13 @@
       "target": "main"
     },
     {
+      "type": "change",
+      "value": "testSuffix",
+      "selectors": [["#input-prefilled"]],
+      "target": "main"
+    },
+
+    {
       "type": "keyDown",
       "target": "main",
       "key": "Enter"
@@ -98,6 +105,12 @@
       "target": "main",
       "selectors": ["button"],
       "count": 2
+    },
+    {
+      "type": "change",
+      "value": "optionB",
+      "selectors": [["#select"]],
+      "target": "main"
     }
   ]
 }

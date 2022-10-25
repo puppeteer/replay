@@ -78,7 +78,7 @@ describe('cli', () => {
 
     it('is able to run able to run folder of recordings', async () => {
       const recordings = getJSONFilesFromFolder(
-        path.join(__dirname, 'resources')
+        path.join(__dirname, 'resources', 'folder-test')
       );
       const result = await getStatus(() => runFiles([...recordings]));
       assert.strictEqual(result, Status.Error);
@@ -98,7 +98,7 @@ describe('cli', () => {
 
   describe('getRecordingPaths', () => {
     it('is able to get recordings from a directory', () => {
-      const recordingsFolderPath = 'test/resources';
+      const recordingsFolderPath = 'test/resources/folder-test';
       const recordingPaths = getRecordingPaths([recordingsFolderPath]);
 
       assert.isTrue(
@@ -112,7 +112,9 @@ describe('cli', () => {
 
   describe('getJSONFilesFromFolder', () => {
     it('is able to return json files from a directory', () => {
-      const files = getJSONFilesFromFolder(path.join(__dirname, 'resources'));
+      const files = getJSONFilesFromFolder(
+        path.join(__dirname, 'resources', 'folder-test')
+      );
 
       assert.isTrue(files.every((file) => file.endsWith('.json')));
     });

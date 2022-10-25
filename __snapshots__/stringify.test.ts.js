@@ -163,6 +163,40 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     }
     throw new Error('Timed out');
   }
+
+  async function changeSelectElement(element, value) {
+    await element.select(value);
+    await element.evaluateHandle((e) => {
+      e.blur();
+      e.focus();
+    });
+  }
+
+  async function changeElementValue(element, value) {
+    await element.focus();
+    await element.evaluate((input, value) => {
+      input.value = value;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }, value);
+  }
+
+  async function typeIntoElement(element, value) {
+    const textToType = await element.evaluate((input, newValue) => {
+      if (
+        newValue.length <= input.value.length ||
+        !newValue.startsWith(input.value)
+      ) {
+        input.value = '';
+        return newValue;
+      }
+      const originalValue = input.value;
+      input.value = '';
+      input.value = originalValue;
+      return newValue.substring(originalValue.length);
+    }, value);
+    await element.type(textToType);
+  }
 })().catch(err => {
   console.error(err);
   process.exit(1);
@@ -341,6 +375,40 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
       await new Promise(resolve => setTimeout(resolve, 100));
     }
     throw new Error('Timed out');
+  }
+
+  async function changeSelectElement(element, value) {
+    await element.select(value);
+    await element.evaluateHandle((e) => {
+      e.blur();
+      e.focus();
+    });
+  }
+
+  async function changeElementValue(element, value) {
+    await element.focus();
+    await element.evaluate((input, value) => {
+      input.value = value;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }, value);
+  }
+
+  async function typeIntoElement(element, value) {
+    const textToType = await element.evaluate((input, newValue) => {
+      if (
+        newValue.length <= input.value.length ||
+        !newValue.startsWith(input.value)
+      ) {
+        input.value = '';
+        return newValue;
+      }
+      const originalValue = input.value;
+      input.value = '';
+      input.value = originalValue;
+      return newValue.substring(originalValue.length);
+    }, value);
+    await element.type(textToType);
   }
 })().catch(err => {
   console.error(err);
@@ -525,6 +593,40 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     }
     throw new Error('Timed out');
   }
+
+  async function changeSelectElement(element, value) {
+    await element.select(value);
+    await element.evaluateHandle((e) => {
+      e.blur();
+      e.focus();
+    });
+  }
+
+  async function changeElementValue(element, value) {
+    await element.focus();
+    await element.evaluate((input, value) => {
+      input.value = value;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }, value);
+  }
+
+  async function typeIntoElement(element, value) {
+    const textToType = await element.evaluate((input, newValue) => {
+      if (
+        newValue.length <= input.value.length ||
+        !newValue.startsWith(input.value)
+      ) {
+        input.value = '';
+        return newValue;
+      }
+      const originalValue = input.value;
+      input.value = '';
+      input.value = originalValue;
+      return newValue.substring(originalValue.length);
+    }, value);
+    await element.type(textToType);
+  }
 })().catch(err => {
   console.error(err);
   process.exit(1);
@@ -706,6 +808,40 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
       await new Promise(resolve => setTimeout(resolve, 100));
     }
     throw new Error('Timed out');
+  }
+
+  async function changeSelectElement(element, value) {
+    await element.select(value);
+    await element.evaluateHandle((e) => {
+      e.blur();
+      e.focus();
+    });
+  }
+
+  async function changeElementValue(element, value) {
+    await element.focus();
+    await element.evaluate((input, value) => {
+      input.value = value;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }, value);
+  }
+
+  async function typeIntoElement(element, value) {
+    const textToType = await element.evaluate((input, newValue) => {
+      if (
+        newValue.length <= input.value.length ||
+        !newValue.startsWith(input.value)
+      ) {
+        input.value = '';
+        return newValue;
+      }
+      const originalValue = input.value;
+      input.value = '';
+      input.value = originalValue;
+      return newValue.substring(originalValue.length);
+    }, value);
+    await element.type(textToType);
   }
 })().catch(err => {
   console.error(err);
@@ -891,6 +1027,40 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     }
     throw new Error('Timed out');
   }
+
+  async function changeSelectElement(element, value) {
+    await element.select(value);
+    await element.evaluateHandle((e) => {
+      e.blur();
+      e.focus();
+    });
+  }
+
+  async function changeElementValue(element, value) {
+    await element.focus();
+    await element.evaluate((input, value) => {
+      input.value = value;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }, value);
+  }
+
+  async function typeIntoElement(element, value) {
+    const textToType = await element.evaluate((input, newValue) => {
+      if (
+        newValue.length <= input.value.length ||
+        !newValue.startsWith(input.value)
+      ) {
+        input.value = '';
+        return newValue;
+      }
+      const originalValue = input.value;
+      input.value = '';
+      input.value = originalValue;
+      return newValue.substring(originalValue.length);
+    }, value);
+    await element.type(textToType);
+  }
 })().catch(err => {
   console.error(err);
   process.exit(1);
@@ -1063,6 +1233,40 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     }
     throw new Error('Timed out');
   }
+
+  async function changeSelectElement(element, value) {
+    await element.select(value);
+    await element.evaluateHandle((e) => {
+      e.blur();
+      e.focus();
+    });
+  }
+
+  async function changeElementValue(element, value) {
+    await element.focus();
+    await element.evaluate((input, value) => {
+      input.value = value;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }, value);
+  }
+
+  async function typeIntoElement(element, value) {
+    const textToType = await element.evaluate((input, newValue) => {
+      if (
+        newValue.length <= input.value.length ||
+        !newValue.startsWith(input.value)
+      ) {
+        input.value = '';
+        return newValue;
+      }
+      const originalValue = input.value;
+      input.value = '';
+      input.value = originalValue;
+      return newValue.substring(originalValue.length);
+    }, value);
+    await element.type(textToType);
+  }
 })().catch(err => {
   console.error(err);
   process.exit(1);
@@ -1234,6 +1438,40 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
       await new Promise(resolve => setTimeout(resolve, 100));
     }
     throw new Error('Timed out');
+  }
+
+  async function changeSelectElement(element, value) {
+    await element.select(value);
+    await element.evaluateHandle((e) => {
+      e.blur();
+      e.focus();
+    });
+  }
+
+  async function changeElementValue(element, value) {
+    await element.focus();
+    await element.evaluate((input, value) => {
+      input.value = value;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }, value);
+  }
+
+  async function typeIntoElement(element, value) {
+    const textToType = await element.evaluate((input, newValue) => {
+      if (
+        newValue.length <= input.value.length ||
+        !newValue.startsWith(input.value)
+      ) {
+        input.value = '';
+        return newValue;
+      }
+      const originalValue = input.value;
+      input.value = '';
+      input.value = originalValue;
+      return newValue.substring(originalValue.length);
+    }, value);
+    await element.type(textToType);
   }
 })().catch(err => {
   console.error(err);
@@ -1413,6 +1651,40 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     }
     throw new Error('Timed out');
   }
+
+  async function changeSelectElement(element, value) {
+    await element.select(value);
+    await element.evaluateHandle((e) => {
+      e.blur();
+      e.focus();
+    });
+  }
+
+  async function changeElementValue(element, value) {
+    await element.focus();
+    await element.evaluate((input, value) => {
+      input.value = value;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }, value);
+  }
+
+  async function typeIntoElement(element, value) {
+    const textToType = await element.evaluate((input, newValue) => {
+      if (
+        newValue.length <= input.value.length ||
+        !newValue.startsWith(input.value)
+      ) {
+        input.value = '';
+        return newValue;
+      }
+      const originalValue = input.value;
+      input.value = '';
+      input.value = originalValue;
+      return newValue.substring(originalValue.length);
+    }, value);
+    await element.type(textToType);
+  }
 })().catch(err => {
   console.error(err);
   process.exit(1);
@@ -1587,6 +1859,40 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     }
     throw new Error('Timed out');
   }
+
+  async function changeSelectElement(element, value) {
+    await element.select(value);
+    await element.evaluateHandle((e) => {
+      e.blur();
+      e.focus();
+    });
+  }
+
+  async function changeElementValue(element, value) {
+    await element.focus();
+    await element.evaluate((input, value) => {
+      input.value = value;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }, value);
+  }
+
+  async function typeIntoElement(element, value) {
+    const textToType = await element.evaluate((input, newValue) => {
+      if (
+        newValue.length <= input.value.length ||
+        !newValue.startsWith(input.value)
+      ) {
+        input.value = '';
+        return newValue;
+      }
+      const originalValue = input.value;
+      input.value = '';
+      input.value = originalValue;
+      return newValue.substring(originalValue.length);
+    }, value);
+    await element.type(textToType);
+  }
 })().catch(err => {
   console.error(err);
   process.exit(1);
@@ -1760,6 +2066,40 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
       await new Promise(resolve => setTimeout(resolve, 100));
     }
     throw new Error('Timed out');
+  }
+
+  async function changeSelectElement(element, value) {
+    await element.select(value);
+    await element.evaluateHandle((e) => {
+      e.blur();
+      e.focus();
+    });
+  }
+
+  async function changeElementValue(element, value) {
+    await element.focus();
+    await element.evaluate((input, value) => {
+      input.value = value;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }, value);
+  }
+
+  async function typeIntoElement(element, value) {
+    const textToType = await element.evaluate((input, newValue) => {
+      if (
+        newValue.length <= input.value.length ||
+        !newValue.startsWith(input.value)
+      ) {
+        input.value = '';
+        return newValue;
+      }
+      const originalValue = input.value;
+      input.value = '';
+      input.value = originalValue;
+      return newValue.substring(originalValue.length);
+    }, value);
+    await element.type(textToType);
   }
 })().catch(err => {
   console.error(err);

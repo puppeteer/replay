@@ -59,18 +59,13 @@ exports[
   const targetPage = page;
   await scrollIntoViewIfNeeded(["aria/Test"], targetPage, timeout);
   const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
-  const type = await element.evaluate(el => el.type);
-  if (["select-one"].includes(type)) {
-    await element.select("Hello World");
-  } else if (["textarea","text","url","tel","search","password","number","email"].includes(type)) {
-    await element.type("Hello World");
+  const inputType = await element.evaluate(el => el.type);
+  if (inputType === 'select-one') {
+    await changeSelectElement(element, "Hello World")
+  } else if (["textarea","text","url","tel","search","password","number","email"].includes(inputType)) {
+    await typeIntoElement(element, "Hello World");
   } else {
-    await element.focus();
-    await element.evaluate((el, value) => {
-      el.value = value;
-      el.dispatchEvent(new Event('input', { bubbles: true }));
-      el.dispatchEvent(new Event('change', { bubbles: true }));
-    }, "Hello World");
+    await changeElementValue(element, "Hello World");
   }
 }
 
@@ -83,18 +78,13 @@ exports[
   const targetPage = page;
   await scrollIntoViewIfNeeded(["aria/Test"], targetPage, timeout);
   const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
-  const type = await element.evaluate(el => el.type);
-  if (["select-one"].includes(type)) {
-    await element.select("#333333");
-  } else if (["textarea","text","url","tel","search","password","number","email"].includes(type)) {
-    await element.type("#333333");
+  const inputType = await element.evaluate(el => el.type);
+  if (inputType === 'select-one') {
+    await changeSelectElement(element, "#333333")
+  } else if (["textarea","text","url","tel","search","password","number","email"].includes(inputType)) {
+    await typeIntoElement(element, "#333333");
   } else {
-    await element.focus();
-    await element.evaluate((el, value) => {
-      el.value = value;
-      el.dispatchEvent(new Event('input', { bubbles: true }));
-      el.dispatchEvent(new Event('change', { bubbles: true }));
-    }, "#333333");
+    await changeElementValue(element, "#333333");
   }
 }
 

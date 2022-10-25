@@ -16,7 +16,17 @@
 
 import { PuppeteerRunnerOwningBrowserExtension } from './PuppeteerRunnerExtension.js';
 import { RunnerExtension } from './RunnerExtension.js';
-import { UserFlow } from './Schema.js';
+import { UserFlow, Step } from './Schema.js';
+
+async function _runStepWithHooks(
+  extension: RunnerExtension,
+  step: Step,
+  flow?: UserFlow
+) {
+  await extension.beforeEachStep?.(step, flow);
+  await extension.runStep(step, flow);
+  await extension.afterEachStep?.(step, flow);
+}
 
 export class Runner {
   #flow: UserFlow;
@@ -35,26 +45,34 @@ export class Runner {
     this.#aborted = true;
   }
 
+  async runStep(step: Step): Promise<void> {
+    await _runStepWithHooks(this.#extension, step);
+  }
+
   /**
    * Run all the steps in the flow
    * @returns whether all the steps are run or the execution is aborted
    */
   async run(): Promise<boolean> {
     this.#aborted = false;
+
     await this.#extension.beforeAllSteps?.(this.#flow);
 
-    let nextStepIndex = 0;
-    while (nextStepIndex < this.#flow.steps.length && !this.#aborted) {
-      const nextStep = this.#flow.steps[nextStepIndex]!;
-      await this.#extension.beforeEachStep?.(nextStep, this.#flow);
-      await this.#extension.runStep(nextStep, this.#flow);
-      await this.#extension.afterEachStep?.(nextStep, this.#flow);
-      nextStepIndex++;
+    if (this.#aborted) {
+      return false;
+    }
+
+    for (const step of this.#flow.steps) {
+      if (this.#aborted) {
+        await this.#extension.afterAllSteps?.(this.#flow);
+        return false;
+      }
+      await _runStepWithHooks(this.#extension, step, this.#flow);
     }
 
     await this.#extension.afterAllSteps?.(this.#flow);
 
-    return nextStepIndex >= this.#flow.steps.length;
+    return true;
   }
 }
 
@@ -62,13 +80,17 @@ export async function createRunner(
   flow: UserFlow,
   extension?: RunnerExtension
 ) {
-  if (!extension) {
-    const { default: puppeteer } = await import('puppeteer');
-    const browser = await puppeteer.launch({
-      headless: true,
-    });
-    const page = await browser.newPage();
-    extension = new PuppeteerRunnerOwningBrowserExtension(browser, page);
-  }
-  return new Runner(flow, extension);
+  return new Runner(
+    flow,
+    extension ?? (await createPuppeteerRunnerOwningBrowserExtension())
+  );
+}
+
+async function createPuppeteerRunnerOwningBrowserExtension() {
+  const { default: puppeteer } = await import('puppeteer');
+  const browser = await puppeteer.launch({
+    headless: true,
+  });
+  const page = await browser.newPage();
+  return new PuppeteerRunnerOwningBrowserExtension(browser, page);
 }

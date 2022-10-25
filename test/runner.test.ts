@@ -937,6 +937,38 @@ describe('Runner', () => {
     );
   });
 
+  it('should replay individual steps', async () => {
+    const runner = await createRunner(
+      {
+        title: 'Test Recording',
+        timeout: 3000,
+        steps: [],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.runStep({
+      type: StepType.Navigate as const,
+      url: `${HTTP_PREFIX}/main.html`,
+      assertedEvents: [
+        {
+          title: '',
+          type: AssertedEventType.Navigation,
+          url: `${HTTP_PREFIX}/main.html`,
+        },
+      ],
+    });
+    await runner.runStep({
+      type: StepType.Hover as const,
+      selectors: [['#hover-button']],
+    });
+    assert.ok(
+      await page.evaluate(
+        () => document.getElementById('hover-button')?.textContent
+      ),
+      'Hovered'
+    );
+  });
+
   describe('abort', () => {
     it('should abort execution of remaining steps', async () => {
       class AbortAfterFirstStepExtension extends RunnerExtension {

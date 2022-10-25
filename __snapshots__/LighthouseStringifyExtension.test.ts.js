@@ -10,7 +10,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   const flags = {"screenEmulation":{"disabled":true}}
   const config = undefined;
-  const lhApi = await import('lighthouse/core/fraggle-rock/api.js');
+  const lhApi = await import('lighthouse/core/api.js');
   const lhFlow = await lhApi.startFlow(page, {name: "Test Flow", config, flags});
   {
     const targetPage = page;
@@ -56,7 +56,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   const flags = {"screenEmulation":{"disabled":true}}
   const config = undefined;
-  const lhApi = await import('lighthouse/core/fraggle-rock/api.js');
+  const lhApi = await import('lighthouse/core/api.js');
   const lhFlow = await lhApi.startFlow(page, {name: "Test Flow", config, flags});
   {
     const targetPage = page;
@@ -113,7 +113,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   const flags = {"screenEmulation":{"disabled":true}}
   const config = undefined;
-  const lhApi = await import('lighthouse/core/fraggle-rock/api.js');
+  const lhApi = await import('lighthouse/core/api.js');
   const lhFlow = await lhApi.startFlow(page, {name: "Test Flow", config, flags});
   {
     const targetPage = page;

@@ -36,7 +36,7 @@ export class LighthouseRunnerExtension extends PuppeteerRunnerExtension {
     await super.beforeAllSteps?.(flow);
 
     // @ts-ignore Lighthouse doesn't expose types.
-    const { startFlow } = await import('lighthouse/core/fraggle-rock/api.js');
+    const { startFlow } = await import('lighthouse/core/api.js');
 
     let config = undefined;
     if (!isMobileFlow(flow)) {

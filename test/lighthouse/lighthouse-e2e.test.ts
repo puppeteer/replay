@@ -28,7 +28,7 @@ import snapshot from 'snap-shot-it';
 import { execFile } from 'child_process';
 import { promisify } from 'util';
 import puppeteer from 'puppeteer';
-import FlowResult from 'lighthouse/types/lhr/flow.js';
+import FlowResult from 'lighthouse/types/lhr/flow-result.js';
 import Result from 'lighthouse/types/lhr/lhr.js';
 
 const __filename = fileURLToPath(import.meta.url);

@@ -32,7 +32,7 @@
 
 #### Defined in
 
-[Schema.ts:33](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L33)
+[Schema.ts:54](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L54)
 
 ---
 
@@ -42,7 +42,7 @@
 
 #### Defined in
 
-[Schema.ts:125](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L125)
+[Schema.ts:146](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L146)
 
 ---
 
@@ -52,7 +52,7 @@
 
 #### Defined in
 
-[Schema.ts:127](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L127)
+[Schema.ts:148](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L148)
 
 ---
 
@@ -68,7 +68,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:40](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L40)
+[Schema.ts:61](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L61)
 
 ---
 
@@ -82,13 +82,13 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:32](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L32)
+[Schema.ts:53](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L53)
 
 ---
 
 ### type
 
-• **type**: `"emulateNetworkConditions"`
+• **type**: [`EmulateNetworkConditions`](../enums/Schema.StepType.md#emulatenetworkconditions)
 
 #### Overrides
 
@@ -96,7 +96,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:124](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L124)
+[Schema.ts:145](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L145)
 
 ---
 
@@ -106,4 +106,4 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:126](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L126)
+[Schema.ts:147](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L147)

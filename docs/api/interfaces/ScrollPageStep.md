@@ -32,7 +32,7 @@
 
 #### Defined in
 
-[Schema.ts:33](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L33)
+[Schema.ts:54](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L54)
 
 ---
 
@@ -48,7 +48,7 @@ Defaults to main frame
 
 #### Defined in
 
-[Schema.ts:47](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L47)
+[Schema.ts:68](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L68)
 
 ---
 
@@ -64,7 +64,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:40](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L40)
+[Schema.ts:61](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L61)
 
 ---
 
@@ -78,13 +78,13 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:32](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L32)
+[Schema.ts:53](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L53)
 
 ---
 
 ### type
 
-• **type**: `"scroll"`
+• **type**: [`Scroll`](../enums/Schema.StepType.md#scroll)
 
 #### Overrides
 
@@ -92,7 +92,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:155](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L155)
+[Schema.ts:176](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L176)
 
 ---
 
@@ -104,7 +104,7 @@ Absolute scroll x position in px. Defaults to 0
 
 #### Defined in
 
-[Schema.ts:159](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L159)
+[Schema.ts:180](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L180)
 
 ---
 
@@ -116,4 +116,4 @@ Absolute scroll y position in px. Defaults to 0
 
 #### Defined in
 
-[Schema.ts:163](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L163)
+[Schema.ts:184](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L184)

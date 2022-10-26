@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[Schema.ts:33](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L33)
+[Schema.ts:54](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L54)
 
 ---
 
@@ -46,7 +46,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:40](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L40)
+[Schema.ts:61](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L61)
 
 ---
 
@@ -60,13 +60,13 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:32](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L32)
+[Schema.ts:53](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L53)
 
 ---
 
 ### type
 
-• **type**: `"navigate"`
+• **type**: [`Navigate`](../enums/Schema.StepType.md#navigate)
 
 #### Overrides
 
@@ -74,7 +74,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:171](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L171)
+[Schema.ts:192](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L192)
 
 ---
 
@@ -84,4 +84,4 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:172](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L172)
+[Schema.ts:193](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L193)

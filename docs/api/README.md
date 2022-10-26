@@ -8,9 +8,13 @@
 
 - [Schema](modules/Schema.md)
 
+### Enumerations
+
+- [AssertedEventType](enums/AssertedEventType.md)
+- [StepType](enums/StepType.md)
+
 ### Classes
 
-- [LighthouseRunnerExtension](classes/LighthouseRunnerExtension.md)
 - [LighthouseStringifyExtension](classes/LighthouseStringifyExtension.md)
 - [PuppeteerRunnerExtension](classes/PuppeteerRunnerExtension.md)
 - [PuppeteerRunnerOwningBrowserExtension](classes/PuppeteerRunnerOwningBrowserExtension.md)
@@ -45,7 +49,7 @@
 - [WaitForElementStep](interfaces/WaitForElementStep.md)
 - [WaitForExpressionStep](interfaces/WaitForExpressionStep.md)
 
-### Type aliases
+### Type Aliases
 
 - [AssertedEvent](README.md#assertedevent)
 - [AssertionStep](README.md#assertionstep)
@@ -80,7 +84,7 @@
 - [stringifyStep](README.md#stringifystep)
 - [validTimeout](README.md#validtimeout)
 
-## Type aliases
+## Type Aliases
 
 ### AssertedEvent
 
@@ -88,7 +92,7 @@
 
 #### Defined in
 
-[Schema.ts:28](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L28)
+[Schema.ts:49](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L49)
 
 ---
 
@@ -98,7 +102,7 @@
 
 #### Defined in
 
-[Schema.ts:247](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L247)
+[Schema.ts:268](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L268)
 
 ---
 
@@ -108,7 +112,7 @@
 
 #### Defined in
 
-[Schema.ts:181](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L181)
+[Schema.ts:202](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L202)
 
 ---
 
@@ -128,7 +132,7 @@
 
 #### Defined in
 
-[Schema.ts:269](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L269)
+[Schema.ts:290](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L290)
 
 ---
 
@@ -148,7 +152,7 @@
 
 #### Defined in
 
-[Schema.ts:73](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L73)
+[Schema.ts:94](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L94)
 
 ---
 
@@ -158,7 +162,7 @@
 
 #### Defined in
 
-[Schema.ts:72](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L72)
+[Schema.ts:93](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L93)
 
 ---
 
@@ -168,7 +172,7 @@
 
 #### Defined in
 
-[Schema.ts:166](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L166)
+[Schema.ts:187](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L187)
 
 ---
 
@@ -178,7 +182,7 @@
 
 #### Defined in
 
-[Schema.ts:168](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L168)
+[Schema.ts:189](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L189)
 
 ---
 
@@ -198,7 +202,7 @@
 
 #### Defined in
 
-[Schema.ts:249](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L249)
+[Schema.ts:270](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L270)
 
 ---
 
@@ -212,7 +216,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-https://www.apache.org/licenses/LICENSE-2.0
+    https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -232,7 +236,7 @@ limitations under the License.
 
 #### Defined in
 
-[Schema.ts:185](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L185)
+[Schema.ts:206](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L206)
 
 ## Variables
 
@@ -242,7 +246,7 @@ limitations under the License.
 
 #### Defined in
 
-[SchemaUtils.ts:524](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L524)
+[SchemaUtils.ts:528](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L528)
 
 ---
 
@@ -252,7 +256,7 @@ limitations under the License.
 
 #### Defined in
 
-[SchemaUtils.ts:523](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L523)
+[SchemaUtils.ts:527](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L527)
 
 ---
 
@@ -262,7 +266,7 @@ limitations under the License.
 
 #### Defined in
 
-[SchemaUtils.ts:68](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L68)
+[SchemaUtils.ts:69](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L69)
 
 ---
 
@@ -272,7 +276,7 @@ limitations under the License.
 
 #### Defined in
 
-[SchemaUtils.ts:62](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L62)
+[SchemaUtils.ts:63](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L63)
 
 ---
 
@@ -282,7 +286,7 @@ limitations under the License.
 
 #### Defined in
 
-[SchemaUtils.ts:51](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L51)
+[SchemaUtils.ts:52](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L52)
 
 ## Functions
 
@@ -302,7 +306,7 @@ limitations under the License.
 
 #### Defined in
 
-[SchemaUtils.ts:46](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L46)
+[SchemaUtils.ts:47](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L47)
 
 ---
 
@@ -323,7 +327,7 @@ limitations under the License.
 
 #### Defined in
 
-[Runner.ts:61](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L61)
+[Runner.ts:79](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L79)
 
 ---
 
@@ -343,7 +347,7 @@ limitations under the License.
 
 #### Defined in
 
-[SchemaUtils.ts:532](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L532)
+[SchemaUtils.ts:536](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L536)
 
 ---
 
@@ -364,7 +368,7 @@ limitations under the License.
 
 #### Defined in
 
-[SchemaUtils.ts:456](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L456)
+[SchemaUtils.ts:460](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L460)
 
 ---
 
@@ -440,4 +444,4 @@ Stringifes a single step. Only the following hooks are invoked with the `flow` p
 
 #### Defined in
 
-[SchemaUtils.ts:528](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L528)
+[SchemaUtils.ts:532](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L532)

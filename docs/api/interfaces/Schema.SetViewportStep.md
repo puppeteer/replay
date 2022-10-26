@@ -37,7 +37,7 @@
 
 #### Defined in
 
-[Schema.ts:33](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L33)
+[Schema.ts:54](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L54)
 
 ---
 
@@ -47,7 +47,7 @@
 
 #### Defined in
 
-[Schema.ts:148](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L148)
+[Schema.ts:169](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L169)
 
 ---
 
@@ -57,7 +57,7 @@
 
 #### Defined in
 
-[Schema.ts:150](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L150)
+[Schema.ts:171](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L171)
 
 ---
 
@@ -67,7 +67,7 @@
 
 #### Defined in
 
-[Schema.ts:147](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L147)
+[Schema.ts:168](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L168)
 
 ---
 
@@ -77,7 +77,7 @@
 
 #### Defined in
 
-[Schema.ts:151](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L151)
+[Schema.ts:172](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L172)
 
 ---
 
@@ -87,7 +87,7 @@
 
 #### Defined in
 
-[Schema.ts:149](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L149)
+[Schema.ts:170](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L170)
 
 ---
 
@@ -103,7 +103,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:40](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L40)
+[Schema.ts:61](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L61)
 
 ---
 
@@ -117,13 +117,13 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:32](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L32)
+[Schema.ts:53](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L53)
 
 ---
 
 ### type
 
-• **type**: `"setViewport"`
+• **type**: [`SetViewport`](../enums/Schema.StepType.md#setviewport)
 
 #### Overrides
 
@@ -131,7 +131,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:145](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L145)
+[Schema.ts:166](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L166)
 
 ---
 
@@ -141,4 +141,4 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:146](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L146)
+[Schema.ts:167](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L167)

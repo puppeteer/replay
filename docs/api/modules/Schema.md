@@ -4,6 +4,11 @@
 
 ## Table of contents
 
+### Enumerations
+
+- [AssertedEventType](../enums/Schema.AssertedEventType.md)
+- [StepType](../enums/Schema.StepType.md)
+
 ### Interfaces
 
 - [BaseStep](../interfaces/Schema.BaseStep.md)
@@ -28,7 +33,7 @@
 - [WaitForElementStep](../interfaces/Schema.WaitForElementStep.md)
 - [WaitForExpressionStep](../interfaces/Schema.WaitForExpressionStep.md)
 
-### Type aliases
+### Type Aliases
 
 - [AssertedEvent](Schema.md#assertedevent)
 - [AssertionStep](Schema.md#assertionstep)
@@ -45,7 +50,7 @@
 - [Target](Schema.md#target)
 - [UserStep](Schema.md#userstep)
 
-## Type aliases
+## Type Aliases
 
 ### AssertedEvent
 
@@ -53,7 +58,7 @@
 
 #### Defined in
 
-[Schema.ts:28](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L28)
+[Schema.ts:49](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L49)
 
 ---
 
@@ -63,7 +68,7 @@
 
 #### Defined in
 
-[Schema.ts:247](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L247)
+[Schema.ts:268](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L268)
 
 ---
 
@@ -73,7 +78,7 @@
 
 #### Defined in
 
-[Schema.ts:181](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L181)
+[Schema.ts:202](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L202)
 
 ---
 
@@ -93,7 +98,7 @@
 
 #### Defined in
 
-[Schema.ts:269](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L269)
+[Schema.ts:290](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L290)
 
 ---
 
@@ -113,7 +118,7 @@
 
 #### Defined in
 
-[Schema.ts:73](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L73)
+[Schema.ts:94](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L94)
 
 ---
 
@@ -123,7 +128,7 @@
 
 #### Defined in
 
-[Schema.ts:72](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L72)
+[Schema.ts:93](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L93)
 
 ---
 
@@ -133,7 +138,7 @@
 
 #### Defined in
 
-[Schema.ts:166](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L166)
+[Schema.ts:187](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L187)
 
 ---
 
@@ -143,7 +148,7 @@
 
 #### Defined in
 
-[Schema.ts:168](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L168)
+[Schema.ts:189](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L189)
 
 ---
 
@@ -163,7 +168,7 @@
 
 #### Defined in
 
-[Schema.ts:249](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L249)
+[Schema.ts:270](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L270)
 
 ---
 
@@ -177,7 +182,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-https://www.apache.org/licenses/LICENSE-2.0
+    https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -197,4 +202,4 @@ limitations under the License.
 
 #### Defined in
 
-[Schema.ts:185](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L185)
+[Schema.ts:206](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L206)

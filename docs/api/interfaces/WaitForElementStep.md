@@ -48,7 +48,7 @@ to be on the page that match the selector `.my-class`.
 
 #### Defined in
 
-[Schema.ts:33](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L33)
+[Schema.ts:54](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L54)
 
 ---
 
@@ -60,7 +60,7 @@ Defaults to 1
 
 #### Defined in
 
-[Schema.ts:224](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L224)
+[Schema.ts:245](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L245)
 
 ---
 
@@ -76,7 +76,7 @@ Defaults to main frame
 
 #### Defined in
 
-[Schema.ts:47](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L47)
+[Schema.ts:68](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L68)
 
 ---
 
@@ -88,7 +88,7 @@ Defaults to '=='
 
 #### Defined in
 
-[Schema.ts:220](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L220)
+[Schema.ts:241](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L241)
 
 ---
 
@@ -119,7 +119,7 @@ some selectors might get outdated over time.
 
 #### Defined in
 
-[Schema.ts:69](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L69)
+[Schema.ts:90](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L90)
 
 ---
 
@@ -135,7 +135,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:40](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L40)
+[Schema.ts:61](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L61)
 
 ---
 
@@ -149,13 +149,13 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:32](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L32)
+[Schema.ts:53](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L53)
 
 ---
 
 ### type
 
-• **type**: `"waitForElement"`
+• **type**: [`WaitForElement`](../enums/Schema.StepType.md#waitforelement)
 
 #### Overrides
 
@@ -163,4 +163,4 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:216](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L216)
+[Schema.ts:237](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L237)

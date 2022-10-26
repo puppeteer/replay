@@ -155,20 +155,6 @@ describe('Lighthouse user flow', function () {
                 },
               ],
             },
-            {
-              type: StepType.Click,
-              button: 'primary',
-              selectors: ['#test'],
-              offsetX: 1,
-              offsetY: 1,
-            },
-            {
-              type: StepType.Click,
-              button: 'primary',
-              selectors: ['#test'],
-              offsetX: 1,
-              offsetY: 1,
-            },
           ],
         };
 
@@ -177,7 +163,7 @@ describe('Lighthouse user flow', function () {
         assert.equal(flowResult.name, desktopReplayJson.title);
         assert.deepStrictEqual(
           flowResult.steps.map((step) => step.lhr.gatherMode),
-          ['navigation', 'timespan', 'navigation', 'timespan']
+          ['navigation', 'timespan', 'navigation']
         );
 
         for (const { lhr } of flowResult.steps as Array<{ lhr: Result }>) {

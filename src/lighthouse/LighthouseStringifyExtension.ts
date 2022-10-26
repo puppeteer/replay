@@ -44,9 +44,7 @@ export class LighthouseStringifyExtension extends PuppeteerStringifyExtension {
       );
     }
 
-    out.appendLine(
-      `const lhApi = await import('lighthouse/core/fraggle-rock/api.js');`
-    );
+    out.appendLine(`const lhApi = await import('lighthouse/core/api.js');`);
     // eslint-disable-next-line max-len
     out.appendLine(
       `const lhFlow = await lhApi.startFlow(page, {name: ${JSON.stringify(

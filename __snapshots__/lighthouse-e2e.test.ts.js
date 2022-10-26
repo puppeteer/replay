@@ -12,7 +12,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   const flags = {"screenEmulation":{"disabled":true}}
   const config = (await import('lighthouse/core/config/desktop-config.js')).default;
-  const lhApi = await import('lighthouse/core/fraggle-rock/api.js');
+  const lhApi = await import('lighthouse/core/api.js');
   const lhFlow = await lhApi.startFlow(page, {name: "Test desktop", config, flags});
   {
     const targetPage = page;

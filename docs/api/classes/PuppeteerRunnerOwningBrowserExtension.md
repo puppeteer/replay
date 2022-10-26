@@ -43,7 +43,7 @@
 
 #### Defined in
 
-[PuppeteerRunnerExtension.ts:39](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L39)
+[PuppeteerRunnerExtension.ts:41](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L41)
 
 ## Methods
 
@@ -61,20 +61,20 @@
 
 #### Defined in
 
-[PuppeteerRunnerExtension.ts:364](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L364)
+[PuppeteerRunnerExtension.ts:366](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L366)
 
 ---
 
 ### afterEachStep
 
-▸ `Optional` **afterEachStep**(`step`, `flow`): `Promise`<`void`\>
+▸ `Optional` **afterEachStep**(`step`, `flow?`): `Promise`<`void`\>
 
 #### Parameters
 
-| Name   | Type                                           |
-| :----- | :--------------------------------------------- |
-| `step` | [`Step`](../modules/Schema.md#step)            |
-| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+| Name    | Type                                           |
+| :------ | :--------------------------------------------- |
+| `step`  | [`Step`](../modules/Schema.md#step)            |
+| `flow?` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 
@@ -92,13 +92,13 @@
 
 ### beforeAllSteps
 
-▸ `Optional` **beforeAllSteps**(`flow`): `Promise`<`void`\>
+▸ `Optional` **beforeAllSteps**(`flow?`): `Promise`<`void`\>
 
 #### Parameters
 
-| Name   | Type                                           |
-| :----- | :--------------------------------------------- |
-| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+| Name    | Type                                           |
+| :------ | :--------------------------------------------- |
+| `flow?` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 
@@ -116,14 +116,14 @@
 
 ### beforeEachStep
 
-▸ `Optional` **beforeEachStep**(`step`, `flow`): `Promise`<`void`\>
+▸ `Optional` **beforeEachStep**(`step`, `flow?`): `Promise`<`void`\>
 
 #### Parameters
 
-| Name   | Type                                           |
-| :----- | :--------------------------------------------- |
-| `step` | [`Step`](../modules/Schema.md#step)            |
-| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+| Name    | Type                                           |
+| :------ | :--------------------------------------------- |
+| `step`  | [`Step`](../modules/Schema.md#step)            |
+| `flow?` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 
@@ -141,14 +141,14 @@
 
 ### runStep
 
-▸ **runStep**(`step`, `flow`): `Promise`<`void`\>
+▸ **runStep**(`step`, `flow?`): `Promise`<`void`\>
 
 #### Parameters
 
-| Name   | Type                                           |
-| :----- | :--------------------------------------------- |
-| `step` | [`Step`](../modules/Schema.md#step)            |
-| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+| Name    | Type                                           |
+| :------ | :--------------------------------------------- |
+| `step`  | [`Step`](../modules/Schema.md#step)            |
+| `flow?` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
 
 #### Returns
 
@@ -160,4 +160,4 @@
 
 #### Defined in
 
-[PuppeteerRunnerExtension.ts:60](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L60)
+[PuppeteerRunnerExtension.ts:62](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L62)

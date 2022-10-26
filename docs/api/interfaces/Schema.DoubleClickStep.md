@@ -39,7 +39,7 @@
 
 #### Defined in
 
-[Schema.ts:33](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L33)
+[Schema.ts:54](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L54)
 
 ---
 
@@ -55,7 +55,7 @@ Defaults to 'primary' if the device type is a mouse.
 
 #### Defined in
 
-[Schema.ts:88](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L88)
+[Schema.ts:109](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L109)
 
 ---
 
@@ -71,7 +71,7 @@ Pointer type for the event. Defaults to 'mouse'.
 
 #### Defined in
 
-[Schema.ts:84](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L84)
+[Schema.ts:105](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L105)
 
 ---
 
@@ -87,7 +87,7 @@ Defaults to main frame
 
 #### Defined in
 
-[Schema.ts:47](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L47)
+[Schema.ts:68](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L68)
 
 ---
 
@@ -104,7 +104,7 @@ to the center of the element
 
 #### Defined in
 
-[Schema.ts:93](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L93)
+[Schema.ts:114](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L114)
 
 ---
 
@@ -121,7 +121,7 @@ to the center of the element
 
 #### Defined in
 
-[Schema.ts:98](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L98)
+[Schema.ts:119](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L119)
 
 ---
 
@@ -152,7 +152,7 @@ some selectors might get outdated over time.
 
 #### Defined in
 
-[Schema.ts:69](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L69)
+[Schema.ts:90](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L90)
 
 ---
 
@@ -168,7 +168,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:40](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L40)
+[Schema.ts:61](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L61)
 
 ---
 
@@ -182,13 +182,13 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:32](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L32)
+[Schema.ts:53](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L53)
 
 ---
 
 ### type
 
-• **type**: `"doubleClick"`
+• **type**: [`DoubleClick`](../enums/Schema.StepType.md#doubleclick)
 
 #### Overrides
 
@@ -196,4 +196,4 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:102](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L102)
+[Schema.ts:123](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L123)

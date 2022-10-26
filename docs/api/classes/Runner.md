@@ -8,6 +8,7 @@
 
 - [abort](Runner.md#abort)
 - [run](Runner.md#run)
+- [runStep](Runner.md#runstep)
 
 ## Methods
 
@@ -21,7 +22,7 @@
 
 #### Defined in
 
-[Runner.ts:34](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L34)
+[Runner.ts:44](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L44)
 
 ---
 
@@ -39,4 +40,24 @@ whether all the steps are run or the execution is aborted
 
 #### Defined in
 
-[Runner.ts:42](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L42)
+[Runner.ts:56](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L56)
+
+---
+
+### runStep
+
+▸ **runStep**(`step`): `Promise`<`void`\>
+
+#### Parameters
+
+| Name   | Type                                |
+| :----- | :---------------------------------- |
+| `step` | [`Step`](../modules/Schema.md#step) |
+
+#### Returns
+
+`Promise`<`void`\>
+
+#### Defined in
+
+[Runner.ts:48](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L48)

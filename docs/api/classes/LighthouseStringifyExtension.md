@@ -55,7 +55,7 @@
 
 #### Defined in
 
-[lighthouse/LighthouseStringifyExtension.ts:84](https://github.com/puppeteer/replay/blob/main/src/lighthouse/LighthouseStringifyExtension.ts#L84)
+[lighthouse/LighthouseStringifyExtension.ts:82](https://github.com/puppeteer/replay/blob/main/src/lighthouse/LighthouseStringifyExtension.ts#L82)
 
 ---
 
@@ -158,4 +158,4 @@
 
 #### Defined in
 
-[lighthouse/LighthouseStringifyExtension.ts:58](https://github.com/puppeteer/replay/blob/main/src/lighthouse/LighthouseStringifyExtension.ts#L58)
+[lighthouse/LighthouseStringifyExtension.ts:56](https://github.com/puppeteer/replay/blob/main/src/lighthouse/LighthouseStringifyExtension.ts#L56)

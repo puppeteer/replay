@@ -20,17 +20,17 @@
 
 #### Defined in
 
-[Schema.ts:25](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L25)
+[Schema.ts:46](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L46)
 
 ---
 
 ### type
 
-• **type**: `"navigation"`
+• **type**: [`Navigation`](../enums/Schema.AssertedEventType.md#navigation)
 
 #### Defined in
 
-[Schema.ts:23](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L23)
+[Schema.ts:44](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L44)
 
 ---
 
@@ -40,4 +40,4 @@
 
 #### Defined in
 
-[Schema.ts:24](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L24)
+[Schema.ts:45](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L45)

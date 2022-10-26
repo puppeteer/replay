@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[Schema.ts:177](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L177)
+[Schema.ts:198](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L198)
 
 ---
 
@@ -30,14 +30,14 @@
 
 #### Defined in
 
-[Schema.ts:178](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L178)
+[Schema.ts:199](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L199)
 
 ---
 
 ### type
 
-• **type**: `"customStep"`
+• **type**: [`CustomStep`](../enums/Schema.StepType.md#customstep)
 
 #### Defined in
 
-[Schema.ts:176](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L176)
+[Schema.ts:197](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L197)

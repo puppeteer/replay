@@ -32,7 +32,7 @@
 
 #### Defined in
 
-[Schema.ts:33](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L33)
+[Schema.ts:54](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L54)
 
 ---
 
@@ -42,7 +42,7 @@
 
 #### Defined in
 
-[Schema.ts:132](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L132)
+[Schema.ts:153](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L153)
 
 ---
 
@@ -58,7 +58,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:40](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L40)
+[Schema.ts:61](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L61)
 
 ---
 
@@ -72,13 +72,13 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:32](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L32)
+[Schema.ts:53](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L53)
 
 ---
 
 ### type
 
-• **type**: `"keyDown"`
+• **type**: [`KeyDown`](../enums/Schema.StepType.md#keydown)
 
 #### Overrides
 
@@ -86,4 +86,4 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:131](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L131)
+[Schema.ts:152](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L152)

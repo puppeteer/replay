@@ -23,6 +23,7 @@
     "test": "npm run build:testserver && cross-env TS_NODE_PROJECT=test/tsconfig.json mocha --config .mocharc.cjs",
     "test:headful": "cross-env PUPPETEER_HEADFUL=true npm run test",
     "test:coverage": "c8 npm run test",
+    "test:fast": "npm run test -- --ignore=test/e2e/**/*",
     "lint": "npm run lint:format",
     "lint:format": "prettier --check . && npm run eslint",
     "format": "prettier --write . && eslint --ext js --ext ts --fix .",

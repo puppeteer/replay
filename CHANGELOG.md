@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/puppeteer/replay/compare/v1.3.2...v2.0.0) (2022-10-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* the user flow parameter in the runner extensions is now optional
+
+### Features
+
+* expose runner APIs for running individual steps ([#215](https://github.com/puppeteer/replay/issues/215)) ([4ef380d](https://github.com/puppeteer/replay/commit/4ef380d2553552b4021d922dae65fc6a278c1220))
+
+
+### Bug Fixes
+
+* align typing behaviour between runner and stringifier ([#342](https://github.com/puppeteer/replay/issues/342)) ([50aae4a](https://github.com/puppeteer/replay/commit/50aae4a00e873bbb84e4abdc510fa890636b73f1))
+* allow specifying no flow when creating a runner ([#354](https://github.com/puppeteer/replay/issues/354)) ([d920654](https://github.com/puppeteer/replay/commit/d920654620da3f5984c41e709016b5fa641b8f20))
+
 ## [1.3.2](https://github.com/puppeteer/replay/compare/v1.3.1...v1.3.2) (2022-10-21)
 
 

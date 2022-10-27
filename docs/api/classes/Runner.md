@@ -4,11 +4,35 @@
 
 ## Table of contents
 
+### Accessors
+
+- [flow](Runner.md#flow)
+
 ### Methods
 
 - [abort](Runner.md#abort)
 - [run](Runner.md#run)
 - [runStep](Runner.md#runstep)
+
+## Accessors
+
+### flow
+
+• `set` **flow**(`flow`): `void`
+
+#### Parameters
+
+| Name   | Type                                           |
+| :----- | :--------------------------------------------- |
+| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[Runner.ts:47](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L47)
 
 ## Methods
 
@@ -22,7 +46,7 @@
 
 #### Defined in
 
-[Runner.ts:44](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L44)
+[Runner.ts:43](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L43)
 
 ---
 
@@ -40,13 +64,16 @@ whether all the steps are run or the execution is aborted
 
 #### Defined in
 
-[Runner.ts:56](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L56)
+[Runner.ts:63](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L63)
 
 ---
 
 ### runStep
 
 ▸ **runStep**(`step`): `Promise`<`void`\>
+
+Runs the provided `step` with `beforeEachStep` and `afterEachStep` hooks.
+Parameters from the `flow` apply if the `flow` is set.
 
 #### Parameters
 
@@ -60,4 +87,4 @@ whether all the steps are run or the execution is aborted
 
 #### Defined in
 
-[Runner.ts:48](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L48)
+[Runner.ts:55](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L55)

@@ -52,7 +52,7 @@ export class LighthouseRunnerExtension extends PuppeteerRunnerExtension {
     });
   }
 
-  override async beforeEachStep(step: Step, flow: UserFlow) {
+  override async beforeEachStep(step: Step, flow?: UserFlow) {
     await super.beforeEachStep?.(step, flow);
     if (step.type === StepType.SetViewport) return;
 
@@ -69,7 +69,7 @@ export class LighthouseRunnerExtension extends PuppeteerRunnerExtension {
     }
   }
 
-  override async afterEachStep(step: Step, flow: UserFlow) {
+  override async afterEachStep(step: Step, flow?: UserFlow) {
     if (this.#isNavigationRunning) {
       await this.#lhFlow.endNavigation();
       this.#isNavigationRunning = false;

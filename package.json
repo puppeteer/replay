@@ -34,9 +34,9 @@
   },
   "files": [
     "lib",
-    "**/*.d.ts",
-    "**/*.d.ts.map",
-    "!main.d.ts"
+    "!lib/**/*.d.ts",
+    "!lib/**/*.d.ts.map",
+    "lib/main.d.ts"
   ],
   "author": "Chrome DevTools authors",
   "license": "Apache-2.0",

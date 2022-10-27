@@ -33,7 +33,10 @@
     "build:testserver": "cd third_party/testserver && npm run build"
   },
   "files": [
-    "lib"
+    "lib",
+    "**/*.d.ts",
+    "**/*.d.ts.map",
+    "!main.d.ts"
   ],
   "author": "Chrome DevTools authors",
   "license": "Apache-2.0",

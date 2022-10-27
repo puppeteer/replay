@@ -312,14 +312,7 @@ limitations under the License.
 
 ### createRunner
 
-▸ **createRunner**(`flow`, `extension?`): `Promise`<[`Runner`](classes/Runner.md)\>
-
-#### Parameters
-
-| Name         | Type                                            |
-| :----------- | :---------------------------------------------- |
-| `flow`       | [`UserFlow`](interfaces/Schema.UserFlow.md)     |
-| `extension?` | [`RunnerExtension`](classes/RunnerExtension.md) |
+▸ **createRunner**(): `Promise`<[`Runner`](classes/Runner.md)\>
 
 #### Returns
 
@@ -327,7 +320,56 @@ limitations under the License.
 
 #### Defined in
 
-[Runner.ts:79](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L79)
+[Runner.ts:94](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L94)
+
+▸ **createRunner**(`flow`): `Promise`<[`Runner`](classes/Runner.md)\>
+
+#### Parameters
+
+| Name   | Type                                        |
+| :----- | :------------------------------------------ |
+| `flow` | [`UserFlow`](interfaces/Schema.UserFlow.md) |
+
+#### Returns
+
+`Promise`<[`Runner`](classes/Runner.md)\>
+
+#### Defined in
+
+[Runner.ts:95](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L95)
+
+▸ **createRunner**(`extension`): `Promise`<[`Runner`](classes/Runner.md)\>
+
+#### Parameters
+
+| Name        | Type                                            |
+| :---------- | :---------------------------------------------- |
+| `extension` | [`RunnerExtension`](classes/RunnerExtension.md) |
+
+#### Returns
+
+`Promise`<[`Runner`](classes/Runner.md)\>
+
+#### Defined in
+
+[Runner.ts:96](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L96)
+
+▸ **createRunner**(`flow`, `extension`): `Promise`<[`Runner`](classes/Runner.md)\>
+
+#### Parameters
+
+| Name        | Type                                            |
+| :---------- | :---------------------------------------------- |
+| `flow`      | [`UserFlow`](interfaces/Schema.UserFlow.md)     |
+| `extension` | [`RunnerExtension`](classes/RunnerExtension.md) |
+
+#### Returns
+
+`Promise`<[`Runner`](classes/Runner.md)\>
+
+#### Defined in
+
+[Runner.ts:97](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L97)
 
 ---
 

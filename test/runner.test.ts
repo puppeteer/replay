@@ -939,11 +939,6 @@ describe('Runner', () => {
 
   it('should replay individual steps', async () => {
     const runner = await createRunner(
-      {
-        title: 'Test Recording',
-        timeout: 3000,
-        steps: [],
-      },
       new PuppeteerRunnerExtension(browser, page)
     );
     await runner.runStep({

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.1](https://github.com/puppeteer/replay/compare/v2.0.0...v2.0.1) (2022-10-27)
+
+
+### Bug Fixes
+
+* remove misc. files from pack ([#356](https://github.com/puppeteer/replay/issues/356)) ([792f3ef](https://github.com/puppeteer/replay/commit/792f3efa746daedfa97a2a63050e4525ab5c2172))
+
 ## [2.0.0](https://github.com/puppeteer/replay/compare/v1.3.2...v2.0.0) (2022-10-27)
 
 

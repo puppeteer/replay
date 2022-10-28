@@ -48,6 +48,14 @@ export class Runner {
     this.#flow = flow;
   }
 
+  async runBeforeAllSteps(flow?: UserFlow): Promise<void> {
+    await this.#extension.beforeAllSteps?.(flow);
+  }
+
+  async runAfterAllSteps(flow?: UserFlow): Promise<void> {
+    await this.#extension.afterAllSteps?.(flow);
+  }
+
   /**
    * Runs the provided `step` with `beforeEachStep` and `afterEachStep` hooks.
    * Parameters from the `flow` apply if the `flow` is set.

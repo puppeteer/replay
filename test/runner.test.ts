@@ -817,6 +817,12 @@ describe('Runner', () => {
       extension.getLog(),
       'beforeAll,beforeStep0,runStep0,afterStep0,afterAll'
     );
+    await runner.runBeforeAllSteps();
+    await runner.runAfterAllSteps();
+    assert.strictEqual(
+      extension.getLog(),
+      'beforeAll,beforeStep0,runStep0,afterStep0,afterAll,beforeAll,afterAll'
+    );
   });
 
   it('should record interactions with OOPIFs', async () => {

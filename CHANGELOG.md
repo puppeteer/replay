@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/puppeteer/replay/compare/v2.0.2...v2.1.0) (2022-11-02)
+
+
+### Features
+
+* allow the runner to run beforeAll/afterAll hooks ([#360](https://github.com/puppeteer/replay/issues/360)) ([3c4ece0](https://github.com/puppeteer/replay/commit/3c4ece03079a0dbc4f6f44f74e3b25fbff1e2034))
+
 ## [2.0.2](https://github.com/puppeteer/replay/compare/v2.0.1...v2.0.2) (2022-10-27)
 
 

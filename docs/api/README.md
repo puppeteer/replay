@@ -320,7 +320,7 @@ limitations under the License.
 
 #### Defined in
 
-[Runner.ts:94](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L94)
+[Runner.ts:102](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L102)
 
 ▸ **createRunner**(`flow`): `Promise`<[`Runner`](classes/Runner.md)\>
 
@@ -336,7 +336,7 @@ limitations under the License.
 
 #### Defined in
 
-[Runner.ts:95](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L95)
+[Runner.ts:103](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L103)
 
 ▸ **createRunner**(`extension`): `Promise`<[`Runner`](classes/Runner.md)\>
 
@@ -352,7 +352,7 @@ limitations under the License.
 
 #### Defined in
 
-[Runner.ts:96](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L96)
+[Runner.ts:104](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L104)
 
 ▸ **createRunner**(`flow`, `extension`): `Promise`<[`Runner`](classes/Runner.md)\>
 
@@ -369,7 +369,7 @@ limitations under the License.
 
 #### Defined in
 
-[Runner.ts:97](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L97)
+[Runner.ts:105](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L105)
 
 ---
 

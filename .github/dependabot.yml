@@ -7,6 +7,7 @@ updates:
     open-pull-requests-limit: 3
     allow:
       - dependency-name: 'puppeteer'
+      - dependency-name: 'puppeteer-core'
       - dependency-type: 'production'
   - package-ecosystem: github-actions
     directory: '/'

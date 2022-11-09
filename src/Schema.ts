@@ -19,6 +19,13 @@ export type Pattern = string;
 export type Selector = string | string[];
 export type FrameSelector = number[];
 
+export enum SelectorType {
+  CSS = 'css',
+  ARIA = 'aria',
+  Text = 'text',
+  XPath = 'xpath',
+}
+
 export enum StepType {
   Change = 'change',
   Click = 'click',

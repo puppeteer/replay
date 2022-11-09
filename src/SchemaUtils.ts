@@ -14,7 +14,7 @@
     limitations under the License.
  */
 
-import type {
+import {
   AssertedEvent,
   BaseStep,
   ChangeStep,
@@ -32,6 +32,7 @@ import type {
   NavigateStep,
   ScrollStep,
   Selector,
+  SelectorType,
   SetViewportStep,
   Step,
   StepWithFrame,
@@ -568,4 +569,20 @@ export function parse(data: unknown): UserFlow {
         : undefined,
     steps: parseSteps(data.steps),
   });
+}
+
+/**
+ * Detects what type of a selector the string contains. For example,
+ * `aria/Label` is a SelectorType.ARIA.
+ *
+ * Note that CSS selectors are special and usually don't require a prefix,
+ * therefore, SelectorType.CSS is the default type if other types didn't match.
+ */
+export function getSelectorType(selector: string): SelectorType {
+  for (const value of Object.values(SelectorType)) {
+    if (selector.startsWith(`${value}/`)) {
+      return value;
+    }
+  }
+  return SelectorType.CSS;
 }

@@ -39,7 +39,7 @@
 
 #### Defined in
 
-[Schema.ts:54](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L54)
+[Schema.ts:61](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L61)
 
 ---
 
@@ -55,7 +55,7 @@ Defaults to 'primary' if the device type is a mouse.
 
 #### Defined in
 
-[Schema.ts:109](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L109)
+[Schema.ts:116](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L116)
 
 ---
 
@@ -71,7 +71,7 @@ Pointer type for the event. Defaults to 'mouse'.
 
 #### Defined in
 
-[Schema.ts:105](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L105)
+[Schema.ts:112](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L112)
 
 ---
 
@@ -87,7 +87,7 @@ Defaults to main frame
 
 #### Defined in
 
-[Schema.ts:68](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L68)
+[Schema.ts:75](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L75)
 
 ---
 
@@ -104,7 +104,7 @@ to the center of the element
 
 #### Defined in
 
-[Schema.ts:114](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L114)
+[Schema.ts:121](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L121)
 
 ---
 
@@ -121,7 +121,7 @@ to the center of the element
 
 #### Defined in
 
-[Schema.ts:119](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L119)
+[Schema.ts:126](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L126)
 
 ---
 
@@ -152,7 +152,7 @@ some selectors might get outdated over time.
 
 #### Defined in
 
-[Schema.ts:90](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L90)
+[Schema.ts:97](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L97)
 
 ---
 
@@ -168,7 +168,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:61](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L61)
+[Schema.ts:68](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L68)
 
 ---
 
@@ -182,7 +182,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:53](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L53)
+[Schema.ts:60](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L60)
 
 ---
 
@@ -196,4 +196,4 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:123](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L123)
+[Schema.ts:130](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L130)

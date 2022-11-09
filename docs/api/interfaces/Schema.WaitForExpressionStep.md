@@ -47,7 +47,7 @@ true allowing the replay to continue.
 
 #### Defined in
 
-[Schema.ts:54](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L54)
+[Schema.ts:61](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L61)
 
 ---
 
@@ -57,7 +57,7 @@ true allowing the replay to continue.
 
 #### Defined in
 
-[Schema.ts:265](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L265)
+[Schema.ts:272](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L272)
 
 ---
 
@@ -73,7 +73,7 @@ Defaults to main frame
 
 #### Defined in
 
-[Schema.ts:68](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L68)
+[Schema.ts:75](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L75)
 
 ---
 
@@ -89,7 +89,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:61](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L61)
+[Schema.ts:68](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L68)
 
 ---
 
@@ -103,7 +103,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:53](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L53)
+[Schema.ts:60](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L60)
 
 ---
 
@@ -117,4 +117,4 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:264](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L264)
+[Schema.ts:271](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L271)

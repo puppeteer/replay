@@ -7,6 +7,7 @@
 ### Enumerations
 
 - [AssertedEventType](../enums/Schema.AssertedEventType.md)
+- [SelectorType](../enums/Schema.SelectorType.md)
 - [StepType](../enums/Schema.StepType.md)
 
 ### Interfaces
@@ -58,7 +59,7 @@
 
 #### Defined in
 
-[Schema.ts:49](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L49)
+[Schema.ts:56](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L56)
 
 ---
 
@@ -68,7 +69,7 @@
 
 #### Defined in
 
-[Schema.ts:268](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L268)
+[Schema.ts:275](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L275)
 
 ---
 
@@ -78,7 +79,7 @@
 
 #### Defined in
 
-[Schema.ts:202](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L202)
+[Schema.ts:209](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L209)
 
 ---
 
@@ -98,7 +99,7 @@
 
 #### Defined in
 
-[Schema.ts:290](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L290)
+[Schema.ts:297](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L297)
 
 ---
 
@@ -118,7 +119,7 @@
 
 #### Defined in
 
-[Schema.ts:94](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L94)
+[Schema.ts:101](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L101)
 
 ---
 
@@ -128,7 +129,7 @@
 
 #### Defined in
 
-[Schema.ts:93](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L93)
+[Schema.ts:100](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L100)
 
 ---
 
@@ -138,7 +139,7 @@
 
 #### Defined in
 
-[Schema.ts:187](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L187)
+[Schema.ts:194](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L194)
 
 ---
 
@@ -148,7 +149,7 @@
 
 #### Defined in
 
-[Schema.ts:189](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L189)
+[Schema.ts:196](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L196)
 
 ---
 
@@ -168,7 +169,7 @@
 
 #### Defined in
 
-[Schema.ts:270](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L270)
+[Schema.ts:277](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L277)
 
 ---
 
@@ -202,4 +203,4 @@ limitations under the License.
 
 #### Defined in
 
-[Schema.ts:206](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L206)
+[Schema.ts:213](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L213)

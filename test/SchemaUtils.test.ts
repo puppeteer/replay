@@ -14,8 +14,8 @@
     limitations under the License.
  */
 
-import { parse } from '../src/SchemaUtils.js';
-import { AssertedEventType, StepType } from '../src/Schema.js';
+import { parse, getSelectorType } from '../src/SchemaUtils.js';
+import { AssertedEventType, SelectorType, StepType } from '../src/Schema.js';
 import { assert } from 'chai';
 
 describe('SchemaUtils', () => {
@@ -722,7 +722,7 @@ describe('SchemaUtils', () => {
       );
     });
 
-    it('should handle wrong input with erros', () => {
+    it('should handle wrong input with errors', () => {
       const testCases = [
         {
           input: {},
@@ -766,6 +766,16 @@ describe('SchemaUtils', () => {
       for (const testCase of testCases) {
         assert.throws(() => parse(testCase.input), testCase.error);
       }
+    });
+  });
+
+  describe('Selectors', () => {
+    it('should detect selector types', () => {
+      assert.strictEqual(getSelectorType('css/.cls'), SelectorType.CSS);
+      assert.strictEqual(getSelectorType('.cls'), SelectorType.CSS);
+      assert.strictEqual(getSelectorType('aria/Text'), SelectorType.ARIA);
+      assert.strictEqual(getSelectorType('text/Text'), SelectorType.Text);
+      assert.strictEqual(getSelectorType('xpath///div'), SelectorType.XPath);
     });
   });
 });

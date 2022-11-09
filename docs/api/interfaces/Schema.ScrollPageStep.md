@@ -34,7 +34,7 @@
 
 #### Defined in
 
-[Schema.ts:54](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L54)
+[Schema.ts:61](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L61)
 
 ---
 
@@ -50,7 +50,7 @@ Defaults to main frame
 
 #### Defined in
 
-[Schema.ts:68](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L68)
+[Schema.ts:75](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L75)
 
 ---
 
@@ -66,7 +66,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:61](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L61)
+[Schema.ts:68](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L68)
 
 ---
 
@@ -80,7 +80,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:53](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L53)
+[Schema.ts:60](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L60)
 
 ---
 
@@ -94,7 +94,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:176](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L176)
+[Schema.ts:183](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L183)
 
 ---
 
@@ -106,7 +106,7 @@ Absolute scroll x position in px. Defaults to 0
 
 #### Defined in
 
-[Schema.ts:180](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L180)
+[Schema.ts:187](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L187)
 
 ---
 
@@ -118,4 +118,4 @@ Absolute scroll y position in px. Defaults to 0
 
 #### Defined in
 
-[Schema.ts:184](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L184)
+[Schema.ts:191](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L191)

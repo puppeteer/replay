@@ -11,6 +11,7 @@
 ### Enumerations
 
 - [AssertedEventType](enums/AssertedEventType.md)
+- [SelectorType](enums/SelectorType.md)
 - [StepType](enums/StepType.md)
 
 ### Classes
@@ -78,6 +79,7 @@
 
 - [assertAllStepTypesAreHandled](README.md#assertallsteptypesarehandled)
 - [createRunner](README.md#createrunner)
+- [getSelectorType](README.md#getselectortype)
 - [parse](README.md#parse)
 - [parseStep](README.md#parsestep)
 - [stringify](README.md#stringify)
@@ -92,7 +94,7 @@
 
 #### Defined in
 
-[Schema.ts:49](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L49)
+[Schema.ts:56](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L56)
 
 ---
 
@@ -102,7 +104,7 @@
 
 #### Defined in
 
-[Schema.ts:268](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L268)
+[Schema.ts:275](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L275)
 
 ---
 
@@ -112,7 +114,7 @@
 
 #### Defined in
 
-[Schema.ts:202](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L202)
+[Schema.ts:209](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L209)
 
 ---
 
@@ -132,7 +134,7 @@
 
 #### Defined in
 
-[Schema.ts:290](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L290)
+[Schema.ts:297](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L297)
 
 ---
 
@@ -152,7 +154,7 @@
 
 #### Defined in
 
-[Schema.ts:94](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L94)
+[Schema.ts:101](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L101)
 
 ---
 
@@ -162,7 +164,7 @@
 
 #### Defined in
 
-[Schema.ts:93](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L93)
+[Schema.ts:100](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L100)
 
 ---
 
@@ -172,7 +174,7 @@
 
 #### Defined in
 
-[Schema.ts:187](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L187)
+[Schema.ts:194](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L194)
 
 ---
 
@@ -182,7 +184,7 @@
 
 #### Defined in
 
-[Schema.ts:189](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L189)
+[Schema.ts:196](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L196)
 
 ---
 
@@ -202,7 +204,7 @@
 
 #### Defined in
 
-[Schema.ts:270](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L270)
+[Schema.ts:277](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L277)
 
 ---
 
@@ -236,7 +238,7 @@ limitations under the License.
 
 #### Defined in
 
-[Schema.ts:206](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L206)
+[Schema.ts:213](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L213)
 
 ## Variables
 
@@ -246,7 +248,7 @@ limitations under the License.
 
 #### Defined in
 
-[SchemaUtils.ts:528](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L528)
+[SchemaUtils.ts:529](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L529)
 
 ---
 
@@ -256,7 +258,7 @@ limitations under the License.
 
 #### Defined in
 
-[SchemaUtils.ts:527](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L527)
+[SchemaUtils.ts:528](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L528)
 
 ---
 
@@ -266,7 +268,7 @@ limitations under the License.
 
 #### Defined in
 
-[SchemaUtils.ts:69](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L69)
+[SchemaUtils.ts:70](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L70)
 
 ---
 
@@ -276,7 +278,7 @@ limitations under the License.
 
 #### Defined in
 
-[SchemaUtils.ts:63](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L63)
+[SchemaUtils.ts:64](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L64)
 
 ---
 
@@ -286,7 +288,7 @@ limitations under the License.
 
 #### Defined in
 
-[SchemaUtils.ts:52](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L52)
+[SchemaUtils.ts:53](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L53)
 
 ## Functions
 
@@ -306,7 +308,7 @@ limitations under the License.
 
 #### Defined in
 
-[SchemaUtils.ts:47](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L47)
+[SchemaUtils.ts:48](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L48)
 
 ---
 
@@ -373,6 +375,32 @@ limitations under the License.
 
 ---
 
+### getSelectorType
+
+▸ **getSelectorType**(`selector`): [`SelectorType`](enums/Schema.SelectorType.md)
+
+Detects what type of a selector the string contains. For example,
+`aria/Label` is a SelectorType.ARIA.
+
+Note that CSS selectors are special and usually don't require a prefix,
+therefore, SelectorType.CSS is the default type if other types didn't match.
+
+#### Parameters
+
+| Name       | Type     |
+| :--------- | :------- |
+| `selector` | `string` |
+
+#### Returns
+
+[`SelectorType`](enums/Schema.SelectorType.md)
+
+#### Defined in
+
+[SchemaUtils.ts:581](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L581)
+
+---
+
 ### parse
 
 ▸ **parse**(`data`): [`UserFlow`](interfaces/Schema.UserFlow.md)
@@ -389,7 +417,7 @@ limitations under the License.
 
 #### Defined in
 
-[SchemaUtils.ts:536](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L536)
+[SchemaUtils.ts:537](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L537)
 
 ---
 
@@ -410,7 +438,7 @@ limitations under the License.
 
 #### Defined in
 
-[SchemaUtils.ts:460](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L460)
+[SchemaUtils.ts:461](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L461)
 
 ---
 
@@ -486,4 +514,4 @@ Stringifes a single step. Only the following hooks are invoked with the `flow` p
 
 #### Defined in
 
-[SchemaUtils.ts:532](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L532)
+[SchemaUtils.ts:533](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L533)

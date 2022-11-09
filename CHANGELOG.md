@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/puppeteer/replay/compare/v2.1.0...v2.2.0) (2022-11-09)
+
+
+### Features
+
+* expose getSelectorType ([#376](https://github.com/puppeteer/replay/issues/376)) ([11eec45](https://github.com/puppeteer/replay/commit/11eec4524c134cc19bc074c14080d738dcafb1ac))
+
 ## [2.1.0](https://github.com/puppeteer/replay/compare/v2.0.2...v2.1.0) (2022-11-02)
 
 

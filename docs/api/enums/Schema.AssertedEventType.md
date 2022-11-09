@@ -18,4 +18,4 @@
 
 #### Defined in
 
-[Schema.ts:40](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L40)
+[Schema.ts:47](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L47)

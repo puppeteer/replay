@@ -1,5 +1,5 @@
 {
-  "title": "everything",
+  "title": "benchmark",
   "steps": [
     {
       "type": "setViewport",
@@ -12,11 +12,11 @@
     },
     {
       "type": "navigate",
-      "url": "http://localhost:8907/everything.html",
+      "url": "http://localhost:8907/benchmark.html",
       "assertedEvents": [
         {
           "type": "navigation",
-          "url": "http://localhost:8907/everything.html",
+          "url": "http://localhost:8907/benchmark.html",
           "title": ""
         }
       ]

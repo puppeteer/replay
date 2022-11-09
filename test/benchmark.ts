@@ -46,12 +46,12 @@ async function createServers() {
 // Note: not using snapshots to make sure all tests result in the same log.
 const expectedLog = (
   await fs.readFile(
-    path.join(__dirname, 'resources', 'everything.expected.txt'),
+    path.join(__dirname, 'resources', 'benchmark.expected.txt'),
     'utf-8'
   )
 ).trim();
 
-describe('Everything', () => {
+describe('Benchmark test', () => {
   let browser: puppeteer.Browser;
   let page: puppeteer.Page;
   let httpServer: TestServer;
@@ -85,9 +85,9 @@ describe('Everything', () => {
     await httpsServer.stop();
   });
 
-  it('should run everthing using a runner', async () => {
+  it('should run the test using a runner extension', async () => {
     const recording = JSON.parse(
-      await fs.readFile(path.join(__dirname, 'resources', 'everything.json'), {
+      await fs.readFile(path.join(__dirname, 'resources', 'benchmark.json'), {
         encoding: 'utf8',
       })
     );
@@ -101,9 +101,9 @@ describe('Everything', () => {
     assert.strictEqual(result.trim(), expectedLog);
   });
 
-  it('should run everthing when exported to a script', async () => {
+  it('should run the test when exported as a script using a stringify extension', async () => {
     const recording = JSON.parse(
-      await fs.readFile(path.join(__dirname, 'resources', 'everything.json'), {
+      await fs.readFile(path.join(__dirname, 'resources', 'benchmark.json'), {
         encoding: 'utf8',
       })
     );

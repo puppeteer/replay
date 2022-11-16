@@ -26,10 +26,14 @@ export class InMemoryLineWriter implements LineWriter {
   }
 
   appendLine(line: string): LineWriter {
-    const indentedLine = line
-      ? this.#indentation.repeat(this.#currentIndentation) + line.trimEnd()
-      : '';
-    this.#lines.push(indentedLine);
+    const lines = line.split('\n').map((line) => {
+      const indentedLine = line
+        ? this.#indentation.repeat(this.#currentIndentation) + line.trimEnd()
+        : '';
+      return indentedLine;
+    });
+
+    this.#lines.push(...lines);
     return this;
   }
 
@@ -46,5 +50,9 @@ export class InMemoryLineWriter implements LineWriter {
   toString(): string {
     // Scripts should end with a final blank line.
     return this.#lines.join('\n') + '\n';
+  }
+
+  getIndent(): string {
+    return this.#indentation;
   }
 }

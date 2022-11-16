@@ -18,4 +18,5 @@ export interface LineWriter {
   appendLine(line: string): LineWriter;
   startBlock(): LineWriter;
   endBlock(): LineWriter;
+  getIndent(): string;
 }

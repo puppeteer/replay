@@ -22,6 +22,7 @@ limitations under the License.
 
 - [appendLine](LineWriter.md#appendline)
 - [endBlock](LineWriter.md#endblock)
+- [getIndent](LineWriter.md#getindent)
 - [startBlock](LineWriter.md#startblock)
 
 ## Methods
@@ -57,6 +58,20 @@ limitations under the License.
 #### Defined in
 
 [LineWriter.ts:20](https://github.com/puppeteer/replay/blob/main/src/LineWriter.ts#L20)
+
+---
+
+### getIndent
+
+▸ **getIndent**(): `string`
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+[LineWriter.ts:21](https://github.com/puppeteer/replay/blob/main/src/LineWriter.ts#L21)
 
 ---
 

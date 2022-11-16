@@ -26,7 +26,7 @@ export class InMemoryLineWriter implements LineWriter {
   }
 
   appendLine(line: string): LineWriter {
-    const lines = line.split('\n').map((line, idx) => {
+    const lines = line.split('\n').map((line) => {
       const indentedLine = line
         ? this.#indentation.repeat(this.#currentIndentation) + line.trimEnd()
         : '';

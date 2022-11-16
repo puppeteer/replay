@@ -33,7 +33,7 @@ export class InMemoryLineWriter implements LineWriter {
       return indentedLine;
     });
 
-    for (const indentedLine of lines) this.#lines.push(indentedLine);
+    this.#lines.push(...lines);
     return this;
   }
 

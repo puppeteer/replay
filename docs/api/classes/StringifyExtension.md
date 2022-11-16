@@ -8,6 +8,8 @@
 
   ↳ [`PuppeteerStringifyExtension`](PuppeteerStringifyExtension.md)
 
+  ↳ [`PuppeteerReplayStringifyExtension`](PuppeteerReplayStringifyExtension.md)
+
 ## Table of contents
 
 ### Constructors

@@ -21,7 +21,12 @@ export * from './Schema.js';
 export * as Schema from './Schema.js';
 export * from './SchemaUtils.js';
 export { StringifyExtension } from './StringifyExtension.js';
-export { stringify, stringifyStep, StringifyOptions } from './stringify.js';
+export {
+  stringify,
+  stringifyStep,
+  StringifyOptions,
+  parseSourceMap,
+} from './stringify.js';
 export { LineWriter } from './LineWriter.js';
 export { RunnerExtension } from './RunnerExtension.js';
 export { createRunner, Runner } from './Runner.js';

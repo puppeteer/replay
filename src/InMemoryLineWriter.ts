@@ -55,4 +55,8 @@ export class InMemoryLineWriter implements LineWriter {
   getIndent(): string {
     return this.#indentation;
   }
+
+  getSize(): number {
+    return this.#lines.length;
+  }
 }

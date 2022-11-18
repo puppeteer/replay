@@ -19,4 +19,5 @@ export interface LineWriter {
   startBlock(): LineWriter;
   endBlock(): LineWriter;
   getIndent(): string;
+  getSize(): number;
 }

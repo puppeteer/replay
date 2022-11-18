@@ -201,6 +201,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   console.error(err);
   process.exit(1);
 });
+//# recorderSourceMap=CQI
 
 `;
 
@@ -414,6 +415,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   console.error(err);
   process.exit(1);
 });
+//# recorderSourceMap=CQS
 
 `;
 
@@ -631,6 +633,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   console.error(err);
   process.exit(1);
 });
+//# recorderSourceMap=CQa
 
 `;
 
@@ -847,6 +850,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   console.error(err);
   process.exit(1);
 });
+//# recorderSourceMap=CQc
 
 `;
 
@@ -1065,6 +1069,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   console.error(err);
   process.exit(1);
 });
+//# recorderSourceMap=CQc
 
 `;
 
@@ -1271,6 +1276,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   console.error(err);
   process.exit(1);
 });
+//# recorderSourceMap=CQI
 
 `;
 
@@ -1477,6 +1483,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   console.error(err);
   process.exit(1);
 });
+//# recorderSourceMap=CQI
 
 `;
 
@@ -1689,6 +1696,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   console.error(err);
   process.exit(1);
 });
+//# recorderSourceMap=CQMcI
 
 `;
 
@@ -1897,6 +1905,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   console.error(err);
   process.exit(1);
 });
+//# recorderSourceMap=CQI
 
 `;
 
@@ -2105,5 +2114,8 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   console.error(err);
   process.exit(1);
 });
+//# recorderSourceMap=CQI
 
 `;
+
+exports['stringify should produce a source map 1'] = [1, 8, 4];

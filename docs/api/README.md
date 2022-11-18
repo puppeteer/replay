@@ -82,6 +82,7 @@
 - [createRunner](README.md#createrunner)
 - [getSelectorType](README.md#getselectortype)
 - [parse](README.md#parse)
+- [parseSourceMap](README.md#parsesourcemap)
 - [parseStep](README.md#parsestep)
 - [stringify](README.md#stringify)
 - [stringifyStep](README.md#stringifystep)
@@ -422,6 +423,28 @@ therefore, SelectorType.CSS is the default type if other types didn't match.
 
 ---
 
+### parseSourceMap
+
+▸ **parseSourceMap**(`text`): `SourceMap` \| `undefined`
+
+Extracts a source map from a text.
+
+#### Parameters
+
+| Name   | Type     |
+| :----- | :------- |
+| `text` | `string` |
+
+#### Returns
+
+`SourceMap` \| `undefined`
+
+#### Defined in
+
+[stringify.ts:105](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L105)
+
+---
+
 ### parseStep
 
 ▸ **parseStep**(`step`, `idx?`): [`Step`](modules/Schema.md#step)
@@ -468,7 +491,7 @@ Stringifes an entire recording. The following hooks are invoked with the `flow` 
 
 #### Defined in
 
-[stringify.ts:37](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L37)
+[stringify.ts:45](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L45)
 
 ---
 
@@ -495,7 +518,7 @@ Stringifes a single step. Only the following hooks are invoked with the `flow` p
 
 #### Defined in
 
-[stringify.ts:64](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L64)
+[stringify.ts:79](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L79)
 
 ---
 

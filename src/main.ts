@@ -24,8 +24,9 @@ export { StringifyExtension } from './StringifyExtension.js';
 export {
   stringify,
   stringifyStep,
-  StringifyOptions,
   parseSourceMap,
+  StringifyOptions,
+  SourceMap,
 } from './stringify.js';
 export { LineWriter } from './LineWriter.js';
 export { RunnerExtension } from './RunnerExtension.js';

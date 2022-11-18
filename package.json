@@ -87,6 +87,7 @@
   "dependencies": {
     "cli-table3": "0.6.3",
     "colorette": "2.0.19",
+    "vlq": "2.0.4",
     "yargs": "17.6.1"
   }
 }

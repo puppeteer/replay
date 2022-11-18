@@ -20,6 +20,7 @@ import { StringifyExtension } from '../src/StringifyExtension.js';
 import { Step, StepType, UserFlow } from '../src/Schema.js';
 import { LineWriter } from '../src/LineWriter.js';
 import snapshot from 'snap-shot-it';
+import * as vlq from 'vlq';
 
 describe('stringify', () => {
   it('should print the correct script for a navigate step', async () => {
@@ -249,8 +250,29 @@ describe('stringify', () => {
         'stringifyStep0',
         'afterStep0',
         'afterAll',
+        '//# recorderSourceMap=CCG',
         '',
       ].join('\n')
+    );
+  });
+
+  it('should produce a source map', async () => {
+    const flow = {
+      title: 'Test Recording',
+      steps: [
+        {
+          type: StepType.WaitForElement as const,
+          selectors: ['body > div:nth-child(1)'],
+        },
+      ],
+    };
+    const str = await stringify(flow);
+    const sourceMapLine = str
+      .split('\n')
+      .reverse()
+      .find((line) => line.trim() !== '');
+    snapshot(
+      vlq.decode(sourceMapLine?.split('//# recorderSourceMap=').pop() as string)
     );
   });
 });

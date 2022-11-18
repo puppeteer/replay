@@ -19,6 +19,7 @@ import { LineWriter } from './LineWriter.js';
 import { PuppeteerStringifyExtension } from './PuppeteerStringifyExtension.js';
 import type { Step, UserFlow } from './Schema.js';
 import { StringifyExtension } from './StringifyExtension.js';
+import * as vlq from 'vlq';
 
 export interface StringifyOptions {
   extension?: StringifyExtension;
@@ -45,12 +46,20 @@ export async function stringify(
   const out = opts.writer ?? new InMemoryLineWriter(opts.indentation ?? '  ');
 
   await ext.beforeAllSteps?.(out, flow);
+
+  // version, [lineNo, length], [lineNo, length] ...
+  const sourceMap: Array<number> = [1];
   for (const step of flow.steps) {
+    const firstLine = out.getSize();
     await ext.beforeEachStep?.(out, step, flow);
     await ext.stringifyStep(out, step, flow);
     await ext.afterEachStep?.(out, step, flow);
+    const lastLine = out.getSize();
+    sourceMap.push(...[firstLine, lastLine - firstLine]);
   }
   await ext.afterAllSteps?.(out, flow);
+
+  out.appendLine('//# recorderSourceMap=' + vlq.encode(sourceMap));
 
   return out.toString();
 }
@@ -75,7 +84,7 @@ export async function stringifyStep(
   if (!opts.indentation) {
     opts.indentation = '  ';
   }
-  const out = new InMemoryLineWriter(opts.indentation);
+  const out = opts.writer ?? new InMemoryLineWriter(opts.indentation ?? '  ');
 
   await ext.beforeEachStep?.(out, step);
   await ext.stringifyStep(out, step);

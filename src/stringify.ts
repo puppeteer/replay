@@ -27,6 +27,13 @@ export interface StringifyOptions {
   indentation?: string;
 }
 
+const SOURCE_MAP_PREFIX = '//# recorderSourceMap=';
+
+/**
+ * The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]].
+ */
+export type SourceMap = Array<number>;
+
 /**
  * Stringifes an entire recording. The following hooks are invoked with the `flow` parameter containing the entire flow:
  * - `beforeAllSteps` (once)
@@ -47,7 +54,6 @@ export async function stringify(
 
   await ext.beforeAllSteps?.(out, flow);
 
-  // version, [lineNo, length], [lineNo, length] ...
   const sourceMap: Array<number> = [1];
   for (const step of flow.steps) {
     const firstLine = out.getSize();
@@ -59,7 +65,7 @@ export async function stringify(
   }
   await ext.afterAllSteps?.(out, flow);
 
-  out.appendLine('//# recorderSourceMap=' + vlq.encode(sourceMap));
+  out.appendLine(SOURCE_MAP_PREFIX + vlq.encode(sourceMap));
 
   return out.toString();
 }
@@ -91,4 +97,18 @@ export async function stringifyStep(
   await ext.afterEachStep?.(out, step);
 
   return out.toString();
+}
+
+/**
+ * Extracts a source map from a text.
+ */
+export function parseSourceMap(text: string): SourceMap | undefined {
+  const lines = text.split('\n');
+  for (let i = lines.length - 1; i >= 0; i--) {
+    const line = lines[i] as string;
+    if (line.trim().startsWith(SOURCE_MAP_PREFIX)) {
+      return vlq.decode(line.trim().substring(SOURCE_MAP_PREFIX.length));
+    }
+  }
+  return;
 }

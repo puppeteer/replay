@@ -14,7 +14,7 @@
     limitations under the License.
  */
 
-import { stringify } from '../src/stringify.js';
+import { parseSourceMap, stringify } from '../src/stringify.js';
 import { assert } from 'chai';
 import { StringifyExtension } from '../src/StringifyExtension.js';
 import { Step, StepType, UserFlow } from '../src/Schema.js';
@@ -274,5 +274,15 @@ describe('stringify', () => {
     snapshot(
       vlq.decode(sourceMapLine?.split('//# recorderSourceMap=').pop() as string)
     );
+  });
+
+  it('should parse a source map', async () => {
+    const sourceMap = parseSourceMap(`
+      test
+      test
+      test
+      //# recorderSourceMap=CCG
+    `);
+    assert.deepStrictEqual(sourceMap, [1, 1, 3]);
   });
 });

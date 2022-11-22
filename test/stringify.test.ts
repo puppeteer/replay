@@ -14,7 +14,7 @@
     limitations under the License.
  */
 
-import { parseSourceMap, stringify } from '../src/stringify.js';
+import { parseSourceMap, stringify, stripSourceMap } from '../src/stringify.js';
 import { assert } from 'chai';
 import { StringifyExtension } from '../src/StringifyExtension.js';
 import { Step, StepType, UserFlow } from '../src/Schema.js';
@@ -284,5 +284,22 @@ describe('stringify', () => {
       //# recorderSourceMap=BBD
     `);
     assert.deepStrictEqual(sourceMap, [1, 1, 3]);
+  });
+
+  it('should strip a source map', async () => {
+    const sourceMap = stripSourceMap(`
+      test
+      test
+      test
+      //# recorderSourceMap=BBD
+    `);
+    assert.deepStrictEqual(
+      sourceMap,
+      `
+      test
+      test
+      test
+    `
+    );
   });
 });

@@ -25,6 +25,7 @@ export {
   stringify,
   stringifyStep,
   parseSourceMap,
+  stripSourceMap,
   StringifyOptions,
   SourceMap,
 } from './stringify.js';

@@ -99,6 +99,10 @@ export async function stringifyStep(
   return out.toString();
 }
 
+function isSourceMapLine(line: string): boolean {
+  return line.trim().startsWith(SOURCE_MAP_PREFIX);
+}
+
 /**
  * Extracts a source map from a text.
  */
@@ -106,9 +110,14 @@ export function parseSourceMap(text: string): SourceMap | undefined {
   const lines = text.split('\n');
   for (let i = lines.length - 1; i >= 0; i--) {
     const line = lines[i] as string;
-    if (line.trim().startsWith(SOURCE_MAP_PREFIX)) {
+    if (isSourceMapLine(line)) {
       return decode(line.trim().substring(SOURCE_MAP_PREFIX.length));
     }
   }
   return;
+}
+
+export function stripSourceMap(text: string): string {
+  const lines = text.split('\n');
+  return lines.filter((line) => !isSourceMapLine(line)).join('\n');
 }

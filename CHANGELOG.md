@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://github.com/puppeteer/replay/compare/v2.4.0...v2.5.0) (2022-11-22)
+
+
+### Features
+
+* add utility to strip source maps ([#391](https://github.com/puppeteer/replay/issues/391)) ([179d8f4](https://github.com/puppeteer/replay/commit/179d8f49ab33d8eba28277d257479022c5e8f796))
+
+
+### Bug Fixes
+
+* change vlq encoding to encode only positive ints ([#389](https://github.com/puppeteer/replay/issues/389)) ([3237408](https://github.com/puppeteer/replay/commit/32374086156fd29474304517a0b3a7f98347ff2a))
+
 ## [2.4.0](https://github.com/puppeteer/replay/compare/v2.3.0...v2.4.0) (2022-11-18)
 
 

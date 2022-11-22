@@ -87,6 +87,7 @@
 - [parseStep](README.md#parsestep)
 - [stringify](README.md#stringify)
 - [stringifyStep](README.md#stringifystep)
+- [stripSourceMap](README.md#stripsourcemap)
 - [validTimeout](README.md#validtimeout)
 
 ## Type Aliases
@@ -454,7 +455,7 @@ Extracts a source map from a text.
 
 #### Defined in
 
-[stringify.ts:105](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L105)
+[stringify.ts:109](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L109)
 
 ---
 
@@ -532,6 +533,26 @@ Stringifes a single step. Only the following hooks are invoked with the `flow` p
 #### Defined in
 
 [stringify.ts:79](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L79)
+
+---
+
+### stripSourceMap
+
+▸ **stripSourceMap**(`text`): `string`
+
+#### Parameters
+
+| Name   | Type     |
+| :----- | :------- |
+| `text` | `string` |
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+[stringify.ts:120](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L120)
 
 ---
 

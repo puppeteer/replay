@@ -19,7 +19,7 @@ import { LineWriter } from './LineWriter.js';
 import { PuppeteerStringifyExtension } from './PuppeteerStringifyExtension.js';
 import type { Step, UserFlow } from './Schema.js';
 import { StringifyExtension } from './StringifyExtension.js';
-import * as vlq from 'vlq';
+import { decode, encode } from './vlq.js';
 
 export interface StringifyOptions {
   extension?: StringifyExtension;
@@ -54,7 +54,7 @@ export async function stringify(
 
   await ext.beforeAllSteps?.(out, flow);
 
-  const sourceMap: Array<number> = [1];
+  const sourceMap: Array<number> = [1]; // The first int indicates the version.
   for (const step of flow.steps) {
     const firstLine = out.getSize();
     await ext.beforeEachStep?.(out, step, flow);
@@ -65,7 +65,7 @@ export async function stringify(
   }
   await ext.afterAllSteps?.(out, flow);
 
-  out.appendLine(SOURCE_MAP_PREFIX + vlq.encode(sourceMap));
+  out.appendLine(SOURCE_MAP_PREFIX + encode(sourceMap));
 
   return out.toString();
 }
@@ -107,7 +107,7 @@ export function parseSourceMap(text: string): SourceMap | undefined {
   for (let i = lines.length - 1; i >= 0; i--) {
     const line = lines[i] as string;
     if (line.trim().startsWith(SOURCE_MAP_PREFIX)) {
-      return vlq.decode(line.trim().substring(SOURCE_MAP_PREFIX.length));
+      return decode(line.trim().substring(SOURCE_MAP_PREFIX.length));
     }
   }
   return;

@@ -20,7 +20,7 @@ import { StringifyExtension } from '../src/StringifyExtension.js';
 import { Step, StepType, UserFlow } from '../src/Schema.js';
 import { LineWriter } from '../src/LineWriter.js';
 import snapshot from 'snap-shot-it';
-import * as vlq from 'vlq';
+import { decode } from '../src/vlq.js';
 
 describe('stringify', () => {
   it('should print the correct script for a navigate step', async () => {
@@ -250,7 +250,7 @@ describe('stringify', () => {
         'stringifyStep0',
         'afterStep0',
         'afterAll',
-        '//# recorderSourceMap=CCG',
+        '//# recorderSourceMap=BBD',
         '',
       ].join('\n')
     );
@@ -272,7 +272,7 @@ describe('stringify', () => {
       .reverse()
       .find((line) => line.trim() !== '');
     snapshot(
-      vlq.decode(sourceMapLine?.split('//# recorderSourceMap=').pop() as string)
+      decode(sourceMapLine?.split('//# recorderSourceMap=').pop() as string)
     );
   });
 
@@ -281,7 +281,7 @@ describe('stringify', () => {
       test
       test
       test
-      //# recorderSourceMap=CCG
+      //# recorderSourceMap=BBD
     `);
     assert.deepStrictEqual(sourceMap, [1, 1, 3]);
   });

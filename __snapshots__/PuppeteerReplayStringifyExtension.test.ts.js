@@ -48,6 +48,6 @@ export async function run(extension) {
 if (process && import.meta.url === url.pathToFileURL(process.argv[1]).href) {
   run()
 }
-//# recorderSourceMap=CQc
+//# recorderSourceMap=BIO
 
 `;

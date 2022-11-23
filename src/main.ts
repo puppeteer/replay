@@ -38,3 +38,4 @@ export { PuppeteerRunnerOwningBrowserExtension } from './PuppeteerRunnerExtensio
 export { PuppeteerStringifyExtension } from './PuppeteerStringifyExtension.js';
 export { PuppeteerReplayStringifyExtension } from './PuppeteerReplayStringifyExtension.js';
 export { LighthouseStringifyExtension } from './lighthouse/LighthouseStringifyExtension.js';
+export * from './JSONUtils.js';

@@ -8,28 +8,43 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
 
-  const flags = {"screenEmulation":{"disabled":true}}
+  const flags = {
+    screenEmulation: {
+      disabled: true
+    }
+  }
   const config = undefined;
   const lhApi = await import('lighthouse/core/api.js');
-  const lhFlow = await lhApi.startFlow(page, {name: "Test Flow", config, flags});
+  const lhFlow = await lhApi.startFlow(page, {name: 'Test Flow', config, flags});
   {
     const targetPage = page;
-    await targetPage.setViewport({"width":757,"height":988})
+    await targetPage.setViewport({
+      width: 757,
+      height: 988
+    })
   }
   await lhFlow.startNavigation();
   {
     const targetPage = page;
     const promises = [];
     promises.push(targetPage.waitForNavigation());
-    await targetPage.goto("https://example.com");
+    await targetPage.goto('https://example.com');
     await Promise.all(promises);
   }
   await lhFlow.endNavigation();
   await lhFlow.startTimespan();
   {
     const targetPage = page;
-    await scrollIntoViewIfNeeded([["#button"]], targetPage, timeout);
-    const element = await waitForSelectors([["#button"]], targetPage, { timeout, visible: true });
+    await scrollIntoViewIfNeeded([
+      [
+        '#button'
+      ]
+    ], targetPage, timeout);
+    const element = await waitForSelectors([
+      [
+        '#button'
+      ]
+    ], targetPage, { timeout, visible: true });
     await element.click({
       offset: {
         x: 61,
@@ -54,28 +69,43 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
 
-  const flags = {"screenEmulation":{"disabled":true}}
+  const flags = {
+    screenEmulation: {
+      disabled: true
+    }
+  }
   const config = undefined;
   const lhApi = await import('lighthouse/core/api.js');
-  const lhFlow = await lhApi.startFlow(page, {name: "Test Flow", config, flags});
+  const lhFlow = await lhApi.startFlow(page, {name: 'Test Flow', config, flags});
   {
     const targetPage = page;
-    await targetPage.setViewport({"width":757,"height":988})
+    await targetPage.setViewport({
+      width: 757,
+      height: 988
+    })
   }
   await lhFlow.startNavigation();
   {
     const targetPage = page;
     const promises = [];
     promises.push(targetPage.waitForNavigation());
-    await targetPage.goto("https://example.com");
+    await targetPage.goto('https://example.com');
     await Promise.all(promises);
   }
   await lhFlow.endNavigation();
   await lhFlow.startTimespan();
   {
     const targetPage = page;
-    await scrollIntoViewIfNeeded([["#button"]], targetPage, timeout);
-    const element = await waitForSelectors([["#button"]], targetPage, { timeout, visible: true });
+    await scrollIntoViewIfNeeded([
+      [
+        '#button'
+      ]
+    ], targetPage, timeout);
+    const element = await waitForSelectors([
+      [
+        '#button'
+      ]
+    ], targetPage, { timeout, visible: true });
     await element.click({
       offset: {
         x: 61,
@@ -89,7 +119,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     const targetPage = page;
     const promises = [];
     promises.push(targetPage.waitForNavigation());
-    await targetPage.goto("https://example.com/page/");
+    await targetPage.goto('https://example.com/page/');
     await Promise.all(promises);
   }
   await lhFlow.endNavigation();
@@ -111,20 +141,27 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
 
-  const flags = {"screenEmulation":{"disabled":true}}
+  const flags = {
+    screenEmulation: {
+      disabled: true
+    }
+  }
   const config = undefined;
   const lhApi = await import('lighthouse/core/api.js');
-  const lhFlow = await lhApi.startFlow(page, {name: "Test Flow", config, flags});
+  const lhFlow = await lhApi.startFlow(page, {name: 'Test Flow', config, flags});
   {
     const targetPage = page;
-    await targetPage.setViewport({"width":757,"height":988})
+    await targetPage.setViewport({
+      width: 757,
+      height: 988
+    })
   }
   await lhFlow.startNavigation();
   {
     const targetPage = page;
     const promises = [];
     promises.push(targetPage.waitForNavigation());
-    await targetPage.goto("https://example.com");
+    await targetPage.goto('https://example.com');
     await Promise.all(promises);
   }
   await lhFlow.endNavigation();
@@ -133,8 +170,16 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     const targetPage = page;
     const promises = [];
     promises.push(targetPage.waitForNavigation());
-    await scrollIntoViewIfNeeded([["#link"]], targetPage, timeout);
-    const element = await waitForSelectors([["#link"]], targetPage, { timeout, visible: true });
+    await scrollIntoViewIfNeeded([
+      [
+        '#link'
+      ]
+    ], targetPage, timeout);
+    const element = await waitForSelectors([
+      [
+        '#link'
+      ]
+    ], targetPage, { timeout, visible: true });
     await element.click({
       offset: {
         x: 61,

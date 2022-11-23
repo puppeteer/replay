@@ -2,16 +2,16 @@ exports[
   'PuppeteerReplayStringifyExtension should print the script for a click step 1'
 ] = `
 await runner.runStep({
-  "type": "click",
-  "target": "main",
-  "selectors": [
-    "aria/Test"
+  type: 'click',
+  target: 'main',
+  selectors: [
+    'aria/Test'
   ],
-  "offsetX": 1,
-  "offsetY": 1,
-  "assertedEvents": [
+  offsetX: 1,
+  offsetY: 1,
+  assertedEvents: [
     {
-      "type": "navigation"
+      type: 'navigation'
     }
   ]
 });
@@ -28,16 +28,16 @@ export async function run(extension) {
   await runner.runBeforeAllSteps();
 
   await runner.runStep({
-    "type": "click",
-    "target": "main",
-    "selectors": [
-      "aria/Test"
+    type: 'click',
+    target: 'main',
+    selectors: [
+      'aria/Test'
     ],
-    "offsetX": 1,
-    "offsetY": 1,
-    "assertedEvents": [
+    offsetX: 1,
+    offsetY: 1,
+    assertedEvents: [
       {
-        "type": "navigation"
+        type: 'navigation'
       }
     ]
   });

@@ -9,7 +9,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   {
     const targetPage = page;
-    await targetPage.goto("https://localhost/");
+    await targetPage.goto('https://localhost/');
   }
 
   await browser.close();
@@ -431,11 +431,15 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   page.setDefaultTimeout(timeout);
 
   {
-    const target = await browser.waitForTarget(t => t.url() === "https://localhost/test", { timeout });
+    const target = await browser.waitForTarget(t => t.url() === 'https://localhost/test', { timeout });
     const targetPage = await target.page();
     targetPage.setDefaultTimeout(timeout);
-    await scrollIntoViewIfNeeded(["aria/Test"], targetPage, timeout);
-    const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
+    await scrollIntoViewIfNeeded([
+      'aria/Test'
+    ], targetPage, timeout);
+    const element = await waitForSelectors([
+      'aria/Test'
+    ], targetPage, { timeout, visible: true });
     await element.click({
       offset: {
         x: 1,
@@ -633,7 +637,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   console.error(err);
   process.exit(1);
 });
-//# recorderSourceMap=BIN
+//# recorderSourceMap=BIR
 
 `;
 
@@ -648,11 +652,15 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   {
     const timeout = 20000;
-    const target = await browser.waitForTarget(t => t.url() === "https://localhost/test", { timeout });
+    const target = await browser.waitForTarget(t => t.url() === 'https://localhost/test', { timeout });
     const targetPage = await target.page();
     targetPage.setDefaultTimeout(timeout);
-    await scrollIntoViewIfNeeded(["aria/Test"], targetPage, timeout);
-    const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
+    await scrollIntoViewIfNeeded([
+      'aria/Test'
+    ], targetPage, timeout);
+    const element = await waitForSelectors([
+      'aria/Test'
+    ], targetPage, { timeout, visible: true });
     await element.click({
       offset: {
         x: 1,
@@ -850,7 +858,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   console.error(err);
   process.exit(1);
 });
-//# recorderSourceMap=BIO
+//# recorderSourceMap=BIS
 
 `;
 
@@ -870,8 +878,12 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     let frame = targetPage.mainFrame();
     frame = frame.childFrames()[1];
     frame = frame.childFrames()[1];
-    await scrollIntoViewIfNeeded(["aria/Test"], frame, timeout);
-    const element = await waitForSelectors(["aria/Test"], frame, { timeout, visible: true });
+    await scrollIntoViewIfNeeded([
+      'aria/Test'
+    ], frame, timeout);
+    const element = await waitForSelectors([
+      'aria/Test'
+    ], frame, { timeout, visible: true });
     await element.click({
       offset: {
         x: 1,
@@ -1069,7 +1081,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   console.error(err);
   process.exit(1);
 });
-//# recorderSourceMap=BIO
+//# recorderSourceMap=BIS
 
 `;
 
@@ -1084,7 +1096,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   {
     const targetPage = page;
-    await targetPage.keyboard.down("E");
+    await targetPage.keyboard.down('E');
   }
 
   await browser.close();
@@ -1291,7 +1303,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   {
     const targetPage = page;
-    await targetPage.keyboard.up("E");
+    await targetPage.keyboard.up('E');
   }
 
   await browser.close();
@@ -1498,8 +1510,12 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   {
     const targetPage = page;
-    await scrollIntoViewIfNeeded(["body > div:nth-child(1)"], targetPage, timeout);
-    const element = await waitForSelectors(["body > div:nth-child(1)"], targetPage, { timeout, visible: true });
+    await scrollIntoViewIfNeeded([
+      'body > div:nth-child(1)'
+    ], targetPage, timeout);
+    const element = await waitForSelectors([
+      'body > div:nth-child(1)'
+    ], targetPage, { timeout, visible: true });
     await element.evaluate((el, x, y) => { el.scrollTop = y; el.scrollLeft = x; }, 0, 40);
   }
   {
@@ -1696,7 +1712,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   console.error(err);
   process.exit(1);
 });
-//# recorderSourceMap=BIGOE
+//# recorderSourceMap=BIKSE
 
 `;
 
@@ -1713,7 +1729,12 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   {
     const targetPage = page;
-    await waitForElement({"type":"waitForElement","selectors":["body > div:nth-child(1)"]}, targetPage, timeout);
+    await waitForElement({
+      type: 'waitForElement',
+      selectors: [
+        'body > div:nth-child(1)'
+      ]
+    }, targetPage, timeout);
   }
 
   await browser.close();
@@ -1905,7 +1926,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   console.error(err);
   process.exit(1);
 });
-//# recorderSourceMap=BIE
+//# recorderSourceMap=BIJ
 
 `;
 
@@ -1922,7 +1943,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
   {
     const targetPage = page;
-    await targetPage.waitForFunction("1 + 2", { timeout });
+    await targetPage.waitForFunction('1 + 2', { timeout });
   }
 
   await browser.close();
@@ -2118,4 +2139,4 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
 
 `;
 
-exports['stringify should produce a source map 1'] = [1, 8, 4];
+exports['stringify should produce a source map 1'] = [1, 8, 9];

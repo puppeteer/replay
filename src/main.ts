@@ -21,6 +21,7 @@ export * from './Schema.js';
 export * as Schema from './Schema.js';
 export * from './SchemaUtils.js';
 export { StringifyExtension } from './StringifyExtension.js';
+export { JSONStringifyExtension } from './JSONStringifyExtension.js';
 export {
   stringify,
   stringifyStep,

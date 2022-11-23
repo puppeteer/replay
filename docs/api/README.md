@@ -16,6 +16,7 @@
 
 ### Classes
 
+- [JSONStringifyExtension](classes/JSONStringifyExtension.md)
 - [LighthouseStringifyExtension](classes/LighthouseStringifyExtension.md)
 - [PuppeteerReplayStringifyExtension](classes/PuppeteerReplayStringifyExtension.md)
 - [PuppeteerRunnerExtension](classes/PuppeteerRunnerExtension.md)
@@ -81,6 +82,8 @@
 
 - [assertAllStepTypesAreHandled](README.md#assertallsteptypesarehandled)
 - [createRunner](README.md#createrunner)
+- [formatAsJSLiteral](README.md#formatasjsliteral)
+- [formatJSONAsJS](README.md#formatjsonasjs)
 - [getSelectorType](README.md#getselectortype)
 - [parse](README.md#parse)
 - [parseSourceMap](README.md#parsesourcemap)
@@ -388,6 +391,51 @@ limitations under the License.
 #### Defined in
 
 [Runner.ts:105](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L105)
+
+---
+
+### formatAsJSLiteral
+
+▸ **formatAsJSLiteral**(`content`): `string`
+
+#### Parameters
+
+| Name      | Type     |
+| :-------- | :------- |
+| `content` | `string` |
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+[JSONUtils.ts:111](https://github.com/puppeteer/replay/blob/main/src/JSONUtils.ts#L111)
+
+---
+
+### formatJSONAsJS
+
+▸ **formatJSONAsJS**(`json`, `indent`): `string`
+
+Copyright (c) 2020 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+
+#### Parameters
+
+| Name     | Type      |
+| :------- | :-------- |
+| `json`   | `unknown` |
+| `indent` | `string`  |
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+[JSONUtils.ts:23](https://github.com/puppeteer/replay/blob/main/src/JSONUtils.ts#L23)
 
 ---
 

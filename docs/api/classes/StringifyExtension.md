@@ -6,6 +6,8 @@
 
 - **`StringifyExtension`**
 
+  ↳ [`JSONStringifyExtension`](JSONStringifyExtension.md)
+
   ↳ [`PuppeteerStringifyExtension`](PuppeteerStringifyExtension.md)
 
   ↳ [`PuppeteerReplayStringifyExtension`](PuppeteerReplayStringifyExtension.md)

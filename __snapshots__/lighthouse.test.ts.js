@@ -10,25 +10,36 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
 
-  const flags = {"screenEmulation":{"disabled":true}}
+  const flags = {
+    screenEmulation: {
+      disabled: true
+    }
+  }
   const config = (await import('lighthouse/core/config/desktop-config.js')).default;
   const lhApi = await import('lighthouse/core/api.js');
-  const lhFlow = await lhApi.startFlow(page, {name: "Test desktop", config, flags});
+  const lhFlow = await lhApi.startFlow(page, {name: 'Test desktop', config, flags});
   {
     const targetPage = page;
-    await targetPage.setViewport({"width":757,"height":988})
+    await targetPage.setViewport({
+      width: 757,
+      height: 988
+    })
   }
   await lhFlow.startNavigation();
   {
     const targetPage = page;
-    await targetPage.goto("http://localhost:8907/main.html");
+    await targetPage.goto('http://localhost:8907/main.html');
   }
   await lhFlow.endNavigation();
   await lhFlow.startTimespan();
   {
     const targetPage = page;
-    await scrollIntoViewIfNeeded(["#test"], targetPage, timeout);
-    const element = await waitForSelectors(["#test"], targetPage, { timeout, visible: true });
+    await scrollIntoViewIfNeeded([
+      '#test'
+    ], targetPage, timeout);
+    const element = await waitForSelectors([
+      '#test'
+    ], targetPage, { timeout, visible: true });
     await element.click({
       button: 'left',
       offset: {
@@ -39,8 +50,12 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   }
   {
     const targetPage = page;
-    await scrollIntoViewIfNeeded(["#test"], targetPage, timeout);
-    const element = await waitForSelectors(["#test"], targetPage, { timeout, visible: true });
+    await scrollIntoViewIfNeeded([
+      '#test'
+    ], targetPage, timeout);
+    const element = await waitForSelectors([
+      '#test'
+    ], targetPage, { timeout, visible: true });
     await element.click({
       button: 'middle',
       offset: {
@@ -55,8 +70,12 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
     const targetPage = page;
     const promises = [];
     promises.push(targetPage.waitForNavigation());
-    await scrollIntoViewIfNeeded(["a[href=\\"main2.html\\"]"], targetPage, timeout);
-    const element = await waitForSelectors(["a[href=\\"main2.html\\"]"], targetPage, { timeout, visible: true });
+    await scrollIntoViewIfNeeded([
+      'a[href="main2.html"]'
+    ], targetPage, timeout);
+    const element = await waitForSelectors([
+      'a[href="main2.html"]'
+    ], targetPage, { timeout, visible: true });
     await element.click({
       offset: {
         x: 1,
@@ -258,6 +277,6 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   console.error(err);
   process.exit(1);
 });
-//# recorderSourceMap=BNERGXNkBMwBR
+//# recorderSourceMap=BRHYGeRvBQ/BV
 
 `;

@@ -42,6 +42,7 @@ import {
   mouseButtonMap,
   typeableInputTypes,
 } from './SchemaUtils.js';
+import { formatJSONAsJS } from './JSONUtils.js';
 
 export class PuppeteerStringifyExtension extends StringifyExtension {
   override async beforeAllSteps(out: LineWriter, flow: UserFlow) {
@@ -108,8 +109,9 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
       out.appendLine('const targetPage = page;');
     } else {
       out.appendLine(
-        `const target = await browser.waitForTarget(t => t.url() === ${formatAsJSLiteral(
-          target
+        `const target = await browser.waitForTarget(t => t.url() === ${formatJSONAsJS(
+          target,
+          out.getIndent()
         )}, { timeout });`
       );
       out.appendLine('const targetPage = await target.page();');
@@ -135,13 +137,15 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
 
   #appendWaitForSelector(out: LineWriter, step: StepWithSelectors): void {
     out.appendLine(
-      `await scrollIntoViewIfNeeded(${JSON.stringify(step.selectors)}, ${
-        step.frame ? 'frame' : 'targetPage'
-      }, timeout);`
+      `await scrollIntoViewIfNeeded(${formatJSONAsJS(
+        step.selectors,
+        out.getIndent()
+      )}, ${step.frame ? 'frame' : 'targetPage'}, timeout);`
     );
     out.appendLine(
-      `const element = await waitForSelectors(${JSON.stringify(
-        step.selectors
+      `const element = await waitForSelectors(${formatJSONAsJS(
+        step.selectors,
+        out.getIndent()
       )}, ${step.frame ? 'frame' : 'targetPage'}, { timeout, visible: true });`
     );
   }
@@ -186,19 +190,29 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     out.appendLine('const inputType = await element.evaluate(el => el.type);');
     out.appendLine(`if (inputType === 'select-one') {`);
     out.appendLine(
-      `  await changeSelectElement(element, ${formatAsJSLiteral(step.value)})`
+      `  await changeSelectElement(element, ${formatJSONAsJS(
+        step.value,
+        out.getIndent()
+      )})`
     );
     out.appendLine(
-      `} else if (${JSON.stringify(
-        Array.from(typeableInputTypes)
+      `} else if (${formatJSONAsJS(
+        Array.from(typeableInputTypes),
+        out.getIndent()
       )}.includes(inputType)) {`
     );
     out.appendLine(
-      `  await typeIntoElement(element, ${formatAsJSLiteral(step.value)});`
+      `  await typeIntoElement(element, ${formatJSONAsJS(
+        step.value,
+        out.getIndent()
+      )});`
     );
     out.appendLine('} else {');
     out.appendLine(
-      `  await changeElementValue(element, ${formatAsJSLiteral(step.value)});`
+      `  await changeElementValue(element, ${formatJSONAsJS(
+        step.value,
+        out.getIndent()
+      )});`
     );
     out.appendLine('}');
   }
@@ -217,13 +231,19 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
 
   #appendKeyDownStep(out: LineWriter, step: KeyDownStep): void {
     out.appendLine(
-      `await targetPage.keyboard.down(${JSON.stringify(step.key)});`
+      `await targetPage.keyboard.down(${formatJSONAsJS(
+        step.key,
+        out.getIndent()
+      )});`
     );
   }
 
   #appendKeyUpStep(out: LineWriter, step: KeyUpStep): void {
     out.appendLine(
-      `await targetPage.keyboard.up(${JSON.stringify(step.key)});`
+      `await targetPage.keyboard.up(${formatJSONAsJS(
+        step.key,
+        out.getIndent()
+      )});`
     );
   }
 
@@ -233,10 +253,13 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
 
   #appendViewportStep(out: LineWriter, step: SetViewportStep): void {
     out.appendLine(
-      `await targetPage.setViewport(${JSON.stringify({
-        width: step.width,
-        height: step.height,
-      })})`
+      `await targetPage.setViewport(${formatJSONAsJS(
+        {
+          width: step.width,
+          height: step.height,
+        },
+        out.getIndent()
+      )})`
     );
   }
 
@@ -289,7 +312,9 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
   }
 
   #appendNavigationStep(out: LineWriter, step: NavigateStep): void {
-    out.appendLine(`await targetPage.goto(${formatAsJSLiteral(step.url)});`);
+    out.appendLine(
+      `await targetPage.goto(${formatJSONAsJS(step.url, out.getIndent())});`
+    );
   }
 
   #appendWaitExpressionStep(
@@ -299,13 +324,16 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     out.appendLine(
       `await ${
         step.frame ? 'frame' : 'targetPage'
-      }.waitForFunction(${formatAsJSLiteral(step.expression)}, { timeout });`
+      }.waitForFunction(${formatJSONAsJS(
+        step.expression,
+        out.getIndent()
+      )}, { timeout });`
     );
   }
 
   #appendWaitForElementStep(out: LineWriter, step: WaitForElementStep): void {
     out.appendLine(
-      `await waitForElement(${JSON.stringify(step)}, ${
+      `await waitForElement(${formatJSONAsJS(step, out.getIndent())}, ${
         step.frame ? 'frame' : 'targetPage'
       }, timeout);`
     );
@@ -313,12 +341,6 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
 }
 
 const defaultTimeout = 5000;
-
-function formatAsJSLiteral(value: unknown): string {
-  // TODO: replace JSON.stringify with a better looking JSLiteral implementation
-  // that formats using '', "", `` depending on the content of the value.
-  return JSON.stringify(value);
-}
 
 const helpers = `async function waitForSelectors(selectors, frame, options) {
   for (const selector of selectors) {

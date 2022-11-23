@@ -17,6 +17,7 @@
 import type { LineWriter } from './LineWriter.js';
 import type { Step } from './Schema.js';
 import { StringifyExtension } from './StringifyExtension.js';
+import { formatJSONAsJS } from './JSONUtils.js';
 
 /**
  * Stringifies a user flow to a script that uses \@puppeteer/replay's own API.
@@ -52,7 +53,7 @@ export class PuppeteerReplayStringifyExtension extends StringifyExtension {
 
   override async stringifyStep(out: LineWriter, step: Step) {
     out.appendLine(
-      `await runner.runStep(${JSON.stringify(step, null, out.getIndent())});`
+      `await runner.runStep(${formatJSONAsJS(step, out.getIndent())});`
     );
   }
 }

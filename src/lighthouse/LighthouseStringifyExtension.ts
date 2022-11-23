@@ -20,6 +20,7 @@ import type { LineWriter } from '../LineWriter.js';
 import { Step, StepType, UserFlow } from '../Schema.js';
 
 import { isNavigationStep, isMobileFlow } from './helpers.js';
+import { formatJSONAsJS } from '../JSONUtils.js';
 
 export class LighthouseStringifyExtension extends PuppeteerStringifyExtension {
   #isProcessingTimespan = false;
@@ -34,7 +35,7 @@ export class LighthouseStringifyExtension extends PuppeteerStringifyExtension {
         disabled: true,
       },
     };
-    out.appendLine(`const flags = ${JSON.stringify(flags)}`);
+    out.appendLine(`const flags = ${formatJSONAsJS(flags, out.getIndent())}`);
     if (isMobileFlow(flow)) {
       out.appendLine(`const config = undefined;`);
     } else {
@@ -47,8 +48,9 @@ export class LighthouseStringifyExtension extends PuppeteerStringifyExtension {
     out.appendLine(`const lhApi = await import('lighthouse/core/api.js');`);
     // eslint-disable-next-line max-len
     out.appendLine(
-      `const lhFlow = await lhApi.startFlow(page, {name: ${JSON.stringify(
-        flow.title
+      `const lhFlow = await lhApi.startFlow(page, {name: ${formatJSONAsJS(
+        flow.title,
+        out.getIndent()
       )}, config, flags});`
     );
   }

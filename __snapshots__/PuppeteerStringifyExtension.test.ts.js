@@ -3,8 +3,12 @@ exports[
 ] = `
 {
   const targetPage = page;
-  await scrollIntoViewIfNeeded(["aria/Test"], targetPage, timeout);
-  const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
+  await scrollIntoViewIfNeeded([
+    'aria/Test'
+  ], targetPage, timeout);
+  const element = await waitForSelectors([
+    'aria/Test'
+  ], targetPage, { timeout, visible: true });
   await element.click({
     offset: {
       x: 1,
@@ -22,8 +26,12 @@ exports[
   const targetPage = page;
   const promises = [];
   promises.push(targetPage.waitForNavigation());
-  await scrollIntoViewIfNeeded(["aria/Test"], targetPage, timeout);
-  const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
+  await scrollIntoViewIfNeeded([
+    'aria/Test'
+  ], targetPage, timeout);
+  const element = await waitForSelectors([
+    'aria/Test'
+  ], targetPage, { timeout, visible: true });
   await element.click({
     offset: {
       x: 1,
@@ -40,8 +48,18 @@ exports[
 ] = `
 {
   const targetPage = page;
-  await scrollIntoViewIfNeeded([["aria/Test","aria/Test2"]], targetPage, timeout);
-  const element = await waitForSelectors([["aria/Test","aria/Test2"]], targetPage, { timeout, visible: true });
+  await scrollIntoViewIfNeeded([
+    [
+      'aria/Test',
+      'aria/Test2'
+    ]
+  ], targetPage, timeout);
+  const element = await waitForSelectors([
+    [
+      'aria/Test',
+      'aria/Test2'
+    ]
+  ], targetPage, { timeout, visible: true });
   await element.click({
     offset: {
       x: 1,
@@ -57,15 +75,28 @@ exports[
 ] = `
 {
   const targetPage = page;
-  await scrollIntoViewIfNeeded(["aria/Test"], targetPage, timeout);
-  const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
+  await scrollIntoViewIfNeeded([
+    'aria/Test'
+  ], targetPage, timeout);
+  const element = await waitForSelectors([
+    'aria/Test'
+  ], targetPage, { timeout, visible: true });
   const inputType = await element.evaluate(el => el.type);
   if (inputType === 'select-one') {
-    await changeSelectElement(element, "Hello World")
-  } else if (["textarea","text","url","tel","search","password","number","email"].includes(inputType)) {
-    await typeIntoElement(element, "Hello World");
+    await changeSelectElement(element, 'Hello World')
+  } else if ([
+    'textarea',
+    'text',
+    'url',
+    'tel',
+    'search',
+    'password',
+    'number',
+    'email'
+  ].includes(inputType)) {
+    await typeIntoElement(element, 'Hello World');
   } else {
-    await changeElementValue(element, "Hello World");
+    await changeElementValue(element, 'Hello World');
   }
 }
 
@@ -76,15 +107,28 @@ exports[
 ] = `
 {
   const targetPage = page;
-  await scrollIntoViewIfNeeded(["aria/Test"], targetPage, timeout);
-  const element = await waitForSelectors(["aria/Test"], targetPage, { timeout, visible: true });
+  await scrollIntoViewIfNeeded([
+    'aria/Test'
+  ], targetPage, timeout);
+  const element = await waitForSelectors([
+    'aria/Test'
+  ], targetPage, { timeout, visible: true });
   const inputType = await element.evaluate(el => el.type);
   if (inputType === 'select-one') {
-    await changeSelectElement(element, "#333333")
-  } else if (["textarea","text","url","tel","search","password","number","email"].includes(inputType)) {
-    await typeIntoElement(element, "#333333");
+    await changeSelectElement(element, '#333333')
+  } else if ([
+    'textarea',
+    'text',
+    'url',
+    'tel',
+    'search',
+    'password',
+    'number',
+    'email'
+  ].includes(inputType)) {
+    await typeIntoElement(element, '#333333');
   } else {
-    await changeElementValue(element, "#333333");
+    await changeElementValue(element, '#333333');
   }
 }
 

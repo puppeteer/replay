@@ -64,7 +64,7 @@
     "mime": "3.0.0",
     "mocha": "10.1.0",
     "prettier": "2.7.1",
-    "puppeteer": "19.2.2",
+    "puppeteer": "19.3.0",
     "puppeteer-core": "19.2.2",
     "rimraf": "3.0.2",
     "rollup": "3.2.2",

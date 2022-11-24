@@ -56,7 +56,7 @@ Stringifies a user flow to a script that uses @puppeteer/replay's own API.
 
 #### Defined in
 
-[PuppeteerReplayStringifyExtension.ts:36](https://github.com/puppeteer/replay/blob/main/src/PuppeteerReplayStringifyExtension.ts#L36)
+[PuppeteerReplayStringifyExtension.ts:37](https://github.com/puppeteer/replay/blob/main/src/PuppeteerReplayStringifyExtension.ts#L37)
 
 ---
 
@@ -106,7 +106,7 @@ Stringifies a user flow to a script that uses @puppeteer/replay's own API.
 
 #### Defined in
 
-[PuppeteerReplayStringifyExtension.ts:25](https://github.com/puppeteer/replay/blob/main/src/PuppeteerReplayStringifyExtension.ts#L25)
+[PuppeteerReplayStringifyExtension.ts:26](https://github.com/puppeteer/replay/blob/main/src/PuppeteerReplayStringifyExtension.ts#L26)
 
 ---
 
@@ -157,4 +157,4 @@ Stringifies a user flow to a script that uses @puppeteer/replay's own API.
 
 #### Defined in
 
-[PuppeteerReplayStringifyExtension.ts:53](https://github.com/puppeteer/replay/blob/main/src/PuppeteerReplayStringifyExtension.ts#L53)
+[PuppeteerReplayStringifyExtension.ts:54](https://github.com/puppeteer/replay/blob/main/src/PuppeteerReplayStringifyExtension.ts#L54)

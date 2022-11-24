@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0](https://github.com/puppeteer/replay/compare/v2.5.0...v2.6.0) (2022-11-23)
+
+
+### Features
+
+* add JSONStringifyExtension with source map support ([#393](https://github.com/puppeteer/replay/issues/393)) ([92cf062](https://github.com/puppeteer/replay/commit/92cf06233f97f57ad0e29f2dd69e27dd1267e544))
+* format JSON as JS ([#395](https://github.com/puppeteer/replay/issues/395)) ([d74e793](https://github.com/puppeteer/replay/commit/d74e793abeaf1aecdb124ee4451a183eefe4b5b9))
+
 ## [2.5.0](https://github.com/puppeteer/replay/compare/v2.4.0...v2.5.0) (2022-11-22)
 
 

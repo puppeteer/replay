@@ -22,10 +22,16 @@ module.exports = [
   },
   {
     input: 'src/main.ts',
-    output: {
-      file: 'lib/main.d.ts',
-      format: 'es',
-    },
+    output: [
+      {
+        file: 'lib/main.d.ts',
+        format: 'es',
+      },
+      {
+        file: 'lib/cjs/main.d.cts',
+        format: 'cjs',
+      },
+    ],
     external: [
       'devtools-protocol',
       'devtools-protocol/types/protocol-mapping.js',

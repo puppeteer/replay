@@ -7,9 +7,14 @@
   "bin": "lib/cli.js",
   "exports": {
     ".": {
-      "types": "./lib/main.d.ts",
-      "import": "./lib/main.js",
-      "require": "./lib/cjs/main.cjs"
+      "import": {      
+        "types": "./lib/main.d.ts",
+        "default": "./lib/main.js"
+      }, 
+      "require": {
+        "types": "./lib/cjs/main.d.cts",
+        "default": "./lib/cjs/main.cjs"
+      }
     }
   },
   "repository": "github:puppeteer/replay",
@@ -37,7 +42,8 @@
     "lib",
     "!lib/**/*.d.ts",
     "!lib/**/*.d.ts.map",
-    "lib/main.d.ts"
+    "lib/main.d.ts", 
+    "lib/cjs/main.d.cts"
   ],
   "author": "Chrome DevTools authors",
   "license": "Apache-2.0",

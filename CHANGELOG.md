@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.1](https://github.com/puppeteer/replay/compare/v2.6.0...v2.6.1) (2022-12-06)
+
+
+### Bug Fixes
+
+* support typescript commonjs modules using moduleresolution nodenext  ([#401](https://github.com/puppeteer/replay/issues/401)) ([67c5b23](https://github.com/puppeteer/replay/commit/67c5b234ac2a50568a2611bb321e961e8e3e6894))
+
 ## [2.6.0](https://github.com/puppeteer/replay/compare/v2.5.0...v2.6.0) (2022-11-23)
 
 

@@ -12,7 +12,7 @@
         "default": "./lib/main.js"
       }, 
       "require": {
-        "types": "./lib/cjs/main.d.ts",
+        "types": "./lib/cjs/main.d.cts",
         "default": "./lib/cjs/main.cjs"
       }
     }

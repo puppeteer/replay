@@ -67,8 +67,8 @@ export function getHeadlessEnvVar(headless?: string) {
     case '1':
     case 'true':
       return true;
-    case 'chrome':
-      return 'chrome';
+    case 'new':
+      return 'new';
     case '0':
     case 'false':
       return false;
@@ -133,7 +133,7 @@ export function createStatusReport(results: Result[]): Table.Table {
 
 export async function runFiles(
   files: string[],
-  opts: { log: boolean; headless: boolean | 'chrome'; extension?: string } = {
+  opts: { log: boolean; headless: boolean | 'new'; extension?: string } = {
     log: true,
     headless: true,
   }

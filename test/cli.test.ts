@@ -33,7 +33,7 @@ describe('cli', () => {
       assert.strictEqual(getHeadlessEnvVar('true'), true);
       assert.strictEqual(getHeadlessEnvVar('0'), false);
       assert.strictEqual(getHeadlessEnvVar('false'), false);
-      assert.strictEqual(getHeadlessEnvVar('chrome'), 'chrome');
+      assert.strictEqual(getHeadlessEnvVar('new'), 'new');
       assert.strictEqual(getHeadlessEnvVar('True'), true);
       assert.strictEqual(getHeadlessEnvVar('False'), false);
     });

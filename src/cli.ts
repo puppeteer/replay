@@ -45,7 +45,7 @@ yargs(hideBin(process.argv))
   .option('headless', {
     type: 'string',
     description: "Run using the browser's headless mode.",
-    choices: ['chrome', 'true', '1', '0', 'false'],
+    choices: ['new', 'true', '1', '0', 'false'],
   })
   .option('extension', {
     alias: 'ext',

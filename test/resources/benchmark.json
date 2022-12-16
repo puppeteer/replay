@@ -104,7 +104,14 @@
       "type": "waitForElement",
       "target": "main",
       "selectors": ["button"],
-      "count": 2
+      "count": 2,
+      "visible": true,
+      "properties": {
+        "value": ""
+      },
+      "attributes": {
+        "id": "button"
+      }
     },
     {
       "type": "change",

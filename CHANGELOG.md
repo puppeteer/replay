@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.7.0](https://github.com/puppeteer/replay/compare/v2.6.1...v2.7.0) (2022-12-16)
+
+
+### Features
+
+* add `visible`, `properties`, and `attributes` to `waitForElement` ([#412](https://github.com/puppeteer/replay/issues/412)) ([95ac621](https://github.com/puppeteer/replay/commit/95ac6217e373bb7f03845cfa30b1f61aac581ab0))
+
 ## [2.6.1](https://github.com/puppeteer/replay/compare/v2.6.0...v2.6.1) (2022-12-06)
 
 

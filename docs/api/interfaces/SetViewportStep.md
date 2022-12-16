@@ -35,7 +35,7 @@
 
 #### Defined in
 
-[Schema.ts:61](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L61)
+[Schema.ts:63](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L63)
 
 ---
 
@@ -45,7 +45,7 @@
 
 #### Defined in
 
-[Schema.ts:176](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L176)
+[Schema.ts:178](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L178)
 
 ---
 
@@ -55,7 +55,7 @@
 
 #### Defined in
 
-[Schema.ts:178](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L178)
+[Schema.ts:180](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L180)
 
 ---
 
@@ -65,7 +65,7 @@
 
 #### Defined in
 
-[Schema.ts:175](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L175)
+[Schema.ts:177](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L177)
 
 ---
 
@@ -75,7 +75,7 @@
 
 #### Defined in
 
-[Schema.ts:179](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L179)
+[Schema.ts:181](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L181)
 
 ---
 
@@ -85,7 +85,7 @@
 
 #### Defined in
 
-[Schema.ts:177](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L177)
+[Schema.ts:179](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L179)
 
 ---
 
@@ -101,7 +101,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:68](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L68)
+[Schema.ts:70](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L70)
 
 ---
 
@@ -115,7 +115,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:60](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L60)
+[Schema.ts:62](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L62)
 
 ---
 
@@ -129,7 +129,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:173](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L173)
+[Schema.ts:175](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L175)
 
 ---
 
@@ -139,4 +139,4 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:174](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L174)
+[Schema.ts:176](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L176)

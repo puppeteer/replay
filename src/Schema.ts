@@ -14,6 +14,8 @@
     limitations under the License.
  */
 
+import { JSONSerializable, JSONValue } from './types.js';
+
 export type Target = string;
 export type Pattern = string;
 export type Selector = string | string[];
@@ -243,13 +245,30 @@ export type UserStep =
 export interface WaitForElementStep extends StepWithSelectors {
   type: StepType.WaitForElement;
   /**
-   * Defaults to '=='
+   * @defaultValue `'=='`
    */
   operator?: '>=' | '==' | '<=';
   /**
-   * Defaults to 1
+   * @defaultValue `1`
    */
   count?: number;
+  /**
+   * Whether to wait for elements matching this step to be hidden. This can be
+   * thought of as an inversion of this step.
+   *
+   * @defaultValue `true`
+   */
+  visible?: boolean;
+  /**
+   * Whether to also check the element(s) for the given properties.
+   */
+  properties?: Partial<JSONSerializable<HTMLElement>> & {
+    [key: string]: JSONValue;
+  };
+  /**
+   * Whether to also check the element(s) for the given attributes.
+   */
+  attributes?: { [name: string]: string };
 }
 
 /**

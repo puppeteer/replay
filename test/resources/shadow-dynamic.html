@@ -19,7 +19,7 @@
     constructor() {
       super();
       const shadow = this.attachShadow({ mode: 'open' });
-      shadow.innerHTML = `<button id="test">Click me</button>`;
+      shadow.innerHTML = `<button id="test" class="unknown">Click me</button>`;
     }
   }
   customElements.define('custom-element', CustomElement);

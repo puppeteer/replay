@@ -645,43 +645,112 @@ describe('Runner', () => {
     );
   });
 
-  it('should be able to waitForElement', async () => {
-    const runner = await createRunner(
-      {
-        title: 'test',
-        steps: [
-          {
-            type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/shadow-dynamic.html`,
-          },
-          {
-            type: StepType.WaitForElement,
-            selectors: [['custom-element', 'button']],
-          },
-          {
-            type: StepType.Click,
-            target: 'main',
-            selectors: [['custom-element', 'button']],
-            offsetX: 1,
-            offsetY: 1,
-          },
-          {
-            type: StepType.WaitForElement,
-            selectors: [['custom-element', 'button']],
-            operator: '>=',
-            count: 2,
-          },
-        ],
-      },
-      new PuppeteerRunnerExtension(browser, page)
-    );
-    await runner.run();
-    assert.strictEqual(
-      await page.evaluate(
-        () => document.querySelectorAll('custom-element').length
-      ),
-      2
-    );
+  describe('waitForElement', async () => {
+    it('should work', async () => {
+      const runner = await createRunner(
+        {
+          title: 'test',
+          steps: [
+            {
+              type: StepType.Navigate,
+              url: `${HTTP_PREFIX}/shadow-dynamic.html`,
+            },
+            {
+              type: StepType.WaitForElement,
+              selectors: [['custom-element', 'button']],
+            },
+          ],
+        },
+        new PuppeteerRunnerExtension(browser, page)
+      );
+      await runner.run();
+    });
+    it('should work with operators', async () => {
+      const runner = await createRunner(
+        {
+          title: 'test',
+          steps: [
+            {
+              type: StepType.Navigate,
+              url: `${HTTP_PREFIX}/shadow-dynamic.html`,
+            },
+            {
+              type: StepType.WaitForElement,
+              selectors: [['custom-element', 'button']],
+            },
+            {
+              type: StepType.Click,
+              target: 'main',
+              selectors: [['custom-element', 'button']],
+              offsetX: 1,
+              offsetY: 1,
+            },
+            {
+              type: StepType.WaitForElement,
+              selectors: [['custom-element', 'button']],
+              operator: '>=',
+              count: 2,
+            },
+          ],
+        },
+        new PuppeteerRunnerExtension(browser, page)
+      );
+      await runner.run();
+      assert.strictEqual(
+        await page.evaluate(
+          () => document.querySelectorAll('custom-element').length
+        ),
+        2
+      );
+    });
+    it('should work with hidden', async () => {
+      const runner = await createRunner(
+        {
+          title: 'test',
+          steps: [
+            {
+              type: StepType.Navigate,
+              url: `${HTTP_PREFIX}/shadow-dynamic.html`,
+            },
+            {
+              type: StepType.WaitForElement,
+              selectors: [['custom-element', 'button']],
+              visible: false,
+              properties: {
+                className: 'test',
+              },
+            },
+          ],
+        },
+        new PuppeteerRunnerExtension(browser, page)
+      );
+      await runner.run();
+    });
+    it('should work with properties and attributes', async () => {
+      const runner = await createRunner(
+        {
+          title: 'test',
+          steps: [
+            {
+              type: StepType.Navigate,
+              url: `${HTTP_PREFIX}/shadow-dynamic.html`,
+            },
+            {
+              type: StepType.WaitForElement,
+              selectors: [['custom-element', 'button']],
+              properties: {
+                className: 'unknown',
+              },
+              attributes: {
+                class: 'unknown',
+              },
+            },
+          ],
+        },
+        new PuppeteerRunnerExtension(browser, page)
+      );
+      await runner.run();
+    });
   });
 
   it('should be able to waitForExpression', async () => {

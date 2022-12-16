@@ -33,6 +33,12 @@ import {
   typeableInputTypes,
 } from './SchemaUtils.js';
 
+const comparators = {
+  '==': (a: number, b: number): boolean => a === b,
+  '>=': (a: number, b: number): boolean => a >= b,
+  '<=': (a: number, b: number): boolean => a <= b,
+};
+
 export class PuppeteerRunnerExtension extends RunnerExtension {
   protected browser: Browser;
   protected page: Page;
@@ -433,19 +439,64 @@ async function waitForElement(
   frame: Frame | Page,
   timeout: number
 ): Promise<void> {
-  const count = step.count || 1;
-  const operator = step.operator || '>=';
-  const comp = {
-    '==': (a: number, b: number): boolean => a === b,
-    '>=': (a: number, b: number): boolean => a >= b,
-    '<=': (a: number, b: number): boolean => a <= b,
-  };
-  const compFn = comp[operator];
+  const {
+    count = 1,
+    operator = '>=',
+    visible = true,
+    properties,
+    attributes,
+  } = step;
+  const compFn = comparators[operator];
   await waitForFunction(async () => {
     const elements = await querySelectorsAll(step.selectors, frame);
-    const result = compFn(elements.length, count);
+    let result = compFn(elements.length, count);
+    const elementsHandle = await frame.evaluateHandle((...elements) => {
+      return elements;
+    }, ...elements);
     await Promise.all(elements.map((element) => element.dispose()));
-    return result;
+    if (result && (properties || attributes)) {
+      result = await elementsHandle.evaluate(
+        (elements, properties, attributes) => {
+          for (const element of elements) {
+            if (attributes) {
+              for (const [name, value] of Object.entries(attributes)) {
+                if (element.getAttribute(name) !== value) {
+                  return false;
+                }
+              }
+            }
+            if (properties) {
+              if (!isDeepMatch(properties, element)) {
+                return false;
+              }
+            }
+          }
+          return true;
+
+          function isDeepMatch(a: unknown, b: unknown) {
+            if (a === b) {
+              return true;
+            }
+            if ((a && !b) || (!a && b)) {
+              return false;
+            }
+            if (!(a instanceof Object) || !(b instanceof Object)) {
+              return false;
+            }
+            for (const [key, value] of Object.entries(a)) {
+              if (!isDeepMatch(value, (b as Record<string, unknown>)[key])) {
+                return false;
+              }
+            }
+            return true;
+          }
+        },
+        properties,
+        attributes
+      );
+    }
+    await elementsHandle.dispose();
+    return result === visible;
   }, timeout);
 }
 

@@ -88,17 +88,68 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   }
 
   async function waitForElement(step, frame, timeout) {
-    const count = step.count || 1;
-    const operator = step.operator || '>=';
-    const comp = {
+    const {
+      count = 1,
+      operator = '>=',
+      visible = true,
+      properties,
+      attributes,
+    } = step;
+    const compFn = {
       '==': (a, b) => a === b,
       '>=': (a, b) => a >= b,
       '<=': (a, b) => a <= b,
-    };
-    const compFn = comp[operator];
+    }[operator];
     await waitForFunction(async () => {
       const elements = await querySelectorsAll(step.selectors, frame);
-      return compFn(elements.length, count);
+      let result = compFn(elements.length, count);
+      const elementsHandle = await frame.evaluateHandle((...elements) => {
+        return elements;
+      }, ...elements);
+      await Promise.all(elements.map((element) => element.dispose()));
+      if (result && (properties || attributes)) {
+        result = await elementsHandle.evaluate(
+          (elements, properties, attributes) => {
+            for (const element of elements) {
+              if (attributes) {
+                for (const [name, value] of Object.entries(attributes)) {
+                  if (element.getAttribute(name) !== value) {
+                    return false;
+                  }
+                }
+              }
+              if (properties) {
+                if (!isDeepMatch(properties, element)) {
+                  return false;
+                }
+              }
+            }
+            return true;
+
+            function isDeepMatch(a, b) {
+              if (a === b) {
+                return true;
+              }
+              if ((a && !b) || (!a && b)) {
+                return false;
+              }
+              if (!(a instanceof Object) || !(b instanceof Object)) {
+                return false;
+              }
+              for (const [key, value] of Object.entries(a)) {
+                if (!isDeepMatch(value, b[key])) {
+                  return false;
+                }
+              }
+              return true;
+            }
+          },
+          properties,
+          attributes
+        );
+      }
+      await elementsHandle.dispose();
+      return result === visible;
     }, timeout);
   }
 
@@ -302,17 +353,68 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   }
 
   async function waitForElement(step, frame, timeout) {
-    const count = step.count || 1;
-    const operator = step.operator || '>=';
-    const comp = {
+    const {
+      count = 1,
+      operator = '>=',
+      visible = true,
+      properties,
+      attributes,
+    } = step;
+    const compFn = {
       '==': (a, b) => a === b,
       '>=': (a, b) => a >= b,
       '<=': (a, b) => a <= b,
-    };
-    const compFn = comp[operator];
+    }[operator];
     await waitForFunction(async () => {
       const elements = await querySelectorsAll(step.selectors, frame);
-      return compFn(elements.length, count);
+      let result = compFn(elements.length, count);
+      const elementsHandle = await frame.evaluateHandle((...elements) => {
+        return elements;
+      }, ...elements);
+      await Promise.all(elements.map((element) => element.dispose()));
+      if (result && (properties || attributes)) {
+        result = await elementsHandle.evaluate(
+          (elements, properties, attributes) => {
+            for (const element of elements) {
+              if (attributes) {
+                for (const [name, value] of Object.entries(attributes)) {
+                  if (element.getAttribute(name) !== value) {
+                    return false;
+                  }
+                }
+              }
+              if (properties) {
+                if (!isDeepMatch(properties, element)) {
+                  return false;
+                }
+              }
+            }
+            return true;
+
+            function isDeepMatch(a, b) {
+              if (a === b) {
+                return true;
+              }
+              if ((a && !b) || (!a && b)) {
+                return false;
+              }
+              if (!(a instanceof Object) || !(b instanceof Object)) {
+                return false;
+              }
+              for (const [key, value] of Object.entries(a)) {
+                if (!isDeepMatch(value, b[key])) {
+                  return false;
+                }
+              }
+              return true;
+            }
+          },
+          properties,
+          attributes
+        );
+      }
+      await elementsHandle.dispose();
+      return result === visible;
     }, timeout);
   }
 
@@ -524,17 +626,68 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   }
 
   async function waitForElement(step, frame, timeout) {
-    const count = step.count || 1;
-    const operator = step.operator || '>=';
-    const comp = {
+    const {
+      count = 1,
+      operator = '>=',
+      visible = true,
+      properties,
+      attributes,
+    } = step;
+    const compFn = {
       '==': (a, b) => a === b,
       '>=': (a, b) => a >= b,
       '<=': (a, b) => a <= b,
-    };
-    const compFn = comp[operator];
+    }[operator];
     await waitForFunction(async () => {
       const elements = await querySelectorsAll(step.selectors, frame);
-      return compFn(elements.length, count);
+      let result = compFn(elements.length, count);
+      const elementsHandle = await frame.evaluateHandle((...elements) => {
+        return elements;
+      }, ...elements);
+      await Promise.all(elements.map((element) => element.dispose()));
+      if (result && (properties || attributes)) {
+        result = await elementsHandle.evaluate(
+          (elements, properties, attributes) => {
+            for (const element of elements) {
+              if (attributes) {
+                for (const [name, value] of Object.entries(attributes)) {
+                  if (element.getAttribute(name) !== value) {
+                    return false;
+                  }
+                }
+              }
+              if (properties) {
+                if (!isDeepMatch(properties, element)) {
+                  return false;
+                }
+              }
+            }
+            return true;
+
+            function isDeepMatch(a, b) {
+              if (a === b) {
+                return true;
+              }
+              if ((a && !b) || (!a && b)) {
+                return false;
+              }
+              if (!(a instanceof Object) || !(b instanceof Object)) {
+                return false;
+              }
+              for (const [key, value] of Object.entries(a)) {
+                if (!isDeepMatch(value, b[key])) {
+                  return false;
+                }
+              }
+              return true;
+            }
+          },
+          properties,
+          attributes
+        );
+      }
+      await elementsHandle.dispose();
+      return result === visible;
     }, timeout);
   }
 
@@ -745,17 +898,68 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   }
 
   async function waitForElement(step, frame, timeout) {
-    const count = step.count || 1;
-    const operator = step.operator || '>=';
-    const comp = {
+    const {
+      count = 1,
+      operator = '>=',
+      visible = true,
+      properties,
+      attributes,
+    } = step;
+    const compFn = {
       '==': (a, b) => a === b,
       '>=': (a, b) => a >= b,
       '<=': (a, b) => a <= b,
-    };
-    const compFn = comp[operator];
+    }[operator];
     await waitForFunction(async () => {
       const elements = await querySelectorsAll(step.selectors, frame);
-      return compFn(elements.length, count);
+      let result = compFn(elements.length, count);
+      const elementsHandle = await frame.evaluateHandle((...elements) => {
+        return elements;
+      }, ...elements);
+      await Promise.all(elements.map((element) => element.dispose()));
+      if (result && (properties || attributes)) {
+        result = await elementsHandle.evaluate(
+          (elements, properties, attributes) => {
+            for (const element of elements) {
+              if (attributes) {
+                for (const [name, value] of Object.entries(attributes)) {
+                  if (element.getAttribute(name) !== value) {
+                    return false;
+                  }
+                }
+              }
+              if (properties) {
+                if (!isDeepMatch(properties, element)) {
+                  return false;
+                }
+              }
+            }
+            return true;
+
+            function isDeepMatch(a, b) {
+              if (a === b) {
+                return true;
+              }
+              if ((a && !b) || (!a && b)) {
+                return false;
+              }
+              if (!(a instanceof Object) || !(b instanceof Object)) {
+                return false;
+              }
+              for (const [key, value] of Object.entries(a)) {
+                if (!isDeepMatch(value, b[key])) {
+                  return false;
+                }
+              }
+              return true;
+            }
+          },
+          properties,
+          attributes
+        );
+      }
+      await elementsHandle.dispose();
+      return result === visible;
     }, timeout);
   }
 
@@ -968,17 +1172,68 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   }
 
   async function waitForElement(step, frame, timeout) {
-    const count = step.count || 1;
-    const operator = step.operator || '>=';
-    const comp = {
+    const {
+      count = 1,
+      operator = '>=',
+      visible = true,
+      properties,
+      attributes,
+    } = step;
+    const compFn = {
       '==': (a, b) => a === b,
       '>=': (a, b) => a >= b,
       '<=': (a, b) => a <= b,
-    };
-    const compFn = comp[operator];
+    }[operator];
     await waitForFunction(async () => {
       const elements = await querySelectorsAll(step.selectors, frame);
-      return compFn(elements.length, count);
+      let result = compFn(elements.length, count);
+      const elementsHandle = await frame.evaluateHandle((...elements) => {
+        return elements;
+      }, ...elements);
+      await Promise.all(elements.map((element) => element.dispose()));
+      if (result && (properties || attributes)) {
+        result = await elementsHandle.evaluate(
+          (elements, properties, attributes) => {
+            for (const element of elements) {
+              if (attributes) {
+                for (const [name, value] of Object.entries(attributes)) {
+                  if (element.getAttribute(name) !== value) {
+                    return false;
+                  }
+                }
+              }
+              if (properties) {
+                if (!isDeepMatch(properties, element)) {
+                  return false;
+                }
+              }
+            }
+            return true;
+
+            function isDeepMatch(a, b) {
+              if (a === b) {
+                return true;
+              }
+              if ((a && !b) || (!a && b)) {
+                return false;
+              }
+              if (!(a instanceof Object) || !(b instanceof Object)) {
+                return false;
+              }
+              for (const [key, value] of Object.entries(a)) {
+                if (!isDeepMatch(value, b[key])) {
+                  return false;
+                }
+              }
+              return true;
+            }
+          },
+          properties,
+          attributes
+        );
+      }
+      await elementsHandle.dispose();
+      return result === visible;
     }, timeout);
   }
 
@@ -1175,17 +1430,68 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   }
 
   async function waitForElement(step, frame, timeout) {
-    const count = step.count || 1;
-    const operator = step.operator || '>=';
-    const comp = {
+    const {
+      count = 1,
+      operator = '>=',
+      visible = true,
+      properties,
+      attributes,
+    } = step;
+    const compFn = {
       '==': (a, b) => a === b,
       '>=': (a, b) => a >= b,
       '<=': (a, b) => a <= b,
-    };
-    const compFn = comp[operator];
+    }[operator];
     await waitForFunction(async () => {
       const elements = await querySelectorsAll(step.selectors, frame);
-      return compFn(elements.length, count);
+      let result = compFn(elements.length, count);
+      const elementsHandle = await frame.evaluateHandle((...elements) => {
+        return elements;
+      }, ...elements);
+      await Promise.all(elements.map((element) => element.dispose()));
+      if (result && (properties || attributes)) {
+        result = await elementsHandle.evaluate(
+          (elements, properties, attributes) => {
+            for (const element of elements) {
+              if (attributes) {
+                for (const [name, value] of Object.entries(attributes)) {
+                  if (element.getAttribute(name) !== value) {
+                    return false;
+                  }
+                }
+              }
+              if (properties) {
+                if (!isDeepMatch(properties, element)) {
+                  return false;
+                }
+              }
+            }
+            return true;
+
+            function isDeepMatch(a, b) {
+              if (a === b) {
+                return true;
+              }
+              if ((a && !b) || (!a && b)) {
+                return false;
+              }
+              if (!(a instanceof Object) || !(b instanceof Object)) {
+                return false;
+              }
+              for (const [key, value] of Object.entries(a)) {
+                if (!isDeepMatch(value, b[key])) {
+                  return false;
+                }
+              }
+              return true;
+            }
+          },
+          properties,
+          attributes
+        );
+      }
+      await elementsHandle.dispose();
+      return result === visible;
     }, timeout);
   }
 
@@ -1382,17 +1688,68 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   }
 
   async function waitForElement(step, frame, timeout) {
-    const count = step.count || 1;
-    const operator = step.operator || '>=';
-    const comp = {
+    const {
+      count = 1,
+      operator = '>=',
+      visible = true,
+      properties,
+      attributes,
+    } = step;
+    const compFn = {
       '==': (a, b) => a === b,
       '>=': (a, b) => a >= b,
       '<=': (a, b) => a <= b,
-    };
-    const compFn = comp[operator];
+    }[operator];
     await waitForFunction(async () => {
       const elements = await querySelectorsAll(step.selectors, frame);
-      return compFn(elements.length, count);
+      let result = compFn(elements.length, count);
+      const elementsHandle = await frame.evaluateHandle((...elements) => {
+        return elements;
+      }, ...elements);
+      await Promise.all(elements.map((element) => element.dispose()));
+      if (result && (properties || attributes)) {
+        result = await elementsHandle.evaluate(
+          (elements, properties, attributes) => {
+            for (const element of elements) {
+              if (attributes) {
+                for (const [name, value] of Object.entries(attributes)) {
+                  if (element.getAttribute(name) !== value) {
+                    return false;
+                  }
+                }
+              }
+              if (properties) {
+                if (!isDeepMatch(properties, element)) {
+                  return false;
+                }
+              }
+            }
+            return true;
+
+            function isDeepMatch(a, b) {
+              if (a === b) {
+                return true;
+              }
+              if ((a && !b) || (!a && b)) {
+                return false;
+              }
+              if (!(a instanceof Object) || !(b instanceof Object)) {
+                return false;
+              }
+              for (const [key, value] of Object.entries(a)) {
+                if (!isDeepMatch(value, b[key])) {
+                  return false;
+                }
+              }
+              return true;
+            }
+          },
+          properties,
+          attributes
+        );
+      }
+      await elementsHandle.dispose();
+      return result === visible;
     }, timeout);
   }
 
@@ -1599,17 +1956,68 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   }
 
   async function waitForElement(step, frame, timeout) {
-    const count = step.count || 1;
-    const operator = step.operator || '>=';
-    const comp = {
+    const {
+      count = 1,
+      operator = '>=',
+      visible = true,
+      properties,
+      attributes,
+    } = step;
+    const compFn = {
       '==': (a, b) => a === b,
       '>=': (a, b) => a >= b,
       '<=': (a, b) => a <= b,
-    };
-    const compFn = comp[operator];
+    }[operator];
     await waitForFunction(async () => {
       const elements = await querySelectorsAll(step.selectors, frame);
-      return compFn(elements.length, count);
+      let result = compFn(elements.length, count);
+      const elementsHandle = await frame.evaluateHandle((...elements) => {
+        return elements;
+      }, ...elements);
+      await Promise.all(elements.map((element) => element.dispose()));
+      if (result && (properties || attributes)) {
+        result = await elementsHandle.evaluate(
+          (elements, properties, attributes) => {
+            for (const element of elements) {
+              if (attributes) {
+                for (const [name, value] of Object.entries(attributes)) {
+                  if (element.getAttribute(name) !== value) {
+                    return false;
+                  }
+                }
+              }
+              if (properties) {
+                if (!isDeepMatch(properties, element)) {
+                  return false;
+                }
+              }
+            }
+            return true;
+
+            function isDeepMatch(a, b) {
+              if (a === b) {
+                return true;
+              }
+              if ((a && !b) || (!a && b)) {
+                return false;
+              }
+              if (!(a instanceof Object) || !(b instanceof Object)) {
+                return false;
+              }
+              for (const [key, value] of Object.entries(a)) {
+                if (!isDeepMatch(value, b[key])) {
+                  return false;
+                }
+              }
+              return true;
+            }
+          },
+          properties,
+          attributes
+        );
+      }
+      await elementsHandle.dispose();
+      return result === visible;
     }, timeout);
   }
 
@@ -1813,17 +2221,68 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   }
 
   async function waitForElement(step, frame, timeout) {
-    const count = step.count || 1;
-    const operator = step.operator || '>=';
-    const comp = {
+    const {
+      count = 1,
+      operator = '>=',
+      visible = true,
+      properties,
+      attributes,
+    } = step;
+    const compFn = {
       '==': (a, b) => a === b,
       '>=': (a, b) => a >= b,
       '<=': (a, b) => a <= b,
-    };
-    const compFn = comp[operator];
+    }[operator];
     await waitForFunction(async () => {
       const elements = await querySelectorsAll(step.selectors, frame);
-      return compFn(elements.length, count);
+      let result = compFn(elements.length, count);
+      const elementsHandle = await frame.evaluateHandle((...elements) => {
+        return elements;
+      }, ...elements);
+      await Promise.all(elements.map((element) => element.dispose()));
+      if (result && (properties || attributes)) {
+        result = await elementsHandle.evaluate(
+          (elements, properties, attributes) => {
+            for (const element of elements) {
+              if (attributes) {
+                for (const [name, value] of Object.entries(attributes)) {
+                  if (element.getAttribute(name) !== value) {
+                    return false;
+                  }
+                }
+              }
+              if (properties) {
+                if (!isDeepMatch(properties, element)) {
+                  return false;
+                }
+              }
+            }
+            return true;
+
+            function isDeepMatch(a, b) {
+              if (a === b) {
+                return true;
+              }
+              if ((a && !b) || (!a && b)) {
+                return false;
+              }
+              if (!(a instanceof Object) || !(b instanceof Object)) {
+                return false;
+              }
+              for (const [key, value] of Object.entries(a)) {
+                if (!isDeepMatch(value, b[key])) {
+                  return false;
+                }
+              }
+              return true;
+            }
+          },
+          properties,
+          attributes
+        );
+      }
+      await elementsHandle.dispose();
+      return result === visible;
     }, timeout);
   }
 
@@ -2022,17 +2481,68 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   }
 
   async function waitForElement(step, frame, timeout) {
-    const count = step.count || 1;
-    const operator = step.operator || '>=';
-    const comp = {
+    const {
+      count = 1,
+      operator = '>=',
+      visible = true,
+      properties,
+      attributes,
+    } = step;
+    const compFn = {
       '==': (a, b) => a === b,
       '>=': (a, b) => a >= b,
       '<=': (a, b) => a <= b,
-    };
-    const compFn = comp[operator];
+    }[operator];
     await waitForFunction(async () => {
       const elements = await querySelectorsAll(step.selectors, frame);
-      return compFn(elements.length, count);
+      let result = compFn(elements.length, count);
+      const elementsHandle = await frame.evaluateHandle((...elements) => {
+        return elements;
+      }, ...elements);
+      await Promise.all(elements.map((element) => element.dispose()));
+      if (result && (properties || attributes)) {
+        result = await elementsHandle.evaluate(
+          (elements, properties, attributes) => {
+            for (const element of elements) {
+              if (attributes) {
+                for (const [name, value] of Object.entries(attributes)) {
+                  if (element.getAttribute(name) !== value) {
+                    return false;
+                  }
+                }
+              }
+              if (properties) {
+                if (!isDeepMatch(properties, element)) {
+                  return false;
+                }
+              }
+            }
+            return true;
+
+            function isDeepMatch(a, b) {
+              if (a === b) {
+                return true;
+              }
+              if ((a && !b) || (!a && b)) {
+                return false;
+              }
+              if (!(a instanceof Object) || !(b instanceof Object)) {
+                return false;
+              }
+              for (const [key, value] of Object.entries(a)) {
+                if (!isDeepMatch(value, b[key])) {
+                  return false;
+                }
+              }
+              return true;
+            }
+          },
+          properties,
+          attributes
+        );
+      }
+      await elementsHandle.dispose();
+      return result === visible;
     }, timeout);
   }
 

@@ -59,7 +59,7 @@
 
 #### Defined in
 
-[Schema.ts:56](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L56)
+[Schema.ts:58](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L58)
 
 ---
 
@@ -69,7 +69,7 @@
 
 #### Defined in
 
-[Schema.ts:275](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L275)
+[Schema.ts:294](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L294)
 
 ---
 
@@ -79,7 +79,7 @@
 
 #### Defined in
 
-[Schema.ts:209](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L209)
+[Schema.ts:211](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L211)
 
 ---
 
@@ -89,7 +89,7 @@
 
 #### Defined in
 
-[Schema.ts:20](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L20)
+[Schema.ts:22](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L22)
 
 ---
 
@@ -99,7 +99,7 @@
 
 #### Defined in
 
-[Schema.ts:297](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L297)
+[Schema.ts:316](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L316)
 
 ---
 
@@ -109,7 +109,7 @@
 
 #### Defined in
 
-[Schema.ts:18](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L18)
+[Schema.ts:20](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L20)
 
 ---
 
@@ -119,7 +119,7 @@
 
 #### Defined in
 
-[Schema.ts:101](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L101)
+[Schema.ts:103](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L103)
 
 ---
 
@@ -129,7 +129,7 @@
 
 #### Defined in
 
-[Schema.ts:100](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L100)
+[Schema.ts:102](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L102)
 
 ---
 
@@ -139,7 +139,7 @@
 
 #### Defined in
 
-[Schema.ts:194](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L194)
+[Schema.ts:196](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L196)
 
 ---
 
@@ -149,7 +149,7 @@
 
 #### Defined in
 
-[Schema.ts:196](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L196)
+[Schema.ts:198](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L198)
 
 ---
 
@@ -159,7 +159,7 @@
 
 #### Defined in
 
-[Schema.ts:19](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L19)
+[Schema.ts:21](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L21)
 
 ---
 
@@ -169,7 +169,7 @@
 
 #### Defined in
 
-[Schema.ts:277](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L277)
+[Schema.ts:296](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L296)
 
 ---
 
@@ -177,23 +177,9 @@
 
 Ƭ **Target**: `string`
 
-Copyright 2022 Google LLC
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    https://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
 #### Defined in
 
-[Schema.ts:17](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L17)
+[Schema.ts:19](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L19)
 
 ---
 
@@ -203,4 +189,4 @@ limitations under the License.
 
 #### Defined in
 
-[Schema.ts:213](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L213)
+[Schema.ts:215](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L215)

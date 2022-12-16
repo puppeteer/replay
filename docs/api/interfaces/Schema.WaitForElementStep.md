@@ -30,13 +30,16 @@ to be on the page that match the selector `.my-class`.
 ### Properties
 
 - [assertedEvents](Schema.WaitForElementStep.md#assertedevents)
+- [attributes](Schema.WaitForElementStep.md#attributes)
 - [count](Schema.WaitForElementStep.md#count)
 - [frame](Schema.WaitForElementStep.md#frame)
 - [operator](Schema.WaitForElementStep.md#operator)
+- [properties](Schema.WaitForElementStep.md#properties)
 - [selectors](Schema.WaitForElementStep.md#selectors)
 - [target](Schema.WaitForElementStep.md#target)
 - [timeout](Schema.WaitForElementStep.md#timeout)
 - [type](Schema.WaitForElementStep.md#type)
+- [visible](Schema.WaitForElementStep.md#visible)
 
 ## Properties
 
@@ -50,7 +53,23 @@ to be on the page that match the selector `.my-class`.
 
 #### Defined in
 
-[Schema.ts:61](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L61)
+[Schema.ts:63](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L63)
+
+---
+
+### attributes
+
+• `Optional` **attributes**: `Object`
+
+Whether to also check the element(s) for the given attributes.
+
+#### Index signature
+
+▪ [name: `string`]: `string`
+
+#### Defined in
+
+[Schema.ts:271](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L271)
 
 ---
 
@@ -58,11 +77,13 @@ to be on the page that match the selector `.my-class`.
 
 • `Optional` **count**: `number`
 
-Defaults to 1
+**`Default Value`**
+
+`1`
 
 #### Defined in
 
-[Schema.ts:252](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L252)
+[Schema.ts:254](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L254)
 
 ---
 
@@ -78,7 +99,7 @@ Defaults to main frame
 
 #### Defined in
 
-[Schema.ts:75](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L75)
+[Schema.ts:77](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L77)
 
 ---
 
@@ -86,11 +107,25 @@ Defaults to main frame
 
 • `Optional` **operator**: `">="` \| `"=="` \| `"<="`
 
-Defaults to '=='
+**`Default Value`**
+
+`'=='`
 
 #### Defined in
 
-[Schema.ts:248](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L248)
+[Schema.ts:250](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L250)
+
+---
+
+### properties
+
+• `Optional` **properties**: `Partial`<`JSONSerializable`<`HTMLElement`\>\> & { `[key: string]`: `JSONValue`; }
+
+Whether to also check the element(s) for the given properties.
+
+#### Defined in
+
+[Schema.ts:265](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L265)
 
 ---
 
@@ -121,7 +156,7 @@ some selectors might get outdated over time.
 
 #### Defined in
 
-[Schema.ts:97](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L97)
+[Schema.ts:99](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L99)
 
 ---
 
@@ -137,7 +172,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:68](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L68)
+[Schema.ts:70](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L70)
 
 ---
 
@@ -151,7 +186,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:60](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L60)
+[Schema.ts:62](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L62)
 
 ---
 
@@ -165,4 +200,21 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:244](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L244)
+[Schema.ts:246](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L246)
+
+---
+
+### visible
+
+• `Optional` **visible**: `boolean`
+
+Whether to wait for elements matching this step to be hidden. This can be
+thought of as an inversion of this step.
+
+**`Default Value`**
+
+`true`
+
+#### Defined in
+
+[Schema.ts:261](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L261)

@@ -645,43 +645,109 @@ describe('Runner', () => {
     );
   });
 
-  it('should be able to waitForElement', async () => {
-    const runner = await createRunner(
-      {
-        title: 'test',
-        steps: [
-          {
-            type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/shadow-dynamic.html`,
-          },
-          {
-            type: StepType.WaitForElement,
-            selectors: [['custom-element', 'button']],
-          },
-          {
-            type: StepType.Click,
-            target: 'main',
-            selectors: [['custom-element', 'button']],
-            offsetX: 1,
-            offsetY: 1,
-          },
-          {
-            type: StepType.WaitForElement,
-            selectors: [['custom-element', 'button']],
-            operator: '>=',
-            count: 2,
-          },
-        ],
-      },
-      new PuppeteerRunnerExtension(browser, page)
-    );
-    await runner.run();
-    assert.strictEqual(
-      await page.evaluate(
-        () => document.querySelectorAll('custom-element').length
-      ),
-      2
-    );
+  describe('waitForElement', async () => {
+    it('should work', async () => {
+      const runner = await createRunner(
+        {
+          title: 'test',
+          steps: [
+            {
+              type: StepType.Navigate,
+              url: `${HTTP_PREFIX}/shadow-dynamic.html`,
+            },
+            {
+              type: StepType.WaitForElement,
+              selectors: [['custom-element', 'button']],
+            },
+          ],
+        },
+        new PuppeteerRunnerExtension(browser, page)
+      );
+      await runner.run();
+    });
+    it('should work with operators', async () => {
+      const runner = await createRunner(
+        {
+          title: 'test',
+          steps: [
+            {
+              type: StepType.Navigate,
+              url: `${HTTP_PREFIX}/shadow-dynamic.html`,
+            },
+            {
+              type: StepType.WaitForElement,
+              selectors: [['custom-element', 'button']],
+            },
+            {
+              type: StepType.Click,
+              target: 'main',
+              selectors: [['custom-element', 'button']],
+              offsetX: 1,
+              offsetY: 1,
+            },
+            {
+              type: StepType.WaitForElement,
+              selectors: [['custom-element', 'button']],
+              operator: '>=',
+              count: 2,
+            },
+          ],
+        },
+        new PuppeteerRunnerExtension(browser, page)
+      );
+      await runner.run();
+      assert.strictEqual(
+        await page.evaluate(
+          () => document.querySelectorAll('custom-element').length
+        ),
+        2
+      );
+    });
+    it('should work with hidden', async () => {
+      const runner = await createRunner(
+        {
+          title: 'test',
+          steps: [
+            {
+              type: StepType.Navigate,
+              url: `${HTTP_PREFIX}/shadow-dynamic.html`,
+            },
+            {
+              type: StepType.WaitForElement,
+              selectors: [['custom-element', 'button']],
+              hidden: true,
+              properties: {
+                className: 'unknown',
+              },
+            },
+          ],
+        },
+        new PuppeteerRunnerExtension(browser, page)
+      );
+      await runner.run();
+    });
+    it('should work with properties', async () => {
+      const runner = await createRunner(
+        {
+          title: 'test',
+          steps: [
+            {
+              type: StepType.Navigate,
+              url: `${HTTP_PREFIX}/shadow-dynamic.html`,
+            },
+            {
+              type: StepType.WaitForElement,
+              selectors: [['custom-element', 'button']],
+              properties: {
+                className: 'unknown',
+              },
+            },
+          ],
+        },
+        new PuppeteerRunnerExtension(browser, page)
+      );
+      await runner.run();
+    });
   });
 
   it('should be able to waitForExpression', async () => {
@@ -1081,6 +1147,81 @@ describe('Runner', () => {
       const isFinished = await runner.run();
 
       assert.isFalse(isFinished);
+    });
+  });
+
+  describe('waitForURL', () => {
+    it('should work', async () => {
+      const runner = await createRunner(
+        new PuppeteerRunnerExtension(browser, page)
+      );
+      await runner.runStep({
+        type: StepType.Navigate as const,
+        url: `${HTTP_PREFIX}/main.html`,
+        assertedEvents: [
+          {
+            title: '',
+            type: AssertedEventType.Navigation,
+            url: `${HTTP_PREFIX}/main.html`,
+          },
+        ],
+      });
+      await runner.runStep({
+        type: StepType.WaitForURL as const,
+        url: `${HTTP_PREFIX}/main.html`,
+      });
+    });
+
+    it('should partial match', async () => {
+      const runner = await createRunner(
+        new PuppeteerRunnerExtension(browser, page)
+      );
+      await runner.runStep({
+        type: StepType.Navigate as const,
+        url: `${HTTP_PREFIX}/main.html?test=1`,
+        assertedEvents: [
+          {
+            title: '',
+            type: AssertedEventType.Navigation,
+            url: `${HTTP_PREFIX}/main.html?test=1`,
+          },
+        ],
+      });
+      await runner.runStep({
+        type: StepType.WaitForURL as const,
+        url: `${HTTP_PREFIX}/main.html`,
+      });
+    });
+
+    it('should fail when exact is true for a strict submatch', async () => {
+      const runner = await createRunner(
+        new PuppeteerRunnerExtension(browser, page)
+      );
+      await runner.runStep({
+        type: StepType.Navigate as const,
+        url: `${HTTP_PREFIX}/main.html?test=1`,
+        assertedEvents: [
+          {
+            title: '',
+            type: AssertedEventType.Navigation,
+            url: `${HTTP_PREFIX}/main.html?test=1`,
+          },
+        ],
+      });
+
+      let error: unknown;
+      try {
+        await runner.runStep({
+          type: StepType.WaitForURL as const,
+          timeout: 500,
+          url: `${HTTP_PREFIX}/main.html`,
+          exact: true,
+        });
+      } catch (timeoutError) {
+        error = timeoutError;
+      }
+
+      assert.isDefined(error);
     });
   });
 });

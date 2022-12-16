@@ -39,6 +39,7 @@ export enum StepType {
   Navigate = 'navigate',
   Scroll = 'scroll',
   SetViewport = 'setViewport',
+  WaitForURL = 'waitForURL',
   WaitForElement = 'waitForElement',
   WaitForExpression = 'waitForExpression',
 }
@@ -225,6 +226,37 @@ export type UserStep =
   | SetViewportStep;
 
 /**
+ * `waitForURL` allows waiting for a particular URL to match the given URL. This
+ * can either be a submatch (default) or exact.
+ *
+ * @example
+ * The following step would wait for a URL to have `"google.com"` as its hostname.
+ *
+ * ```ts
+ * {
+ *   "type": "waitForURL",
+ *   "url": "google.com"
+ * }
+ * ```
+ */
+export interface WaitForURLStep extends StepWithFrame {
+  type: StepType.WaitForURL;
+  /**
+   * URL to match. This can be simple a hostname such as `"https://google.com"`
+   * or something more complex like `"https://localhost:1024/test?test=1"`; in
+   * either case, the URL is parsed per the spec
+   * https://url.spec.whatwg.org/#example-url-parsing.
+   */
+  url: string;
+  /**
+   * Whether to match exactly or submatch.
+   *
+   * @defaultValue `false`
+   */
+  exact?: boolean;
+}
+
+/**
  * `waitForElement` allows waiting for the presence (or absence) of the number
  * of elements identified by the selector.
  *
@@ -243,13 +275,24 @@ export type UserStep =
 export interface WaitForElementStep extends StepWithSelectors {
   type: StepType.WaitForElement;
   /**
-   * Defaults to '=='
+   * @defaultValue `'=='`
    */
   operator?: '>=' | '==' | '<=';
   /**
-   * Defaults to 1
+   * @defaultValue `1`
    */
   count?: number;
+  /**
+   * Whether to wait for elements matching this step to be hidden. This can be
+   * thought of as an inversion of this step.
+   *
+   * @defaultValue `false`
+   */
+  hidden?: boolean;
+  /**
+   * Whether to also check the element(s) for the given properties.
+   */
+  properties?: Partial<HTMLElement> & { [name: string]: unknown };
 }
 
 /**
@@ -272,7 +315,10 @@ export interface WaitForExpressionStep extends StepWithFrame {
   expression: string;
 }
 
-export type AssertionStep = WaitForElementStep | WaitForExpressionStep;
+export type AssertionStep =
+  | WaitForElementStep
+  | WaitForExpressionStep
+  | WaitForURLStep;
 
 export type Step = UserStep | AssertionStep;
 

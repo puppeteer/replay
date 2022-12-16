@@ -28,6 +28,7 @@ import type {
   ScrollStep,
   SetViewportStep,
   Step,
+  WaitForURLStep,
   StepWithFrame,
   StepWithSelectors,
   UserFlow,
@@ -300,6 +301,8 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
         return this.#appendScrollStep(out, step);
       case StepType.Navigate:
         return this.#appendNavigationStep(out, step);
+      case StepType.WaitForURL:
+        return this.#appendWaitForURLStep(out, step);
       case StepType.WaitForElement:
         return this.#appendWaitForElementStep(out, step);
       case StepType.WaitForExpression:
@@ -334,6 +337,14 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
   #appendWaitForElementStep(out: LineWriter, step: WaitForElementStep): void {
     out.appendLine(
       `await waitForElement(${formatJSONAsJS(step, out.getIndent())}, ${
+        step.frame ? 'frame' : 'targetPage'
+      }, timeout);`
+    );
+  }
+
+  #appendWaitForURLStep(out: LineWriter, step: WaitForURLStep): void {
+    out.appendLine(
+      `await waitForURL(${formatJSONAsJS(step, out.getIndent())}, ${
         step.frame ? 'frame' : 'targetPage'
       }, timeout);`
     );
@@ -474,6 +485,42 @@ async function querySelectorAll(selector, frame) {
     }
   }
   return elements;
+}
+
+async function waitForURL(step: WaitForURL, frame: Frame, timeout: number) {
+  await waitForFunction(() => {
+    return frame.evaluate(
+      (urlString, exact) => {
+        const url: URL = new URL(urlString);
+        const locationSearchParams = new URLSearchParams(
+          window.location.search
+        );
+        url.searchParams.sort();
+        locationSearchParams.sort();
+        if (exact) {
+          return (
+            url.hash === window.location.hash &&
+            url.host === window.location.host &&
+            url.port === window.location.port &&
+            url.protocol === window.location.protocol &&
+            url.pathname === window.location.pathname &&
+            url.searchParams.toString() === locationSearchParams.toString()
+          );
+        }
+        return (
+          (!url.hash || url.hash === window.location.hash) &&
+          (!url.host || url.host === window.location.host) &&
+          (!url.port || url.port === window.location.port) &&
+          (!url.protocol || url.protocol === window.location.protocol) &&
+          (!url.pathname || url.pathname === window.location.pathname) &&
+          (!url.search ||
+            url.searchParams.toString() === locationSearchParams.toString())
+        );
+      },
+      step.url,
+      step.exact
+    );
+  }, timeout);
 }
 
 async function waitForFunction(fn, timeout) {

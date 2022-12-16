@@ -26,12 +26,19 @@ import {
   StepType,
   UserFlow,
   WaitForElementStep,
+  WaitForURLStep,
 } from './Schema.js';
 import {
   assertAllStepTypesAreHandled,
   mouseButtonMap,
   typeableInputTypes,
 } from './SchemaUtils.js';
+
+const comparators = {
+  '==': (a: number, b: number): boolean => a === b,
+  '>=': (a: number, b: number): boolean => a >= b,
+  '<=': (a: number, b: number): boolean => a <= b,
+};
 
 export class PuppeteerRunnerExtension extends RunnerExtension {
   protected browser: Browser;
@@ -291,6 +298,11 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         });
         break;
       }
+      case StepType.WaitForURL: {
+        startWaitingForEvents();
+        await waitForURL(step, localFrame, timeout);
+        break;
+      }
       case StepType.CustomStep: {
         // TODO implement these steps
         break;
@@ -433,19 +445,30 @@ async function waitForElement(
   frame: Frame | Page,
   timeout: number
 ): Promise<void> {
-  const count = step.count || 1;
-  const operator = step.operator || '>=';
-  const comp = {
-    '==': (a: number, b: number): boolean => a === b,
-    '>=': (a: number, b: number): boolean => a >= b,
-    '<=': (a: number, b: number): boolean => a <= b,
-  };
-  const compFn = comp[operator];
+  const { count = 1, operator = '>=', hidden = false, properties } = step;
+  const compFn = comparators[operator];
   await waitForFunction(async () => {
     const elements = await querySelectorsAll(step.selectors, frame);
-    const result = compFn(elements.length, count);
+    let result = compFn(elements.length, count);
+    if (result && properties) {
+      for await (const isMatch of elements.map((element) =>
+        element.evaluate((element, properties) => {
+          for (const [key, value] of Object.entries(properties)) {
+            if (element[key as keyof Element] !== value) {
+              return false;
+            }
+          }
+          return true;
+        }, properties)
+      )) {
+        if (!isMatch) {
+          result = false;
+          break;
+        }
+      }
+    }
     await Promise.all(elements.map((element) => element.dispose()));
-    return result;
+    return result !== hidden;
   }, timeout);
 }
 
@@ -642,6 +665,43 @@ async function querySelectorAll(
     }
   }
   return elementHandles;
+}
+
+
+async function waitForURL(step: WaitForURLStep, frame: Frame, timeout: number) {
+  await waitForFunction(() => {
+    return frame.evaluate(
+      (urlString, exact) => {
+        const url: URL = new URL(urlString);
+        const locationSearchParams = new URLSearchParams(
+          window.location.search
+        );
+        url.searchParams.sort();
+        locationSearchParams.sort();
+        if (exact) {
+          return (
+            url.hash === window.location.hash &&
+            url.host === window.location.host &&
+            url.port === window.location.port &&
+            url.protocol === window.location.protocol &&
+            url.pathname === window.location.pathname &&
+            url.searchParams.toString() === locationSearchParams.toString()
+          );
+        }
+        return (
+          (!url.hash || url.hash === window.location.hash) &&
+          (!url.host || url.host === window.location.host) &&
+          (!url.port || url.port === window.location.port) &&
+          (!url.protocol || url.protocol === window.location.protocol) &&
+          (!url.pathname || url.pathname === window.location.pathname) &&
+          (!url.search ||
+            url.searchParams.toString() === locationSearchParams.toString())
+        );
+      },
+      step.url,
+      step.exact
+    );
+  }, timeout);
 }
 
 async function waitForFunction(

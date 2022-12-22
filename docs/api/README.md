@@ -253,7 +253,7 @@ The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]]
 
 #### Defined in
 
-[SchemaUtils.ts:529](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L529)
+[SchemaUtils.ts:560](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L560)
 
 ---
 
@@ -263,7 +263,7 @@ The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]]
 
 #### Defined in
 
-[SchemaUtils.ts:528](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L528)
+[SchemaUtils.ts:559](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L559)
 
 ---
 
@@ -447,7 +447,7 @@ therefore, SelectorType.CSS is the default type if other types didn't match.
 
 #### Defined in
 
-[SchemaUtils.ts:581](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L581)
+[SchemaUtils.ts:612](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L612)
 
 ---
 
@@ -467,7 +467,7 @@ therefore, SelectorType.CSS is the default type if other types didn't match.
 
 #### Defined in
 
-[SchemaUtils.ts:537](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L537)
+[SchemaUtils.ts:568](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L568)
 
 ---
 
@@ -510,7 +510,7 @@ Extracts a source map from a text.
 
 #### Defined in
 
-[SchemaUtils.ts:461](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L461)
+[SchemaUtils.ts:492](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L492)
 
 ---
 
@@ -606,4 +606,4 @@ Stringifes a single step. Only the following hooks are invoked with the `flow` p
 
 #### Defined in
 
-[SchemaUtils.ts:533](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L533)
+[SchemaUtils.ts:564](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L564)

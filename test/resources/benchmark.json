@@ -103,11 +103,11 @@
     {
       "type": "waitForElement",
       "target": "main",
-      "selectors": ["button"],
-      "count": 2,
+      "selectors": ["#button"],
+      "count": 1,
       "visible": true,
       "properties": {
-        "value": ""
+        "id": "button"
       },
       "attributes": {
         "id": "button"

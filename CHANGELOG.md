@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.7.1](https://github.com/puppeteer/replay/compare/v2.7.0...v2.7.1) (2022-12-22)
+
+
+### Bug Fixes
+
+* add parsing for `visible`, `attributes`, and `properties` ([#419](https://github.com/puppeteer/replay/issues/419)) ([856d6dd](https://github.com/puppeteer/replay/commit/856d6dd20a550dbaa3aa59cb2b15da0ba5c9f289))
+
 ## [2.7.0](https://github.com/puppeteer/replay/compare/v2.6.1...v2.7.0) (2022-12-16)
 
 

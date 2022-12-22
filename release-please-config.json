@@ -1,9 +1,9 @@
-{
+{11d3
   "last-release-sha": "11d33e5439d98c6f248bf6f6c0b27043936d67a1",
   "packages": {
     ".": {
       "releaseType": "node",
-      "include-component-in-tag": false
-    }
+https://github.com/puppeteer/replay/blob/5a1b4ac303d8906331fe3be0676d704af644fbb5/release-please-config.
+json#L2    }https 
   }
 }

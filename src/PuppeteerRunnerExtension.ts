@@ -457,15 +457,17 @@ async function waitForElement(
     if (result && (properties || attributes)) {
       result = await elementsHandle.evaluate(
         (elements, properties, attributes) => {
-          for (const element of elements) {
-            if (attributes) {
+          if (attributes) {
+            for (const element of elements) {
               for (const [name, value] of Object.entries(attributes)) {
                 if (element.getAttribute(name) !== value) {
                   return false;
                 }
               }
             }
-            if (properties) {
+          }
+          if (properties) {
+            for (const element of elements) {
               if (!isDeepMatch(properties, element)) {
                 return false;
               }
@@ -473,7 +475,7 @@ async function waitForElement(
           }
           return true;
 
-          function isDeepMatch(a: unknown, b: unknown) {
+          function isDeepMatch<T>(a: T, b: unknown): b is T {
             if (a === b) {
               return true;
             }

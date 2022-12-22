@@ -178,6 +178,13 @@ function parseOptionalString(step: object, prop: string): string | undefined {
   return undefined;
 }
 
+function parseOptionalBoolean(step: object, prop: string): boolean | undefined {
+  if (hasProperty(step, prop)) {
+    return parseBoolean(step, prop);
+  }
+  return undefined;
+}
+
 function parseString(step: object, prop: string): string {
   if (hasProperty(step, prop)) {
     const maybeString = step[prop];
@@ -424,11 +431,35 @@ function parseWaitForElementStep(step: object): WaitForElementStep {
       "WaitForElement step's operator is not one of '>=','==','<='"
     );
   }
+  if (hasProperty(step, 'attributes')) {
+    if (
+      !isObject(step.attributes) ||
+      Object.values(step.attributes).some(
+        (attribute) => typeof attribute !== 'string'
+      )
+    ) {
+      throw new Error(
+        "WaitForElement step's attribute is not a dictionary of strings"
+      );
+    }
+  }
+  if (hasProperty(step, 'properties')) {
+    if (!isObject(step.properties)) {
+      throw new Error("WaitForElement step's attribute is not an object");
+    }
+  }
   return {
     ...parseStepWithSelectors(StepType.WaitForElement, step),
     type: StepType.WaitForElement,
     operator: operator as '>=' | '==' | '<=' | undefined,
     count: parseOptionalNumber(step, 'count'),
+    visible: parseOptionalBoolean(step, 'visible'),
+    attributes: hasProperty(step, 'attributes')
+      ? (step.attributes as WaitForElementStep['attributes'])
+      : undefined,
+    properties: hasProperty(step, 'properties')
+      ? (step.properties as WaitForElementStep['properties'])
+      : undefined,
   };
 }
 

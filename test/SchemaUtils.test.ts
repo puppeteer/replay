@@ -322,6 +322,9 @@ describe('SchemaUtils', () => {
               selectors: [['aria/Test']],
               operator: '==',
               count: 1,
+              properties: {},
+              attributes: {},
+              visible: true,
             },
           ],
         }),
@@ -333,6 +336,9 @@ describe('SchemaUtils', () => {
               selectors: [['aria/Test']],
               operator: '==',
               count: 1,
+              properties: {},
+              attributes: {},
+              visible: true,
             },
           ],
         }
@@ -761,6 +767,31 @@ describe('SchemaUtils', () => {
             ],
           },
           error: 'Timeout is not between 1 and 30000 milliseconds',
+        },
+        {
+          input: {
+            title: 'test',
+            steps: [
+              {
+                type: 'waitForElement',
+                attributes: { test: 5 },
+              },
+            ],
+          },
+          error:
+            "WaitForElement step's attribute is not a dictionary of strings",
+        },
+        {
+          input: {
+            title: 'test',
+            steps: [
+              {
+                type: 'waitForElement',
+                properties: null,
+              },
+            ],
+          },
+          error: "WaitForElement step's attribute is not an object",
         },
       ];
       for (const testCase of testCases) {

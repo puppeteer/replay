@@ -69,7 +69,7 @@
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-tsdoc": "0.2.17",
-    "lighthouse": "9.5.0-dev.20221024",
+    "lighthouse": "9.5.0-dev.20230119",
     "mime": "3.0.0",
     "mocha": "10.1.0",
     "prettier": "2.7.1",

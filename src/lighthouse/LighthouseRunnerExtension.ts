@@ -22,10 +22,9 @@ import { isMobileFlow, isNavigationStep } from './helpers.js';
 export class LighthouseRunnerExtension extends PuppeteerRunnerExtension {
   #isTimespanRunning = false;
   #isNavigationRunning = false;
-  #lhFlow?: any;
+  #lhFlow?: import('lighthouse').UserFlow;
 
-  // TODO: Use Lighthouse types once the peer dependency is defined.
-  async createFlowResult(): Promise<any> {
+  async createFlowResult(): Promise<import('lighthouse').FlowResult> {
     if (!this.#lhFlow) {
       throw new Error('Cannot get flow result before running the flow');
     }
@@ -36,13 +35,11 @@ export class LighthouseRunnerExtension extends PuppeteerRunnerExtension {
     await super.beforeAllSteps?.(flow);
 
     // @ts-ignore Lighthouse doesn't expose types.
-    const { startFlow } = await import('lighthouse/core/api.js');
+    const { startFlow, desktopConfig } = await import('lighthouse');
 
     let config = undefined;
     if (!isMobileFlow(flow)) {
-      // @ts-ignore Lighthouse doesn't expose types.
-      config = (await import('lighthouse/core/config/desktop-config.js'))
-        .default;
+      config = desktopConfig;
     }
 
     this.#lhFlow = await startFlow(this.page, {
@@ -58,20 +55,20 @@ export class LighthouseRunnerExtension extends PuppeteerRunnerExtension {
 
     if (isNavigationStep(step)) {
       if (this.#isTimespanRunning) {
-        await this.#lhFlow.endTimespan();
+        await this.#lhFlow!.endTimespan();
         this.#isTimespanRunning = false;
       }
-      await this.#lhFlow.startNavigation();
+      await this.#lhFlow!.startNavigation();
       this.#isNavigationRunning = true;
     } else if (!this.#isTimespanRunning) {
-      await this.#lhFlow.startTimespan();
+      await this.#lhFlow!.startTimespan();
       this.#isTimespanRunning = true;
     }
   }
 
   override async afterEachStep(step: Step, flow?: UserFlow) {
     if (this.#isNavigationRunning) {
-      await this.#lhFlow.endNavigation();
+      await this.#lhFlow!.endNavigation();
       this.#isNavigationRunning = false;
     }
     await super.afterEachStep?.(step, flow);
@@ -79,7 +76,7 @@ export class LighthouseRunnerExtension extends PuppeteerRunnerExtension {
 
   override async afterAllSteps(flow: UserFlow) {
     if (this.#isTimespanRunning) {
-      await this.#lhFlow.endTimespan();
+      await this.#lhFlow!.endTimespan();
     }
     await super.afterAllSteps?.(flow);
   }

@@ -10,13 +10,13 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
 
+  const lhApi = await import('lighthouse'); // v10.0.0 or later
   const flags = {
     screenEmulation: {
       disabled: true
     }
   }
-  const config = (await import('lighthouse/core/config/desktop-config.js')).default;
-  const lhApi = await import('lighthouse/core/api.js');
+  const config = lhApi.desktopConfig;
   const lhFlow = await lhApi.startFlow(page, {name: 'Test desktop', config, flags});
   {
     const targetPage = page;

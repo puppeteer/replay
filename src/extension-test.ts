@@ -16,33 +16,58 @@
 
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import { RunnerExtension, createRunner, parse } from '../lib/main.js';
+import {
+  RunnerExtension,
+  createRunner,
+  parse,
+  stringify,
+} from '../lib/main.js';
 import { importExtensionFromPath } from './CLIUtils.js';
 import http from 'http';
-import { files, recording } from './Spec.js';
+import { files, recording, expectedLog } from './Spec.js';
+import assert from 'assert/strict';
+import { spawn } from 'child_process';
 
 async function startServer() {
-  // Create an HTTP server
-  const server = http.createServer((req, res) => {
-    if (req.method !== 'GET') {
-      res.writeHead(400);
-      res.end();
+  const log = {
+    contents: '',
+  };
+  const server = http.createServer(async (req, res) => {
+    if (req.method === 'GET') {
+      for (const [file, content] of files.entries()) {
+        if (req.url?.endsWith(file)) {
+          res.writeHead(200, { 'Content-Type': 'text/html' });
+          res.end(content);
+          return;
+        }
+      }
+      res.writeHead(404, { 'Content-Type': 'text/plain' });
+      res.end('Not found');
       return;
     }
-    for (const [file, content] of files.entries()) {
-      if (req.url?.endsWith(file)) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.end(content);
-        return;
-      }
+    if (req.method === 'POST') {
+      const body = await new Promise((resolve) => {
+        const body: any[] = [];
+        req
+          .on('data', (chunk) => {
+            body.push(chunk);
+          })
+          .on('end', () => {
+            resolve(Buffer.concat(body).toString());
+          });
+      });
+      res.writeHead(200);
+      res.end();
+      log.contents += body;
+      return;
     }
-    res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.end('Not found');
+    res.writeHead(400);
+    res.end();
   });
 
-  return new Promise<http.Server>((resolve) => {
+  return new Promise<{ server: http.Server; log: typeof log }>((resolve) => {
     server.listen(8907, 'localhost', () => {
-      resolve(server);
+      resolve({ server, log });
     });
   });
 }
@@ -50,34 +75,62 @@ async function startServer() {
 yargs(hideBin(process.argv))
   .command(
     '$0',
-    'test an extension implementation',
+    'Test an extension implementation',
     () => {},
     async (argv) => {
       const args = argv as unknown as { extension: string };
       const Extension = await importExtensionFromPath(args.extension);
       const ext = new Extension();
+
+      let run = async () => {};
+
       if (ext instanceof RunnerExtension) {
         console.log('runner');
+        run = async () => {
+          const extension = new Extension();
+          const runner = await createRunner(parse(recording), extension);
+          await runner.run();
+        };
       } else {
-        console.log('stringify');
+        run = async () => {
+          const exported = await stringify(parse(recording), {
+            extension: new Extension(),
+          });
+
+          const childProcess = spawn('node', {
+            stdio: ['pipe', 'pipe', 'inherit'],
+            shell: true,
+          });
+          childProcess.stdin.write(exported);
+          childProcess.stdin.end();
+
+          await new Promise<void>((resolve, reject) => {
+            childProcess.on('close', (code) =>
+              code
+                ? reject(new Error(`Running node failed with code ${code}`))
+                : resolve()
+            );
+          });
+        };
       }
-      const server = await startServer();
+      const { server, log } = await startServer();
 
       try {
-        const extension = new Extension();
-        const runner = await createRunner(parse(recording), extension);
-        await runner.run();
+        await run();
       } catch (err) {
         console.error(err);
       } finally {
         server.close();
       }
+      assert.equal(log.contents, expectedLog);
+      console.log('Run matches the expectations');
     }
   )
   .option('extension', {
     alias: 'ext',
     type: 'string',
-    description: 'Run using an extension identified by the path.',
+    description:
+      'The path to the extension module. The default export will be used as a Stringify or Runner extension based on instanceOf checks.',
     demandOption: true,
   })
   .parse();

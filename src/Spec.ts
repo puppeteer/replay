@@ -158,19 +158,30 @@ export const files = new Map([
 <pre id="log"></pre>
 <script>
     function logStr(str) {
-    log.innerText += str;
+      log.innerText += str;
+      const data = { username: 'example' };
+      fetch('/log', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/text',
+        },
+        body: str,
+      })
+        .catch((error) => {
+          console.error(error);
+        });
     }
     function logEvent(event) {
-    logStr(
-        '\\n' +
-        event.type +
-        ' targetId=' +
-        event.target.id +
-        ' button=' +
-        event.button +
-        ' value=' +
-        event.target.value
-    );
+      logStr(
+          '\\n' +
+          event.type +
+          ' targetId=' +
+          event.target.id +
+          ' button=' +
+          event.button +
+          ' value=' +
+          event.target.value
+      );
     }
     logStr(\`window dimensions \${window.innerWidth}x\${window.innerHeight}\`);
     input.addEventListener('contextmenu', (e) => e.preventDefault(), false);

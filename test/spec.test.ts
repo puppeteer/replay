@@ -47,7 +47,7 @@ async function createServers() {
   return { httpServer, httpsServer };
 }
 
-describe('Benchmark test', () => {
+describe('Spec test', () => {
   let browser: puppeteer.Browser;
   let page: puppeteer.Page;
   let httpServer: TestServer;

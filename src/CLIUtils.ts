@@ -131,6 +131,13 @@ export function createStatusReport(results: Result[]): Table.Table {
   return table;
 }
 
+export async function importExtensionFromPath(path: string): Promise<any> {
+  const module = await import(
+    pathToFileURL(isAbsolute(path) ? path : join(cwd(), path)).toString()
+  );
+  return module.default;
+}
+
 export async function runFiles(
   files: string[],
   opts: { log: boolean; headless: boolean | 'new'; extension?: string } = {
@@ -142,14 +149,7 @@ export async function runFiles(
   let browser: Browser | undefined;
 
   if (opts.extension) {
-    const module = await import(
-      pathToFileURL(
-        isAbsolute(opts.extension)
-          ? opts.extension
-          : join(cwd(), opts.extension)
-      ).toString()
-    );
-    Extension = module.default;
+    Extension = await importExtensionFromPath(opts.extension);
   }
 
   const results: Result[] = [];

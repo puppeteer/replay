@@ -30,6 +30,7 @@ import { PuppeteerStringifyExtension } from '../src/PuppeteerStringifyExtension.
 import { stringify } from '../src/stringify.js';
 import { TestServer } from '../third_party/testserver/lib/index.js';
 import { UserFlow } from '../src/Schema.js';
+import { files, recording, expectedLog } from '../src/Spec.js';
 
 const HTTP_PORT = 8907;
 const HTTPS_PORT = HTTP_PORT + 1;
@@ -40,16 +41,11 @@ async function createServers() {
   const resources = path.join(__dirname, 'resources');
   const httpServer = await TestServer.create(resources, HTTP_PORT);
   const httpsServer = await TestServer.createHTTPS(resources, HTTPS_PORT);
+  for (const [filename, content] of (files || {}).entries()) {
+    await fs.writeFile(path.join(resources, filename), content);
+  }
   return { httpServer, httpsServer };
 }
-
-// Note: not using snapshots to make sure all tests result in the same log.
-const expectedLog = (
-  await fs.readFile(
-    path.join(__dirname, 'resources', 'benchmark.expected.txt'),
-    'utf-8'
-  )
-).trim();
 
 describe('Benchmark test', () => {
   let browser: puppeteer.Browser;
@@ -86,11 +82,6 @@ describe('Benchmark test', () => {
   });
 
   it('should run the test using a runner extension', async () => {
-    const recording = JSON.parse(
-      await fs.readFile(path.join(__dirname, 'resources', 'benchmark.json'), {
-        encoding: 'utf8',
-      })
-    );
     const parsed = parse(recording);
     const runner = await createRunner(
       parsed,
@@ -102,11 +93,6 @@ describe('Benchmark test', () => {
   });
 
   it('should run the test when exported as a script using a stringify extension', async () => {
-    const recording = JSON.parse(
-      await fs.readFile(path.join(__dirname, 'resources', 'benchmark.json'), {
-        encoding: 'utf8',
-      })
-    );
     const parsed = parse(recording);
     class CustomStringifyExtension extends PuppeteerStringifyExtension {
       override async afterAllSteps(out: LineWriter, flow: UserFlow) {

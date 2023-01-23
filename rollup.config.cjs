@@ -61,4 +61,24 @@ module.exports = [
     ],
     plugins: [typescript({ tsconfig: 'tsconfig.cli.json' })],
   },
+  {
+    input: 'src/extension-test.ts',
+    output: {
+      file: 'lib/extension-test.js',
+      format: 'es',
+      sourcemap: true,
+      banner: '#!/usr/bin/env node',
+    },
+    external: [
+      ...Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies }),
+      '../lib/main.js',
+      'fs',
+      'path',
+      'url',
+      'process',
+      'yargs/helpers',
+      'http',
+    ],
+    plugins: [typescript({ tsconfig: 'tsconfig.cli.json' })],
+  },
 ];

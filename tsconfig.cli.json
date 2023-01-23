@@ -1,5 +1,10 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["src/cli.ts", "src/CLIUtils.ts"],
+  "include": [
+    "src/cli.ts",
+    "src/CLIUtils.ts",
+    "src/extension-test.ts",
+    "src/Spec.ts"
+  ],
   "exclude": []
 }

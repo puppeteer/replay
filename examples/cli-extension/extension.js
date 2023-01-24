@@ -1,7 +1,14 @@
+import puppeteer from 'puppeteer';
 import { PuppeteerRunnerExtension } from '../../lib/main.js';
 
 export default class Extension extends PuppeteerRunnerExtension {
   async beforeAllSteps(flow) {
+    if (!this.browser) {
+      this.browser = await puppeteer.launch();
+    }
+    if (!this.page) {
+      this.page = await this.browser.newPage();
+    }
     await super.beforeAllSteps(flow);
     console.log('starting');
   }

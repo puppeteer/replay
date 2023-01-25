@@ -34,7 +34,6 @@ export class LighthouseRunnerExtension extends PuppeteerRunnerExtension {
   override async beforeAllSteps(flow: UserFlow) {
     await super.beforeAllSteps?.(flow);
 
-    // @ts-ignore Lighthouse doesn't expose types.
     const { startFlow, desktopConfig } = await import('lighthouse');
 
     let config = undefined;

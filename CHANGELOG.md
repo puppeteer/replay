@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.8.0](https://github.com/puppeteer/replay/compare/v2.7.1...v2.8.0) (2023-01-31)
+
+
+### Features
+
+* CLI to test extension implementations ([#435](https://github.com/puppeteer/replay/issues/435)) ([edd9628](https://github.com/puppeteer/replay/commit/edd962835efa930621be9b1311245334b327e72c))
+
 ## [2.7.1](https://github.com/puppeteer/replay/compare/v2.7.0...v2.7.1) (2022-12-22)
 
 

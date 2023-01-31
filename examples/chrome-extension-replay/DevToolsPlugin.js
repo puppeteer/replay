@@ -4,9 +4,11 @@ const view = await chrome.devtools.recorder.createView(
   /* pagePath= */ 'Replay.html'
 );
 
+let latestRecording;
+
 view.onShown.addListener(() => {
   // Recorder has shown the view. Send additional data to the view if needed.
-  chrome.runtime.sendMessage('shown');
+  chrome.runtime.sendMessage(JSON.stringify(latestRecording));
 });
 
 view.onHidden.addListener(() => {
@@ -16,7 +18,7 @@ view.onHidden.addListener(() => {
 export class RecorderPlugin {
   replay(recording) {
     // Share the data with the view.
-    localStorage.setItem('recording', JSON.stringify(recording));
+    latestRecording = recording;
     // Request to show the view.
     view.show();
   }

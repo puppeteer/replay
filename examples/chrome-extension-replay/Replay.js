@@ -2,14 +2,15 @@
 // You can also provide static content via the HTML page
 // or have a different workflow around the events.
 /* eslint-disable no-undef */
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  localStorage.setItem('recording', request);
   main();
 });
 
-async function main() {
-  // Read the recording from the localStorage.
-  const recording = JSON.parse(localStorage.getItem('recording'));
+const initHTML = document.body.innerHTML;
 
+async function main() {
+  const recording = JSON.parse(localStorage.getItem('recording'));
   // Dummy auth flow. Please use the best practices for authenticating users.
   const token = localStorage.getItem('token');
   if (!token) {
@@ -32,11 +33,7 @@ async function main() {
     return;
   }
 
-  document.body.innerHTML = `
-        <h1>Replay page</h1>
-        <button>log out</button>
-        <pre id="recording"></pre>
-    `;
+  document.body.innerHTML = initHTML;
   document.querySelector('button').addEventListener('click', () => {
     localStorage.removeItem('token');
     main();

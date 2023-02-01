@@ -26,6 +26,7 @@ export enum SelectorType {
   ARIA = 'aria',
   Text = 'text',
   XPath = 'xpath',
+  Pierce = 'pierce',
 }
 
 export enum StepType {

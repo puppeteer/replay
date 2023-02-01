@@ -51,7 +51,7 @@ to be on the page that match the selector `.my-class`.
 
 #### Defined in
 
-[Schema.ts:63](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L63)
+[Schema.ts:64](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L64)
 
 ---
 
@@ -67,7 +67,7 @@ Whether to also check the element(s) for the given attributes.
 
 #### Defined in
 
-[Schema.ts:271](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L271)
+[Schema.ts:272](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L272)
 
 ---
 
@@ -81,7 +81,7 @@ Whether to also check the element(s) for the given attributes.
 
 #### Defined in
 
-[Schema.ts:254](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L254)
+[Schema.ts:255](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L255)
 
 ---
 
@@ -97,7 +97,7 @@ Defaults to main frame
 
 #### Defined in
 
-[Schema.ts:77](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L77)
+[Schema.ts:78](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L78)
 
 ---
 
@@ -111,7 +111,7 @@ Defaults to main frame
 
 #### Defined in
 
-[Schema.ts:250](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L250)
+[Schema.ts:251](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L251)
 
 ---
 
@@ -123,7 +123,7 @@ Whether to also check the element(s) for the given properties.
 
 #### Defined in
 
-[Schema.ts:265](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L265)
+[Schema.ts:266](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L266)
 
 ---
 
@@ -154,7 +154,7 @@ some selectors might get outdated over time.
 
 #### Defined in
 
-[Schema.ts:99](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L99)
+[Schema.ts:100](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L100)
 
 ---
 
@@ -170,7 +170,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:70](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L70)
+[Schema.ts:71](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L71)
 
 ---
 
@@ -184,7 +184,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:62](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L62)
+[Schema.ts:63](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L63)
 
 ---
 
@@ -198,7 +198,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:246](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L246)
+[Schema.ts:247](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L247)
 
 ---
 
@@ -215,4 +215,4 @@ thought of as an inversion of this step.
 
 #### Defined in
 
-[Schema.ts:261](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L261)
+[Schema.ts:262](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L262)

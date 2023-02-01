@@ -8,6 +8,7 @@
 
 - [ARIA](SelectorType.md#aria)
 - [CSS](SelectorType.md#css)
+- [Pierce](SelectorType.md#pierce)
 - [Text](SelectorType.md#text)
 - [XPath](SelectorType.md#xpath)
 
@@ -30,6 +31,16 @@
 #### Defined in
 
 [Schema.ts:25](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L25)
+
+---
+
+### Pierce
+
+• **Pierce** = `"pierce"`
+
+#### Defined in
+
+[Schema.ts:29](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L29)
 
 ---
 

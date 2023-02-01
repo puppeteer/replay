@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.9.0](https://github.com/puppeteer/replay/compare/v2.8.0...v2.9.0) (2023-02-01)
+
+
+### Features
+
+* add `pierce` selector support ([#451](https://github.com/puppeteer/replay/issues/451)) ([c6356b6](https://github.com/puppeteer/replay/commit/c6356b6877d4ff5cc6200d83a0f86c6e4b1d599a))
+
 ## [2.8.0](https://github.com/puppeteer/replay/compare/v2.7.1...v2.8.0) (2023-01-31)
 
 

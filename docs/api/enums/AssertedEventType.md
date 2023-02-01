@@ -16,4 +16,4 @@
 
 #### Defined in
 
-[Schema.ts:49](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L49)
+[Schema.ts:50](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L50)

@@ -25,7 +25,7 @@ selector `[data-testid=value]` for the element `<div data-testid=value>`.
 
 #### Defined in
 
-[Schema.ts:312](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L312)
+[Schema.ts:313](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L313)
 
 ---
 
@@ -35,7 +35,7 @@ selector `[data-testid=value]` for the element `<div data-testid=value>`.
 
 #### Defined in
 
-[Schema.ts:313](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L313)
+[Schema.ts:314](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L314)
 
 ---
 
@@ -47,7 +47,7 @@ Timeout in milliseconds.
 
 #### Defined in
 
-[Schema.ts:306](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L306)
+[Schema.ts:307](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L307)
 
 ---
 
@@ -59,4 +59,4 @@ Human-readble title describing the recorder user flow.
 
 #### Defined in
 
-[Schema.ts:302](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L302)
+[Schema.ts:303](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L303)

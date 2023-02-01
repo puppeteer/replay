@@ -101,7 +101,7 @@
 
 #### Defined in
 
-[Schema.ts:58](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L58)
+[Schema.ts:59](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L59)
 
 ---
 
@@ -111,7 +111,7 @@
 
 #### Defined in
 
-[Schema.ts:294](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L294)
+[Schema.ts:295](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L295)
 
 ---
 
@@ -121,7 +121,7 @@
 
 #### Defined in
 
-[Schema.ts:211](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L211)
+[Schema.ts:212](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L212)
 
 ---
 
@@ -141,7 +141,7 @@
 
 #### Defined in
 
-[Schema.ts:316](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L316)
+[Schema.ts:317](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L317)
 
 ---
 
@@ -161,7 +161,7 @@
 
 #### Defined in
 
-[Schema.ts:103](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L103)
+[Schema.ts:104](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L104)
 
 ---
 
@@ -171,7 +171,7 @@
 
 #### Defined in
 
-[Schema.ts:102](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L102)
+[Schema.ts:103](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L103)
 
 ---
 
@@ -181,7 +181,7 @@
 
 #### Defined in
 
-[Schema.ts:196](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L196)
+[Schema.ts:197](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L197)
 
 ---
 
@@ -191,7 +191,7 @@
 
 #### Defined in
 
-[Schema.ts:198](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L198)
+[Schema.ts:199](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L199)
 
 ---
 
@@ -223,7 +223,7 @@ The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]]
 
 #### Defined in
 
-[Schema.ts:296](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L296)
+[Schema.ts:297](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L297)
 
 ---
 
@@ -243,7 +243,7 @@ The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]]
 
 #### Defined in
 
-[Schema.ts:215](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L215)
+[Schema.ts:216](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L216)
 
 ## Variables
 

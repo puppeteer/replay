@@ -89,8 +89,10 @@
     "puppeteer": ">=18.0.5",
     "lighthouse": ">=10.0.0"
   },
-  "resolutions": {
-    "lighthouse/**/quibble": "0.6.15"
+  "overrides": {
+    "lighthouse": {
+      "quibble": "0.6.15"
+    }
   },
   "peerDependenciesMeta": {
     "puppeteer": {

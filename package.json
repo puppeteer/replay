@@ -69,7 +69,7 @@
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-tsdoc": "0.2.17",
-    "lighthouse": "9.5.0-dev.20221024",
+    "lighthouse": "^10.0.0",
     "mime": "3.0.0",
     "mocha": "10.1.0",
     "prettier": "2.7.1",
@@ -86,10 +86,19 @@
     "typescript": "4.8.4"
   },
   "peerDependencies": {
-    "puppeteer": ">=18.0.5"
+    "puppeteer": ">=18.0.5",
+    "lighthouse": ">=10.0.0"
+  },
+  "overrides": {
+    "lighthouse": {
+      "quibble": "0.6.15"
+    }
   },
   "peerDependenciesMeta": {
     "puppeteer": {
+      "optional": true
+    },
+    "lighthouse": {
       "optional": true
     }
   },

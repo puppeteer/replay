@@ -30,23 +30,23 @@ export class LighthouseStringifyExtension extends PuppeteerStringifyExtension {
 
     await super.beforeAllSteps(out, flow);
 
+    out.appendLine(
+      `const lhApi = await import('lighthouse'); // v10.0.0 or later`
+    );
+
     const flags = {
       screenEmulation: {
         disabled: true,
       },
     };
     out.appendLine(`const flags = ${formatJSONAsJS(flags, out.getIndent())}`);
+
     if (isMobileFlow(flow)) {
       out.appendLine(`const config = undefined;`);
     } else {
-      // eslint-disable-next-line max-len
-      out.appendLine(
-        `const config = (await import('lighthouse/core/config/desktop-config.js')).default;`
-      );
+      out.appendLine('const config = lhApi.desktopConfig;');
     }
 
-    out.appendLine(`const lhApi = await import('lighthouse/core/api.js');`);
-    // eslint-disable-next-line max-len
     out.appendLine(
       `const lhFlow = await lhApi.startFlow(page, {name: ${formatJSONAsJS(
         flow.title,

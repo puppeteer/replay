@@ -10,6 +10,8 @@
 
   ↳↳ [`PuppeteerRunnerOwningBrowserExtension`](PuppeteerRunnerOwningBrowserExtension.md)
 
+  ↳↳ [`LighthouseRunnerExtension`](LighthouseRunnerExtension.md)
+
 ## Table of contents
 
 ### Constructors

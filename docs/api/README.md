@@ -17,6 +17,7 @@
 ### Classes
 
 - [JSONStringifyExtension](classes/JSONStringifyExtension.md)
+- [LighthouseRunnerExtension](classes/LighthouseRunnerExtension.md)
 - [LighthouseStringifyExtension](classes/LighthouseStringifyExtension.md)
 - [PuppeteerReplayStringifyExtension](classes/PuppeteerReplayStringifyExtension.md)
 - [PuppeteerRunnerExtension](classes/PuppeteerRunnerExtension.md)

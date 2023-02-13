@@ -11,8 +11,7 @@ const initHTML = document.body.innerHTML;
 
 async function main() {
   const recording = JSON.parse(localStorage.getItem('recording'));
-  // Dummy auth flow. 
-  // Please use the best practices for authenticating users.
+  // Dummy auth flow. Please use the best practices for authenticating users.
   const token = localStorage.getItem('token');
   if (!token) {
     document.body.innerHTML = `

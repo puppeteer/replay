@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.10.0](https://github.com/puppeteer/replay/compare/v2.9.0...v2.10.0) (2023-02-13)
+
+
+### Features
+
+* Lighthouse extension ([#467](https://github.com/puppeteer/replay/issues/467)) ([c2f3ce8](https://github.com/puppeteer/replay/commit/c2f3ce851b8da76e1a65ca9ca895b822890993d1))
+
 ## [2.9.0](https://github.com/puppeteer/replay/compare/v2.8.0...v2.9.0) (2023-02-01)
 
 

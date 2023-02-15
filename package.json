@@ -69,7 +69,7 @@
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-tsdoc": "0.2.17",
-    "lighthouse": "^10.0.0",
+    "lighthouse": "^10.0.1",
     "mime": "3.0.0",
     "mocha": "10.1.0",
     "prettier": "2.7.1",
@@ -88,11 +88,6 @@
   "peerDependencies": {
     "puppeteer": ">=18.0.5",
     "lighthouse": ">=10.0.0"
-  },
-  "overrides": {
-    "lighthouse": {
-      "quibble": "0.6.15"
-    }
   },
   "peerDependenciesMeta": {
     "puppeteer": {

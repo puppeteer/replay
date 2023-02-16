@@ -545,14 +545,20 @@ async function scrollIntoViewIfNeeded(
   if (intersectionTarget) {
     await waitForInViewport(intersectionTarget, timeout);
   }
+  await intersectionTarget.dispose();
+  if (intersectionTarget !== element) {
+    await element.dispose();
+  }
 }
 
 async function getOwnerSVGElement(
   handle: ElementHandle<SVGElement>
 ): Promise<ElementHandle<SVGSVGElement>> {
+  // If there is no ownerSVGElement, the element must be the top-level SVG
+  // element itself.
   return await handle.evaluateHandle((element) => {
     /* c8 ignore start */
-    return element.ownerSVGElement!;
+    return element.ownerSVGElement ?? (element as SVGSVGElement);
     /* c8 ignore stop */
   });
 }

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.10.1](https://github.com/puppeteer/replay/compare/v2.10.0...v2.10.1) (2023-02-17)
+
+
+### Bug Fixes
+
+* find the svg owner element ([#473](https://github.com/puppeteer/replay/issues/473)) ([f84617a](https://github.com/puppeteer/replay/commit/f84617ad3ebdb3f0f4f7da5f139e904b35a0577f))
+
 ## [2.10.0](https://github.com/puppeteer/replay/compare/v2.9.0...v2.10.0) (2023-02-13)
 
 

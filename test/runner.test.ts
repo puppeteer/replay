@@ -182,7 +182,7 @@ describe('Runner', () => {
     );
   });
 
-  it('should be able to replay click steps on SVG path elements', async () => {
+  it('should be able to replay click steps on SVG elements', async () => {
     const runner = await createRunner(
       {
         title: 'test',
@@ -194,6 +194,12 @@ describe('Runner', () => {
           {
             type: StepType.Click,
             selectors: ['svg > path'],
+            offsetX: 1,
+            offsetY: 1,
+          },
+          {
+            type: StepType.Click,
+            selectors: ['svg'],
             offsetX: 1,
             offsetY: 1,
           },

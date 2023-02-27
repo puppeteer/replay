@@ -202,6 +202,9 @@ function parseSelectors(step: object): Selector[] {
   if (!isArray(step.selectors)) {
     throw new Error('Step selectors are not an array');
   }
+  if (step.selectors.length === 0) {
+    throw new Error('Step does not have required selectors');
+  }
   return step.selectors.map((s) => {
     if (!isString(s) && !isArray(s)) {
       throw new Error('Selector is not an array or string');

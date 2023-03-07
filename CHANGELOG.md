@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.10.2](https://github.com/puppeteer/replay/compare/v2.10.1...v2.10.2) (2023-03-07)
+
+
+### Bug Fixes
+
+* check selector length ([#481](https://github.com/puppeteer/replay/issues/481)) ([188d198](https://github.com/puppeteer/replay/commit/188d1981917d51c17d1936631c8e9575cd7c8b04))
+
 ## [2.10.1](https://github.com/puppeteer/replay/compare/v2.10.0...v2.10.1) (2023-02-17)
 
 

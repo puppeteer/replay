@@ -40,6 +40,7 @@ export enum StepType {
   KeyDown = 'keyDown',
   KeyUp = 'keyUp',
   Navigate = 'navigate',
+  Drag = 'move',
   Scroll = 'scroll',
   SetViewport = 'setViewport',
   WaitForElement = 'waitForElement',
@@ -110,11 +111,13 @@ export type PointerButtonType =
 
 export interface ClickAttributes {
   /**
-   * Pointer type for the event. Defaults to 'mouse'.
+   * Pointer type for the event.
+   *
+   * @defaultValue `'mouse'`
    */
   deviceType?: PointerDeviceType;
   /**
-   * Defaults to 'primary' if the device type is a mouse.
+   * @defaultValue `'primary'` if the {@link deviceType} is `'mouse'`.
    */
   button?: PointerButtonType;
   /**
@@ -141,6 +144,22 @@ export interface DoubleClickStep extends ClickAttributes, StepWithSelectors {
 
 export interface ClickStep extends ClickAttributes, StepWithSelectors {
   type: StepType.Click;
+  /**
+   * Delay (in ms) between the mouse up and mouse down of the click.
+   *
+   * @defaultValue `50`
+   */
+  duration?: number;
+}
+
+export interface DragStep extends ClickAttributes, StepWithTarget {
+  type: StepType.Drag;
+  /**
+   * An flattened array of (offsetX, offsetY)-deltas to defining the movement.
+   *
+   * @defaultValue `[]`
+   */
+  deltas: Int8Array;
 }
 
 export interface HoverStep extends StepWithSelectors {
@@ -224,6 +243,7 @@ export type UserStep =
   | EmulateNetworkConditionsStep
   | KeyDownStep
   | KeyUpStep
+  | DragStep
   | NavigateStep
   | ScrollStep
   | SetViewportStep;

@@ -24,6 +24,7 @@ import type {
   HoverStep,
   KeyDownStep,
   KeyUpStep,
+  DragStep,
   NavigateStep,
   ScrollStep,
   SetViewportStep,
@@ -302,6 +303,8 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
         return this.#appendScrollStep(out, step);
       case StepType.Navigate:
         return this.#appendNavigationStep(out, step);
+      case StepType.Drag:
+        return this.#appendDragStep(out, step);
       case StepType.WaitForElement:
         return this.#appendWaitForElementStep(out, step);
       case StepType.WaitForExpression:
@@ -320,6 +323,21 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     out.appendLine(
       `await targetPage.goto(${formatJSONAsJS(step.url, out.getIndent())});`
     );
+  }
+
+  #appendDragStep(out: LineWriter, step: DragStep): void {
+    out.appendLine(`
+{
+  const deltas = new Int8Array("${step.deltas.toString()}".split(","));
+
+  let [x, y] = [${step.offsetX}, ${step.offsetY}];
+  await targetPage.mouse.move(x, y);
+  for (let i = 0; i < deltas.length; i += 2) {
+    [x, y] = [x + deltas[i], y + deltas[i + 1]];
+    await targetPage.mouse.move(x, y);
+  }
+}
+`);
   }
 
   #appendWaitExpressionStep(

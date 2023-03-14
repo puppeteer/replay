@@ -29,6 +29,7 @@ import {
   Key,
   KeyDownStep,
   KeyUpStep,
+  DragStep,
   NavigateStep,
   ScrollStep,
   Selector,
@@ -152,6 +153,21 @@ function parseNumber(step: object, prop: string): number {
     }
   }
   throw new Error(`Step.${prop} is not a number`);
+}
+
+function parseInt8Array(step: object, prop: string): Int8Array {
+  if (hasProperty(step, prop)) {
+    const value = step[prop];
+    if (value instanceof Int8Array) {
+      return value;
+    } else if (isIntegerArray(value)) {
+      return new Int8Array(value);
+    } else if (isString(value)) {
+      // The Int8Array constructor automatically does the number conversion.
+      return new Int8Array(value.split(',') as unknown as number[]);
+    }
+  }
+  throw new Error(`Step.${prop} is not an typed byte array`);
 }
 
 function parseBoolean(step: object, prop: string): boolean {
@@ -427,6 +443,16 @@ function parseNavigateStep(step: object): NavigateStep {
   };
 }
 
+function parseDragStep(step: object): DragStep {
+  return {
+    ...parseStepWithTarget(StepType.Drag, step),
+    type: StepType.Drag,
+    offsetX: parseNumber(step, 'offsetX'),
+    offsetY: parseNumber(step, 'offsetY'),
+    deltas: parseInt8Array(step, 'deltas'),
+  };
+}
+
 function parseWaitForElementStep(step: object): WaitForElementStep {
   const operator = parseOptionalString(step, 'operator');
   if (operator && operator !== '>=' && operator !== '==' && operator !== '<=') {
@@ -533,6 +559,8 @@ export function parseStep(step: unknown, idx?: number): Step {
       return parseScrollStep(step);
     case StepType.Navigate:
       return parseNavigateStep(step);
+    case StepType.Drag:
+      return parseDragStep(step);
     case StepType.CustomStep:
       return parseCustomStep(step);
     case StepType.WaitForElement:

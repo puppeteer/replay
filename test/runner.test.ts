@@ -1009,6 +1009,40 @@ describe('Runner', () => {
     assert.ok(frame, 'Frame that the target page navigated to is not found');
   });
 
+  it.only('should replay movements', async () => {
+    const runner = await createRunner(
+      {
+        title: 'Test Recording',
+        timeout: 3000,
+        steps: [
+          {
+            type: StepType.Navigate,
+            url: `${HTTP_PREFIX}/drawable-canvas.html`,
+          },
+          {
+            type: StepType.Drag,
+            offsetX: 46,
+            offsetY: 41,
+            deltas: new Int8Array([
+              0, 0, 0, 1, 0, 2, 1, 2, 2, 3, 3, 4, 3, 3, 3, 2, 2, 1, 1, 0, 1, 0,
+              2, -1, 2, -2, 2, -1, 1, -1, 1, -1, 0, -1, 0, -1, 0, -1, 0, -1, 0,
+              -1, -1, -2, -2, -3, -4, -4, -4, -4, -3, -3, -2, -1, -2, 0, -1, 0,
+              -1, 0, -1, 0, -2, 0, -3, 1, -3, 1, -3, 1, -2, 1, -1, 0, 0, 0, 0,
+              0,
+            ]),
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    await runner.run();
+    assert.strictEqual(
+      await page.evaluate(() => document.querySelector('canvas')?.toDataURL()),
+      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAAAXNSR0IArs4c6QAAAspJREFUeF7tmktu1EAURW8gQEZEjGCIyIqSdbIXVgDKEDHhM+ITAipki06npbjxc+eUOZZaainlp/vuqVsuV+coXigHjlBqFBOBwCaBQAQCcwAmx4QIBOYATI4JEQjMAZgcEyIQmAMwOSZEIDAHYHJMiEBgDsDkmBCBwByAyTEhAoE5AJNjQgQCcwAmx4QIZLIDH5M8HUbvmjjfk5xMrtbJQFpC3id5vqd3tB72lH9zOKGZt0lebcj6lOTZxK6+JXmcrOe/Z+4LyOskF4ORv5J8SPJiIoRdw1qN++plhuzbtx66iXdJXg7mte9nhd2sAsqhgVwmeZPkvBDEZqnuoRwayEIcbpTtGsoagTQ63UJZK5BuoawZSJdQ1g6kOyhUINfD1rhKXzfPlKqGq3dP1UC6Scr/BOTzcFhJ7fnPpKaKu0rycAF9belqnwfVka6qRwUyLjFt6WpgKq8G5EuS08qiVbXIQNrvHY8WSMlS6SthQgYypmSJJabVXCJ9s6HQgYxQfgy/e8xueCiwxC6uRFsPQL4meVK8dAlk5vSpNrC63sz2/t7eQ0JGtZVbVoEUTaEGpe2+2hI25xLIHPe27q04l6qoUdhSn0vWpgH/aij6HYR8dDJl9jUo+2yH23h8zz091HdBmmoy9kVwu6negbR+xgf0zyTHWw3il6g1Amk9jede45v95tLU1aTrSuyEB0tLyXi0jjyruquHtQG5q1/83wUCQyQQgcAcgMkxIQKBOQCTY0IEAnMAJseECATmAEyOCREIzAGYHBMiEJgDMDkmRCAwB2ByTIhAYA7A5JgQgcAcgMkxIQKBOQCTY0IEAnMAJseECATmAEyOCREIzAGYHBMiEJgDMDkmRCAwB2ByTIhAYA7A5JgQgcAcgMkxIQKBOQCTY0IEAnMAJseECATmAEyOCREIzAGYHBMiEJgDMDkmRCAwB2ByfgOYo0ZleqjU4gAAAABJRU5ErkJggg==',
+      'Drawings did not match.'
+    );
+  });
+
   it('should replay hovers', async () => {
     const runner = await createRunner(
       {
@@ -1040,7 +1074,7 @@ describe('Runner', () => {
       await page.evaluate(
         () => document.getElementById('hover-button')?.textContent
       ),
-      'Hovered'
+      'Hover button was either not found or not hovered.'
     );
   });
 

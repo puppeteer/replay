@@ -170,6 +170,9 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     this.#appendWaitForSelector(out, step);
     out.appendLine('await element.click({');
     out.appendLine(`  clickCount: 2,`);
+    if (step.duration) {
+      out.appendLine(`  delay: ${step.duration},`);
+    }
     if (step.button) {
       out.appendLine(`  button: '${mouseButtonMap.get(step.button)}',`);
     }

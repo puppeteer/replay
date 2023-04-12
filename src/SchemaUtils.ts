@@ -300,6 +300,7 @@ function parseClickAttributes(step: object): ClickAttributes {
   const attributes: ClickAttributes = {
     offsetX: parseNumber(step, 'offsetX'),
     offsetY: parseNumber(step, 'offsetY'),
+    duration: parseOptionalNumber(step, 'duration'),
   };
   const deviceType = parseOptionalString(step, 'deviceType');
   if (deviceType) {
@@ -331,7 +332,6 @@ function parseClickStep(step: object): ClickStep {
     ...parseStepWithSelectors(StepType.Click, step),
     ...parseClickAttributes(step),
     type: StepType.Click,
-    duration: parseOptionalNumber(step, 'duration'),
   };
 }
 

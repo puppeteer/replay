@@ -127,6 +127,12 @@ export interface ClickAttributes {
    * to the center of the element
    */
   offsetY: number;
+  /**
+   * Delay (in ms) between the mouse up and mouse down of the click.
+   *
+   * @defaultValue `50`
+   */
+  duration?: number;
 }
 
 export interface DoubleClickStep extends ClickAttributes, StepWithSelectors {
@@ -135,11 +141,6 @@ export interface DoubleClickStep extends ClickAttributes, StepWithSelectors {
 
 export interface ClickStep extends ClickAttributes, StepWithSelectors {
   type: StepType.Click;
-  /**
-   * Delay (in ms) between the mouse up and mouse down of the click. Defaults to
-   * 50ms.
-   */
-  duration?: number;
 }
 
 export interface HoverStep extends StepWithSelectors {

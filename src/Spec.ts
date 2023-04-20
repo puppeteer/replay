@@ -124,14 +124,15 @@ export const recording = {
 };
 
 export const expectedLog = `window dimensions 900x700
-click targetId=button button=0 value=
-click targetId=button button=0 value=
-dblclick targetId=button button=0 value=
-change targetId=input button=undefined value=test
-change targetId=input-prefilled button=undefined value=testSuffix
-contextmenu targetId=input button=2 value=test
-mouseenter targetId=hover button=0 value=
-change targetId=select button=undefined value=optionB
+click targetId=button button=0 detail=1 value=
+click targetId=button button=0 detail=1 value=
+click targetId=button button=0 detail=2 value=
+dblclick targetId=button button=0 detail=2 value=
+change targetId=input button=undefined detail=undefined value=test
+change targetId=input-prefilled button=undefined detail=undefined value=testSuffix
+contextmenu targetId=input button=2 detail=0 value=test
+mouseenter targetId=hover button=0 detail=0 value=
+change targetId=select button=undefined detail=undefined value=optionB
 `.trim();
 
 export const files = new Map([
@@ -179,6 +180,8 @@ export const files = new Map([
           event.target.id +
           ' button=' +
           event.button +
+          ' detail=' +
+          event.detail +
           ' value=' +
           event.target.value
       );

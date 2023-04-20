@@ -17,6 +17,7 @@
 - [assertedEvents](DoubleClickStep.md#assertedevents)
 - [button](DoubleClickStep.md#button)
 - [deviceType](DoubleClickStep.md#devicetype)
+- [duration](DoubleClickStep.md#duration)
 - [frame](DoubleClickStep.md#frame)
 - [offsetX](DoubleClickStep.md#offsetx)
 - [offsetY](DoubleClickStep.md#offsety)
@@ -70,6 +71,26 @@ Pointer type for the event. Defaults to 'mouse'.
 #### Defined in
 
 [Schema.ts:115](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L115)
+
+---
+
+### duration
+
+• `Optional` **duration**: `number`
+
+Delay (in ms) between the mouse up and mouse down of the click.
+
+**`Default Value`**
+
+`50`
+
+#### Inherited from
+
+[ClickAttributes](Schema.ClickAttributes.md).[duration](Schema.ClickAttributes.md#duration)
+
+#### Defined in
+
+[Schema.ts:135](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L135)
 
 ---
 
@@ -194,4 +215,4 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:133](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L133)
+[Schema.ts:139](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L139)

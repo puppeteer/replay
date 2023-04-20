@@ -61,7 +61,7 @@
 
 #### Defined in
 
-[PuppeteerRunnerExtension.ts:372](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L372)
+[PuppeteerRunnerExtension.ts:380](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L380)
 
 ---
 

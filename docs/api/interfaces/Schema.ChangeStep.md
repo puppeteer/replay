@@ -125,7 +125,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:150](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L150)
+[Schema.ts:151](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L151)
 
 ---
 
@@ -135,4 +135,4 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:151](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L151)
+[Schema.ts:152](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L152)

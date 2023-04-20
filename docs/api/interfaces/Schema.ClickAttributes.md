@@ -22,6 +22,7 @@
 
 - [button](Schema.ClickAttributes.md#button)
 - [deviceType](Schema.ClickAttributes.md#devicetype)
+- [duration](Schema.ClickAttributes.md#duration)
 - [offsetX](Schema.ClickAttributes.md#offsetx)
 - [offsetY](Schema.ClickAttributes.md#offsety)
 
@@ -48,6 +49,22 @@ Pointer type for the event. Defaults to 'mouse'.
 #### Defined in
 
 [Schema.ts:115](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L115)
+
+---
+
+### duration
+
+• `Optional` **duration**: `number`
+
+Delay (in ms) between the mouse up and mouse down of the click.
+
+**`Default Value`**
+
+`50`
+
+#### Defined in
+
+[Schema.ts:135](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L135)
 
 ---
 

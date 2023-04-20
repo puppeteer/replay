@@ -69,7 +69,7 @@ Whether to also check the element(s) for the given attributes.
 
 #### Defined in
 
-[Schema.ts:272](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L272)
+[Schema.ts:273](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L273)
 
 ---
 
@@ -83,7 +83,7 @@ Whether to also check the element(s) for the given attributes.
 
 #### Defined in
 
-[Schema.ts:255](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L255)
+[Schema.ts:256](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L256)
 
 ---
 
@@ -113,7 +113,7 @@ Defaults to main frame
 
 #### Defined in
 
-[Schema.ts:251](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L251)
+[Schema.ts:252](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L252)
 
 ---
 
@@ -125,7 +125,7 @@ Whether to also check the element(s) for the given properties.
 
 #### Defined in
 
-[Schema.ts:266](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L266)
+[Schema.ts:267](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L267)
 
 ---
 
@@ -200,7 +200,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:247](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L247)
+[Schema.ts:248](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L248)
 
 ---
 
@@ -217,4 +217,4 @@ thought of as an inversion of this step.
 
 #### Defined in
 
-[Schema.ts:262](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L262)
+[Schema.ts:263](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L263)

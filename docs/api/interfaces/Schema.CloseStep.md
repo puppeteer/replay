@@ -75,4 +75,4 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:172](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L172)
+[Schema.ts:173](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L173)

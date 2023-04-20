@@ -80,12 +80,19 @@ Pointer type for the event. Defaults to 'mouse'.
 
 • `Optional` **duration**: `number`
 
-Delay (in ms) between the mouse up and mouse down of the click. Defaults to
-50ms.
+Delay (in ms) between the mouse up and mouse down of the click.
+
+**`Default Value`**
+
+`50`
+
+#### Inherited from
+
+[ClickAttributes](Schema.ClickAttributes.md).[duration](Schema.ClickAttributes.md#duration)
 
 #### Defined in
 
-[Schema.ts:142](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L142)
+[Schema.ts:135](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L135)
 
 ---
 
@@ -210,4 +217,4 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:137](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L137)
+[Schema.ts:143](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L143)

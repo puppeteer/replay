@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.11.0](https://github.com/puppeteer/replay/compare/v2.10.2...v2.11.0) (2023-04-20)
+
+
+### Features
+
+* move `duration` to click attributes ([#507](https://github.com/puppeteer/replay/issues/507)) ([a87dbdd](https://github.com/puppeteer/replay/commit/a87dbdd1502e6c4196341fd38da86c38d25177b5))
+
 ## [2.10.2](https://github.com/puppeteer/replay/compare/v2.10.1...v2.10.2) (2023-03-07)
 
 

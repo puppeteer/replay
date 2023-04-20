@@ -112,7 +112,7 @@
 
 #### Defined in
 
-[Schema.ts:295](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L295)
+[Schema.ts:296](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L296)
 
 ---
 
@@ -122,7 +122,7 @@
 
 #### Defined in
 
-[Schema.ts:212](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L212)
+[Schema.ts:213](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L213)
 
 ---
 
@@ -142,7 +142,7 @@
 
 #### Defined in
 
-[Schema.ts:317](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L317)
+[Schema.ts:318](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L318)
 
 ---
 
@@ -182,7 +182,7 @@
 
 #### Defined in
 
-[Schema.ts:197](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L197)
+[Schema.ts:198](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L198)
 
 ---
 
@@ -192,7 +192,7 @@
 
 #### Defined in
 
-[Schema.ts:199](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L199)
+[Schema.ts:200](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L200)
 
 ---
 
@@ -224,7 +224,7 @@ The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]]
 
 #### Defined in
 
-[Schema.ts:297](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L297)
+[Schema.ts:298](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L298)
 
 ---
 
@@ -244,7 +244,7 @@ The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]]
 
 #### Defined in
 
-[Schema.ts:216](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L216)
+[Schema.ts:217](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L217)
 
 ## Variables
 

@@ -76,7 +76,7 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:202](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L202)
+[Schema.ts:203](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L203)
 
 ---
 
@@ -86,4 +86,4 @@ Defaults to main
 
 #### Defined in
 
-[Schema.ts:203](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L203)
+[Schema.ts:204](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L204)

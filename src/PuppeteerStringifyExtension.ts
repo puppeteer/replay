@@ -170,28 +170,24 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
 
   #appendDoubleClickStep(out: LineWriter, step: DoubleClickStep): void {
     this.#appendWaitForSelector(out, step);
-    out.appendLine('await element.click({');
+    out.appendLine('await Promise.all([');
+    out.appendLine('  element.click({');
     if (step.button) {
-      out.appendLine(`  button: '${mouseButtonMap.get(step.button)}',`);
+      out.appendLine(`    button: '${mouseButtonMap.get(step.button)}',`);
     }
-    out.appendLine('  offset: {');
-    out.appendLine(`    x: ${step.offsetX},`);
-    out.appendLine(`    y: ${step.offsetY},`);
-    out.appendLine('  },');
-    out.appendLine('});');
-    out.appendLine('await element.click({');
-    out.appendLine(`  clickCount: 2,`);
+    out.appendLine(`    offset: {x: ${step.offsetX}, y: ${step.offsetY}},`);
+    out.appendLine('  }),');
+    out.appendLine('  element.click({');
+    out.appendLine(`    clickCount: 2,`);
     if (step.duration) {
-      out.appendLine(`  delay: ${step.duration},`);
+      out.appendLine(`    delay: ${step.duration},`);
     }
     if (step.button) {
-      out.appendLine(`  button: '${mouseButtonMap.get(step.button)}',`);
+      out.appendLine(`    button: '${mouseButtonMap.get(step.button)}',`);
     }
-    out.appendLine('  offset: {');
-    out.appendLine(`    x: ${step.offsetX},`);
-    out.appendLine(`    y: ${step.offsetY},`);
-    out.appendLine('  },');
-    out.appendLine('});');
+    out.appendLine(`    offset: {x: ${step.offsetX}, y: ${step.offsetY}},`);
+    out.appendLine('  })');
+    out.appendLine(']);');
   }
 
   #appendHoverStep(out: LineWriter, step: HoverStep): void {

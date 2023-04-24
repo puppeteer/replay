@@ -128,22 +128,24 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
             throw new Error('Could not find element: ' + step.selectors[0]);
           }
           startWaitingForEvents();
-          await element.click({
-            button: step.button && mouseButtonMap.get(step.button),
-            offset: {
-              x: step.offsetX,
-              y: step.offsetY,
-            },
-          });
-          await element.click({
-            clickCount: 2,
-            button: step.button && mouseButtonMap.get(step.button),
-            delay: step.duration,
-            offset: {
-              x: step.offsetX,
-              y: step.offsetY,
-            },
-          });
+          await Promise.all([
+            element.click({
+              button: step.button && mouseButtonMap.get(step.button),
+              offset: {
+                x: step.offsetX,
+                y: step.offsetY,
+              },
+            }),
+            element.click({
+              clickCount: 2,
+              button: step.button && mouseButtonMap.get(step.button),
+              delay: step.duration,
+              offset: {
+                x: step.offsetX,
+                y: step.offsetY,
+              },
+            }),
+          ]);
           await element.dispose();
         }
         break;

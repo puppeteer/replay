@@ -2,7 +2,7 @@ exports['stringify should print the correct script for a navigate step 1'] = `
 const puppeteer = require('puppeteer'); // v13.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({headless: 'new'});
   const page = await browser.newPage();
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
@@ -262,7 +262,7 @@ exports[
 const puppeteer = require('puppeteer'); // v13.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({headless: 'new'});
   const page = await browser.newPage();
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
@@ -527,7 +527,7 @@ exports[
 const puppeteer = require('puppeteer'); // v13.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({headless: 'new'});
   const page = await browser.newPage();
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
@@ -798,7 +798,7 @@ exports['stringify should use step and flow timeouts 1'] = `
 const puppeteer = require('puppeteer'); // v13.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({headless: 'new'});
   const page = await browser.newPage();
   const timeout = 10000;
   page.setDefaultTimeout(timeout);
@@ -1072,7 +1072,7 @@ exports[
 const puppeteer = require('puppeteer'); // v13.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({headless: 'new'});
   const page = await browser.newPage();
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
@@ -1344,7 +1344,7 @@ exports['stringify should print the correct script for a keydown step 1'] = `
 const puppeteer = require('puppeteer'); // v13.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({headless: 'new'});
   const page = await browser.newPage();
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
@@ -1602,7 +1602,7 @@ exports['stringify should print the correct script for a keyup step 1'] = `
 const puppeteer = require('puppeteer'); // v13.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({headless: 'new'});
   const page = await browser.newPage();
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
@@ -1860,7 +1860,7 @@ exports['stringify should print the correct script for scroll events 1'] = `
 const puppeteer = require('puppeteer'); // v13.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({headless: 'new'});
   const page = await browser.newPage();
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
@@ -2130,7 +2130,7 @@ exports[
 const puppeteer = require('puppeteer'); // v13.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({headless: 'new'});
   const page = await browser.newPage();
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
@@ -2395,7 +2395,7 @@ exports[
 const puppeteer = require('puppeteer'); // v13.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({headless: 'new'});
   const page = await browser.newPage();
   const timeout = 5000;
   page.setDefaultTimeout(timeout);

@@ -53,7 +53,7 @@ describe('Runner', () => {
     httpsServer = servers.httpsServer;
     const headless = process.env['PUPPETEER_HEADFUL'] !== 'true';
     browser = await puppeteer.launch({
-      headless,
+      headless: headless ? 'new' : false,
       args: ['--site-per-process', '--host-rules=MAP oopifdomain 127.0.0.1'],
     });
   });
@@ -63,13 +63,10 @@ describe('Runner', () => {
   });
 
   afterEach(async () => {
-    await page.close();
+    void page.close();
   });
 
   after(async () => {
-    for (const page of await browser.pages()) {
-      await page.close();
-    }
     await browser.close();
     await httpServer.stop();
     await httpsServer.stop();

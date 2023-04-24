@@ -129,7 +129,7 @@ export async function createRunner(
 async function createPuppeteerRunnerOwningBrowserExtension() {
   const { default: puppeteer } = await import('puppeteer');
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: 'new',
   });
   const page = await browser.newPage();
   return new PuppeteerRunnerOwningBrowserExtension(browser, page);

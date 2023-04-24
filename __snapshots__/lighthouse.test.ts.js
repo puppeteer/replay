@@ -5,7 +5,7 @@ const fs = require('fs');
 const puppeteer = require('puppeteer'); // v13.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({headless: 'new'});
   const page = await browser.newPage();
   const timeout = 5000;
   page.setDefaultTimeout(timeout);

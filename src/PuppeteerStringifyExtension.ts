@@ -51,7 +51,9 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     );
     out.appendLine('');
     out.appendLine('(async () => {').startBlock();
-    out.appendLine('const browser = await puppeteer.launch();');
+    out.appendLine(
+      "const browser = await puppeteer.launch({headless: 'new'});"
+    );
     out.appendLine('const page = await browser.newPage();');
     out.appendLine(`const timeout = ${flow.timeout || defaultTimeout};`);
     out.appendLine('page.setDefaultTimeout(timeout);');

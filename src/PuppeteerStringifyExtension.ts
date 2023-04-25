@@ -47,7 +47,7 @@ import { formatJSONAsJS } from './JSONUtils.js';
 export class PuppeteerStringifyExtension extends StringifyExtension {
   override async beforeAllSteps(out: LineWriter, flow: UserFlow) {
     out.appendLine(
-      "const puppeteer = require('puppeteer'); // v13.0.0 or later"
+      "const puppeteer = require('puppeteer'); // v19.11.1 or later"
     );
     out.appendLine('');
     out.appendLine('(async () => {').startBlock();
@@ -171,16 +171,7 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
   #appendDoubleClickStep(out: LineWriter, step: DoubleClickStep): void {
     this.#appendWaitForSelector(out, step);
     out.appendLine('await element.click({');
-    if (step.button) {
-      out.appendLine(`  button: '${mouseButtonMap.get(step.button)}',`);
-    }
-    out.appendLine('  offset: {');
-    out.appendLine(`    x: ${step.offsetX},`);
-    out.appendLine(`    y: ${step.offsetY},`);
-    out.appendLine('  },');
-    out.appendLine('});');
-    out.appendLine('await element.click({');
-    out.appendLine(`  clickCount: 2,`);
+    out.appendLine(`  count: 2,`);
     if (step.duration) {
       out.appendLine(`  delay: ${step.duration},`);
     }

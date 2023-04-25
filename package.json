@@ -86,7 +86,7 @@
     "typescript": "4.8.4"
   },
   "peerDependencies": {
-    "puppeteer": ">=19.11.0",
+    "puppeteer": ">=19.11.1",
     "lighthouse": ">=10.0.0"
   },
   "peerDependenciesMeta": {

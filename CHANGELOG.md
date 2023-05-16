@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.11.1](https://github.com/puppeteer/replay/compare/v2.11.0...v2.11.1) (2023-05-16)
+
+
+### Bug Fixes
+
+* use `count` for double click ([#524](https://github.com/puppeteer/replay/issues/524)) ([f64a501](https://github.com/puppeteer/replay/commit/f64a501b1f9a2d6236a15c6426049449396490dd))
+
 ## [2.11.0](https://github.com/puppeteer/replay/compare/v2.10.2...v2.11.0) (2023-04-20)
 
 

@@ -1,5 +1,7 @@
 name: Pre-release
 
+permissions: read-all
+
 on:
   push:
     branches:
@@ -7,13 +9,13 @@ on:
 
 jobs:
   pre-release:
-    if: "startsWith(github.event.head_commit.message, 'chore(main): release')"
+    if: "${{ startsWith(github.event.head_commit.message, 'chore(main): release') }}"
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
         with:
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Install dependencies

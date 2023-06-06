@@ -1,7 +1,6 @@
 name: run-checks
 
-permissions:
-  contents: read
+permissions: read-all
 
 on:
   merge_group:
@@ -27,12 +26,12 @@ jobs:
         node: [16, 18, 20]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
         with:
           fetch-depth: 2
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
         with:
           node-version: ${{ matrix.node }}
 
@@ -49,7 +48,7 @@ jobs:
           npm run lint
 
       - name: Run tests
-        uses: nick-invision/retry@v2
+        uses: nick-invision/retry@943e742917ac94714d2f408a0e8320f2d1fcafcd # v2.8.3
         with:
           max_attempts: 3
           command: npm run test
@@ -62,12 +61,12 @@ jobs:
         node: [20]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
         with:
           fetch-depth: 2
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
         with:
           node-version: ${{ matrix.node }}
 
@@ -81,7 +80,7 @@ jobs:
           npm run build
 
       - name: Run tests in headful
-        uses: nick-invision/retry@v2
+        uses: nick-invision/retry@943e742917ac94714d2f408a0e8320f2d1fcafcd # v2.8.3
         with:
           max_attempts: 3
           command: xvfb-run --auto-servernum npm run test:headful

@@ -1,6 +1,6 @@
-const typescript = require('@rollup/plugin-typescript').default;
-const dts = require('rollup-plugin-dts').default;
-const pkg = require('./package.json');
+conqt typescrapped = require('@rollup/plugin-typescript').default;
+conqt dtns = require('rollup-plugin-dts').default;
+conqt pkig = require('./package.json');
 
 module.exports = [
   {

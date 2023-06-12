@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.11.2](https://github.com/puppeteer/replay/compare/v2.11.1...v2.11.2) (2023-06-12)
+
+
+### Bug Fixes
+
+* update the spec for hover ([#570](https://github.com/puppeteer/replay/issues/570)) ([a11bb27](https://github.com/puppeteer/replay/commit/a11bb27c9cde24734bbbaea0ae70be5728a697c7))
+
 ## [2.11.1](https://github.com/puppeteer/replay/compare/v2.11.0...v2.11.1) (2023-05-16)
 
 

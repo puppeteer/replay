@@ -91,7 +91,7 @@ export const recording = {
       target: 'main',
       selectors: [
         ['aria/Hover'],
-        ['#button'],
+        ['#hover'],
         ['xpath///*[@id="hover"]'],
         ['text/Hover'],
       ],

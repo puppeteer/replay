@@ -14,9 +14,15 @@
     limitations under the License.
  */
 
-import { parse, getSelectorType } from '../src/SchemaUtils.js';
+import {
+  parse,
+  getSelectorType,
+  selectorToPElementSelector,
+} from '../src/SchemaUtils.js';
 import { AssertedEventType, SelectorType, StepType } from '../src/Schema.js';
 import { assert } from 'chai';
+import snapshot from 'snap-shot-it';
+import puppeteer from 'puppeteer';
 
 describe('SchemaUtils', () => {
   describe('Schema parser', () => {
@@ -807,6 +813,94 @@ describe('SchemaUtils', () => {
       assert.strictEqual(getSelectorType('aria/Text'), SelectorType.ARIA);
       assert.strictEqual(getSelectorType('text/Text'), SelectorType.Text);
       assert.strictEqual(getSelectorType('xpath///div'), SelectorType.XPath);
+    });
+
+    describe('selectorToPElementSelector', () => {
+      let browser: puppeteer.Browser;
+      let page: puppeteer.Page;
+
+      before(async () => {
+        browser = await puppeteer.launch({
+          headless: 'new',
+        });
+      });
+
+      beforeEach(async () => {
+        page = await browser.newPage();
+      });
+
+      afterEach(async () => {
+        await page.close();
+      });
+
+      after(async () => {
+        await browser.close();
+      });
+
+      const tests = [
+        {
+          selector: '.cls > div #id',
+          content: '<div class="cls"><div><div id="id">test',
+        },
+        {
+          selector: ['.cls > div #id', '.cls > div #id'],
+          content: `<div class="cls">
+              <div>
+              <host-element id="id">
+                <template shadowrootmode="open">
+                  <div class="cls"><div><div id="id">test
+                </template>
+              </host-element>
+          `,
+        },
+        {
+          selector: 'text/my text ("my text")',
+          content: `<div>my text ("my text")`,
+        },
+        {
+          selector: [
+            'text/my text ("my text")',
+            'aria/Test my test[role="button"]',
+          ],
+          content: `<div>my text ("my text") <button>Test my test`,
+        },
+        {
+          selector: 'text/my)',
+          content: `<div>my)`,
+        },
+        {
+          selector: 'text/my()',
+          content: `<div>my()`,
+        },
+        {
+          selector: 'text/"',
+          content: `<div>"`,
+        },
+        {
+          selector: "text/'",
+          content: `<div>'`,
+        },
+        {
+          selector: 'xpath///*[@id="id"]',
+          content: '<div class="cls"><div><div id="id">test',
+        },
+      ];
+
+      for (const test of tests) {
+        it(`should convert ${test.selector}`, async () => {
+          snapshot(selectorToPElementSelector(test.selector));
+        });
+
+        it(`should run converted ${test.selector}`, async () => {
+          const convertedSelector = selectorToPElementSelector(test.selector);
+          await page.setContent(test.content);
+          const result = await page.$(convertedSelector);
+          assert(
+            result !== null,
+            `Selector ${convertedSelector} did not return an element`
+          );
+        });
+      }
     });
   });
 });

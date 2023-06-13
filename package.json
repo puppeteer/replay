@@ -54,6 +54,7 @@
   "devDependencies": {
     "@rollup/plugin-typescript": "9.0.1",
     "@types/chai": "4.3.3",
+    "@types/cssesc": "^3.0.0",
     "@types/mime": "3.0.1",
     "@types/mocha": "10.0.0",
     "@types/node": "18.11.0",
@@ -64,6 +65,7 @@
     "c8": "7.12.0",
     "chai": "4.3.6",
     "cross-env": "7.0.3",
+    "cssesc": "3.0.0",
     "eslint": "8.25.0",
     "eslint-config-google": "0.14.0",
     "eslint-config-prettier": "8.5.0",
@@ -86,8 +88,8 @@
     "typescript": "4.8.4"
   },
   "peerDependencies": {
-    "puppeteer": ">=19.11.1",
-    "lighthouse": ">=10.0.0"
+    "lighthouse": ">=10.0.0",
+    "puppeteer": ">=20.7.3"
   },
   "peerDependenciesMeta": {
     "puppeteer": {

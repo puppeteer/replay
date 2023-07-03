@@ -3,18 +3,16 @@ exports[
 ] = `
 {
   const targetPage = page;
-  await scrollIntoViewIfNeeded([
-    'aria/Test'
-  ], targetPage, timeout);
-  const element = await waitForSelectors([
-    'aria/Test'
-  ], targetPage, { timeout, visible: true });
-  await element.click({
-    offset: {
-      x: 1,
-      y: 1,
-    },
-  });
+  await puppeteer.Locator.race([
+    targetPage.locator('::-p-aria(Test)')
+  ])
+    .setTimeout(timeout)
+    .click({
+      offset: {
+        x: 1,
+        y: 1,
+      },
+    });
 }
 
 `;
@@ -25,19 +23,20 @@ exports[
 {
   const targetPage = page;
   const promises = [];
-  promises.push(targetPage.waitForNavigation());
-  await scrollIntoViewIfNeeded([
-    'aria/Test'
-  ], targetPage, timeout);
-  const element = await waitForSelectors([
-    'aria/Test'
-  ], targetPage, { timeout, visible: true });
-  await element.click({
-    offset: {
-      x: 1,
-      y: 1,
-    },
-  });
+  const startWaitingForEvents = () => {
+    promises.push(targetPage.waitForNavigation());
+  }
+  await puppeteer.Locator.race([
+    targetPage.locator('::-p-aria(Test)')
+  ])
+    .setTimeout(timeout)
+    .on('action', () => startWaitingForEvents())
+    .click({
+      offset: {
+        x: 1,
+        y: 1,
+      },
+    });
   await Promise.all(promises);
 }
 
@@ -48,24 +47,16 @@ exports[
 ] = `
 {
   const targetPage = page;
-  await scrollIntoViewIfNeeded([
-    [
-      'aria/Test',
-      'aria/Test2'
-    ]
-  ], targetPage, timeout);
-  const element = await waitForSelectors([
-    [
-      'aria/Test',
-      'aria/Test2'
-    ]
-  ], targetPage, { timeout, visible: true });
-  await element.click({
-    offset: {
-      x: 1,
-      y: 1,
-    },
-  });
+  await puppeteer.Locator.race([
+    targetPage.locator('::-p-aria(Test) >>>> ::-p-aria(Test2)')
+  ])
+    .setTimeout(timeout)
+    .click({
+      offset: {
+        x: 1,
+        y: 1,
+      },
+    });
 }
 
 `;
@@ -75,29 +66,11 @@ exports[
 ] = `
 {
   const targetPage = page;
-  await scrollIntoViewIfNeeded([
-    'aria/Test'
-  ], targetPage, timeout);
-  const element = await waitForSelectors([
-    'aria/Test'
-  ], targetPage, { timeout, visible: true });
-  const inputType = await element.evaluate(el => el.type);
-  if (inputType === 'select-one') {
-    await changeSelectElement(element, 'Hello World')
-  } else if ([
-    'textarea',
-    'text',
-    'url',
-    'tel',
-    'search',
-    'password',
-    'number',
-    'email'
-  ].includes(inputType)) {
-    await typeIntoElement(element, 'Hello World');
-  } else {
-    await changeElementValue(element, 'Hello World');
-  }
+  await puppeteer.Locator.race([
+    targetPage.locator('::-p-aria(Test)')
+  ])
+    .setTimeout(timeout)
+    .fill('Hello World');
 }
 
 `;
@@ -107,29 +80,11 @@ exports[
 ] = `
 {
   const targetPage = page;
-  await scrollIntoViewIfNeeded([
-    'aria/Test'
-  ], targetPage, timeout);
-  const element = await waitForSelectors([
-    'aria/Test'
-  ], targetPage, { timeout, visible: true });
-  const inputType = await element.evaluate(el => el.type);
-  if (inputType === 'select-one') {
-    await changeSelectElement(element, '#333333')
-  } else if ([
-    'textarea',
-    'text',
-    'url',
-    'tel',
-    'search',
-    'password',
-    'number',
-    'email'
-  ].includes(inputType)) {
-    await typeIntoElement(element, '#333333');
-  } else {
-    await changeElementValue(element, '#333333');
-  }
+  await puppeteer.Locator.race([
+    targetPage.locator('::-p-aria(Test)')
+  ])
+    .setTimeout(timeout)
+    .fill('#333333');
 }
 
 `;

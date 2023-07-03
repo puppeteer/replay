@@ -1,6 +1,6 @@
 exports['LighthouseStringifyExtension handles ending timespan 1'] = `
 const fs = require('fs');
-const puppeteer = require('puppeteer'); // v19.11.1 or later
+const puppeteer = require('puppeteer'); // v20.7.4 or later
 
 (async () => {
   const browser = await puppeteer.launch({headless: 'new'});
@@ -27,7 +27,10 @@ const puppeteer = require('puppeteer'); // v19.11.1 or later
   {
     const targetPage = page;
     const promises = [];
-    promises.push(targetPage.waitForNavigation());
+    const startWaitingForEvents = () => {
+      promises.push(targetPage.waitForNavigation());
+    }
+    startWaitingForEvents();
     await targetPage.goto('https://example.com');
     await Promise.all(promises);
   }
@@ -35,22 +38,16 @@ const puppeteer = require('puppeteer'); // v19.11.1 or later
   await lhFlow.startTimespan();
   {
     const targetPage = page;
-    await scrollIntoViewIfNeeded([
-      [
-        '#button'
-      ]
-    ], targetPage, timeout);
-    const element = await waitForSelectors([
-      [
-        '#button'
-      ]
-    ], targetPage, { timeout, visible: true });
-    await element.click({
-      offset: {
-        x: 61,
-        y: 13.5625,
-      },
-    });
+    await puppeteer.Locator.race([
+      targetPage.locator('#button')
+    ])
+      .setTimeout(timeout)
+      .click({
+        offset: {
+          x: 61,
+          y: 13.5625,
+        },
+      });
   }
   await lhFlow.endTimespan();
   const lhFlowReport = await lhFlow.generateReport();
@@ -61,7 +58,7 @@ const puppeteer = require('puppeteer'); // v19.11.1 or later
 
 exports['LighthouseStringifyExtension handles ending navigation 1'] = `
 const fs = require('fs');
-const puppeteer = require('puppeteer'); // v19.11.1 or later
+const puppeteer = require('puppeteer'); // v20.7.4 or later
 
 (async () => {
   const browser = await puppeteer.launch({headless: 'new'});
@@ -88,7 +85,10 @@ const puppeteer = require('puppeteer'); // v19.11.1 or later
   {
     const targetPage = page;
     const promises = [];
-    promises.push(targetPage.waitForNavigation());
+    const startWaitingForEvents = () => {
+      promises.push(targetPage.waitForNavigation());
+    }
+    startWaitingForEvents();
     await targetPage.goto('https://example.com');
     await Promise.all(promises);
   }
@@ -96,29 +96,26 @@ const puppeteer = require('puppeteer'); // v19.11.1 or later
   await lhFlow.startTimespan();
   {
     const targetPage = page;
-    await scrollIntoViewIfNeeded([
-      [
-        '#button'
-      ]
-    ], targetPage, timeout);
-    const element = await waitForSelectors([
-      [
-        '#button'
-      ]
-    ], targetPage, { timeout, visible: true });
-    await element.click({
-      offset: {
-        x: 61,
-        y: 13.5625,
-      },
-    });
+    await puppeteer.Locator.race([
+      targetPage.locator('#button')
+    ])
+      .setTimeout(timeout)
+      .click({
+        offset: {
+          x: 61,
+          y: 13.5625,
+        },
+      });
   }
   await lhFlow.endTimespan();
   await lhFlow.startNavigation();
   {
     const targetPage = page;
     const promises = [];
-    promises.push(targetPage.waitForNavigation());
+    const startWaitingForEvents = () => {
+      promises.push(targetPage.waitForNavigation());
+    }
+    startWaitingForEvents();
     await targetPage.goto('https://example.com/page/');
     await Promise.all(promises);
   }
@@ -133,7 +130,7 @@ exports[
   'LighthouseStringifyExtension handles multiple sequential navigations 1'
 ] = `
 const fs = require('fs');
-const puppeteer = require('puppeteer'); // v19.11.1 or later
+const puppeteer = require('puppeteer'); // v20.7.4 or later
 
 (async () => {
   const browser = await puppeteer.launch({headless: 'new'});
@@ -160,7 +157,10 @@ const puppeteer = require('puppeteer'); // v19.11.1 or later
   {
     const targetPage = page;
     const promises = [];
-    promises.push(targetPage.waitForNavigation());
+    const startWaitingForEvents = () => {
+      promises.push(targetPage.waitForNavigation());
+    }
+    startWaitingForEvents();
     await targetPage.goto('https://example.com');
     await Promise.all(promises);
   }
@@ -169,23 +169,20 @@ const puppeteer = require('puppeteer'); // v19.11.1 or later
   {
     const targetPage = page;
     const promises = [];
-    promises.push(targetPage.waitForNavigation());
-    await scrollIntoViewIfNeeded([
-      [
-        '#link'
-      ]
-    ], targetPage, timeout);
-    const element = await waitForSelectors([
-      [
-        '#link'
-      ]
-    ], targetPage, { timeout, visible: true });
-    await element.click({
-      offset: {
-        x: 61,
-        y: 13.5625,
-      },
-    });
+    const startWaitingForEvents = () => {
+      promises.push(targetPage.waitForNavigation());
+    }
+    await puppeteer.Locator.race([
+      targetPage.locator('#link')
+    ])
+      .setTimeout(timeout)
+      .on('action', () => startWaitingForEvents())
+      .click({
+        offset: {
+          x: 61,
+          y: 13.5625,
+        },
+      });
     await Promise.all(promises);
   }
   await lhFlow.endNavigation();

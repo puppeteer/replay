@@ -631,22 +631,29 @@ export function selectorToPElementSelector(selector: string[] | string) {
   if (!Array.isArray(selector)) {
     selector = [selector];
   }
+
+  function escape(input: string) {
+    return cssesc(input, {
+      isIdentifier: true,
+    });
+  }
+
   const result = selector.map((s) => {
     switch (getSelectorType(s)) {
       case SelectorType.ARIA:
-        return `::-p-aria(${cssesc(
+        return `::-p-aria(${escape(
           s.substring(SelectorType.ARIA.length + 1)
         )})`;
       case SelectorType.CSS:
         return s;
       case SelectorType.XPath:
-        return `::-p-xpath(${cssesc(
+        return `::-p-xpath(${escape(
           s.substring(SelectorType.XPath.length + 1)
         )})`;
       case SelectorType.Pierce:
         return `::-p-pierce(${s.substring(SelectorType.Pierce.length + 1)})`;
       case SelectorType.Text:
-        return `::-p-text(${cssesc(
+        return `::-p-text(${escape(
           s.substring(SelectorType.Text.length + 1)
         )})`;
     }

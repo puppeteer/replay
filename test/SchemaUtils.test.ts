@@ -815,7 +815,7 @@ describe('SchemaUtils', () => {
       assert.strictEqual(getSelectorType('xpath///div'), SelectorType.XPath);
     });
 
-    describe('selectorToPElementSelector', () => {
+    describe.only('selectorToPElementSelector', () => {
       let browser: puppeteer.Browser;
       let page: puppeteer.Page;
 

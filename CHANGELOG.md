@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.12.1](https://github.com/puppeteer/replay/compare/v2.12.0...v2.12.1) (2023-07-04)
+
+
+### Bug Fixes
+
+* bundle cssesc to be used in the browser ([#590](https://github.com/puppeteer/replay/issues/590)) ([1d79942](https://github.com/puppeteer/replay/commit/1d7994219f3bd967b5e71c1dceff2beb120bc10b))
+
 ## [2.12.0](https://github.com/puppeteer/replay/compare/v2.11.2...v2.12.0) (2023-07-04)
 
 

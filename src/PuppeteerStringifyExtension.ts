@@ -40,14 +40,14 @@ import { StringifyExtension } from './StringifyExtension.js';
 import {
   assertAllStepTypesAreHandled,
   mouseButtonMap,
-  typeableInputTypes,
+  selectorToPElementSelector,
 } from './SchemaUtils.js';
 import { formatJSONAsJS } from './JSONUtils.js';
 
 export class PuppeteerStringifyExtension extends StringifyExtension {
   override async beforeAllSteps(out: LineWriter, flow: UserFlow) {
     out.appendLine(
-      "const puppeteer = require('puppeteer'); // v19.11.1 or later"
+      "const puppeteer = require('puppeteer'); // v20.7.4 or later"
     );
     out.appendLine('');
     out.appendLine('(async () => {').startBlock();
@@ -81,6 +81,7 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     this.#appendContext(out, step);
     if (step.assertedEvents) {
       out.appendLine('const promises = [];');
+      out.appendLine('const startWaitingForEvents = () => {').startBlock();
       for (const event of step.assertedEvents) {
         switch (event.type) {
           case AssertedEventType.Navigation: {
@@ -95,6 +96,7 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
             throw new Error(`Event type ${event.type} is not supported`);
         }
       }
+      out.endBlock().appendLine('}');
     }
 
     this.#appendStepType(out, step);
@@ -137,89 +139,78 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     }
   }
 
-  #appendWaitForSelector(out: LineWriter, step: StepWithSelectors): void {
+  #appendLocators(
+    out: LineWriter,
+    step: StepWithSelectors,
+    action: () => void
+  ) {
+    out.appendLine('await puppeteer.Locator.race([').startBlock();
     out.appendLine(
-      `await scrollIntoViewIfNeeded(${formatJSONAsJS(
-        step.selectors,
-        out.getIndent()
-      )}, ${step.frame ? 'frame' : 'targetPage'}, timeout);`
+      step.selectors
+        .map((s) => {
+          return `${
+            step.frame ? 'frame' : 'targetPage'
+          }.locator(${formatJSONAsJS(
+            selectorToPElementSelector(s),
+            out.getIndent()
+          )})`;
+        })
+        .join(',\n')
     );
-    out.appendLine(
-      `const element = await waitForSelectors(${formatJSONAsJS(
-        step.selectors,
-        out.getIndent()
-      )}, ${step.frame ? 'frame' : 'targetPage'}, { timeout, visible: true });`
-    );
+    out.endBlock().appendLine('])');
+    out.startBlock().appendLine('.setTimeout(timeout)');
+    if (step.assertedEvents?.length) {
+      out.appendLine(`.on('action', () => startWaitingForEvents())`);
+    }
+    action();
+    out.endBlock();
   }
 
   #appendClickStep(out: LineWriter, step: ClickStep): void {
-    this.#appendWaitForSelector(out, step);
-    out.appendLine('await element.click({');
-    if (step.duration) {
-      out.appendLine(`  delay: ${step.duration},`);
-    }
-    if (step.button) {
-      out.appendLine(`  button: '${mouseButtonMap.get(step.button)}',`);
-    }
-    out.appendLine('  offset: {');
-    out.appendLine(`    x: ${step.offsetX},`);
-    out.appendLine(`    y: ${step.offsetY},`);
-    out.appendLine('  },');
-    out.appendLine('});');
+    this.#appendLocators(out, step, () => {
+      out.appendLine('.click({');
+      if (step.duration) {
+        out.appendLine(`  delay: ${step.duration},`);
+      }
+      if (step.button) {
+        out.appendLine(`  button: '${mouseButtonMap.get(step.button)}',`);
+      }
+      out.appendLine('  offset: {');
+      out.appendLine(`    x: ${step.offsetX},`);
+      out.appendLine(`    y: ${step.offsetY},`);
+      out.appendLine('  },');
+      out.appendLine('});');
+    });
   }
 
   #appendDoubleClickStep(out: LineWriter, step: DoubleClickStep): void {
-    this.#appendWaitForSelector(out, step);
-    out.appendLine('await element.click({');
-    out.appendLine(`  count: 2,`);
-    if (step.duration) {
-      out.appendLine(`  delay: ${step.duration},`);
-    }
-    if (step.button) {
-      out.appendLine(`  button: '${mouseButtonMap.get(step.button)}',`);
-    }
-    out.appendLine('  offset: {');
-    out.appendLine(`    x: ${step.offsetX},`);
-    out.appendLine(`    y: ${step.offsetY},`);
-    out.appendLine('  },');
-    out.appendLine('});');
+    this.#appendLocators(out, step, () => {
+      out.appendLine('.click({');
+      out.appendLine(`  count: 2,`);
+      if (step.duration) {
+        out.appendLine(`  delay: ${step.duration},`);
+      }
+      if (step.button) {
+        out.appendLine(`  button: '${mouseButtonMap.get(step.button)}',`);
+      }
+      out.appendLine('  offset: {');
+      out.appendLine(`    x: ${step.offsetX},`);
+      out.appendLine(`    y: ${step.offsetY},`);
+      out.appendLine('  },');
+      out.appendLine('});');
+    });
   }
 
   #appendHoverStep(out: LineWriter, step: HoverStep): void {
-    this.#appendWaitForSelector(out, step);
-    out.appendLine('await element.hover();');
+    this.#appendLocators(out, step, () => {
+      out.appendLine('.hover();');
+    });
   }
 
   #appendChangeStep(out: LineWriter, step: ChangeStep): void {
-    this.#appendWaitForSelector(out, step);
-    out.appendLine('const inputType = await element.evaluate(el => el.type);');
-    out.appendLine(`if (inputType === 'select-one') {`);
-    out.appendLine(
-      `  await changeSelectElement(element, ${formatJSONAsJS(
-        step.value,
-        out.getIndent()
-      )})`
-    );
-    out.appendLine(
-      `} else if (${formatJSONAsJS(
-        Array.from(typeableInputTypes),
-        out.getIndent()
-      )}.includes(inputType)) {`
-    );
-    out.appendLine(
-      `  await typeIntoElement(element, ${formatJSONAsJS(
-        step.value,
-        out.getIndent()
-      )});`
-    );
-    out.appendLine('} else {');
-    out.appendLine(
-      `  await changeElementValue(element, ${formatJSONAsJS(
-        step.value,
-        out.getIndent()
-      )});`
-    );
-    out.appendLine('}');
+    this.#appendLocators(out, step, () => {
+      out.appendLine(`.fill(${formatJSONAsJS(step.value, out.getIndent())});`);
+    });
   }
 
   #appendEmulateNetworkConditionsStep(
@@ -270,10 +261,11 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
 
   #appendScrollStep(out: LineWriter, step: ScrollStep): void {
     if ('selectors' in step) {
-      this.#appendWaitForSelector(out, step);
-      out.appendLine(
-        `await element.evaluate((el, x, y) => { el.scrollTop = y; el.scrollLeft = x; }, ${step.x}, ${step.y});`
-      );
+      this.#appendLocators(out, step, () => {
+        out.appendLine(
+          `.scroll({ scrollTop: ${step.y}, scrollLeft: ${step.x}});`
+        );
+      });
     } else {
       out.appendLine(
         `await targetPage.evaluate((x, y) => { window.scroll(x, y); }, ${step.x}, ${step.y})`
@@ -317,6 +309,9 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
   }
 
   #appendNavigationStep(out: LineWriter, step: NavigateStep): void {
+    if (step.assertedEvents?.length) {
+      out.appendLine(`startWaitingForEvents();`);
+    }
     out.appendLine(
       `await targetPage.goto(${formatJSONAsJS(step.url, out.getIndent())});`
     );
@@ -347,80 +342,7 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
 
 const defaultTimeout = 5000;
 
-const helpers = `async function waitForSelectors(selectors, frame, options) {
-  for (const selector of selectors) {
-    try {
-      return await waitForSelector(selector, frame, options);
-    } catch (err) {
-      console.error(err);
-    }
-  }
-  throw new Error('Could not find element for selectors: ' + JSON.stringify(selectors));
-}
-
-async function scrollIntoViewIfNeeded(selectors, frame, timeout) {
-  const element = await waitForSelectors(selectors, frame, { visible: false, timeout });
-  if (!element) {
-    throw new Error(
-      'The element could not be found.'
-    );
-  }
-  await waitForConnected(element, timeout);
-  const isInViewport = await element.isIntersectingViewport({threshold: 0});
-  if (isInViewport) {
-    return;
-  }
-  await element.evaluate(element => {
-    element.scrollIntoView({
-      block: 'center',
-      inline: 'center',
-      behavior: 'auto',
-    });
-  });
-  await waitForInViewport(element, timeout);
-}
-
-async function waitForConnected(element, timeout) {
-  await waitForFunction(async () => {
-    return await element.getProperty('isConnected');
-  }, timeout);
-}
-
-async function waitForInViewport(element, timeout) {
-  await waitForFunction(async () => {
-    return await element.isIntersectingViewport({threshold: 0});
-  }, timeout);
-}
-
-async function waitForSelector(selector, frame, options) {
-  if (!Array.isArray(selector)) {
-    selector = [selector];
-  }
-  if (!selector.length) {
-    throw new Error('Empty selector provided to waitForSelector');
-  }
-  let element = null;
-  for (let i = 0; i < selector.length; i++) {
-    const part = selector[i];
-    if (element) {
-      element = await element.waitForSelector(part, options);
-    } else {
-      element = await frame.waitForSelector(part, options);
-    }
-    if (!element) {
-      throw new Error('Could not find element: ' + selector.join('>>'));
-    }
-    if (i < selector.length - 1) {
-      element = (await element.evaluateHandle(el => el.shadowRoot ? el.shadowRoot : el)).asElement();
-    }
-  }
-  if (!element) {
-    throw new Error('Could not find element: ' + selector.join('|'));
-  }
-  return element;
-}
-
-async function waitForElement(step, frame, timeout) {
+const helpers = `async function waitForElement(step, frame, timeout) {
   const {
     count = 1,
     operator = '>=',
@@ -546,38 +468,4 @@ async function waitForFunction(fn, timeout) {
     await new Promise(resolve => setTimeout(resolve, 100));
   }
   throw new Error('Timed out');
-}
-
-async function changeSelectElement(element, value) {
-  await element.select(value);
-  await element.evaluateHandle((e) => {
-    e.blur();
-    e.focus();
-  });
-}
-
-async function changeElementValue(element, value) {
-  await element.focus();
-  await element.evaluate((input, value) => {
-    input.value = value;
-    input.dispatchEvent(new Event('input', { bubbles: true }));
-    input.dispatchEvent(new Event('change', { bubbles: true }));
-  }, value);
-}
-
-async function typeIntoElement(element, value) {
-  const textToType = await element.evaluate((input, newValue) => {
-    if (
-      newValue.length <= input.value.length ||
-      !newValue.startsWith(input.value)
-    ) {
-      input.value = '';
-      return newValue;
-    }
-    const originalValue = input.value;
-    input.value = '';
-    input.value = originalValue;
-    return newValue.substring(originalValue.length);
-  }, value);
-  await element.type(textToType);
 }`;

@@ -44,6 +44,9 @@ export class InMemoryLineWriter implements LineWriter {
 
   endBlock(): LineWriter {
     this.#currentIndentation--;
+    if (this.#currentIndentation < 0) {
+      throw new Error('Extra endBlock');
+    }
     return this;
   }
 

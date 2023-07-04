@@ -13,14 +13,19 @@
     See the License for the specific language governing permissions and
     limitations under the License.
  */
-
-import { Browser, ElementHandle, Frame, Page } from 'puppeteer';
+import {
+  Browser,
+  ElementHandle,
+  Frame,
+  Page,
+  Locator,
+  LocatorEmittedEvents,
+} from 'puppeteer';
 import { Frame as InternalFrame } from 'puppeteer-core/internal/common/Frame.js';
 import { CDPPage as InternalPage } from 'puppeteer-core/internal/common/Page.js';
 import { RunnerExtension } from './RunnerExtension.js';
 import {
   AssertedEventType,
-  ChangeStep,
   Selector,
   Step,
   StepType,
@@ -29,8 +34,8 @@ import {
 } from './Schema.js';
 import {
   assertAllStepTypesAreHandled,
+  selectorToPElementSelector,
   mouseButtonMap,
-  typeableInputTypes,
 } from './SchemaUtils.js';
 
 const comparators = {
@@ -110,7 +115,6 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
     localFrame: Frame,
     timeout: number
   ): Promise<void> {
-    const waitForVisible = true;
     let assertedEventsPromise = null;
     const startWaitingForEvents = () => {
       assertedEventsPromise = waitForEvents(localFrame, step, timeout);
@@ -118,17 +122,16 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
 
     switch (step.type) {
       case StepType.DoubleClick:
-        {
-          await scrollIntoViewIfNeeded(step.selectors, localFrame, timeout);
-          const element = await waitForSelectors(step.selectors, localFrame, {
-            timeout,
-            visible: waitForVisible,
-          });
-          if (!element) {
-            throw new Error('Could not find element: ' + step.selectors[0]);
-          }
-          startWaitingForEvents();
-          await element.click({
+        await Locator.race(
+          step.selectors.map((selector) => {
+            return targetPageOrFrame.locator(
+              selectorToPElementSelector(selector)
+            );
+          })
+        )
+          .setTimeout(timeout)
+          .on(LocatorEmittedEvents.Action, () => startWaitingForEvents())
+          .click({
             count: 2,
             button: step.button && mouseButtonMap.get(step.button),
             delay: step.duration,
@@ -137,21 +140,18 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
               y: step.offsetY,
             },
           });
-          await element.dispose();
-        }
         break;
       case StepType.Click:
-        {
-          await scrollIntoViewIfNeeded(step.selectors, localFrame, timeout);
-          const element = await waitForSelectors(step.selectors, localFrame, {
-            timeout,
-            visible: waitForVisible,
-          });
-          if (!element) {
-            throw new Error('Could not find element: ' + step.selectors[0]);
-          }
-          startWaitingForEvents();
-          await element.click({
+        await Locator.race(
+          step.selectors.map((selector) => {
+            return targetPageOrFrame.locator(
+              selectorToPElementSelector(selector)
+            );
+          })
+        )
+          .setTimeout(timeout)
+          .on(LocatorEmittedEvents.Action, () => startWaitingForEvents())
+          .click({
             delay: step.duration,
             button: step.button && mouseButtonMap.get(step.button),
             offset: {
@@ -159,23 +159,18 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
               y: step.offsetY,
             },
           });
-          await element.dispose();
-        }
         break;
       case StepType.Hover:
-        {
-          await scrollIntoViewIfNeeded(step.selectors, localFrame, timeout);
-          const element = await waitForSelectors(step.selectors, localFrame, {
-            timeout,
-            visible: waitForVisible,
-          });
-          if (!element) {
-            throw new Error('Could not find element: ' + step.selectors[0]);
-          }
-          startWaitingForEvents();
-          await element.hover();
-          await element.dispose();
-        }
+        await Locator.race(
+          step.selectors.map((selector) => {
+            return targetPageOrFrame.locator(
+              selectorToPElementSelector(selector)
+            );
+          })
+        )
+          .setTimeout(timeout)
+          .on(LocatorEmittedEvents.Action, () => startWaitingForEvents())
+          .hover();
         break;
       case StepType.EmulateNetworkConditions:
         {
@@ -206,30 +201,16 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         }
         break;
       case StepType.Change:
-        {
-          await scrollIntoViewIfNeeded(step.selectors, localFrame, timeout);
-          const element = (await waitForSelectors(step.selectors, localFrame, {
-            timeout,
-            visible: waitForVisible,
-          })) as ElementHandle<HTMLInputElement>;
-          if (!element) {
-            throw new Error('Could not find element: ' + step.selectors[0]);
-          }
-          const inputType = await element.evaluate(
-            /* c8 ignore start */
-            (el) => el.type
-            /* c8 ignore stop */
-          );
-          startWaitingForEvents();
-          if (inputType === 'select-one') {
-            await this.changeSelectElement(step, element);
-          } else if (typeableInputTypes.has(inputType)) {
-            await this.typeIntoElement(step, element);
-          } else {
-            await this.changeElementValue(step, element);
-          }
-          await element.dispose();
-        }
+        await Locator.race(
+          step.selectors.map((selector) => {
+            return targetPageOrFrame.locator(
+              selectorToPElementSelector(selector)
+            );
+          })
+        )
+          .on(LocatorEmittedEvents.Action, () => startWaitingForEvents())
+          .setTimeout(timeout)
+          .fill(step.value);
         break;
       case StepType.SetViewport: {
         if ('setViewport' in targetPageOrFrame) {
@@ -240,23 +221,19 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
       }
       case StepType.Scroll: {
         if ('selectors' in step) {
-          await scrollIntoViewIfNeeded(step.selectors, localFrame, timeout);
-          const element = await waitForSelectors(step.selectors, localFrame, {
-            timeout,
-            visible: waitForVisible,
-          });
-          startWaitingForEvents();
-          await element.evaluate(
-            (e, x, y) => {
-              /* c8 ignore start */
-              e.scrollTop = y;
-              e.scrollLeft = x;
-              /* c8 ignore stop */
-            },
-            step.x || 0,
-            step.y || 0
-          );
-          await element.dispose();
+          await Locator.race(
+            step.selectors.map((selector) => {
+              return targetPageOrFrame.locator(
+                selectorToPElementSelector(selector)
+              );
+            })
+          )
+            .on(LocatorEmittedEvents.Action, () => startWaitingForEvents())
+            .setTimeout(timeout)
+            .scroll({
+              scrollLeft: step.x || 0,
+              scrollTop: step.y || 0,
+            });
         } else {
           startWaitingForEvents();
           await localFrame.evaluate(
@@ -307,65 +284,6 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
     }
 
     await assertedEventsPromise;
-  }
-
-  /**
-   * @internal
-   */
-  async typeIntoElement(
-    step: ChangeStep,
-    element: ElementHandle<HTMLInputElement>
-  ) {
-    const textToType = await element.evaluate((input, newValue) => {
-      /* c8 ignore start */
-      if (
-        newValue.length <= input.value.length ||
-        !newValue.startsWith(input.value)
-      ) {
-        input.value = '';
-        return newValue;
-      }
-      const originalValue = input.value;
-      // Move cursor to the end of the common prefix.
-      input.value = '';
-      input.value = originalValue;
-      return newValue.substring(originalValue.length);
-      /* c8 ignore stop */
-    }, step.value);
-    await element.type(textToType);
-  }
-
-  /**
-   * @internal
-   */
-  async changeElementValue(
-    step: ChangeStep,
-    element: ElementHandle<HTMLInputElement>
-  ) {
-    await element.focus();
-    await element.evaluate((input, value) => {
-      /* c8 ignore start */
-      input.value = value;
-      input.dispatchEvent(new Event('input', { bubbles: true }));
-      input.dispatchEvent(new Event('change', { bubbles: true }));
-      /* c8 ignore stop */
-    }, step.value);
-  }
-
-  /**
-   * @internal
-   */
-  async changeSelectElement(
-    step: ChangeStep,
-    element: ElementHandle<HTMLElement>
-  ) {
-    await element.select(step.value);
-    await element.evaluateHandle((e) => {
-      /* c8 ignore start */
-      e.blur();
-      e.focus();
-      /* c8 ignore stop */
-    });
   }
 }
 
@@ -501,159 +419,6 @@ async function waitForElement(
     await elementsHandle.dispose();
     return result === visible;
   }, timeout);
-}
-
-const asSVGElementHandle = async (
-  handle: ElementHandle<Element>
-): Promise<ElementHandle<SVGElement> | null> => {
-  if (
-    await handle.evaluate((element) => {
-      /* c8 ignore start */
-      return element instanceof SVGElement;
-      /* c8 ignore stop */
-    })
-  ) {
-    return handle as ElementHandle<SVGElement>;
-  } else {
-    return null;
-  }
-};
-
-async function scrollIntoViewIfNeeded(
-  selectors: Selector[],
-  frame: Frame,
-  timeout: number
-): Promise<void> {
-  const element = await waitForSelectors(selectors, frame, {
-    visible: false,
-    timeout,
-  });
-  if (!element) {
-    throw new Error('The element could not be found.');
-  }
-  await waitForConnected(element, timeout);
-  const svgHandle = await asSVGElementHandle(element);
-  const intersectionTarget = svgHandle
-    ? await getOwnerSVGElement(svgHandle)
-    : element;
-  const isInViewport = intersectionTarget
-    ? await intersectionTarget.isIntersectingViewport({ threshold: 0 })
-    : false;
-  if (isInViewport) {
-    return;
-  }
-  await scrollIntoView(element);
-  if (intersectionTarget) {
-    await waitForInViewport(intersectionTarget, timeout);
-  }
-  await intersectionTarget.dispose();
-  if (intersectionTarget !== element) {
-    await element.dispose();
-  }
-}
-
-async function getOwnerSVGElement(
-  handle: ElementHandle<SVGElement>
-): Promise<ElementHandle<SVGSVGElement>> {
-  // If there is no ownerSVGElement, the element must be the top-level SVG
-  // element itself.
-  return await handle.evaluateHandle((element) => {
-    /* c8 ignore start */
-    return element.ownerSVGElement ?? (element as SVGSVGElement);
-    /* c8 ignore stop */
-  });
-}
-
-async function scrollIntoView(element: ElementHandle<Element>): Promise<void> {
-  await element.evaluate((element) => {
-    /* c8 ignore start */
-    element.scrollIntoView({
-      block: 'center',
-      inline: 'center',
-      behavior: 'auto',
-    });
-    /* c8 ignore stop */
-  });
-}
-
-async function waitForConnected(
-  element: ElementHandle<Element>,
-  timeout: number
-): Promise<void> {
-  await waitForFunction(async () => {
-    /* c8 ignore start */
-    return await element.evaluate((el) => el.isConnected);
-    /* c8 ignore stop */
-  }, timeout);
-}
-
-async function waitForInViewport(
-  element: ElementHandle<Element>,
-  timeout: number
-): Promise<void> {
-  await waitForFunction(async () => {
-    return await element.isIntersectingViewport({ threshold: 0 });
-  }, timeout);
-}
-
-interface WaitForOptions {
-  timeout: number;
-  visible: boolean;
-}
-
-async function waitForSelectors(
-  selectors: Selector[],
-  frame: Frame,
-  options: WaitForOptions
-): Promise<ElementHandle<Element>> {
-  for (const selector of selectors) {
-    try {
-      return await waitForSelector(selector, frame, options);
-    } catch (err) {
-      console.error('error in waitForSelectors', err);
-      // TODO: report the error somehow
-    }
-  }
-  throw new Error(
-    'Could not find element for selectors: ' + JSON.stringify(selectors)
-  );
-}
-
-async function waitForSelector(
-  selector: Selector,
-  frame: Frame,
-  options: WaitForOptions
-): Promise<ElementHandle<Element>> {
-  if (!Array.isArray(selector)) {
-    selector = [selector];
-  }
-  if (!selector.length) {
-    throw new Error('Empty selector provided to `waitForSelector`');
-  }
-  let isLastPart = selector.length === 1;
-  let handle = await frame.waitForSelector(selector[0]!, {
-    ...options,
-    visible: isLastPart && options.visible,
-  });
-  for (const part of selector.slice(1, selector.length)) {
-    if (!handle) {
-      throw new Error('Could not find element: ' + selector.join('>>'));
-    }
-    const innerHandle = await handle.evaluateHandle((el) =>
-      el.shadowRoot ? el.shadowRoot : el
-    );
-    handle.dispose();
-    isLastPart = selector[selector.length - 1] === part;
-    handle = await innerHandle.waitForSelector(part, {
-      ...options,
-      visible: isLastPart && options.visible,
-    });
-    innerHandle.dispose();
-  }
-  if (!handle) {
-    throw new Error('Could not find element: ' + selector.join('>>'));
-  }
-  return handle;
 }
 
 async function querySelectorsAll(

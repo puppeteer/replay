@@ -89,6 +89,7 @@
 - [parse](README.md#parse)
 - [parseSourceMap](README.md#parsesourcemap)
 - [parseStep](README.md#parsestep)
+- [selectorToPElementSelector](README.md#selectortopelementselector)
 - [stringify](README.md#stringify)
 - [stringifyStep](README.md#stringifystep)
 - [stripSourceMap](README.md#stripsourcemap)
@@ -254,7 +255,7 @@ The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]]
 
 #### Defined in
 
-[SchemaUtils.ts:563](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L563)
+[SchemaUtils.ts:564](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L564)
 
 ---
 
@@ -264,7 +265,7 @@ The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]]
 
 #### Defined in
 
-[SchemaUtils.ts:562](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L562)
+[SchemaUtils.ts:563](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L563)
 
 ---
 
@@ -274,7 +275,7 @@ The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]]
 
 #### Defined in
 
-[SchemaUtils.ts:70](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L70)
+[SchemaUtils.ts:71](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L71)
 
 ---
 
@@ -284,7 +285,7 @@ The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]]
 
 #### Defined in
 
-[SchemaUtils.ts:64](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L64)
+[SchemaUtils.ts:65](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L65)
 
 ---
 
@@ -294,7 +295,7 @@ The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]]
 
 #### Defined in
 
-[SchemaUtils.ts:53](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L53)
+[SchemaUtils.ts:54](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L54)
 
 ## Functions
 
@@ -314,7 +315,7 @@ The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]]
 
 #### Defined in
 
-[SchemaUtils.ts:48](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L48)
+[SchemaUtils.ts:49](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L49)
 
 ---
 
@@ -448,7 +449,7 @@ therefore, SelectorType.CSS is the default type if other types didn't match.
 
 #### Defined in
 
-[SchemaUtils.ts:615](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L615)
+[SchemaUtils.ts:616](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L616)
 
 ---
 
@@ -468,7 +469,7 @@ therefore, SelectorType.CSS is the default type if other types didn't match.
 
 #### Defined in
 
-[SchemaUtils.ts:571](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L571)
+[SchemaUtils.ts:572](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L572)
 
 ---
 
@@ -511,7 +512,33 @@ Extracts a source map from a text.
 
 #### Defined in
 
-[SchemaUtils.ts:495](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L495)
+[SchemaUtils.ts:496](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L496)
+
+---
+
+### selectorToPElementSelector
+
+▸ **selectorToPElementSelector**(`selector`): `string`
+
+Converts a selector or an array of selector parts into a Puppeteer selector.
+
+**`See`**
+
+https://pptr.dev/guides/query-selectors#p-elements
+
+#### Parameters
+
+| Name       | Type                   |
+| :--------- | :--------------------- |
+| `selector` | `string` \| `string`[] |
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+[SchemaUtils.ts:630](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L630)
 
 ---
 
@@ -607,4 +634,4 @@ Stringifes a single step. Only the following hooks are invoked with the `flow` p
 
 #### Defined in
 
-[SchemaUtils.ts:567](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L567)
+[SchemaUtils.ts:568](https://github.com/puppeteer/replay/blob/main/src/SchemaUtils.ts#L568)

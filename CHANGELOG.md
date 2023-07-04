@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.12.0](https://github.com/puppeteer/replay/compare/v2.11.2...v2.12.0) (2023-07-04)
+
+
+### Features
+
+* use locators in Puppeteer extensions ([#569](https://github.com/puppeteer/replay/issues/569)) ([92d7666](https://github.com/puppeteer/replay/commit/92d76666abf73de3cb3d1bc0ffc3b7276f4ed376))
+
 ## [2.11.2](https://github.com/puppeteer/replay/compare/v2.11.1...v2.11.2) (2023-06-12)
 
 

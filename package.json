@@ -52,6 +52,8 @@
   "license": "Apache-2.0",
   "type": "module",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "25.0.2",
+    "@rollup/plugin-node-resolve": "15.1.0",
     "@rollup/plugin-typescript": "9.0.1",
     "@types/chai": "4.3.3",
     "@types/cssesc": "^3.0.0",

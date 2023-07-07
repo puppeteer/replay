@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.12.3](https://github.com/puppeteer/replay/compare/v2.12.2...v2.12.3) (2023-07-07)
+
+
+### Bug Fixes
+
+* remove overescaping ([#598](https://github.com/puppeteer/replay/issues/598)) ([f3a96ac](https://github.com/puppeteer/replay/commit/f3a96ac3fed0300778cc39885b6fc87728921261))
+
 ## [2.12.2](https://github.com/puppeteer/replay/compare/v2.12.1...v2.12.2) (2023-07-07)
 
 

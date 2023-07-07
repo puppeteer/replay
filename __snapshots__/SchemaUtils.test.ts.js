@@ -13,13 +13,13 @@ exports[
 exports[
   'SchemaUtils Selectors selectorToPElementSelector should convert text/my text ("my text") 1'
 ] = `
-::-p-text(my\\ text\\ \\(\\"my\\ text\\"\\))
+::-p-text(my text \\(\\"my text\\"\\))
 `;
 
 exports[
   'SchemaUtils Selectors selectorToPElementSelector should convert text/my text ("my text"),aria/Test my test[role="button"] 1'
 ] = `
-::-p-text(my\\ text\\ \\(\\"my\\ text\\"\\)) >>>> ::-p-aria(Test\\ my\\ test\\[role\\=\\"button\\"\\])
+::-p-text(my text \\(\\"my text\\"\\)) >>>> ::-p-aria(Test my test[role=\\"button\\"])
 `;
 
 exports[
@@ -49,5 +49,5 @@ exports[
 exports[
   'SchemaUtils Selectors selectorToPElementSelector should convert xpath///*[@id="id"] 1'
 ] = `
-::-p-xpath(\\/\\/\\*\\[\\@id\\=\\"id\\"\\])
+::-p-xpath(//*[@id=\\"id\\"])
 `;

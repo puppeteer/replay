@@ -44,7 +44,6 @@ import {
   WaitForExpressionStep,
 } from './Schema.js';
 import { AssertedEventType, StepType } from './Schema.js';
-import cssesc from 'cssesc';
 
 export function assertAllStepTypesAreHandled(s: never): never;
 export function assertAllStepTypesAreHandled(s: Step): never {
@@ -633,9 +632,7 @@ export function selectorToPElementSelector(selector: string[] | string) {
   }
 
   function escape(input: string) {
-    return cssesc(input, {
-      isIdentifier: true,
-    });
+    return input.replace(/['"()]/g, `\\$&`);
   }
 
   const result = selector.map((s) => {

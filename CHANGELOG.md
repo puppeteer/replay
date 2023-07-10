@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.13.0](https://github.com/puppeteer/replay/compare/v2.12.3...v2.13.0) (2023-07-10)
+
+
+### Features
+
+* stringify helpers only if used ([#602](https://github.com/puppeteer/replay/issues/602)) ([b7d8cdd](https://github.com/puppeteer/replay/commit/b7d8cdd534e72f5959bb5d8d97f7cab07750a704))
+
 ## [2.12.3](https://github.com/puppeteer/replay/compare/v2.12.2...v2.12.3) (2023-07-07)
 
 

@@ -45,6 +45,8 @@ import {
 import { formatJSONAsJS } from './JSONUtils.js';
 
 export class PuppeteerStringifyExtension extends StringifyExtension {
+  #shouldAppendWaitForElementHelper = false;
+
   override async beforeAllSteps(out: LineWriter, flow: UserFlow) {
     out.appendLine(
       "const puppeteer = require('puppeteer'); // v20.7.4 or later"
@@ -58,14 +60,17 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     out.appendLine(`const timeout = ${flow.timeout || defaultTimeout};`);
     out.appendLine('page.setDefaultTimeout(timeout);');
     out.appendLine('');
+    this.#shouldAppendWaitForElementHelper = false;
   }
 
   override async afterAllSteps(out: LineWriter, flow: UserFlow) {
     out.appendLine('');
     out.appendLine('await browser.close();');
     out.appendLine('');
-    for (const line of helpers.split('\n')) {
-      out.appendLine(line);
+    if (this.#shouldAppendWaitForElementHelper) {
+      for (const line of waitForElementHelper.split('\n')) {
+        out.appendLine(line);
+      }
     }
     out.endBlock().appendLine('})().catch(err => {').startBlock();
     out.appendLine('console.error(err);');
@@ -332,6 +337,7 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
   }
 
   #appendWaitForElementStep(out: LineWriter, step: WaitForElementStep): void {
+    this.#shouldAppendWaitForElementHelper = true;
     out.appendLine(
       `await waitForElement(${formatJSONAsJS(step, out.getIndent())}, ${
         step.frame ? 'frame' : 'targetPage'
@@ -342,7 +348,7 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
 
 const defaultTimeout = 5000;
 
-const helpers = `async function waitForElement(step, frame, timeout) {
+const waitForElementHelper = `async function waitForElement(step, frame, timeout) {
   const {
     count = 1,
     operator = '>=',

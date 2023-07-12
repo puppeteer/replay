@@ -25,7 +25,7 @@
     "doc": "docs"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=16.3.0"
   },
   "scripts": {
     "test": "npm run build:testserver && cross-env TS_NODE_PROJECT=test/tsconfig.json mocha --config .mocharc.cjs",

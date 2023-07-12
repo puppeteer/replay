@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.13.1](https://github.com/puppeteer/replay/compare/v2.13.0...v2.13.1) (2023-07-12)
+
+
+### Bug Fixes
+
+* bumps version for Node and TS target ([#607](https://github.com/puppeteer/replay/issues/607)) ([3d243e4](https://github.com/puppeteer/replay/commit/3d243e43d0ac93f1583a808bc6c05fb924e05efb))
+
 ## [2.13.0](https://github.com/puppeteer/replay/compare/v2.12.3...v2.13.0) (2023-07-10)
 
 

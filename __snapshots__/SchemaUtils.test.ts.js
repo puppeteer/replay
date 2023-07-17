@@ -51,3 +51,15 @@ exports[
 ] = `
 ::-p-xpath(//*[@id=\\"id\\"])
 `;
+
+exports[
+  'SchemaUtils Selectors selectorToPElementSelector should convert pierce/#id 1'
+] = `
+:scope >>> #id
+`;
+
+exports[
+  'SchemaUtils Selectors selectorToPElementSelector should convert pierce/#inner 1'
+] = `
+:scope >>> #inner
+`;

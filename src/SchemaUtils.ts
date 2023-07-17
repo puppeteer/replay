@@ -648,7 +648,7 @@ export function selectorToPElementSelector(selector: string[] | string) {
           s.substring(SelectorType.XPath.length + 1)
         )})`;
       case SelectorType.Pierce:
-        return `::-p-pierce(${s.substring(SelectorType.Pierce.length + 1)})`;
+        return `:scope >>> ${s.substring(SelectorType.Pierce.length + 1)}`;
       case SelectorType.Text:
         return `::-p-text(${escape(
           s.substring(SelectorType.Text.length + 1)

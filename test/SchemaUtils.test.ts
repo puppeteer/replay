@@ -843,6 +843,21 @@ describe('SchemaUtils', () => {
           content: '<div class="cls"><div><div id="id">test',
         },
         {
+          selector: 'pierce/#id',
+          content: '<div class="cls"><div><div id="id">test',
+        },
+        {
+          selector: 'pierce/#inner',
+          content: `<div class="cls">
+              <div>
+              <host-element id="id">
+                <template shadowrootmode="open">
+                  <div class="cls"><div><div id="inner">test
+                </template>
+              </host-element>
+          `,
+        },
+        {
           selector: ['.cls > div #id', '.cls > div #id'],
           content: `<div class="cls">
               <div>

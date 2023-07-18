@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.13.2](https://github.com/puppeteer/replay/compare/v2.13.1...v2.13.2) (2023-07-18)
+
+
+### Bug Fixes
+
+* pierce selectors should be generated using :scope ([#613](https://github.com/puppeteer/replay/issues/613)) ([e8abd93](https://github.com/puppeteer/replay/commit/e8abd93634e17469282a3f108c55512bea1a292a))
+* use correct frame target ([#618](https://github.com/puppeteer/replay/issues/618)) ([9a998e4](https://github.com/puppeteer/replay/commit/9a998e40379ef3bebda36f4abfc429756835dc8d))
+
 ## [2.13.1](https://github.com/puppeteer/replay/compare/v2.13.0...v2.13.1) (2023-07-12)
 
 

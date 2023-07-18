@@ -124,9 +124,9 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
       case StepType.DoubleClick:
         await locatorRace(
           step.selectors.map((selector) => {
-            return (
-              targetPageOrFrame as unknown as InternalPage | InternalFrame
-            ).locator(selectorToPElementSelector(selector));
+            return (localFrame as unknown as InternalFrame).locator(
+              selectorToPElementSelector(selector)
+            );
           })
         )
           .setTimeout(timeout)
@@ -146,9 +146,9 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
       case StepType.Click:
         await locatorRace(
           step.selectors.map((selector) => {
-            return (
-              targetPageOrFrame as unknown as InternalPage | InternalFrame
-            ).locator(selectorToPElementSelector(selector));
+            return (localFrame as unknown as InternalFrame).locator(
+              selectorToPElementSelector(selector)
+            );
           })
         )
           .setTimeout(timeout)
@@ -167,9 +167,9 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
       case StepType.Hover:
         await locatorRace(
           step.selectors.map((selector) => {
-            return (
-              targetPageOrFrame as unknown as InternalPage | InternalFrame
-            ).locator(selectorToPElementSelector(selector));
+            return (localFrame as unknown as InternalFrame).locator(
+              selectorToPElementSelector(selector)
+            );
           })
         )
           .setTimeout(timeout)
@@ -209,9 +209,9 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
       case StepType.Change:
         await locatorRace(
           step.selectors.map((selector) => {
-            return (
-              targetPageOrFrame as unknown as InternalPage | InternalFrame
-            ).locator(selectorToPElementSelector(selector));
+            return (localFrame as unknown as InternalFrame).locator(
+              selectorToPElementSelector(selector)
+            );
           })
         )
           .on('action' as LocatorEmittedEvents.Action, () =>
@@ -231,9 +231,9 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         if ('selectors' in step) {
           await locatorRace(
             step.selectors.map((selector) => {
-              return (
-                targetPageOrFrame as unknown as InternalPage | InternalFrame
-              ).locator(selectorToPElementSelector(selector));
+              return (localFrame as unknown as InternalFrame).locator(
+                selectorToPElementSelector(selector)
+              );
             })
           )
             .on('action' as LocatorEmittedEvents.Action, () =>

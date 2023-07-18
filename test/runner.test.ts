@@ -218,7 +218,7 @@ describe('Runner', () => {
           },
           {
             type: StepType.Click,
-            selectors: [['.parent', '.child']],
+            selectors: ['.parent > .child'],
             offsetX: 1,
             offsetY: 1,
           },

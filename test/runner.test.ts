@@ -229,6 +229,35 @@ describe('Runner', () => {
     await runner.run();
   });
 
+  it('should throw an error if an element is not found', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: StepType.Navigate,
+            url: `${HTTP_PREFIX}/checkbox.html`,
+          },
+          {
+            type: StepType.Click,
+            selectors: [['.not-found']],
+            offsetX: 1,
+            offsetY: 1,
+            timeout: 300,
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    let error;
+    try {
+      await runner.run();
+    } catch (err) {
+      error = err;
+    }
+    assert(error instanceof Error, 'runner did not throw as expected');
+  });
+
   it('should be able to replay click steps on checkboxes', async () => {
     const runner = await createRunner(
       {

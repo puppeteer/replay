@@ -379,9 +379,12 @@ async function waitForElement(
   await waitForFunction(async () => {
     const elements = await querySelectorsAll(step.selectors, frame);
     let result = compFn(elements.length, count);
-    const elementsHandle = await frame.evaluateHandle((...elements) => {
-      return elements;
-    }, ...elements);
+    const elementsHandle = await frame.evaluateHandle(
+      (...elements) => {
+        return elements;
+      },
+      ...elements
+    );
     await Promise.all(elements.map((element) => element.dispose()));
     if (result && (properties || attributes)) {
       result = await elementsHandle.evaluate(

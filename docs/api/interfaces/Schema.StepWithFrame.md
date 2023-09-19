@@ -16,12 +16,6 @@
 
   ↳↳ [`WaitForExpressionStep`](Schema.WaitForExpressionStep.md)
 
-  ↳↳ [`StepWithSelectors`](StepWithSelectors.md)
-
-  ↳↳ [`ScrollPageStep`](ScrollPageStep.md)
-
-  ↳↳ [`WaitForExpressionStep`](WaitForExpressionStep.md)
-
 ## Table of contents
 
 ### Properties

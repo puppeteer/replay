@@ -4,15 +4,50 @@
 
 ## Table of contents
 
+### References
+
+- [AssertedEvent](README.md#assertedevent)
+- [AssertedEventType](README.md#assertedeventtype)
+- [AssertionStep](README.md#assertionstep)
+- [BaseStep](README.md#basestep)
+- [ChangeStep](README.md#changestep)
+- [ClickAttributes](README.md#clickattributes)
+- [ClickStep](README.md#clickstep)
+- [CloseStep](README.md#closestep)
+- [CustomStep](README.md#customstep)
+- [CustomStepParams](README.md#customstepparams)
+- [DoubleClickStep](README.md#doubleclickstep)
+- [EmulateNetworkConditionsStep](README.md#emulatenetworkconditionsstep)
+- [FrameSelector](README.md#frameselector)
+- [HoverStep](README.md#hoverstep)
+- [Key](README.md#key)
+- [KeyDownStep](README.md#keydownstep)
+- [KeyUpStep](README.md#keyupstep)
+- [NavigateStep](README.md#navigatestep)
+- [NavigationEvent](README.md#navigationevent)
+- [Pattern](README.md#pattern)
+- [PointerButtonType](README.md#pointerbuttontype)
+- [PointerDeviceType](README.md#pointerdevicetype)
+- [ScrollElementStep](README.md#scrollelementstep)
+- [ScrollPageStep](README.md#scrollpagestep)
+- [ScrollStep](README.md#scrollstep)
+- [Selector](README.md#selector)
+- [SelectorType](README.md#selectortype)
+- [SetViewportStep](README.md#setviewportstep)
+- [Step](README.md#step)
+- [StepType](README.md#steptype)
+- [StepWithFrame](README.md#stepwithframe)
+- [StepWithSelectors](README.md#stepwithselectors)
+- [StepWithTarget](README.md#stepwithtarget)
+- [Target](README.md#target)
+- [UserFlow](README.md#userflow)
+- [UserStep](README.md#userstep)
+- [WaitForElementStep](README.md#waitforelementstep)
+- [WaitForExpressionStep](README.md#waitforexpressionstep)
+
 ### Namespaces
 
 - [Schema](modules/Schema.md)
-
-### Enumerations
-
-- [AssertedEventType](enums/AssertedEventType.md)
-- [SelectorType](enums/SelectorType.md)
-- [StepType](enums/StepType.md)
 
 ### Classes
 
@@ -29,47 +64,12 @@
 
 ### Interfaces
 
-- [BaseStep](interfaces/BaseStep.md)
-- [ChangeStep](interfaces/ChangeStep.md)
-- [ClickAttributes](interfaces/ClickAttributes.md)
-- [ClickStep](interfaces/ClickStep.md)
-- [CloseStep](interfaces/CloseStep.md)
-- [CustomStepParams](interfaces/CustomStepParams.md)
-- [DoubleClickStep](interfaces/DoubleClickStep.md)
-- [EmulateNetworkConditionsStep](interfaces/EmulateNetworkConditionsStep.md)
-- [HoverStep](interfaces/HoverStep.md)
-- [KeyDownStep](interfaces/KeyDownStep.md)
-- [KeyUpStep](interfaces/KeyUpStep.md)
 - [LineWriter](interfaces/LineWriter.md)
-- [NavigateStep](interfaces/NavigateStep.md)
-- [NavigationEvent](interfaces/NavigationEvent.md)
-- [ScrollPageStep](interfaces/ScrollPageStep.md)
-- [SetViewportStep](interfaces/SetViewportStep.md)
-- [StepWithFrame](interfaces/StepWithFrame.md)
-- [StepWithSelectors](interfaces/StepWithSelectors.md)
-- [StepWithTarget](interfaces/StepWithTarget.md)
 - [StringifyOptions](interfaces/StringifyOptions.md)
-- [UserFlow](interfaces/UserFlow.md)
-- [WaitForElementStep](interfaces/WaitForElementStep.md)
-- [WaitForExpressionStep](interfaces/WaitForExpressionStep.md)
 
 ### Type Aliases
 
-- [AssertedEvent](README.md#assertedevent)
-- [AssertionStep](README.md#assertionstep)
-- [CustomStep](README.md#customstep)
-- [FrameSelector](README.md#frameselector)
-- [Key](README.md#key)
-- [Pattern](README.md#pattern)
-- [PointerButtonType](README.md#pointerbuttontype)
-- [PointerDeviceType](README.md#pointerdevicetype)
-- [ScrollElementStep](README.md#scrollelementstep)
-- [ScrollStep](README.md#scrollstep)
-- [Selector](README.md#selector)
 - [SourceMap](README.md#sourcemap)
-- [Step](README.md#step)
-- [Target](README.md#target)
-- [UserStep](README.md#userstep)
 
 ### Variables
 
@@ -95,117 +95,235 @@
 - [stripSourceMap](README.md#stripsourcemap)
 - [validTimeout](README.md#validtimeout)
 
-## Type Aliases
+## References
 
 ### AssertedEvent
 
-Ƭ **AssertedEvent**: [`NavigationEvent`](interfaces/Schema.NavigationEvent.md)
+Re-exports [AssertedEvent](modules/Schema.md#assertedevent)
 
-#### Defined in
+---
 
-[Schema.ts:59](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L59)
+### AssertedEventType
+
+Re-exports [AssertedEventType](enums/Schema.AssertedEventType.md)
 
 ---
 
 ### AssertionStep
 
-Ƭ **AssertionStep**: [`WaitForElementStep`](interfaces/Schema.WaitForElementStep.md) \| [`WaitForExpressionStep`](interfaces/Schema.WaitForExpressionStep.md)
+Re-exports [AssertionStep](modules/Schema.md#assertionstep)
 
-#### Defined in
+---
 
-[Schema.ts:296](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L296)
+### BaseStep
+
+Re-exports [BaseStep](interfaces/Schema.BaseStep.md)
+
+---
+
+### ChangeStep
+
+Re-exports [ChangeStep](interfaces/Schema.ChangeStep.md)
+
+---
+
+### ClickAttributes
+
+Re-exports [ClickAttributes](interfaces/Schema.ClickAttributes.md)
+
+---
+
+### ClickStep
+
+Re-exports [ClickStep](interfaces/Schema.ClickStep.md)
+
+---
+
+### CloseStep
+
+Re-exports [CloseStep](interfaces/Schema.CloseStep.md)
 
 ---
 
 ### CustomStep
 
-Ƭ **CustomStep**: [`CustomStepParams`](interfaces/Schema.CustomStepParams.md) & [`StepWithTarget`](interfaces/Schema.StepWithTarget.md) \| [`CustomStepParams`](interfaces/Schema.CustomStepParams.md) & [`StepWithFrame`](interfaces/Schema.StepWithFrame.md)
+Re-exports [CustomStep](modules/Schema.md#customstep)
 
-#### Defined in
+---
 
-[Schema.ts:213](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L213)
+### CustomStepParams
+
+Re-exports [CustomStepParams](interfaces/Schema.CustomStepParams.md)
+
+---
+
+### DoubleClickStep
+
+Re-exports [DoubleClickStep](interfaces/Schema.DoubleClickStep.md)
+
+---
+
+### EmulateNetworkConditionsStep
+
+Re-exports [EmulateNetworkConditionsStep](interfaces/Schema.EmulateNetworkConditionsStep.md)
 
 ---
 
 ### FrameSelector
 
-Ƭ **FrameSelector**: `number`[]
+Re-exports [FrameSelector](modules/Schema.md#frameselector)
 
-#### Defined in
+---
 
-[Schema.ts:22](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L22)
+### HoverStep
+
+Re-exports [HoverStep](interfaces/Schema.HoverStep.md)
 
 ---
 
 ### Key
 
-Ƭ **Key**: `"0"` \| `"1"` \| `"2"` \| `"3"` \| `"4"` \| `"5"` \| `"6"` \| `"7"` \| `"8"` \| `"9"` \| `"Power"` \| `"Eject"` \| `"Abort"` \| `"Help"` \| `"Backspace"` \| `"Tab"` \| `"Numpad5"` \| `"NumpadEnter"` \| `"Enter"` \| `"\r"` \| `"\n"` \| `"ShiftLeft"` \| `"ShiftRight"` \| `"ControlLeft"` \| `"ControlRight"` \| `"AltLeft"` \| `"AltRight"` \| `"Pause"` \| `"CapsLock"` \| `"Escape"` \| `"Convert"` \| `"NonConvert"` \| `"Space"` \| `"Numpad9"` \| `"PageUp"` \| `"Numpad3"` \| `"PageDown"` \| `"End"` \| `"Numpad1"` \| `"Home"` \| `"Numpad7"` \| `"ArrowLeft"` \| `"Numpad4"` \| `"Numpad8"` \| `"ArrowUp"` \| `"ArrowRight"` \| `"Numpad6"` \| `"Numpad2"` \| `"ArrowDown"` \| `"Select"` \| `"Open"` \| `"PrintScreen"` \| `"Insert"` \| `"Numpad0"` \| `"Delete"` \| `"NumpadDecimal"` \| `"Digit0"` \| `"Digit1"` \| `"Digit2"` \| `"Digit3"` \| `"Digit4"` \| `"Digit5"` \| `"Digit6"` \| `"Digit7"` \| `"Digit8"` \| `"Digit9"` \| `"KeyA"` \| `"KeyB"` \| `"KeyC"` \| `"KeyD"` \| `"KeyE"` \| `"KeyF"` \| `"KeyG"` \| `"KeyH"` \| `"KeyI"` \| `"KeyJ"` \| `"KeyK"` \| `"KeyL"` \| `"KeyM"` \| `"KeyN"` \| `"KeyO"` \| `"KeyP"` \| `"KeyQ"` \| `"KeyR"` \| `"KeyS"` \| `"KeyT"` \| `"KeyU"` \| `"KeyV"` \| `"KeyW"` \| `"KeyX"` \| `"KeyY"` \| `"KeyZ"` \| `"MetaLeft"` \| `"MetaRight"` \| `"ContextMenu"` \| `"NumpadMultiply"` \| `"NumpadAdd"` \| `"NumpadSubtract"` \| `"NumpadDivide"` \| `"F1"` \| `"F2"` \| `"F3"` \| `"F4"` \| `"F5"` \| `"F6"` \| `"F7"` \| `"F8"` \| `"F9"` \| `"F10"` \| `"F11"` \| `"F12"` \| `"F13"` \| `"F14"` \| `"F15"` \| `"F16"` \| `"F17"` \| `"F18"` \| `"F19"` \| `"F20"` \| `"F21"` \| `"F22"` \| `"F23"` \| `"F24"` \| `"NumLock"` \| `"ScrollLock"` \| `"AudioVolumeMute"` \| `"AudioVolumeDown"` \| `"AudioVolumeUp"` \| `"MediaTrackNext"` \| `"MediaTrackPrevious"` \| `"MediaStop"` \| `"MediaPlayPause"` \| `"Semicolon"` \| `"Equal"` \| `"NumpadEqual"` \| `"Comma"` \| `"Minus"` \| `"Period"` \| `"Slash"` \| `"Backquote"` \| `"BracketLeft"` \| `"Backslash"` \| `"BracketRight"` \| `"Quote"` \| `"AltGraph"` \| `"Props"` \| `"Cancel"` \| `"Clear"` \| `"Shift"` \| `"Control"` \| `"Alt"` \| `"Accept"` \| `"ModeChange"` \| `" "` \| `"Print"` \| `"Execute"` \| `"\u0000"` \| `"a"` \| `"b"` \| `"c"` \| `"d"` \| `"e"` \| `"f"` \| `"g"` \| `"h"` \| `"i"` \| `"j"` \| `"k"` \| `"l"` \| `"m"` \| `"n"` \| `"o"` \| `"p"` \| `"q"` \| `"r"` \| `"s"` \| `"t"` \| `"u"` \| `"v"` \| `"w"` \| `"x"` \| `"y"` \| `"z"` \| `"Meta"` \| `"*"` \| `"+"` \| `"-"` \| `"/"` \| `";"` \| `"="` \| `","` \| `"."` \| ``"`"`` \| `"["` \| `"\\"` \| `"]"` \| `"'"` \| `"Attn"` \| `"CrSel"` \| `"ExSel"` \| `"EraseEof"` \| `"Play"` \| `"ZoomOut"` \| `")"` \| `"!"` \| `"@"` \| `"#"` \| `"$"` \| `"%"` \| `"^"` \| `"&"` \| `"("` \| `"A"` \| `"B"` \| `"C"` \| `"D"` \| `"E"` \| `"F"` \| `"G"` \| `"H"` \| `"I"` \| `"J"` \| `"K"` \| `"L"` \| `"M"` \| `"N"` \| `"O"` \| `"P"` \| `"Q"` \| `"R"` \| `"S"` \| `"T"` \| `"U"` \| `"V"` \| `"W"` \| `"X"` \| `"Y"` \| `"Z"` \| `":"` \| `"<"` \| `"_"` \| `">"` \| `"?"` \| `"~"` \| `"{"` \| `"|"` \| `"}"` \| `"\""` \| `"SoftLeft"` \| `"SoftRight"` \| `"Camera"` \| `"Call"` \| `"EndCall"` \| `"VolumeDown"` \| `"VolumeUp"`
+Re-exports [Key](modules/Schema.md#key)
 
-#### Defined in
+---
 
-[Schema.ts:318](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L318)
+### KeyDownStep
+
+Re-exports [KeyDownStep](interfaces/Schema.KeyDownStep.md)
+
+---
+
+### KeyUpStep
+
+Re-exports [KeyUpStep](interfaces/Schema.KeyUpStep.md)
+
+---
+
+### NavigateStep
+
+Re-exports [NavigateStep](interfaces/Schema.NavigateStep.md)
+
+---
+
+### NavigationEvent
+
+Re-exports [NavigationEvent](interfaces/Schema.NavigationEvent.md)
 
 ---
 
 ### Pattern
 
-Ƭ **Pattern**: `string`
-
-#### Defined in
-
-[Schema.ts:20](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L20)
+Re-exports [Pattern](modules/Schema.md#pattern)
 
 ---
 
 ### PointerButtonType
 
-Ƭ **PointerButtonType**: `"primary"` \| `"auxiliary"` \| `"secondary"` \| `"back"` \| `"forward"`
-
-#### Defined in
-
-[Schema.ts:104](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L104)
+Re-exports [PointerButtonType](modules/Schema.md#pointerbuttontype)
 
 ---
 
 ### PointerDeviceType
 
-Ƭ **PointerDeviceType**: `"mouse"` \| `"pen"` \| `"touch"`
-
-#### Defined in
-
-[Schema.ts:103](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L103)
+Re-exports [PointerDeviceType](modules/Schema.md#pointerdevicetype)
 
 ---
 
 ### ScrollElementStep
 
-Ƭ **ScrollElementStep**: [`ScrollPageStep`](interfaces/Schema.ScrollPageStep.md) & [`StepWithSelectors`](interfaces/Schema.StepWithSelectors.md)
+Re-exports [ScrollElementStep](modules/Schema.md#scrollelementstep)
 
-#### Defined in
+---
 
-[Schema.ts:198](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L198)
+### ScrollPageStep
+
+Re-exports [ScrollPageStep](interfaces/Schema.ScrollPageStep.md)
 
 ---
 
 ### ScrollStep
 
-Ƭ **ScrollStep**: [`ScrollPageStep`](interfaces/Schema.ScrollPageStep.md) \| [`ScrollElementStep`](modules/Schema.md#scrollelementstep)
-
-#### Defined in
-
-[Schema.ts:200](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L200)
+Re-exports [ScrollStep](modules/Schema.md#scrollstep)
 
 ---
 
 ### Selector
 
-Ƭ **Selector**: `string` \| `string`[]
-
-#### Defined in
-
-[Schema.ts:21](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L21)
+Re-exports [Selector](modules/Schema.md#selector)
 
 ---
+
+### SelectorType
+
+Re-exports [SelectorType](enums/Schema.SelectorType.md)
+
+---
+
+### SetViewportStep
+
+Re-exports [SetViewportStep](interfaces/Schema.SetViewportStep.md)
+
+---
+
+### Step
+
+Re-exports [Step](modules/Schema.md#step)
+
+---
+
+### StepType
+
+Re-exports [StepType](enums/Schema.StepType.md)
+
+---
+
+### StepWithFrame
+
+Re-exports [StepWithFrame](interfaces/Schema.StepWithFrame.md)
+
+---
+
+### StepWithSelectors
+
+Re-exports [StepWithSelectors](interfaces/Schema.StepWithSelectors.md)
+
+---
+
+### StepWithTarget
+
+Re-exports [StepWithTarget](interfaces/Schema.StepWithTarget.md)
+
+---
+
+### Target
+
+Re-exports [Target](modules/Schema.md#target)
+
+---
+
+### UserFlow
+
+Re-exports [UserFlow](interfaces/Schema.UserFlow.md)
+
+---
+
+### UserStep
+
+Re-exports [UserStep](modules/Schema.md#userstep)
+
+---
+
+### WaitForElementStep
+
+Re-exports [WaitForElementStep](interfaces/Schema.WaitForElementStep.md)
+
+---
+
+### WaitForExpressionStep
+
+Re-exports [WaitForExpressionStep](interfaces/Schema.WaitForExpressionStep.md)
+
+## Type Aliases
 
 ### SourceMap
 
@@ -216,36 +334,6 @@ The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]]
 #### Defined in
 
 [stringify.ts:35](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L35)
-
----
-
-### Step
-
-Ƭ **Step**: [`UserStep`](modules/Schema.md#userstep) \| [`AssertionStep`](modules/Schema.md#assertionstep)
-
-#### Defined in
-
-[Schema.ts:298](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L298)
-
----
-
-### Target
-
-Ƭ **Target**: `string`
-
-#### Defined in
-
-[Schema.ts:19](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L19)
-
----
-
-### UserStep
-
-Ƭ **UserStep**: [`ChangeStep`](interfaces/Schema.ChangeStep.md) \| [`ClickStep`](interfaces/Schema.ClickStep.md) \| [`HoverStep`](interfaces/Schema.HoverStep.md) \| [`CloseStep`](interfaces/Schema.CloseStep.md) \| [`CustomStep`](modules/Schema.md#customstep) \| [`DoubleClickStep`](interfaces/Schema.DoubleClickStep.md) \| [`EmulateNetworkConditionsStep`](interfaces/Schema.EmulateNetworkConditionsStep.md) \| [`KeyDownStep`](interfaces/Schema.KeyDownStep.md) \| [`KeyUpStep`](interfaces/Schema.KeyUpStep.md) \| [`NavigateStep`](interfaces/Schema.NavigateStep.md) \| [`ScrollStep`](modules/Schema.md#scrollstep) \| [`SetViewportStep`](interfaces/Schema.SetViewportStep.md)
-
-#### Defined in
-
-[Schema.ts:217](https://github.com/puppeteer/replay/blob/main/src/Schema.ts#L217)
 
 ## Variables
 
@@ -522,10 +610,6 @@ Extracts a source map from a text.
 
 Converts a selector or an array of selector parts into a Puppeteer selector.
 
-**`See`**
-
-https://pptr.dev/guides/query-selectors#p-elements
-
 #### Parameters
 
 | Name       | Type                   |
@@ -535,6 +619,10 @@ https://pptr.dev/guides/query-selectors#p-elements
 #### Returns
 
 `string`
+
+**`See`**
+
+https://pptr.dev/guides/query-selectors#p-elements
 
 #### Defined in
 

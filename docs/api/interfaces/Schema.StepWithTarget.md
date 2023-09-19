@@ -24,20 +24,6 @@
 
   ↳↳ [`NavigateStep`](Schema.NavigateStep.md)
 
-  ↳↳ [`StepWithFrame`](StepWithFrame.md)
-
-  ↳↳ [`EmulateNetworkConditionsStep`](EmulateNetworkConditionsStep.md)
-
-  ↳↳ [`KeyDownStep`](KeyDownStep.md)
-
-  ↳↳ [`KeyUpStep`](KeyUpStep.md)
-
-  ↳↳ [`CloseStep`](CloseStep.md)
-
-  ↳↳ [`SetViewportStep`](SetViewportStep.md)
-
-  ↳↳ [`NavigateStep`](NavigateStep.md)
-
 ## Table of contents
 
 ### Properties

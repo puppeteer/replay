@@ -20,16 +20,6 @@
 
   ↳↳ [`WaitForElementStep`](Schema.WaitForElementStep.md)
 
-  ↳↳ [`DoubleClickStep`](DoubleClickStep.md)
-
-  ↳↳ [`ClickStep`](ClickStep.md)
-
-  ↳↳ [`HoverStep`](HoverStep.md)
-
-  ↳↳ [`ChangeStep`](ChangeStep.md)
-
-  ↳↳ [`WaitForElementStep`](WaitForElementStep.md)
-
 ## Table of contents
 
 ### Properties

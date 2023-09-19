@@ -12,10 +12,6 @@
 
   ↳ [`ClickStep`](Schema.ClickStep.md)
 
-  ↳ [`DoubleClickStep`](DoubleClickStep.md)
-
-  ↳ [`ClickStep`](ClickStep.md)
-
 ## Table of contents
 
 ### Properties

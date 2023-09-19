@@ -19,7 +19,7 @@ module.exports = [
       },
     ],
     external: Object.keys(pkg.peerDependencies),
-    plugins: [typescript({ module: 'NodeNext' })],
+    plugins: [typescript({ module: 'NodeNext', moduleResolution: 'NodeNext' })],
   },
   {
     input: 'src/main.ts',

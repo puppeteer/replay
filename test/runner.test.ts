@@ -14,7 +14,7 @@
     limitations under the License.
  */
 
-import puppeteer from 'puppeteer';
+import puppeteer, { Browser, Page } from 'puppeteer';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { assert } from 'chai';
@@ -42,8 +42,8 @@ async function createServers() {
 }
 
 describe('Runner', () => {
-  let browser: puppeteer.Browser;
-  let page: puppeteer.Page;
+  let browser: Browser;
+  let page: Page;
   let httpServer: TestServer;
   let httpsServer: TestServer;
 

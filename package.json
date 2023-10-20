@@ -77,7 +77,7 @@
     "mocha": "10.2.0",
     "prettier": "3.0.3",
     "puppeteer": "21.3.6",
-    "puppeteer-core": "21.3.8",
+    "puppeteer-core": "21.4.0",
     "rimraf": "5.0.1",
     "rollup": "3.29.2",
     "rollup-plugin-dts": "6.0.2",

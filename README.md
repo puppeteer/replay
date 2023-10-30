@@ -65,7 +65,7 @@ In your `package.json` add a new script to invoke the `replay` command:
 }
 ```
 
-You can also give folder name as a parameter. to run all the files in a folder.
+You can also give folder name as a parameter to run all the files in a folder.
 
 Using CLI + npx:
 

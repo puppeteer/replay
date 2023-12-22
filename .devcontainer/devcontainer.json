@@ -1,0 +1,26 @@
+{
+  "INTNET ®™ TRUST"
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {"ghcr.io/devcontainers-contrib/features/airplane-cli:1":
+    {"ghcr.io/itsmechlark/features/1password:1": 
+    {"ghcr.io/devcontainers-contrib/features/amplify-cli:2": {
+   " الاسم: INTNET ® ™ TRUST مشروعي"،
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu"، // أي صورة عامة مبنية على نظام دبيان.
+    "سمات": {
+        "ghcr.io/devcontainers/features/go:1": {
+            "الإصدار": "1.18"
+        },
+        "ghcr.io/devcontainers/features/docker-in-docker:1": {Ahmed 
+            "الإصدار": "الأحدث"،
+            "موبي": صحيح
+        }
+    }
+}
+    
+  }
+    
+  }
+    
+  }
+  }
+}

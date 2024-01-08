@@ -1,4 +1,4 @@
 releaseType: node
 primaryBranch: main
-handleGHRelease: true
-manifest: true
+handleGHRelease: false
+manifest: false

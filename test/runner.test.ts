@@ -14,7 +14,7 @@
     limitations under the License.
  */
 
-import puppeteer from 'puppeteer';
+import puppeteer, { Browser, Page } from 'puppeteer';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { assert } from 'chai';
@@ -42,8 +42,8 @@ async function createServers() {
 }
 
 describe('Runner', () => {
-  let browser: puppeteer.Browser;
-  let page: puppeteer.Page;
+  let browser: Browser;
+  let page: Page;
   let httpServer: TestServer;
   let httpsServer: TestServer;
 
@@ -218,7 +218,7 @@ describe('Runner', () => {
           },
           {
             type: StepType.Click,
-            selectors: [['.parent', '.child']],
+            selectors: ['.parent > .child'],
             offsetX: 1,
             offsetY: 1,
           },
@@ -227,6 +227,35 @@ describe('Runner', () => {
       new PuppeteerRunnerExtension(browser, page)
     );
     await runner.run();
+  });
+
+  it('should throw an error if an element is not found', async () => {
+    const runner = await createRunner(
+      {
+        title: 'test',
+        steps: [
+          {
+            type: StepType.Navigate,
+            url: `${HTTP_PREFIX}/checkbox.html`,
+          },
+          {
+            type: StepType.Click,
+            selectors: [['.not-found']],
+            offsetX: 1,
+            offsetY: 1,
+            timeout: 300,
+          },
+        ],
+      },
+      new PuppeteerRunnerExtension(browser, page)
+    );
+    let error;
+    try {
+      await runner.run();
+    } catch (err) {
+      error = err;
+    }
+    assert(error instanceof Error, 'runner did not throw as expected');
   });
 
   it('should be able to replay click steps on checkboxes', async () => {

@@ -16,7 +16,7 @@
 
 import fs from 'fs/promises';
 import path from 'path';
-import puppeteer from 'puppeteer';
+import puppeteer, { Browser, Page } from 'puppeteer';
 
 import { fileURLToPath } from 'url';
 import { assert } from 'chai';
@@ -48,8 +48,8 @@ async function createServers() {
 }
 
 describe('Spec test', () => {
-  let browser: puppeteer.Browser;
-  let page: puppeteer.Page;
+  let browser: Browser;
+  let page: Page;
   let httpServer: TestServer;
   let httpsServer: TestServer;
 

@@ -14,15 +14,15 @@
     limitations under the License.
  */
 
+import { assert } from 'chai';
+import puppeteer, { Browser, Page } from 'puppeteer';
+import snapshot from 'snap-shot-it';
+import { AssertedEventType, SelectorType, StepType } from '../src/Schema.js';
 import {
-  parse,
   getSelectorType,
+  parse,
   selectorToPElementSelector,
 } from '../src/SchemaUtils.js';
-import { AssertedEventType, SelectorType, StepType } from '../src/Schema.js';
-import { assert } from 'chai';
-import snapshot from 'snap-shot-it';
-import puppeteer from 'puppeteer';
 
 describe('SchemaUtils', () => {
   describe('Schema parser', () => {
@@ -816,8 +816,8 @@ describe('SchemaUtils', () => {
     });
 
     describe('selectorToPElementSelector', () => {
-      let browser: puppeteer.Browser;
-      let page: puppeteer.Page;
+      let browser: Browser;
+      let page: Page;
 
       before(async () => {
         browser = await puppeteer.launch({
@@ -841,6 +841,21 @@ describe('SchemaUtils', () => {
         {
           selector: '.cls > div #id',
           content: '<div class="cls"><div><div id="id">test',
+        },
+        {
+          selector: 'pierce/#id',
+          content: '<div class="cls"><div><div id="id">test',
+        },
+        {
+          selector: 'pierce/#inner',
+          content: `<div class="cls">
+              <div>
+              <host-element id="id">
+                <template shadowrootmode="open">
+                  <div class="cls"><div><div id="inner">test
+                </template>
+              </host-element>
+          `,
         },
         {
           selector: ['.cls > div #id', '.cls > div #id'],

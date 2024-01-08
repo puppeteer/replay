@@ -10,8 +10,6 @@
 
   ↳ [`StepWithTarget`](Schema.StepWithTarget.md)
 
-  ↳ [`StepWithTarget`](StepWithTarget.md)
-
 ## Table of contents
 
 ### Properties

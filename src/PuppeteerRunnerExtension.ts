@@ -13,15 +13,9 @@
     See the License for the specific language governing permissions and
     limitations under the License.
  */
-import type {
-  Browser,
-  ElementHandle,
-  Frame,
-  LocatorEmittedEvents,
-  Page,
-} from 'puppeteer';
-import { Frame as InternalFrame } from 'puppeteer-core/internal/common/Frame.js';
-import { CDPPage as InternalPage } from 'puppeteer-core/internal/common/Page.js';
+import type { Browser, ElementHandle, Frame, Page } from 'puppeteer';
+import { CdpFrame as InternalFrame } from 'puppeteer-core/internal/cdp/Frame.js';
+import { CdpPage as InternalPage } from 'puppeteer-core/internal/cdp/Page.js';
 import { RunnerExtension } from './RunnerExtension.js';
 import {
   AssertedEventType,
@@ -33,8 +27,8 @@ import {
 } from './Schema.js';
 import {
   assertAllStepTypesAreHandled,
-  selectorToPElementSelector,
   mouseButtonMap,
+  selectorToPElementSelector,
 } from './SchemaUtils.js';
 
 const comparators = {
@@ -124,15 +118,13 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
       case StepType.DoubleClick:
         await locatorRace(
           step.selectors.map((selector) => {
-            return (
-              targetPageOrFrame as unknown as InternalPage | InternalFrame
-            ).locator(selectorToPElementSelector(selector));
+            return (localFrame as unknown as InternalFrame).locator(
+              selectorToPElementSelector(selector)
+            );
           })
         )
           .setTimeout(timeout)
-          .on('action' as LocatorEmittedEvents.Action, () =>
-            startWaitingForEvents()
-          )
+          .on('action', () => startWaitingForEvents())
           .click({
             count: 2,
             button: step.button && mouseButtonMap.get(step.button),
@@ -146,15 +138,13 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
       case StepType.Click:
         await locatorRace(
           step.selectors.map((selector) => {
-            return (
-              targetPageOrFrame as unknown as InternalPage | InternalFrame
-            ).locator(selectorToPElementSelector(selector));
+            return (localFrame as unknown as InternalFrame).locator(
+              selectorToPElementSelector(selector)
+            );
           })
         )
           .setTimeout(timeout)
-          .on('action' as LocatorEmittedEvents.Action, () =>
-            startWaitingForEvents()
-          )
+          .on('action', () => startWaitingForEvents())
           .click({
             delay: step.duration,
             button: step.button && mouseButtonMap.get(step.button),
@@ -167,15 +157,13 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
       case StepType.Hover:
         await locatorRace(
           step.selectors.map((selector) => {
-            return (
-              targetPageOrFrame as unknown as InternalPage | InternalFrame
-            ).locator(selectorToPElementSelector(selector));
+            return (localFrame as unknown as InternalFrame).locator(
+              selectorToPElementSelector(selector)
+            );
           })
         )
           .setTimeout(timeout)
-          .on('action' as LocatorEmittedEvents.Action, () =>
-            startWaitingForEvents()
-          )
+          .on('action', () => startWaitingForEvents())
           .hover();
         break;
       case StepType.EmulateNetworkConditions:
@@ -209,14 +197,12 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
       case StepType.Change:
         await locatorRace(
           step.selectors.map((selector) => {
-            return (
-              targetPageOrFrame as unknown as InternalPage | InternalFrame
-            ).locator(selectorToPElementSelector(selector));
+            return (localFrame as unknown as InternalFrame).locator(
+              selectorToPElementSelector(selector)
+            );
           })
         )
-          .on('action' as LocatorEmittedEvents.Action, () =>
-            startWaitingForEvents()
-          )
+          .on('action', () => startWaitingForEvents())
           .setTimeout(timeout)
           .fill(step.value);
         break;
@@ -231,14 +217,12 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         if ('selectors' in step) {
           await locatorRace(
             step.selectors.map((selector) => {
-              return (
-                targetPageOrFrame as unknown as InternalPage | InternalFrame
-              ).locator(selectorToPElementSelector(selector));
+              return (localFrame as unknown as InternalFrame).locator(
+                selectorToPElementSelector(selector)
+              );
             })
           )
-            .on('action' as LocatorEmittedEvents.Action, () =>
-              startWaitingForEvents()
-            )
+            .on('action', () => startWaitingForEvents())
             .setTimeout(timeout)
             .scroll({
               scrollLeft: step.x || 0,
@@ -379,9 +363,12 @@ async function waitForElement(
   await waitForFunction(async () => {
     const elements = await querySelectorsAll(step.selectors, frame);
     let result = compFn(elements.length, count);
-    const elementsHandle = await frame.evaluateHandle((...elements) => {
-      return elements;
-    }, ...elements);
+    const elementsHandle = await frame.evaluateHandle(
+      (...elements) => {
+        return elements;
+      },
+      ...elements
+    );
     await Promise.all(elements.map((element) => element.dispose()));
     if (result && (properties || attributes)) {
       result = await elementsHandle.evaluate(

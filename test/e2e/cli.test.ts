@@ -34,7 +34,7 @@ enum Status {
 
 async function getStatus(
   asyncFn: () => Promise<unknown>
-): Promise<typeof Status['Success'] | typeof Status['Error']> {
+): Promise<(typeof Status)['Success'] | (typeof Status)['Error']> {
   let error = undefined;
   try {
     await asyncFn();

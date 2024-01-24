@@ -37,6 +37,12 @@ const comparators = {
   '<=': (a: number, b: number): boolean => a <= b,
 };
 
+function waitForTimeout(timeout: number): Promise<void> {
+  return new Promise((resolve) => {
+    setTimeout(resolve, timeout);
+  });
+}
+
 export class PuppeteerRunnerExtension extends RunnerExtension {
   protected browser: Browser;
   protected page: Page;
@@ -176,14 +182,14 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         {
           startWaitingForEvents();
           await mainPage.keyboard.down(step.key);
-          await mainPage.waitForTimeout(100);
+          await waitForTimeout(100);
         }
         break;
       case StepType.KeyUp:
         {
           startWaitingForEvents();
           await mainPage.keyboard.up(step.key);
-          await mainPage.waitForTimeout(100);
+          await waitForTimeout(100);
         }
         break;
       case StepType.Close:

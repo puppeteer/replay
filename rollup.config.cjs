@@ -79,6 +79,8 @@ module.exports = [
       'process',
       'yargs/helpers',
       'http',
+      'assert/strict',
+      'child_process',
     ],
     plugins: [typescript({ tsconfig: 'tsconfig.cli.json' })],
   },

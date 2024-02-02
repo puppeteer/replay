@@ -3,8 +3,8 @@
   "compilerOptions": {
     "allowJs": true,
     "checkJs": false,
-    "noEmit": true
+    "noEmit": true,
   },
   "include": ["**/*.ts"],
-  "references": [{ "path": "../third_party/testserver/tsconfig.json" }]
+  "references": [{ "path": "../third_party/testserver/tsconfig.json" }],
 }

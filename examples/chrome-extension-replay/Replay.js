@@ -40,15 +40,11 @@ async function main() {
   });
 
   // Emulating replay
-  document.querySelector(
-    '#recording'
-  ).innerHTML = `Running ${recording.title}<br>`;
+  document.querySelector('#recording').innerHTML =
+    `Running ${recording.title}<br>`;
   for (let i = 0; i < recording.steps.length; i++) {
-    document.querySelector(
-      '#recording'
-    ).innerHTML += `Running step ${i}: ${JSON.stringify(
-      recording.steps[i]
-    )}<br>`;
+    document.querySelector('#recording').innerHTML +=
+      `Running step ${i}: ${JSON.stringify(recording.steps[i])}<br>`;
     await new Promise((resolve) => setTimeout(resolve, 1000));
   }
 }

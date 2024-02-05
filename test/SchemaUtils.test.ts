@@ -820,9 +820,7 @@ describe('SchemaUtils', () => {
       let page: Page;
 
       before(async () => {
-        browser = await puppeteer.launch({
-          headless: 'new',
-        });
+        browser = await puppeteer.launch();
       });
 
       beforeEach(async () => {

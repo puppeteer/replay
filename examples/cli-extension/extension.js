@@ -4,7 +4,7 @@ import { PuppeteerRunnerExtension } from '../../lib/main.js';
 export default class Extension extends PuppeteerRunnerExtension {
   async beforeAllSteps(flow) {
     if (!this.browser) {
-      this.browser = await puppeteer.launch({ headless: 'new' });
+      this.browser = await puppeteer.launch();
     }
     if (!this.page) {
       this.page = await this.browser.newPage();

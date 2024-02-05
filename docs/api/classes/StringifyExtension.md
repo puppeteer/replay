@@ -30,13 +30,17 @@
 
 ### constructor
 
-• **new StringifyExtension**()
+• **new StringifyExtension**(): [`StringifyExtension`](StringifyExtension.md)
+
+#### Returns
+
+[`StringifyExtension`](StringifyExtension.md)
 
 ## Methods
 
 ### afterAllSteps
 
-▸ `Optional` **afterAllSteps**(`out`, `flow`): `Promise`<`void`\>
+▸ **afterAllSteps**(`out`, `flow`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -47,7 +51,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
@@ -57,7 +61,7 @@
 
 ### afterEachStep
 
-▸ `Optional` **afterEachStep**(`out`, `step`, `flow?`): `Promise`<`void`\>
+▸ **afterEachStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -69,7 +73,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
@@ -79,7 +83,7 @@
 
 ### beforeAllSteps
 
-▸ `Optional` **beforeAllSteps**(`out`, `flow`): `Promise`<`void`\>
+▸ **beforeAllSteps**(`out`, `flow`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -90,7 +94,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
@@ -100,7 +104,7 @@
 
 ### beforeEachStep
 
-▸ `Optional` **beforeEachStep**(`out`, `step`, `flow?`): `Promise`<`void`\>
+▸ **beforeEachStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -112,7 +116,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
@@ -122,7 +126,7 @@
 
 ### stringifyStep
 
-▸ **stringifyStep**(`out`, `step`, `flow?`): `Promise`<`void`\>
+▸ **stringifyStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -134,7 +138,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 

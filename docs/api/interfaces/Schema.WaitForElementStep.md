@@ -119,7 +119,7 @@ Defaults to main frame
 
 ### properties
 
-• `Optional` **properties**: `Partial`<`JSONSerializable`<`HTMLElement`\>\> & { `[key: string]`: `JSONValue`; }
+• `Optional` **properties**: `Partial`\<`JSONSerializable`\<`HTMLElement`\>\> & \{ `[key: string]`: `JSONValue`; }
 
 Whether to also check the element(s) for the given properties.
 

@@ -27,7 +27,7 @@
 
 ### constructor
 
-• **new LighthouseRunnerExtension**(`browser`, `page`, `opts?`)
+• **new LighthouseRunnerExtension**(`browser`, `page`, `opts?`): [`LighthouseRunnerExtension`](LighthouseRunnerExtension.md)
 
 #### Parameters
 
@@ -38,19 +38,23 @@
 | `opts?`         | `Object`  |
 | `opts.timeout?` | `number`  |
 
+#### Returns
+
+[`LighthouseRunnerExtension`](LighthouseRunnerExtension.md)
+
 #### Inherited from
 
 [PuppeteerRunnerExtension](PuppeteerRunnerExtension.md).[constructor](PuppeteerRunnerExtension.md#constructor)
 
 #### Defined in
 
-[PuppeteerRunnerExtension.ts:45](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L45)
+[PuppeteerRunnerExtension.ts:51](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L51)
 
 ## Methods
 
 ### afterAllSteps
 
-▸ **afterAllSteps**(`flow`): `Promise`<`void`\>
+▸ **afterAllSteps**(`flow`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -60,7 +64,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Overrides
 
@@ -74,7 +78,7 @@
 
 ### afterEachStep
 
-▸ **afterEachStep**(`step`, `flow?`): `Promise`<`void`\>
+▸ **afterEachStep**(`step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -85,7 +89,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Overrides
 
@@ -99,7 +103,7 @@
 
 ### beforeAllSteps
 
-▸ **beforeAllSteps**(`flow`): `Promise`<`void`\>
+▸ **beforeAllSteps**(`flow`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -109,7 +113,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Overrides
 
@@ -123,7 +127,7 @@
 
 ### beforeEachStep
 
-▸ **beforeEachStep**(`step`, `flow?`): `Promise`<`void`\>
+▸ **beforeEachStep**(`step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -134,7 +138,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Overrides
 
@@ -148,11 +152,11 @@
 
 ### createFlowResult
 
-▸ **createFlowResult**(): `Promise`<`FlowResult`\>
+▸ **createFlowResult**(): `Promise`\<`FlowResult`\>
 
 #### Returns
 
-`Promise`<`FlowResult`\>
+`Promise`\<`FlowResult`\>
 
 #### Defined in
 
@@ -162,7 +166,7 @@
 
 ### runStep
 
-▸ **runStep**(`step`, `flow?`): `Promise`<`void`\>
+▸ **runStep**(`step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -173,7 +177,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Inherited from
 
@@ -181,4 +185,4 @@
 
 #### Defined in
 
-[PuppeteerRunnerExtension.ts:66](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L66)
+[PuppeteerRunnerExtension.ts:72](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L72)

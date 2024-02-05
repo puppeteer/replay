@@ -26,7 +26,11 @@
 
 ### constructor
 
-• **new LighthouseStringifyExtension**()
+• **new LighthouseStringifyExtension**(): [`LighthouseStringifyExtension`](LighthouseStringifyExtension.md)
+
+#### Returns
+
+[`LighthouseStringifyExtension`](LighthouseStringifyExtension.md)
 
 #### Inherited from
 
@@ -36,7 +40,7 @@
 
 ### afterAllSteps
 
-▸ **afterAllSteps**(`out`, `flow`): `Promise`<`void`\>
+▸ **afterAllSteps**(`out`, `flow`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -47,7 +51,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Overrides
 
@@ -61,7 +65,7 @@
 
 ### afterEachStep
 
-▸ `Optional` **afterEachStep**(`out`, `step`, `flow?`): `Promise`<`void`\>
+▸ **afterEachStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -73,7 +77,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Inherited from
 
@@ -87,7 +91,7 @@
 
 ### beforeAllSteps
 
-▸ **beforeAllSteps**(`out`, `flow`): `Promise`<`void`\>
+▸ **beforeAllSteps**(`out`, `flow`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -98,7 +102,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Overrides
 
@@ -112,7 +116,7 @@
 
 ### beforeEachStep
 
-▸ `Optional` **beforeEachStep**(`out`, `step`, `flow?`): `Promise`<`void`\>
+▸ **beforeEachStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -124,7 +128,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Inherited from
 
@@ -138,7 +142,7 @@
 
 ### stringifyStep
 
-▸ **stringifyStep**(`out`, `step`, `flow`): `Promise`<`void`\>
+▸ **stringifyStep**(`out`, `step`, `flow`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -150,7 +154,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Overrides
 

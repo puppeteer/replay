@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/puppeteer/replay/compare/v2.13.4...v3.0.0) (2024-02-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* make replay compatible with Puppeteer v22 ([#758](https://github.com/puppeteer/replay/issues/758))
+* update min version to Node 18 ([#755](https://github.com/puppeteer/replay/issues/755))
+
+### Features
+
+* update min version to Node 18 ([#755](https://github.com/puppeteer/replay/issues/755)) ([41c3d10](https://github.com/puppeteer/replay/commit/41c3d1060ed35a47f790c6c35dd7251fb763fe37))
+
+
+### Bug Fixes
+
+* remove deprecated waitForTimeout ([#747](https://github.com/puppeteer/replay/issues/747)) ([23613b8](https://github.com/puppeteer/replay/commit/23613b87b171087ee9efbf8bbcd6e178e0dd1cac))
+
+
+### Code Refactoring
+
+* make replay compatible with Puppeteer v22 ([#758](https://github.com/puppeteer/replay/issues/758)) ([e594f50](https://github.com/puppeteer/replay/commit/e594f50174507c03dfd2e04fe70b2bc04f69773d))
+
 ## [2.13.4](https://github.com/puppeteer/replay/compare/v2.13.3...v2.13.4) (2023-09-19)
 
 

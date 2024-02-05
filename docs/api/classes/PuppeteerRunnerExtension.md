@@ -30,7 +30,7 @@
 
 ### constructor
 
-• **new PuppeteerRunnerExtension**(`browser`, `page`, `opts?`)
+• **new PuppeteerRunnerExtension**(`browser`, `page`, `opts?`): [`PuppeteerRunnerExtension`](PuppeteerRunnerExtension.md)
 
 #### Parameters
 
@@ -41,19 +41,23 @@
 | `opts?`         | `Object`  |
 | `opts.timeout?` | `number`  |
 
+#### Returns
+
+[`PuppeteerRunnerExtension`](PuppeteerRunnerExtension.md)
+
 #### Overrides
 
 [RunnerExtension](RunnerExtension.md).[constructor](RunnerExtension.md#constructor)
 
 #### Defined in
 
-[PuppeteerRunnerExtension.ts:45](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L45)
+[PuppeteerRunnerExtension.ts:51](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L51)
 
 ## Methods
 
 ### afterAllSteps
 
-▸ `Optional` **afterAllSteps**(`flow?`): `Promise`<`void`\>
+▸ **afterAllSteps**(`flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -63,7 +67,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Inherited from
 
@@ -77,7 +81,7 @@
 
 ### afterEachStep
 
-▸ `Optional` **afterEachStep**(`step`, `flow?`): `Promise`<`void`\>
+▸ **afterEachStep**(`step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -88,7 +92,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Inherited from
 
@@ -102,7 +106,7 @@
 
 ### beforeAllSteps
 
-▸ `Optional` **beforeAllSteps**(`flow?`): `Promise`<`void`\>
+▸ **beforeAllSteps**(`flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -112,7 +116,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Inherited from
 
@@ -126,7 +130,7 @@
 
 ### beforeEachStep
 
-▸ `Optional` **beforeEachStep**(`step`, `flow?`): `Promise`<`void`\>
+▸ **beforeEachStep**(`step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -137,7 +141,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Inherited from
 
@@ -151,7 +155,7 @@
 
 ### runStep
 
-▸ **runStep**(`step`, `flow?`): `Promise`<`void`\>
+▸ **runStep**(`step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -162,7 +166,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Overrides
 
@@ -170,4 +174,4 @@
 
 #### Defined in
 
-[PuppeteerRunnerExtension.ts:66](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L66)
+[PuppeteerRunnerExtension.ts:72](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L72)

@@ -28,7 +28,11 @@
 
 ### constructor
 
-• **new PuppeteerStringifyExtension**()
+• **new PuppeteerStringifyExtension**(): [`PuppeteerStringifyExtension`](PuppeteerStringifyExtension.md)
+
+#### Returns
+
+[`PuppeteerStringifyExtension`](PuppeteerStringifyExtension.md)
 
 #### Inherited from
 
@@ -38,7 +42,7 @@
 
 ### afterAllSteps
 
-▸ **afterAllSteps**(`out`, `flow`): `Promise`<`void`\>
+▸ **afterAllSteps**(`out`, `flow`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -49,7 +53,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Overrides
 
@@ -57,13 +61,13 @@
 
 #### Defined in
 
-[PuppeteerStringifyExtension.ts:66](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L66)
+[PuppeteerStringifyExtension.ts:64](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L64)
 
 ---
 
 ### afterEachStep
 
-▸ `Optional` **afterEachStep**(`out`, `step`, `flow?`): `Promise`<`void`\>
+▸ **afterEachStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -75,7 +79,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Inherited from
 
@@ -89,7 +93,7 @@
 
 ### beforeAllSteps
 
-▸ **beforeAllSteps**(`out`, `flow`): `Promise`<`void`\>
+▸ **beforeAllSteps**(`out`, `flow`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -100,7 +104,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Overrides
 
@@ -114,7 +118,7 @@
 
 ### beforeEachStep
 
-▸ `Optional` **beforeEachStep**(`out`, `step`, `flow?`): `Promise`<`void`\>
+▸ **beforeEachStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -126,7 +130,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Inherited from
 
@@ -140,7 +144,7 @@
 
 ### stringifyStep
 
-▸ **stringifyStep**(`out`, `step`, `flow`): `Promise`<`void`\>
+▸ **stringifyStep**(`out`, `step`, `flow`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -152,7 +156,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Overrides
 
@@ -160,4 +164,4 @@
 
 #### Defined in
 
-[PuppeteerStringifyExtension.ts:81](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L81)
+[PuppeteerStringifyExtension.ts:79](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L79)

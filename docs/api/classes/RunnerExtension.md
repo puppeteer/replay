@@ -26,13 +26,17 @@
 
 ### constructor
 
-• **new RunnerExtension**()
+• **new RunnerExtension**(): [`RunnerExtension`](RunnerExtension.md)
+
+#### Returns
+
+[`RunnerExtension`](RunnerExtension.md)
 
 ## Methods
 
 ### afterAllSteps
 
-▸ `Optional` **afterAllSteps**(`flow?`): `Promise`<`void`\>
+▸ **afterAllSteps**(`flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -42,7 +46,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
@@ -52,7 +56,7 @@
 
 ### afterEachStep
 
-▸ `Optional` **afterEachStep**(`step`, `flow?`): `Promise`<`void`\>
+▸ **afterEachStep**(`step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -63,7 +67,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
@@ -73,7 +77,7 @@
 
 ### beforeAllSteps
 
-▸ `Optional` **beforeAllSteps**(`flow?`): `Promise`<`void`\>
+▸ **beforeAllSteps**(`flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -83,7 +87,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
@@ -93,7 +97,7 @@
 
 ### beforeEachStep
 
-▸ `Optional` **beforeEachStep**(`step`, `flow?`): `Promise`<`void`\>
+▸ **beforeEachStep**(`step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -104,7 +108,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
@@ -114,7 +118,7 @@
 
 ### runStep
 
-▸ **runStep**(`step`, `flow?`): `Promise`<`void`\>
+▸ **runStep**(`step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -125,7 +129,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 

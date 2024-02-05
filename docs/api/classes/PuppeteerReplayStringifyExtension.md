@@ -28,7 +28,11 @@ Stringifies a user flow to a script that uses @puppeteer/replay's own API.
 
 ### constructor
 
-• **new PuppeteerReplayStringifyExtension**()
+• **new PuppeteerReplayStringifyExtension**(): [`PuppeteerReplayStringifyExtension`](PuppeteerReplayStringifyExtension.md)
+
+#### Returns
+
+[`PuppeteerReplayStringifyExtension`](PuppeteerReplayStringifyExtension.md)
 
 #### Inherited from
 
@@ -38,7 +42,7 @@ Stringifies a user flow to a script that uses @puppeteer/replay's own API.
 
 ### afterAllSteps
 
-▸ **afterAllSteps**(`out`): `Promise`<`void`\>
+▸ **afterAllSteps**(`out`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -48,7 +52,7 @@ Stringifies a user flow to a script that uses @puppeteer/replay's own API.
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Overrides
 
@@ -62,7 +66,7 @@ Stringifies a user flow to a script that uses @puppeteer/replay's own API.
 
 ### afterEachStep
 
-▸ `Optional` **afterEachStep**(`out`, `step`, `flow?`): `Promise`<`void`\>
+▸ **afterEachStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -74,7 +78,7 @@ Stringifies a user flow to a script that uses @puppeteer/replay's own API.
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Inherited from
 
@@ -88,7 +92,7 @@ Stringifies a user flow to a script that uses @puppeteer/replay's own API.
 
 ### beforeAllSteps
 
-▸ **beforeAllSteps**(`out`): `Promise`<`void`\>
+▸ **beforeAllSteps**(`out`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -98,7 +102,7 @@ Stringifies a user flow to a script that uses @puppeteer/replay's own API.
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Overrides
 
@@ -112,7 +116,7 @@ Stringifies a user flow to a script that uses @puppeteer/replay's own API.
 
 ### beforeEachStep
 
-▸ `Optional` **beforeEachStep**(`out`, `step`, `flow?`): `Promise`<`void`\>
+▸ **beforeEachStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -124,7 +128,7 @@ Stringifies a user flow to a script that uses @puppeteer/replay's own API.
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Inherited from
 
@@ -138,7 +142,7 @@ Stringifies a user flow to a script that uses @puppeteer/replay's own API.
 
 ### stringifyStep
 
-▸ **stringifyStep**(`out`, `step`): `Promise`<`void`\>
+▸ **stringifyStep**(`out`, `step`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -149,7 +153,7 @@ Stringifies a user flow to a script that uses @puppeteer/replay's own API.
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Overrides
 

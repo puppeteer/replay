@@ -26,7 +26,7 @@
 
 ### constructor
 
-• **new PuppeteerRunnerOwningBrowserExtension**(`browser`, `page`, `opts?`)
+• **new PuppeteerRunnerOwningBrowserExtension**(`browser`, `page`, `opts?`): [`PuppeteerRunnerOwningBrowserExtension`](PuppeteerRunnerOwningBrowserExtension.md)
 
 #### Parameters
 
@@ -37,23 +37,27 @@
 | `opts?`         | `Object`  |
 | `opts.timeout?` | `number`  |
 
+#### Returns
+
+[`PuppeteerRunnerOwningBrowserExtension`](PuppeteerRunnerOwningBrowserExtension.md)
+
 #### Inherited from
 
 [PuppeteerRunnerExtension](PuppeteerRunnerExtension.md).[constructor](PuppeteerRunnerExtension.md#constructor)
 
 #### Defined in
 
-[PuppeteerRunnerExtension.ts:45](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L45)
+[PuppeteerRunnerExtension.ts:51](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L51)
 
 ## Methods
 
 ### afterAllSteps
 
-▸ **afterAllSteps**(): `Promise`<`void`\>
+▸ **afterAllSteps**(): `Promise`\<`void`\>
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Overrides
 
@@ -61,13 +65,13 @@
 
 #### Defined in
 
-[PuppeteerRunnerExtension.ts:285](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L285)
+[PuppeteerRunnerExtension.ts:291](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L291)
 
 ---
 
 ### afterEachStep
 
-▸ `Optional` **afterEachStep**(`step`, `flow?`): `Promise`<`void`\>
+▸ **afterEachStep**(`step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -78,7 +82,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Inherited from
 
@@ -92,7 +96,7 @@
 
 ### beforeAllSteps
 
-▸ `Optional` **beforeAllSteps**(`flow?`): `Promise`<`void`\>
+▸ **beforeAllSteps**(`flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -102,7 +106,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Inherited from
 
@@ -116,7 +120,7 @@
 
 ### beforeEachStep
 
-▸ `Optional` **beforeEachStep**(`step`, `flow?`): `Promise`<`void`\>
+▸ **beforeEachStep**(`step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -127,7 +131,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Inherited from
 
@@ -141,7 +145,7 @@
 
 ### runStep
 
-▸ **runStep**(`step`, `flow?`): `Promise`<`void`\>
+▸ **runStep**(`step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -152,7 +156,7 @@
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Inherited from
 
@@ -160,4 +164,4 @@
 
 #### Defined in
 
-[PuppeteerRunnerExtension.ts:66](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L66)
+[PuppeteerRunnerExtension.ts:72](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L72)

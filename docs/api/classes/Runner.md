@@ -54,13 +54,13 @@
 
 ### run
 
-▸ **run**(): `Promise`<`boolean`\>
+▸ **run**(): `Promise`\<`boolean`\>
 
 Run all the steps in the flow
 
 #### Returns
 
-`Promise`<`boolean`\>
+`Promise`\<`boolean`\>
 
 whether all the steps are run or the execution is aborted
 
@@ -72,7 +72,7 @@ whether all the steps are run or the execution is aborted
 
 ### runAfterAllSteps
 
-▸ **runAfterAllSteps**(`flow?`): `Promise`<`void`\>
+▸ **runAfterAllSteps**(`flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -82,7 +82,7 @@ whether all the steps are run or the execution is aborted
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
@@ -92,7 +92,7 @@ whether all the steps are run or the execution is aborted
 
 ### runBeforeAllSteps
 
-▸ **runBeforeAllSteps**(`flow?`): `Promise`<`void`\>
+▸ **runBeforeAllSteps**(`flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -102,7 +102,7 @@ whether all the steps are run or the execution is aborted
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
@@ -112,7 +112,7 @@ whether all the steps are run or the execution is aborted
 
 ### runStep
 
-▸ **runStep**(`step`): `Promise`<`void`\>
+▸ **runStep**(`step`): `Promise`\<`void`\>
 
 Runs the provided `step` with `beforeEachStep` and `afterEachStep` hooks.
 Parameters from the `flow` apply if the `flow` is set.
@@ -125,7 +125,7 @@ Parameters from the `flow` apply if the `flow` is set.
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 

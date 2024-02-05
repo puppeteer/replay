@@ -359,7 +359,7 @@ The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]]
 
 ### mouseButtonMap
 
-• `Const` **mouseButtonMap**: `ReadonlyMap`<`string`, `"left"` \| `"middle"` \| `"right"` \| `"back"` \| `"forward"`\>
+• `Const` **mouseButtonMap**: `ReadonlyMap`\<`string`, `"left"` \| `"middle"` \| `"right"` \| `"back"` \| `"forward"`\>
 
 #### Defined in
 
@@ -369,7 +369,7 @@ The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]]
 
 ### pointerDeviceTypes
 
-• `Const` **pointerDeviceTypes**: `ReadonlySet`<`string`\>
+• `Const` **pointerDeviceTypes**: `ReadonlySet`\<`string`\>
 
 #### Defined in
 
@@ -379,7 +379,7 @@ The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]]
 
 ### typeableInputTypes
 
-• `Const` **typeableInputTypes**: `ReadonlySet`<`string`\>
+• `Const` **typeableInputTypes**: `ReadonlySet`\<`string`\>
 
 #### Defined in
 
@@ -409,17 +409,17 @@ The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]]
 
 ### createRunner
 
-▸ **createRunner**(): `Promise`<[`Runner`](classes/Runner.md)\>
+▸ **createRunner**(): `Promise`\<[`Runner`](classes/Runner.md)\>
 
 #### Returns
 
-`Promise`<[`Runner`](classes/Runner.md)\>
+`Promise`\<[`Runner`](classes/Runner.md)\>
 
 #### Defined in
 
 [Runner.ts:102](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L102)
 
-▸ **createRunner**(`flow`): `Promise`<[`Runner`](classes/Runner.md)\>
+▸ **createRunner**(`flow`): `Promise`\<[`Runner`](classes/Runner.md)\>
 
 #### Parameters
 
@@ -429,13 +429,13 @@ The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]]
 
 #### Returns
 
-`Promise`<[`Runner`](classes/Runner.md)\>
+`Promise`\<[`Runner`](classes/Runner.md)\>
 
 #### Defined in
 
 [Runner.ts:103](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L103)
 
-▸ **createRunner**(`extension`): `Promise`<[`Runner`](classes/Runner.md)\>
+▸ **createRunner**(`extension`): `Promise`\<[`Runner`](classes/Runner.md)\>
 
 #### Parameters
 
@@ -445,13 +445,13 @@ The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]]
 
 #### Returns
 
-`Promise`<[`Runner`](classes/Runner.md)\>
+`Promise`\<[`Runner`](classes/Runner.md)\>
 
 #### Defined in
 
 [Runner.ts:104](https://github.com/puppeteer/replay/blob/main/src/Runner.ts#L104)
 
-▸ **createRunner**(`flow`, `extension`): `Promise`<[`Runner`](classes/Runner.md)\>
+▸ **createRunner**(`flow`, `extension`): `Promise`\<[`Runner`](classes/Runner.md)\>
 
 #### Parameters
 
@@ -462,7 +462,7 @@ The format is [version, [lineNo, length], [lineNo, length] ... [lineNo, length]]
 
 #### Returns
 
-`Promise`<[`Runner`](classes/Runner.md)\>
+`Promise`\<[`Runner`](classes/Runner.md)\>
 
 #### Defined in
 
@@ -632,7 +632,7 @@ https://pptr.dev/guides/query-selectors#p-elements
 
 ### stringify
 
-▸ **stringify**(`flow`, `opts?`): `Promise`<`string`\>
+▸ **stringify**(`flow`, `opts?`): `Promise`\<`string`\>
 
 Stringifes an entire recording. The following hooks are invoked with the `flow` parameter containing the entire flow:
 
@@ -651,7 +651,7 @@ Stringifes an entire recording. The following hooks are invoked with the `flow` 
 
 #### Returns
 
-`Promise`<`string`\>
+`Promise`\<`string`\>
 
 #### Defined in
 
@@ -661,7 +661,7 @@ Stringifes an entire recording. The following hooks are invoked with the `flow` 
 
 ### stringifyStep
 
-▸ **stringifyStep**(`step`, `opts?`): `Promise`<`string`\>
+▸ **stringifyStep**(`step`, `opts?`): `Promise`\<`string`\>
 
 Stringifes a single step. Only the following hooks are invoked with the `flow` parameter as undefined:
 
@@ -678,7 +678,7 @@ Stringifes a single step. Only the following hooks are invoked with the `flow` p
 
 #### Returns
 
-`Promise`<`string`\>
+`Promise`\<`string`\>
 
 #### Defined in
 

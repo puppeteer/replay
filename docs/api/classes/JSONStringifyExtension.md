@@ -31,7 +31,11 @@ parsers support comments in JSON.
 
 ### constructor
 
-• **new JSONStringifyExtension**()
+• **new JSONStringifyExtension**(): [`JSONStringifyExtension`](JSONStringifyExtension.md)
+
+#### Returns
+
+[`JSONStringifyExtension`](JSONStringifyExtension.md)
 
 #### Inherited from
 
@@ -41,7 +45,7 @@ parsers support comments in JSON.
 
 ### afterAllSteps
 
-▸ **afterAllSteps**(`out`): `Promise`<`void`\>
+▸ **afterAllSteps**(`out`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -51,7 +55,7 @@ parsers support comments in JSON.
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Overrides
 
@@ -65,7 +69,7 @@ parsers support comments in JSON.
 
 ### afterEachStep
 
-▸ `Optional` **afterEachStep**(`out`, `step`, `flow?`): `Promise`<`void`\>
+▸ **afterEachStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -77,7 +81,7 @@ parsers support comments in JSON.
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Inherited from
 
@@ -91,7 +95,7 @@ parsers support comments in JSON.
 
 ### beforeAllSteps
 
-▸ **beforeAllSteps**(`out`, `flow`): `Promise`<`void`\>
+▸ **beforeAllSteps**(`out`, `flow`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -102,7 +106,7 @@ parsers support comments in JSON.
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Overrides
 
@@ -116,7 +120,7 @@ parsers support comments in JSON.
 
 ### beforeEachStep
 
-▸ `Optional` **beforeEachStep**(`out`, `step`, `flow?`): `Promise`<`void`\>
+▸ **beforeEachStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -128,7 +132,7 @@ parsers support comments in JSON.
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Inherited from
 
@@ -142,7 +146,7 @@ parsers support comments in JSON.
 
 ### stringifyStep
 
-▸ **stringifyStep**(`out`, `step`, `flow?`): `Promise`<`void`\>
+▸ **stringifyStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -154,7 +158,7 @@ parsers support comments in JSON.
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Overrides
 

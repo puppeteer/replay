@@ -67,8 +67,8 @@ export function getHeadlessEnvVar(headless?: string) {
     case '1':
     case 'true':
       return true;
-    case 'new':
-      return 'new';
+    case 'shell':
+      return 'shell';
     case '0':
     case 'false':
       return false;
@@ -140,7 +140,7 @@ export async function importExtensionFromPath(path: string): Promise<any> {
 
 export async function runFiles(
   files: string[],
-  opts: { log: boolean; headless: boolean | 'new'; extension?: string } = {
+  opts: { log: boolean; headless: boolean | 'shell'; extension?: string } = {
     log: true,
     headless: true,
   }
@@ -171,7 +171,7 @@ export async function runFiles(
 
       const { default: puppeteer } = await import('puppeteer');
       browser = await puppeteer.launch({
-        headless: opts.headless ? 'new' : false,
+        headless: opts.headless,
       });
       const page = await browser.newPage();
       const extension = new Extension(browser, page);

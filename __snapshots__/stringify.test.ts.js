@@ -1,8 +1,8 @@
 exports['stringify should print the correct script for a navigate step 1'] = `
-const puppeteer = require('puppeteer'); // v20.7.4 or later
+const puppeteer = require('puppeteer'); // v22.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch({headless: 'new'});
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
@@ -25,10 +25,10 @@ const puppeteer = require('puppeteer'); // v20.7.4 or later
 exports[
   'stringify should print the correct script for a emulateNetworkCondition step 1'
 ] = `
-const puppeteer = require('puppeteer'); // v20.7.4 or later
+const puppeteer = require('puppeteer'); // v22.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch({headless: 'new'});
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
@@ -56,10 +56,10 @@ const puppeteer = require('puppeteer'); // v20.7.4 or later
 exports[
   'stringify should print the correct script if the target is not the main page 1'
 ] = `
-const puppeteer = require('puppeteer'); // v20.7.4 or later
+const puppeteer = require('puppeteer'); // v22.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch({headless: 'new'});
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
@@ -91,10 +91,10 @@ const puppeteer = require('puppeteer'); // v20.7.4 or later
 `;
 
 exports['stringify should use step and flow timeouts 1'] = `
-const puppeteer = require('puppeteer'); // v20.7.4 or later
+const puppeteer = require('puppeteer'); // v22.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch({headless: 'new'});
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   const timeout = 10000;
   page.setDefaultTimeout(timeout);
@@ -129,10 +129,10 @@ const puppeteer = require('puppeteer'); // v20.7.4 or later
 exports[
   'stringify should print the correct script if the step is within an iframe 1'
 ] = `
-const puppeteer = require('puppeteer'); // v20.7.4 or later
+const puppeteer = require('puppeteer'); // v22.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch({headless: 'new'});
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
@@ -165,10 +165,10 @@ const puppeteer = require('puppeteer'); // v20.7.4 or later
 `;
 
 exports['stringify should print the correct script for a keydown step 1'] = `
-const puppeteer = require('puppeteer'); // v20.7.4 or later
+const puppeteer = require('puppeteer'); // v22.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch({headless: 'new'});
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
@@ -189,10 +189,10 @@ const puppeteer = require('puppeteer'); // v20.7.4 or later
 `;
 
 exports['stringify should print the correct script for a keyup step 1'] = `
-const puppeteer = require('puppeteer'); // v20.7.4 or later
+const puppeteer = require('puppeteer'); // v22.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch({headless: 'new'});
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
@@ -213,10 +213,10 @@ const puppeteer = require('puppeteer'); // v20.7.4 or later
 `;
 
 exports['stringify should print the correct script for scroll events 1'] = `
-const puppeteer = require('puppeteer'); // v20.7.4 or later
+const puppeteer = require('puppeteer'); // v22.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch({headless: 'new'});
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
@@ -247,10 +247,10 @@ const puppeteer = require('puppeteer'); // v20.7.4 or later
 exports[
   'stringify should print the correct script for waitForElement steps 1'
 ] = `
-const puppeteer = require('puppeteer'); // v20.7.4 or later
+const puppeteer = require('puppeteer'); // v22.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch({headless: 'new'});
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   const timeout = 5000;
   page.setDefaultTimeout(timeout);
@@ -405,10 +405,10 @@ const puppeteer = require('puppeteer'); // v20.7.4 or later
 exports[
   'stringify should print the correct script for waitForExpression steps 1'
 ] = `
-const puppeteer = require('puppeteer'); // v20.7.4 or later
+const puppeteer = require('puppeteer'); // v22.0.0 or later
 
 (async () => {
-  const browser = await puppeteer.launch({headless: 'new'});
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   const timeout = 5000;
   page.setDefaultTimeout(timeout);

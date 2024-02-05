@@ -75,7 +75,7 @@ export async function generateFlowResultViaStringify(
 async function generateFlowResultViaRunner(
   flow: UserFlow
 ): Promise<FlowResult> {
-  const browser = await puppeteer.launch({ headless: 'new' });
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
   const lighthouseExtension = new LighthouseRunnerExtension(browser, page);

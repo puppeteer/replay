@@ -59,7 +59,7 @@ describe('Spec test', () => {
     httpsServer = servers.httpsServer;
     const headless = process.env['PUPPETEER_HEADFUL'] !== 'true';
     browser = await puppeteer.launch({
-      headless: headless ? 'new' : false,
+      headless,
       args: ['--site-per-process', '--host-rules=MAP oopifdomain 127.0.0.1'],
     });
   });

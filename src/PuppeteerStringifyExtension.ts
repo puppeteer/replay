@@ -49,13 +49,11 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
 
   override async beforeAllSteps(out: LineWriter, flow: UserFlow) {
     out.appendLine(
-      "const puppeteer = require('puppeteer'); // v20.7.4 or later"
+      "const puppeteer = require('puppeteer'); // v22.0.0 or later"
     );
     out.appendLine('');
     out.appendLine('(async () => {').startBlock();
-    out.appendLine(
-      "const browser = await puppeteer.launch({headless: 'new'});"
-    );
+    out.appendLine('const browser = await puppeteer.launch();');
     out.appendLine('const page = await browser.newPage();');
     out.appendLine(`const timeout = ${flow.timeout || defaultTimeout};`);
     out.appendLine('page.setDefaultTimeout(timeout);');

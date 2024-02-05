@@ -1,9 +1,7 @@
 import { createRunner, PuppeteerRunnerExtension } from '../../lib/main.js';
 import puppeteer from 'puppeteer';
 
-const browser = await puppeteer.launch({
-  headless: 'new',
-});
+const browser = await puppeteer.launch();
 
 const page = await browser.newPage();
 

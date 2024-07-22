@@ -88,3 +88,15 @@ exports[
 }
 
 `;
+
+exports['PuppeteerStringifyExtension Firefox should stringify 1'] = `
+const puppeteer = require('puppeteer'); // v22.0.0 or later
+
+(async () => {
+  const browser = await puppeteer.launch({browser: 'firefox', protocol: 'webDriverBiDi'});
+  const page = await browser.newPage();
+  const timeout = 5000;
+  page.setDefaultTimeout(timeout);
+
+
+`;

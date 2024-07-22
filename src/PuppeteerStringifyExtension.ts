@@ -44,8 +44,16 @@ import {
 } from './SchemaUtils.js';
 import { formatJSONAsJS } from './JSONUtils.js';
 
+type TargetBrowser = 'chrome' | 'firefox';
+
 export class PuppeteerStringifyExtension extends StringifyExtension {
   #shouldAppendWaitForElementHelper = false;
+  #targetBrowser: TargetBrowser;
+
+  constructor(targetBrowser: TargetBrowser = 'chrome') {
+    super();
+    this.#targetBrowser = targetBrowser;
+  }
 
   override async beforeAllSteps(out: LineWriter, flow: UserFlow) {
     out.appendLine(
@@ -53,7 +61,13 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
     );
     out.appendLine('');
     out.appendLine('(async () => {').startBlock();
-    out.appendLine('const browser = await puppeteer.launch();');
+    if (this.#targetBrowser === 'firefox') {
+      out.appendLine(
+        `const browser = await puppeteer.launch({browser: 'firefox', protocol: 'webDriverBiDi'});`
+      );
+    } else {
+      out.appendLine('const browser = await puppeteer.launch();');
+    }
     out.appendLine('const page = await browser.newPage();');
     out.appendLine(`const timeout = ${flow.timeout || defaultTimeout};`);
     out.appendLine('page.setDefaultTimeout(timeout);');

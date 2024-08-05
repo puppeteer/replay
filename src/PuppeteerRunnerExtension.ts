@@ -78,16 +78,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
     let targetFrame: Frame | null = null;
 
     if (!targetPage && step.target) {
-      const frames = page.frames();
-      for (const f of frames) {
-        if (f.isOOPFrame() && f.url() === step.target) {
-          targetFrame = f;
-          break;
-        }
-      }
-      if (!targetFrame) {
-        targetFrame = await page.waitForFrame(step.target, { timeout });
-      }
+      targetFrame = await page.waitForFrame(step.target, { timeout });
     }
     const targetPageOrFrame = targetFrame || targetPage;
     if (!targetPageOrFrame) {

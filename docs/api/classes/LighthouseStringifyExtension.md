@@ -26,7 +26,13 @@
 
 ### constructor
 
-• **new LighthouseStringifyExtension**(): [`LighthouseStringifyExtension`](LighthouseStringifyExtension.md)
+• **new LighthouseStringifyExtension**(`targetBrowser?`): [`LighthouseStringifyExtension`](LighthouseStringifyExtension.md)
+
+#### Parameters
+
+| Name            | Type            | Default value |
+| :-------------- | :-------------- | :------------ |
+| `targetBrowser` | `TargetBrowser` | `'chrome'`    |
 
 #### Returns
 
@@ -35,6 +41,10 @@
 #### Inherited from
 
 [PuppeteerStringifyExtension](PuppeteerStringifyExtension.md).[constructor](PuppeteerStringifyExtension.md#constructor)
+
+#### Defined in
+
+[PuppeteerStringifyExtension.ts:53](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L53)
 
 ## Methods
 

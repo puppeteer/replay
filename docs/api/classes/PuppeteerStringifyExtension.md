@@ -28,15 +28,25 @@
 
 ### constructor
 
-• **new PuppeteerStringifyExtension**(): [`PuppeteerStringifyExtension`](PuppeteerStringifyExtension.md)
+• **new PuppeteerStringifyExtension**(`targetBrowser?`): [`PuppeteerStringifyExtension`](PuppeteerStringifyExtension.md)
+
+#### Parameters
+
+| Name            | Type            | Default value |
+| :-------------- | :-------------- | :------------ |
+| `targetBrowser` | `TargetBrowser` | `'chrome'`    |
 
 #### Returns
 
 [`PuppeteerStringifyExtension`](PuppeteerStringifyExtension.md)
 
-#### Inherited from
+#### Overrides
 
 [StringifyExtension](StringifyExtension.md).[constructor](StringifyExtension.md#constructor)
+
+#### Defined in
+
+[PuppeteerStringifyExtension.ts:53](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L53)
 
 ## Methods
 
@@ -61,7 +71,7 @@
 
 #### Defined in
 
-[PuppeteerStringifyExtension.ts:64](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L64)
+[PuppeteerStringifyExtension.ts:78](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L78)
 
 ---
 
@@ -112,7 +122,7 @@
 
 #### Defined in
 
-[PuppeteerStringifyExtension.ts:50](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L50)
+[PuppeteerStringifyExtension.ts:58](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L58)
 
 ---
 
@@ -164,4 +174,4 @@
 
 #### Defined in
 
-[PuppeteerStringifyExtension.ts:79](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L79)
+[PuppeteerStringifyExtension.ts:93](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L93)

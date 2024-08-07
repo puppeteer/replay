@@ -57,13 +57,13 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
 
   override async beforeAllSteps(out: LineWriter, flow: UserFlow) {
     out.appendLine(
-      "const puppeteer = require('puppeteer'); // v22.0.0 or later"
+      "const puppeteer = require('puppeteer'); // v23.0.0 or later"
     );
     out.appendLine('');
     out.appendLine('(async () => {').startBlock();
     if (this.#targetBrowser === 'firefox') {
       out.appendLine(
-        `const browser = await puppeteer.launch({browser: 'firefox', protocol: 'webDriverBiDi'});`
+        `const browser = await puppeteer.launch({browser: 'firefox'});`
       );
     } else {
       out.appendLine('const browser = await puppeteer.launch();');

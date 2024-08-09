@@ -26,13 +26,7 @@ const puppeteer = require('puppeteer'); // v23.0.0 or later
   await lhFlow.startNavigation();
   {
     const targetPage = page;
-    const promises = [];
-    const startWaitingForEvents = () => {
-      promises.push(targetPage.waitForNavigation());
-    }
-    startWaitingForEvents();
     await targetPage.goto('https://example.com');
-    await Promise.all(promises);
   }
   await lhFlow.endNavigation();
   await lhFlow.startTimespan();
@@ -84,13 +78,7 @@ const puppeteer = require('puppeteer'); // v23.0.0 or later
   await lhFlow.startNavigation();
   {
     const targetPage = page;
-    const promises = [];
-    const startWaitingForEvents = () => {
-      promises.push(targetPage.waitForNavigation());
-    }
-    startWaitingForEvents();
     await targetPage.goto('https://example.com');
-    await Promise.all(promises);
   }
   await lhFlow.endNavigation();
   await lhFlow.startTimespan();
@@ -111,13 +99,7 @@ const puppeteer = require('puppeteer'); // v23.0.0 or later
   await lhFlow.startNavigation();
   {
     const targetPage = page;
-    const promises = [];
-    const startWaitingForEvents = () => {
-      promises.push(targetPage.waitForNavigation());
-    }
-    startWaitingForEvents();
     await targetPage.goto('https://example.com/page/');
-    await Promise.all(promises);
   }
   await lhFlow.endNavigation();
   const lhFlowReport = await lhFlow.generateReport();
@@ -156,13 +138,7 @@ const puppeteer = require('puppeteer'); // v23.0.0 or later
   await lhFlow.startNavigation();
   {
     const targetPage = page;
-    const promises = [];
-    const startWaitingForEvents = () => {
-      promises.push(targetPage.waitForNavigation());
-    }
-    startWaitingForEvents();
     await targetPage.goto('https://example.com');
-    await Promise.all(promises);
   }
   await lhFlow.endNavigation();
   await lhFlow.startNavigation();

@@ -62,15 +62,19 @@ In your `package.json` add a new script to invoke the `replay` command:
   "scripts": {
     "replay": "replay recording.json"
   }
-}
-```
+  
+$ controles de relaciones públicas de gh
+Todas las comprobaciones fueron exitosas:
+1 fallida, 3 exitosas y 1 pendiente
 
-You can also give folder name as a parameter to run all the files in a folder.
+. CódigoQL 3m43s https://github.com/cli/cli/runs/123
+✓ compilación (macos-latest) 4 minutos y 18 segundos https://github.com/cli/cli/runs/123
+✓ compilación (ubuntu-latest)
 
-Using CLI + npx:
+Using CLI +
 
-```bash
-npx @puppeteer/replay all-recordings # runs all recordings in the "all-recordings" folder.
+
+npx @pupeteer/replay all-recordings # runs all recordings in the "all-recordings" folder.
 ```
 
 Using CLI + package.json:

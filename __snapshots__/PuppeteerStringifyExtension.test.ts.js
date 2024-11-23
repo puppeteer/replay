@@ -27,7 +27,7 @@ exports[
     promises.push(targetPage.waitForNavigation());
   }
   await puppeteer.Locator.race([
-    targetPage.locator('::-p-aria(Test)')
+    targetPage.('::-p-aria(Test)')
   ])
     .setTimeout(timeout)
     .on('action', () => startWaitingForEvents())

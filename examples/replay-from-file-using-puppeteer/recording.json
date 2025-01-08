@@ -1,9 +1,0 @@
-{
-  "title": "Test recording",
-  "steps": [
-    {
-      "type": "navigate",
-      "url": "https://wikipedia.org"
-    }
-  ]
-}

@@ -23,7 +23,7 @@ jobs:
         # https://github.com/actions/virtual-environments#available-environments
         os: [ubuntu-latest, macos-latest, windows-latest]
         # https://github.com/nodejs/Release#release-schedule
-        node: [18, 20, 22]
+        node: [20, 22]
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.0.0
@@ -34,6 +34,10 @@ jobs:
         uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
           node-version: ${{ matrix.node }}
+
+      - name: Disable AppArmor
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        run: echo 0 | sudo tee /proc/sys/kernel/apparmor_restrict_unprivileged_userns
 
       - name: Install dependencies
         run: |
@@ -69,6 +73,10 @@ jobs:
         uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
           node-version: ${{ matrix.node }}
+
+      - name: Disable AppArmor
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        run: echo 0 | sudo tee /proc/sys/kernel/apparmor_restrict_unprivileged_userns
 
       - name: Install dependencies
         run: |

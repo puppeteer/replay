@@ -23,7 +23,7 @@ jobs:
         # https://github.com/actions/virtual-environments#available-environments
         os: [ubuntu-latest, macos-latest, windows-latest]
         # https://github.com/nodejs/Release#release-schedule
-        node: [20, 22]
+        node: [20, 22, 23]
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.0.0

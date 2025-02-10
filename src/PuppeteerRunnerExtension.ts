@@ -230,7 +230,7 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
           await localFrame.evaluate(
             (x, y) => {
               /* c8 ignore start */
-              window.scroll(x, y);
+              window.scrollTo({ left: x, top: y, behavior: 'smooth' });
               /* c8 ignore stop */
             },
             step.x || 0,

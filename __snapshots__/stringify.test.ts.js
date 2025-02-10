@@ -231,7 +231,7 @@ const puppeteer = require('puppeteer'); // v23.0.0 or later
   }
   {
     const targetPage = page;
-    await targetPage.evaluate((x, y) => { window.scroll(x, y); }, 40, 40)
+    await targetPage.evaluate((x, y) => { window.scrollTo({ left: x, top: y, behavior: 'smooth'}); }, 40, 40)
   }
 
   await browser.close();

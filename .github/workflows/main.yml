@@ -52,7 +52,7 @@ jobs:
           npm run lint
 
       - name: Run tests
-        uses: nick-invision/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
+        uses: nick-invision/retry@c97818ca39074beaea45180dba704f92496a0082 # v3.0.1
         with:
           max_attempts: 3
           command: npm run test
@@ -88,7 +88,7 @@ jobs:
           npm run build
 
       - name: Run tests in headful
-        uses: nick-invision/retry@7152eba30c6575329ac0576536151aca5a72780e # v3.0.0
+        uses: nick-invision/retry@c97818ca39074beaea45180dba704f92496a0082 # v3.0.1
         with:
           max_attempts: 3
           command: xvfb-run --auto-servernum npm run test:headful

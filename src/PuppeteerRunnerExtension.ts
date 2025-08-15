@@ -14,8 +14,8 @@
     limitations under the License.
  */
 import type { Browser, ElementHandle, Frame, Page } from 'puppeteer';
-import { CdpFrame as InternalFrame } from 'puppeteer-core/internal/cdp/Frame.js';
-import { CdpPage as InternalPage } from 'puppeteer-core/internal/cdp/Page.js';
+import type { CdpFrame as InternalFrame } from 'puppeteer-core/internal/cdp/Frame.js';
+import type { CdpPage as InternalPage } from 'puppeteer-core/internal/cdp/Page.js';
 import { RunnerExtension } from './RunnerExtension.js';
 import {
   AssertedEventType,

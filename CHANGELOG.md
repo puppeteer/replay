@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.2](https://github.com/puppeteer/replay/compare/v3.1.1...v3.1.2) (2025-08-19)
+
+
+### Bug Fixes
+
+* mark type imports as such ([#1028](https://github.com/puppeteer/replay/issues/1028)) ([cca8c4d](https://github.com/puppeteer/replay/commit/cca8c4d60cae4d591e861117dd27fcf863180c9b))
+
 ## [3.1.1](https://github.com/puppeteer/replay/compare/v3.1.0...v3.1.1) (2024-08-25)
 
 

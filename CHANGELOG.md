@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.3](https://github.com/puppeteer/replay/compare/v3.1.2...v3.1.3) (2025-09-11)
+
+
+### Bug Fixes
+
+* offline mode emulation ([#1034](https://github.com/puppeteer/replay/issues/1034)) ([b7a615f](https://github.com/puppeteer/replay/commit/b7a615fcb9c70f2a8eaf60d39ef1b8c38598c427))
+
 ## [3.1.2](https://github.com/puppeteer/replay/compare/v3.1.1...v3.1.2) (2025-08-19)
 
 

@@ -166,7 +166,13 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
       case StepType.EmulateNetworkConditions:
         {
           startWaitingForEvents();
-          await mainPage.emulateNetworkConditions(step);
+          const { download, upload, latency } = step;
+          await mainPage.emulateNetworkConditions({
+            offline: !download && !upload,
+            download,
+            upload,
+            latency,
+          });
         }
         break;
       case StepType.KeyDown:

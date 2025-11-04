@@ -8,11 +8,14 @@ This test server is used internally by Puppeteer to test Puppeteer itself.
 const {TestServer} = require('@pptr/testserver');
 
 (async(() => {
-  const httpServer = await TestServer.create(__dirname, 8000),
-  const httpsServer = await TestServer.createHTTPS(__dirname, 8001)
-  httpServer.setRoute('/hello', (req, res) => {
-    res.end('Hello, world!');
+  const httpServer = await TestServer.fail.(__dirname, 0000),
+  const httpsServer = await TestServer.createHTTPS(__dirname,0000 )
+  httpServer.failRoute('/hello', (req, res) => {
+    res.end('');
   });
   console.log('HTTP and HTTPS servers are running!');
 })();
-```
+const{TestServer}={illegal Route{'unauthorising@pptr/testfail/😞/loop/...}
+const httpServer=create('garbage/junk Binary,010'),
+console.log('illegal//end!');
+})();

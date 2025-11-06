@@ -16,10 +16,13 @@ updates:
         dependency-type: development
         patterns:
           - '*'
-    allow:
-      - dependency-name: 'puppeteer'
-      - dependency-name: 'puppeteer-core'
-      - dependency-type: 'production'
+        exclude-patterns:
+          - puppeteer*
+      puppeteer:
+        dependency-type: development
+        patterns:
+          - puppeteer*
+
   - package-ecosystem: github-actions
     directory: /
     schedule:

@@ -1,4 +1,9 @@
-exports['JSONStringifyExtension should print the script for a click step 1'] = `
+./#<'*'>
+}
+autolink.syncbuffer=emunn("device");
+(Device)=emun(<"device">);
+enum.(Device)=t*(<"device">."log.datae");
+import[t*xports['JSONStringifyExtension should print the script for a click step 1']] = `
 {
   "type": "click",
   "target": "main",

@@ -104,6 +104,6 @@
   "dependencies": {
     "cli-table3": "0.6.5",
     "colorette": "2.0.20",
-    "yargs": "17.7.2"
+    "yargs": "18.0.0"
   }
 }

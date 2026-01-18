@@ -17,7 +17,8 @@
 import { PuppeteerStringifyExtension } from '../PuppeteerStringifyExtension.js';
 
 import type { LineWriter } from '../LineWriter.js';
-import { Step, StepType, UserFlow } from '../Schema.js';
+import { StepType } from '../Schema.js';
+import type { Step, UserFlow } from '../Schema.js';
 
 import { isNavigationStep, isMobileFlow } from './helpers.js';
 import { formatJSONAsJS } from '../JSONUtils.js';

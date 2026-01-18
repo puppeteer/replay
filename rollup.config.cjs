@@ -1,5 +1,4 @@
 const typescript = require('@rollup/plugin-typescript').default;
-const { nodeResolve } = require('@rollup/plugin-node-resolve').default;
 const dts = require('rollup-plugin-dts').default;
 const pkg = require('./package.json');
 
@@ -19,7 +18,14 @@ module.exports = [
       },
     ],
     external: Object.keys(pkg.peerDependencies),
-    plugins: [typescript({ module: 'NodeNext', moduleResolution: 'NodeNext' })],
+    plugins: [
+      typescript({
+        module: 'NodeNext',
+        moduleResolution: 'NodeNext',
+        declaration: false,
+        declarationMap: false,
+      }),
+    ],
   },
   {
     input: 'src/main.ts',

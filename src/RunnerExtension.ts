@@ -14,7 +14,7 @@
     limitations under the License.
  */
 
-import { UserFlow, Step } from './Schema.js';
+import type { UserFlow, Step } from './Schema.js';
 
 export class RunnerExtension {
   async beforeAllSteps?(flow?: UserFlow): Promise<void> {}

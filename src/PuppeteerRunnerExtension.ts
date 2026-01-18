@@ -17,14 +17,8 @@ import type { Browser, ElementHandle, Frame, Page } from 'puppeteer';
 import type { CdpFrame as InternalFrame } from 'puppeteer-core/internal/cdp/Frame.js';
 import type { CdpPage as InternalPage } from 'puppeteer-core/internal/cdp/Page.js';
 import { RunnerExtension } from './RunnerExtension.js';
-import {
-  AssertedEventType,
-  Selector,
-  Step,
-  StepType,
-  UserFlow,
-  WaitForElementStep,
-} from './Schema.js';
+import { AssertedEventType, StepType } from './Schema.js';
+import type { Selector, Step, UserFlow, WaitForElementStep } from './Schema.js';
 import {
   assertAllStepTypesAreHandled,
   mouseButtonMap,

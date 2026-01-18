@@ -17,8 +17,9 @@
 import { parseSourceMap, stringify, stripSourceMap } from '../src/stringify.js';
 import { assert } from 'chai';
 import { StringifyExtension } from '../src/StringifyExtension.js';
-import { Step, StepType, UserFlow } from '../src/Schema.js';
-import { LineWriter } from '../src/LineWriter.js';
+import { StepType } from '../src/Schema.js';
+import type { Step, UserFlow } from '../src/Schema.js';
+import type { LineWriter } from '../src/LineWriter.js';
 import snapshot from 'snap-shot-it';
 import { decode } from '../src/vlq.js';
 

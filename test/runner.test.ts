@@ -27,7 +27,8 @@ import { PuppeteerRunnerExtension } from '../src/PuppeteerRunnerExtension.js';
 
 import { TestServer } from '../third_party/testserver/lib/index.js';
 import { RunnerExtension } from '../src/RunnerExtension.js';
-import { AssertedEventType, Step, StepType, UserFlow } from '../src/Schema.js';
+import { AssertedEventType, StepType } from '../src/Schema.js';
+import type { Step, UserFlow } from '../src/Schema.js';
 
 const HTTP_PORT = 8907;
 const HTTP_PREFIX = `http://localhost:${HTTP_PORT}`;

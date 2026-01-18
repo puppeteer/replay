@@ -16,7 +16,7 @@
 
 import { PuppeteerRunnerOwningBrowserExtension } from './PuppeteerRunnerExtension.js';
 import { RunnerExtension } from './RunnerExtension.js';
-import { UserFlow, Step } from './Schema.js';
+import type { UserFlow, Step } from './Schema.js';
 
 async function _runStepWithHooks(
   extension: RunnerExtension,

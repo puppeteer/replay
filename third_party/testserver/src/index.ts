@@ -28,7 +28,7 @@ import {
   Server as HttpsServer,
   ServerOptions as HttpsServerOptions,
 } from 'https';
-import { getType as getMimeType } from 'mime';
+import mime from 'mime';
 import { join } from 'path';
 import { Duplex } from 'stream';
 import { Server as WebSocketServer, WebSocket } from 'ws';
@@ -263,7 +263,7 @@ export class TestServer {
         response.end(`File not found: ${filePath}`);
         return;
       }
-      const mimeType = getMimeType(filePath);
+      const mimeType = mime.getType(filePath);
       if (mimeType) {
         const isTextEncoding = /^text\/|^application\/(javascript|json)/.test(
           mimeType

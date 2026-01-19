@@ -23,13 +23,13 @@ import { assert } from 'chai';
 import { spawn } from 'node:child_process';
 
 import { createRunner } from '../src/Runner.js';
-import { LineWriter } from '../src/LineWriter.js';
+import type { LineWriter } from '../src/LineWriter.js';
 import { parse } from '../src/SchemaUtils.js';
 import { PuppeteerRunnerExtension } from '../src/PuppeteerRunnerExtension.js';
 import { PuppeteerStringifyExtension } from '../src/PuppeteerStringifyExtension.js';
 import { stringify } from '../src/stringify.js';
 import { TestServer } from '../third_party/testserver/lib/index.js';
-import { UserFlow } from '../src/Schema.js';
+import type { UserFlow } from '../src/Schema.js';
 import { files, recording, expectedLog } from '../src/Spec.js';
 
 const HTTP_PORT = 8907;

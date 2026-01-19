@@ -20,9 +20,9 @@ import { AssertedEventType, StepType } from '../Schema.js';
 export function isNavigationStep(step: Step): boolean {
   return Boolean(
     step.type === StepType.Navigate ||
-      step.assertedEvents?.some(
-        (event) => event.type === AssertedEventType.Navigation
-      )
+    step.assertedEvents?.some(
+      (event) => event.type === AssertedEventType.Navigation
+    )
   );
 }
 

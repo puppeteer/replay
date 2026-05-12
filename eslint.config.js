@@ -62,23 +62,6 @@ export default [
     },
   },
 
-  // Configuration for CommonJS files (.cjs)
-  {
-    files: ['**/*.cjs'],
-    languageOptions: {
-      globals: {
-        ...globals.node,
-      },
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'script',
-      },
-    },
-    rules: {
-      'no-unused-vars': 'off',
-    },
-  },
-
   // Ignore patterns
   {
     ignores: ['lib/**', 'node_modules/**', 'coverage/**', 'third_party/**'],

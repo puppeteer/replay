@@ -1,0 +1,8 @@
+{
+  "reporter": "spec",
+  "logLevel": "debug",
+  "spec": "test/**/*.test.ts",
+  "extension": ["ts"],
+  "timeout": 25000,
+  "loader": "ts-node/esm"
+}

@@ -3,7 +3,9 @@
   "compilerOptions": {
     "allowJs": true,
     "checkJs": false,
-    "noEmit": true
+    "noEmit": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
   },
   "include": ["**/*.ts"],
   "references": [{ "path": "../third_party/testserver/tsconfig.json" }]

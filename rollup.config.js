@@ -1,8 +1,8 @@
-const typescript = require('@rollup/plugin-typescript').default;
-const dts = require('rollup-plugin-dts').default;
-const pkg = require('./package.json');
+import typescript from '@rollup/plugin-typescript';
+import dts from 'rollup-plugin-dts';
+import packageJson from './package.json' with { type: 'json' };
 
-module.exports = [
+export default [
   {
     input: 'src/main.ts',
     output: [
@@ -11,13 +11,8 @@ module.exports = [
         sourcemap: true,
         format: 'es',
       },
-      {
-        file: 'lib/cjs/main.cjs',
-        sourcemap: true,
-        format: 'cjs',
-      },
     ],
-    external: Object.keys(pkg.peerDependencies),
+    external: Object.keys(packageJson.peerDependencies),
     plugins: [
       typescript({
         module: 'NodeNext',
@@ -33,10 +28,6 @@ module.exports = [
       {
         file: 'lib/main.d.ts',
         format: 'es',
-      },
-      {
-        file: 'lib/cjs/main.d.cts',
-        format: 'cjs',
       },
     ],
     external: [

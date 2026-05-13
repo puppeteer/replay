@@ -2,9 +2,9 @@ exports[
   'Lighthouse user flow run via stringify produces a valid desktop flow report 1'
 ] = `
 import fs from 'fs';
-import * as puppeteer from 'puppeteer'; // v25.0.0 or later
+import { Locator, launch } from 'puppeteer'; // v25.0.0 or later
 
-const browser = await puppeteer.launch();
+const browser = await launch();
 const page = await browser.newPage();
 const timeout = 5000;
 page.setDefaultTimeout(timeout);
@@ -33,7 +33,7 @@ await lhFlow.endNavigation();
 await lhFlow.startTimespan();
 {
   const targetPage = page;
-  await puppeteer.Locator.race([
+  await Locator.race([
     targetPage.locator('#test')
   ])
     .setTimeout(timeout)
@@ -47,7 +47,7 @@ await lhFlow.startTimespan();
 }
 {
   const targetPage = page;
-  await puppeteer.Locator.race([
+  await Locator.race([
     targetPage.locator('#test')
   ])
     .setTimeout(timeout)
@@ -67,7 +67,7 @@ await lhFlow.startNavigation();
   const startWaitingForEvents = () => {
     promises.push(targetPage.waitForNavigation());
   }
-  await puppeteer.Locator.race([
+  await Locator.race([
     targetPage.locator('a[href="main2.html"]')
   ])
     .setTimeout(timeout)

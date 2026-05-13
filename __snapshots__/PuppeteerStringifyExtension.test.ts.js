@@ -3,7 +3,7 @@ exports[
 ] = `
 {
   const targetPage = page;
-  await puppeteer.Locator.race([
+  await Locator.race([
     targetPage.locator('::-p-aria(Test)')
   ])
     .setTimeout(timeout)
@@ -26,7 +26,7 @@ exports[
   const startWaitingForEvents = () => {
     promises.push(targetPage.waitForNavigation());
   }
-  await puppeteer.Locator.race([
+  await Locator.race([
     targetPage.locator('::-p-aria(Test)')
   ])
     .setTimeout(timeout)
@@ -47,7 +47,7 @@ exports[
 ] = `
 {
   const targetPage = page;
-  await puppeteer.Locator.race([
+  await Locator.race([
     targetPage.locator('::-p-aria(Test) >>>> ::-p-aria(Test2)')
   ])
     .setTimeout(timeout)
@@ -66,7 +66,7 @@ exports[
 ] = `
 {
   const targetPage = page;
-  await puppeteer.Locator.race([
+  await Locator.race([
     targetPage.locator('::-p-aria(Test)')
   ])
     .setTimeout(timeout)
@@ -80,7 +80,7 @@ exports[
 ] = `
 {
   const targetPage = page;
-  await puppeteer.Locator.race([
+  await Locator.race([
     targetPage.locator('::-p-aria(Test)')
   ])
     .setTimeout(timeout)
@@ -90,9 +90,9 @@ exports[
 `;
 
 exports['PuppeteerStringifyExtension Firefox should stringify 1'] = `
-import * as puppeteer from 'puppeteer'; // v25.0.0 or later
+import { Locator, launch } from 'puppeteer'; // v25.0.0 or later
 
-const browser = await puppeteer.launch({browser: 'firefox'});
+const browser = await launch({browser: 'firefox'});
 const page = await browser.newPage();
 const timeout = 5000;
 page.setDefaultTimeout(timeout);

@@ -18,9 +18,6 @@ jobs:
       - name: Build
         run: npm run build
       - name: Publish @puppeteer/replay
-        env:
-          NPM_TOKEN: ${{secrets.NPM_TOKEN_REPLAY}}
         run: |
-          npm config set registry 'https://wombat-dressing-room.appspot.com/'
-          npm config set '//wombat-dressing-room.appspot.com/:_authToken' '${NPM_TOKEN}'
-          npm publish --access=public
+          npm publish --provenance --access public
+          

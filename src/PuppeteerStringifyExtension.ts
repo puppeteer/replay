@@ -56,7 +56,9 @@ export class PuppeteerStringifyExtension extends StringifyExtension {
   }
 
   override async beforeAllSteps(out: LineWriter, flow: UserFlow) {
-    out.appendLine("import puppeteer from 'puppeteer'; // v25.0.0 or later");
+    out.appendLine(
+      "import * as puppeteer from 'puppeteer'; // v25.0.0 or later"
+    );
     out.appendLine('');
     if (this.#targetBrowser === 'firefox') {
       out.appendLine(

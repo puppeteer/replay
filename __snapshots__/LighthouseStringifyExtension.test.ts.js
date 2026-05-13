@@ -1,6 +1,6 @@
 exports['LighthouseStringifyExtension handles ending timespan 1'] = `
 import fs from 'fs';
-import puppeteer from 'puppeteer'; // v25.0.0 or later
+import * as puppeteer from 'puppeteer'; // v25.0.0 or later
 
 const browser = await puppeteer.launch();
 const page = await browser.newPage();
@@ -51,7 +51,7 @@ await
 
 exports['LighthouseStringifyExtension handles ending navigation 1'] = `
 import fs from 'fs';
-import puppeteer from 'puppeteer'; // v25.0.0 or later
+import * as puppeteer from 'puppeteer'; // v25.0.0 or later
 
 const browser = await puppeteer.launch();
 const page = await browser.newPage();
@@ -110,7 +110,7 @@ exports[
   'LighthouseStringifyExtension handles multiple sequential navigations 1'
 ] = `
 import fs from 'fs';
-import puppeteer from 'puppeteer'; // v25.0.0 or later
+import * as puppeteer from 'puppeteer'; // v25.0.0 or later
 
 const browser = await puppeteer.launch();
 const page = await browser.newPage();

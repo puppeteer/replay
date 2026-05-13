@@ -81,7 +81,7 @@
   },
   "peerDependencies": {
     "lighthouse": ">=10.0.0",
-    "puppeteer": ">=23.0.0"
+    "puppeteer": ">=25.0.0"
   },
   "peerDependenciesMeta": {
     "puppeteer": {

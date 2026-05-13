@@ -2,7 +2,7 @@ exports[
   'Lighthouse user flow run via stringify produces a valid desktop flow report 1'
 ] = `
 import fs from 'fs';
-import puppeteer from 'puppeteer'; // v23.0.0 or later
+import puppeteer from 'puppeteer'; // v25.0.0 or later
 
 const browser = await puppeteer.launch();
 const page = await browser.newPage();

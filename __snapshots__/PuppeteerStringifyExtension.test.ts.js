@@ -90,7 +90,7 @@ exports[
 `;
 
 exports['PuppeteerStringifyExtension Firefox should stringify 1'] = `
-import puppeteer from 'puppeteer'; // v23.0.0 or later
+import puppeteer from 'puppeteer'; // v25.0.0 or later
 
 const browser = await puppeteer.launch({browser: 'firefox'});
 const page = await browser.newPage();

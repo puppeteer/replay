@@ -21,11 +21,9 @@ import {
 } from '../../src/CLIUtils.js';
 import { assert } from 'chai';
 import path from 'path';
-import url from 'url';
-import { HorizontalTableRow } from 'cli-table3';
-import { bgGreen, bgRed, white } from 'colorette';
 
-const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
+import { HorizontalTableRow } from 'cli-table3';
+import { styleText } from 'node:util';
 
 enum Status {
   Success = 1,
@@ -49,21 +47,25 @@ describe('cli', () => {
   describe('runFiles', () => {
     it('is able to run successfully', async () => {
       const result = await getStatus(() =>
-        runFiles([path.join(__dirname, '..', 'resources', 'replay.json')])
+        runFiles([
+          path.join(import.meta.dirname, '..', 'resources', 'replay.json'),
+        ])
       );
       assert.strictEqual(result, Status.Success);
     });
 
     it('is not able to run', async () => {
       const result = await getStatus(() =>
-        runFiles([path.join(__dirname, '..', 'resources', 'replay-fail.json')])
+        runFiles([
+          path.join(import.meta.dirname, '..', 'resources', 'replay-fail.json'),
+        ])
       );
       assert.strictEqual(result, Status.Error);
     });
 
     it('is able to run able to run folder of recordings', async () => {
       const recordings = getJSONFilesFromFolder(
-        path.join(__dirname, '..', 'resources', 'folder-test')
+        path.join(import.meta.dirname, '..', 'resources', 'folder-test')
       );
       const result = await getStatus(() => runFiles([...recordings]));
       assert.strictEqual(result, Status.Error);
@@ -71,11 +73,14 @@ describe('cli', () => {
 
     it('is able to run successfully with an extension', async () => {
       const result = await getStatus(() =>
-        runFiles([path.join(__dirname, '..', 'resources', 'replay.json')], {
-          extension: path.join('examples', 'cli-extension', 'extension.js'),
-          headless: true,
-          log: false,
-        })
+        runFiles(
+          [path.join(import.meta.dirname, '..', 'resources', 'replay.json')],
+          {
+            extension: path.join('examples', 'cli-extension', 'extension.js'),
+            headless: true,
+            log: false,
+          }
+        )
       );
       assert.strictEqual(result, Status.Success);
     });
@@ -86,7 +91,12 @@ describe('cli', () => {
       const date = new Date();
       const result = {
         startedAt: date,
-        file: path.join(__dirname, '..', 'resources', 'replay-fail.json'),
+        file: path.join(
+          import.meta.dirname,
+          '..',
+          'resources',
+          'replay-fail.json'
+        ),
         finishedAt: new Date(date.getTime() + 1000),
         success: true,
         title: 'Test run',
@@ -95,7 +105,7 @@ describe('cli', () => {
       const [title, status, file, duration] =
         statusReport as HorizontalTableRow;
 
-      assert.strictEqual(status, white(bgGreen(' Success ')));
+      assert.strictEqual(status, styleText(['white', 'bgGreen'], ' Success '));
       assert.strictEqual(duration, '1000ms');
       assert.isString(file);
       assert.strictEqual(title, result.title);
@@ -105,7 +115,12 @@ describe('cli', () => {
       const date = new Date();
       const result = {
         startedAt: date,
-        file: path.join(__dirname, '..', 'resources', 'replay-fail.json'),
+        file: path.join(
+          import.meta.dirname,
+          '..',
+          'resources',
+          'replay-fail.json'
+        ),
         finishedAt: date,
         success: false,
         title: 'Test run',
@@ -114,7 +129,7 @@ describe('cli', () => {
       const [title, status, file, duration] =
         statusReport as HorizontalTableRow;
 
-      assert.strictEqual(status, white(bgRed(' Failure ')));
+      assert.strictEqual(status, styleText(['white', 'bgRed'], ' Failure '));
       assert.strictEqual(duration, '0ms');
       assert.isString(file);
       assert.strictEqual(title, result.title);

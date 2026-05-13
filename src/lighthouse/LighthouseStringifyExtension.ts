@@ -27,7 +27,7 @@ export class LighthouseStringifyExtension extends PuppeteerStringifyExtension {
   #isProcessingTimespan = false;
 
   override async beforeAllSteps(out: LineWriter, flow: UserFlow) {
-    out.appendLine(`const fs = require('fs');`);
+    out.appendLine(`import fs from 'fs';`);
 
     await super.beforeAllSteps(out, flow);
 
@@ -88,7 +88,7 @@ export class LighthouseStringifyExtension extends PuppeteerStringifyExtension {
     }
     out.appendLine(`const lhFlowReport = await lhFlow.generateReport();`);
     out.appendLine(
-      `fs.writeFileSync(__dirname + '/flow.report.html', lhFlowReport)`
+      `fs.writeFileSync(import.meta.dirname + '/flow.report.html', lhFlowReport)`
     );
     await super.afterAllSteps(out, flow);
   }

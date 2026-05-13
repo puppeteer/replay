@@ -18,7 +18,6 @@ import fs from 'fs/promises';
 import path from 'path';
 import puppeteer, { Browser, Page } from 'puppeteer';
 
-import { fileURLToPath } from 'url';
 import { assert } from 'chai';
 import { spawn } from 'node:child_process';
 
@@ -34,11 +33,9 @@ import { files, recording, expectedLog } from '../src/Spec.js';
 
 const HTTP_PORT = 8907;
 const HTTPS_PORT = HTTP_PORT + 1;
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 async function createServers() {
-  const resources = path.join(__dirname, 'resources');
+  const resources = path.join(import.meta.dirname, 'resources');
   const httpServer = await TestServer.create(resources, HTTP_PORT);
   const httpsServer = await TestServer.createHTTPS(resources, HTTPS_PORT);
   for (const [filename, content] of (files || {}).entries()) {

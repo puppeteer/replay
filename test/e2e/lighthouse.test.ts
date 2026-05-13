@@ -16,7 +16,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
+
 import { assert } from 'chai';
 import { TestServer } from '../../third_party/testserver/lib/index.js';
 import { AssertedEventType, StepType } from '../../src/Schema.js';
@@ -32,12 +32,9 @@ import puppeteer from 'puppeteer';
 import FlowResult from 'lighthouse/types/lhr/flow-result.js';
 import Result from 'lighthouse/types/lhr/lhr.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 const HTTP_PORT = 8907;
 const HTTP_PREFIX = `http://localhost:${HTTP_PORT}`;
-const TMP_DIR = `${__dirname}/../../.tmp/lighthouse`;
+const TMP_DIR = `${import.meta.dirname}/../../.tmp/lighthouse`;
 const FLOW_JSON_REGEX = /window\.__LIGHTHOUSE_FLOW_JSON__ = (.*);<\/script>/;
 
 const execFileAsync = promisify(execFile);
@@ -47,7 +44,7 @@ export async function generateFlowResultViaStringify(
 ): Promise<FlowResult> {
   fs.mkdirSync(TMP_DIR, { recursive: true });
   const testTmpDir = fs.mkdtempSync(`${TMP_DIR}/lighthouse-`);
-  const scriptPath = `${testTmpDir}/stringified.cjs`;
+  const scriptPath = `${testTmpDir}/stringified.js`;
 
   const scriptContents = await stringify(flow, {
     extension: new LighthouseStringifyExtension(),
@@ -103,7 +100,7 @@ describe('Lighthouse user flow', function () {
   let httpServer: TestServer;
 
   before(async () => {
-    const resources = path.join(__dirname, '../resources');
+    const resources = path.join(import.meta.dirname, '../resources');
     httpServer = await TestServer.create(resources, HTTP_PORT);
   });
 

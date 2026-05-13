@@ -74,8 +74,8 @@
     "mime": "4.1.0",
     "mocha": "^11.7.5",
     "prettier": "3.8.3",
-    "puppeteer": "25.0.0",
-    "puppeteer-core": "25.0.0",
+    "puppeteer": "24.43.1",
+    "puppeteer-core": "24.43.1",
     "rimraf": "6.1.2",
     "rollup": "4.55.1",
     "rollup-plugin-dts": "6.4.1",
@@ -100,7 +100,6 @@
   },
   "dependencies": {
     "cli-table3": "0.6.5",
-    "colorette": "2.0.20",
     "yargs": "18.0.0"
   }
 }

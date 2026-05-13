@@ -22,7 +22,7 @@ import { cwd } from 'process';
 import { PuppeteerRunnerOwningBrowserExtension } from '../lib/main.js';
 import { Browser } from 'puppeteer';
 import Table from 'cli-table3';
-import { bgGreen, bgRed, white } from 'colorette';
+import { styleText } from 'node:util';
 
 export function getJSONFilesFromFolder(path: string): string[] {
   return readdirSync(path)
@@ -110,15 +110,14 @@ export function createStatusReport(results: Result[]): Table.Table {
     },
   });
 
-  const resultTextColor = white;
   for (const result of results) {
     const row: string[] = [];
 
     const duration =
       result.finishedAt?.getTime()! - result.startedAt.getTime() || 0;
     const status = result.success
-      ? resultTextColor(bgGreen(' Success '))
-      : resultTextColor(bgRed(' Failure '));
+      ? styleText(['white', 'bgGreen'], ' Success ')
+      : styleText(['white', 'bgRed'], ' Failure ');
 
     row.push(result.title);
     row.push(status);

@@ -6,8 +6,9 @@
     "declaration": true,
     "declarationMap": true,
     "esModuleInterop": true,
-    "module": "ES2022",
-    "moduleResolution": "Bundler",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "types": ["mocha"],
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitOverride": true,
@@ -23,7 +24,7 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "target": "ES2022",
+    "target": "ES2025",
     "useUnknownInCatchVariables": true
   }
 }

@@ -16,11 +16,8 @@
 
 import puppeteer, { Browser, Page } from 'puppeteer';
 import path from 'path';
-import { fileURLToPath } from 'url';
-import { assert } from 'chai';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { assert } from 'chai';
 
 import { createRunner } from '../src/Runner.js';
 import { PuppeteerRunnerExtension } from '../src/PuppeteerRunnerExtension.js';
@@ -36,7 +33,7 @@ const OOPIF_PREFIX = `http://oopifdomain:${HTTP_PORT}`;
 const HTTPS_PORT = HTTP_PORT + 1;
 
 async function createServers() {
-  const resources = path.join(__dirname, 'resources');
+  const resources = path.join(import.meta.dirname, 'resources');
   const httpServer = await TestServer.create(resources, HTTP_PORT);
   const httpsServer = await TestServer.createHTTPS(resources, HTTPS_PORT);
   return { httpServer, httpsServer };

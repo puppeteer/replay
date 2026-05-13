@@ -21,9 +21,6 @@ import {
 } from '../src/CLIUtils.js';
 import { assert } from 'chai';
 import path from 'path';
-import url from 'url';
-
-const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
 describe('cli', () => {
   describe('getHeadlessEnvVar', () => {
@@ -56,7 +53,7 @@ describe('cli', () => {
   describe('getJSONFilesFromFolder', () => {
     it('is able to return json files from a directory', () => {
       const files = getJSONFilesFromFolder(
-        path.join(__dirname, 'resources', 'folder-test')
+        path.join(import.meta.dirname, 'resources', 'folder-test')
       );
 
       assert.isTrue(files.every((file) => file.endsWith('.json')));

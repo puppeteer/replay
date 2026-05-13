@@ -49,7 +49,10 @@ export default [
       banner: '#!/usr/bin/env node',
     },
     external: [
-      ...Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies }),
+      ...Object.keys({
+        ...packageJson.dependencies,
+        ...packageJson.peerDependencies,
+      }),
       '../lib/main.js',
       'fs',
       'path',
@@ -68,7 +71,10 @@ export default [
       banner: '#!/usr/bin/env node',
     },
     external: [
-      ...Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies }),
+      ...Object.keys({
+        ...packageJson.dependencies,
+        ...packageJson.peerDependencies,
+      }),
       '../lib/main.js',
       'fs',
       'path',

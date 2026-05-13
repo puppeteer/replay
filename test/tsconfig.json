@@ -4,8 +4,7 @@
     "allowJs": true,
     "checkJs": false,
     "noEmit": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext"
+    "rootDir": ".."
   },
   "include": ["**/*.ts"],
   "references": [{ "path": "../third_party/testserver/tsconfig.json" }]

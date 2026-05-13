@@ -20,4 +20,3 @@ jobs:
       - name: Publish @puppeteer/replay
         run: |
           npm publish --provenance --access public
-          

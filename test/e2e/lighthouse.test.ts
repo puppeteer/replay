@@ -17,40 +17,49 @@
 import fs from 'fs';
 import path from 'path';
 
-import { assert } from 'chai';
-import { TestServer } from '../../third_party/testserver/lib/index.js';
+import { describe, it, before, after, TestContext } from 'node:test';
+import assert from 'node:assert';
+import { TestServer } from '../../third_party/testserver/src/index.js';
 import { AssertedEventType, StepType } from '../../src/Schema.js';
 import type { UserFlow } from '../../src/Schema.js';
 import { LighthouseStringifyExtension } from '../../src/lighthouse/LighthouseStringifyExtension.js';
 import { LighthouseRunnerExtension } from '../../src/lighthouse/LighthouseRunnerExtension.js';
 import { stringify } from '../../src/stringify.js';
 import { createRunner } from '../../src/Runner.js';
-import snapshot from 'snap-shot-it';
 import { execFile } from 'child_process';
 import { promisify } from 'util';
 import puppeteer from 'puppeteer';
 import FlowResult from 'lighthouse/types/lhr/flow-result.js';
 import Result from 'lighthouse/types/lhr/lhr.js';
 
-const HTTP_PORT = 8907;
-const HTTP_PREFIX = `http://localhost:${HTTP_PORT}`;
-const TMP_DIR = `${import.meta.dirname}/../../.tmp/lighthouse`;
+const TMP_DIR = path.join(
+  import.meta.dirname,
+  '..',
+  '..',
+  '.tmp',
+  'lighthouse'
+);
 const FLOW_JSON_REGEX = /window\.__LIGHTHOUSE_FLOW_JSON__ = (.*);<\/script>/;
 
 const execFileAsync = promisify(execFile);
 
+function normalizeUrls(content: string): string {
+  return content.replace(/localhost:\d+/g, 'localhost:8911');
+}
+
 export async function generateFlowResultViaStringify(
-  flow: UserFlow
+  flow: UserFlow,
+  t: TestContext
 ): Promise<FlowResult> {
   fs.mkdirSync(TMP_DIR, { recursive: true });
-  const testTmpDir = fs.mkdtempSync(`${TMP_DIR}/lighthouse-`);
-  const scriptPath = `${testTmpDir}/stringified.js`;
+  const testTmpDir = fs.mkdtempSync(path.join(TMP_DIR, 'lighthouse-'));
+  const scriptPath = path.join(testTmpDir, 'stringified.js');
 
   const scriptContents = await stringify(flow, {
     extension: new LighthouseStringifyExtension(),
   });
 
-  snapshot(scriptContents);
+  t.assert.snapshot(normalizeUrls(scriptContents));
   fs.writeFileSync(scriptPath, scriptContents);
 
   const { stdout, stderr } = await execFileAsync('node', [scriptPath], {
@@ -61,13 +70,16 @@ export async function generateFlowResultViaStringify(
   assert.strictEqual(stdout, '');
   assert.strictEqual(stderr, '');
 
-  const reportHtml = fs.readFileSync(`${testTmpDir}/flow.report.html`, 'utf-8');
+  const reportHtml = fs.readFileSync(
+    path.join(testTmpDir, 'flow.report.html'),
+    'utf-8'
+  );
   const flowResultJson = FLOW_JSON_REGEX.exec(reportHtml)?.[1];
   if (!flowResultJson) throw new Error('Could not find flow json');
 
   fs.rmSync(testTmpDir, { recursive: true, force: true });
 
-  return JSON.parse(flowResultJson);
+  return JSON.parse(normalizeUrls(flowResultJson));
 }
 
 async function generateFlowResultViaRunner(
@@ -93,15 +105,12 @@ const LIGHTHOUSE_RUNNERS = {
   runner: generateFlowResultViaRunner,
 };
 
-describe('Lighthouse user flow', function () {
-  // eslint-disable-next-line no-invalid-this
-  this.timeout(60_000);
-
+describe('Lighthouse user flow', { timeout: 60000 }, () => {
   let httpServer: TestServer;
 
   before(async () => {
-    const resources = path.join(import.meta.dirname, '../resources');
-    httpServer = await TestServer.create(resources, HTTP_PORT);
+    const resources = path.join(process.cwd(), 'test/resources');
+    httpServer = await TestServer.create(resources);
   });
 
   after(async () => {
@@ -111,7 +120,7 @@ describe('Lighthouse user flow', function () {
   // We want to verify that the replay runner and stringified script both generate the same result.
   for (const [name, lighthouseRunner] of Object.entries(LIGHTHOUSE_RUNNERS)) {
     describe(`run via ${name}`, () => {
-      it('produces a valid desktop flow report', async () => {
+      it('produces a valid desktop flow report', async (t) => {
         const desktopReplayJson: UserFlow = {
           title: 'Test desktop',
           steps: [
@@ -126,7 +135,7 @@ describe('Lighthouse user flow', function () {
             },
             {
               type: StepType.Navigate,
-              url: `${HTTP_PREFIX}/main.html`,
+              url: `${httpServer.PREFIX}/main.html`,
             },
             {
               type: StepType.Click,
@@ -156,16 +165,19 @@ describe('Lighthouse user flow', function () {
           ],
         };
 
-        const flowResult = await lighthouseRunner(desktopReplayJson);
+        const flowResult = await (lighthouseRunner as any)(
+          desktopReplayJson,
+          t
+        );
 
-        assert.equal(flowResult.name, desktopReplayJson.title);
+        assert.strictEqual(flowResult.name, desktopReplayJson.title);
         assert.deepStrictEqual(
-          flowResult.steps.map((step) => step.lhr.gatherMode),
+          flowResult.steps.map((step: any) => step.lhr.gatherMode),
           ['navigation', 'timespan', 'navigation']
         );
 
         for (const { lhr } of flowResult.steps as Array<{ lhr: Result }>) {
-          assert.equal(lhr.configSettings.formFactor, 'desktop');
+          assert.strictEqual(lhr.configSettings.formFactor, 'desktop');
           assert.ok(lhr.configSettings.screenEmulation.disabled);
 
           const auditList = Object.values(lhr.audits);
@@ -173,8 +185,8 @@ describe('Lighthouse user flow', function () {
             (audit) => audit.displayValue === 'error'
           );
 
-          assert.isAtLeast(auditList.length, 10);
-          assert.equal(erroredAudits.length, 0);
+          assert.ok(auditList.length >= 10, 'Expected at least 10 audits');
+          assert.strictEqual(erroredAudits.length, 0);
         }
       });
     });

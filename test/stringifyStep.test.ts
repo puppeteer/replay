@@ -14,17 +14,17 @@
     limitations under the License.
  */
 
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
 import { stringifyStep } from '../src/stringify.js';
-import { assert } from 'chai';
 import { StringifyExtension } from '../src/StringifyExtension.js';
 import { StepType } from '../src/Schema.js';
 import type { Step, UserFlow } from '../src/Schema.js';
 import type { LineWriter } from '../src/LineWriter.js';
-import snapshot from 'snap-shot-it';
 
 describe('stringifyStep', () => {
-  it('should stringify a single step', async () => {
-    snapshot(
+  it('should stringify a single step', async (t) => {
+    t.assert.snapshot(
       await stringifyStep({
         type: StepType.Navigate as const,
         url: 'https://localhost/',

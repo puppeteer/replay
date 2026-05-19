@@ -14,7 +14,7 @@
     limitations under the License.
  */
 
-import snapshot from 'snap-shot-it';
+import { describe, it } from 'node:test';
 import { stringify } from '../src/stringify.js';
 import { InMemoryLineWriter } from '../src/InMemoryLineWriter.js';
 import { PuppeteerReplayStringifyExtension } from '../src/PuppeteerReplayStringifyExtension.js';
@@ -23,7 +23,7 @@ import { StepType, AssertedEventType } from '../src/Schema.js';
 describe('PuppeteerReplayStringifyExtension', () => {
   const ext = new PuppeteerReplayStringifyExtension();
 
-  it('should print the script for a click step', async () => {
+  it('should print the script for a click step', async (t) => {
     const step = {
       type: StepType.Click as const,
       target: 'main',
@@ -34,10 +34,10 @@ describe('PuppeteerReplayStringifyExtension', () => {
     };
     const writer = new InMemoryLineWriter('  ');
     await ext.stringifyStep(writer, step);
-    snapshot(writer.toString());
+    t.assert.snapshot(writer.toString());
   });
 
-  it('should print an entire script', async () => {
+  it('should print an entire script', async (t) => {
     const step = {
       type: StepType.Click as const,
       target: 'main',
@@ -47,7 +47,7 @@ describe('PuppeteerReplayStringifyExtension', () => {
       assertedEvents: [{ type: AssertedEventType.Navigation as const }],
     };
     const flow = { title: 'test', steps: [step] };
-    snapshot(
+    t.assert.snapshot(
       await stringify(flow, {
         extension: ext,
       })

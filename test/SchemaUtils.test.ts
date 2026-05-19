@@ -14,9 +14,9 @@
     limitations under the License.
  */
 
-import { assert } from 'chai';
+import { describe, it, before, beforeEach, afterEach, after } from 'node:test';
+import assert from 'node:assert';
 import puppeteer, { Browser, Page } from 'puppeteer';
-import snapshot from 'snap-shot-it';
 import { AssertedEventType, SelectorType, StepType } from '../src/Schema.js';
 import {
   getSelectorType,
@@ -801,7 +801,7 @@ describe('SchemaUtils', () => {
         },
       ];
       for (const testCase of testCases) {
-        assert.throws(() => parse(testCase.input), testCase.error);
+        assert.throws(() => parse(testCase.input), { message: testCase.error });
       }
     });
   });
@@ -900,8 +900,8 @@ describe('SchemaUtils', () => {
       ];
 
       for (const test of tests) {
-        it(`should convert ${test.selector}`, async () => {
-          snapshot(selectorToPElementSelector(test.selector));
+        it(`should convert ${test.selector}`, async (t) => {
+          t.assert.snapshot(selectorToPElementSelector(test.selector));
         });
 
         it(`should run converted ${test.selector}`, async () => {

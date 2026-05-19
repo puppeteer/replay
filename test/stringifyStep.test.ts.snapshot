@@ -1,0 +1,3 @@
+exports[`stringifyStep > should stringify a single step 1`] = `
+"{\\n  const targetPage = page;\\n  await targetPage.goto('https://localhost/');\\n}\\n"
+`;

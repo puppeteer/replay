@@ -14,28 +14,24 @@
     limitations under the License.
  */
 
+import { describe, it, before, beforeEach, afterEach, after } from 'node:test';
+import assert from 'node:assert';
 import puppeteer, { Browser, Page } from 'puppeteer';
 import path from 'path';
-
-import { assert } from 'chai';
 
 import { createRunner } from '../src/Runner.js';
 import { PuppeteerRunnerExtension } from '../src/PuppeteerRunnerExtension.js';
 
-import { TestServer } from '../third_party/testserver/lib/index.js';
+import { TestServer } from '../third_party/testserver/src/index.js';
 import { RunnerExtension } from '../src/RunnerExtension.js';
 import { AssertedEventType, StepType } from '../src/Schema.js';
 import type { Step, UserFlow } from '../src/Schema.js';
 
-const HTTP_PORT = 8907;
-const HTTP_PREFIX = `http://localhost:${HTTP_PORT}`;
-const OOPIF_PREFIX = `http://oopifdomain:${HTTP_PORT}`;
-const HTTPS_PORT = HTTP_PORT + 1;
-
 async function createServers() {
-  const resources = path.join(import.meta.dirname, 'resources');
-  const httpServer = await TestServer.create(resources, HTTP_PORT);
-  const httpsServer = await TestServer.createHTTPS(resources, HTTPS_PORT);
+  const resources = path.join(process.cwd(), 'test', 'resources');
+  const httpServer = await TestServer.create(resources);
+  const httpsServer = await TestServer.createHTTPS(resources);
+
   return { httpServer, httpsServer };
 }
 
@@ -44,11 +40,13 @@ describe('Runner', () => {
   let page: Page;
   let httpServer: TestServer;
   let httpsServer: TestServer;
+  let OOPIF_PREFIX: string;
 
   before(async () => {
     const servers = await createServers();
     httpServer = servers.httpServer;
     httpsServer = servers.httpsServer;
+    OOPIF_PREFIX = `http://oopifdomain:${httpServer.port}`;
     const headless = process.env['PUPPETEER_HEADFUL'] !== 'true';
     browser = await puppeteer.launch({
       headless,
@@ -61,7 +59,7 @@ describe('Runner', () => {
   });
 
   afterEach(async () => {
-    void page.close();
+    await page.close();
   });
 
   after(async () => {
@@ -92,7 +90,7 @@ describe('Runner', () => {
 
     const isFinished = await runner.run();
 
-    assert.isTrue(isFinished);
+    assert.ok(isFinished);
   });
 
   it('should navigate to the right URL', async () => {
@@ -102,14 +100,14 @@ describe('Runner', () => {
         steps: [
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/empty.html`,
+            url: `${httpServer.PREFIX}/empty.html`,
           },
         ],
       },
       new PuppeteerRunnerExtension(browser, page)
     );
     await runner.run();
-    assert.strictEqual(page.url(), `${HTTP_PREFIX}/empty.html`);
+    assert.strictEqual(page.url(), `${httpServer.PREFIX}/empty.html`);
   });
 
   it('should be able to replay mouse click steps', async () => {
@@ -119,7 +117,7 @@ describe('Runner', () => {
         steps: [
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/main.html`,
+            url: `${httpServer.PREFIX}/main.html`,
           },
           {
             type: StepType.Click,
@@ -161,7 +159,7 @@ describe('Runner', () => {
       new PuppeteerRunnerExtension(browser, page)
     );
     await runner.run();
-    assert.isTrue(
+    assert.ok(
       await page.evaluate(() => {
         const context = window as unknown as {
           buttonClicks: number[];
@@ -184,7 +182,7 @@ describe('Runner', () => {
         steps: [
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/svg.html`,
+            url: `${httpServer.PREFIX}/svg.html`,
           },
           {
             type: StepType.Click,
@@ -212,7 +210,7 @@ describe('Runner', () => {
         steps: [
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/invisible-parent.html`,
+            url: `${httpServer.PREFIX}/invisible-parent.html`,
           },
           {
             type: StepType.Click,
@@ -234,7 +232,7 @@ describe('Runner', () => {
         steps: [
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/checkbox.html`,
+            url: `${httpServer.PREFIX}/checkbox.html`,
           },
           {
             type: StepType.Click,
@@ -263,7 +261,7 @@ describe('Runner', () => {
         steps: [
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/checkbox.html`,
+            url: `${httpServer.PREFIX}/checkbox.html`,
           },
           {
             type: StepType.Click,
@@ -276,7 +274,7 @@ describe('Runner', () => {
       new PuppeteerRunnerExtension(browser, page)
     );
     await runner.run();
-    assert.isTrue(
+    assert.ok(
       await page.evaluate(() => document.querySelector('input')?.checked)
     );
   });
@@ -288,7 +286,7 @@ describe('Runner', () => {
         steps: [
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/input.html`,
+            url: `${httpServer.PREFIX}/input.html`,
           },
           {
             type: StepType.KeyDown,
@@ -348,7 +346,7 @@ describe('Runner', () => {
         steps: [
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/select.html`,
+            url: `${httpServer.PREFIX}/select.html`,
           },
           {
             type: StepType.Change,
@@ -375,7 +373,7 @@ describe('Runner', () => {
         steps: [
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/select.html`,
+            url: `${httpServer.PREFIX}/select.html`,
           },
           {
             type: StepType.Click,
@@ -411,7 +409,7 @@ describe('Runner', () => {
         steps: [
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/input.html`,
+            url: `${httpServer.PREFIX}/input.html`,
           },
           {
             type: StepType.Change,
@@ -438,7 +436,7 @@ describe('Runner', () => {
         steps: [
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/input.html`,
+            url: `${httpServer.PREFIX}/input.html`,
           },
           {
             type: StepType.Change,
@@ -465,7 +463,7 @@ describe('Runner', () => {
         steps: [
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/input.html`,
+            url: `${httpServer.PREFIX}/input.html`,
           },
           {
             type: StepType.Change,
@@ -492,7 +490,7 @@ describe('Runner', () => {
         steps: [
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/select.html`,
+            url: `${httpServer.PREFIX}/select.html`,
           },
           {
             type: StepType.SetViewport,
@@ -525,7 +523,7 @@ describe('Runner', () => {
         steps: [
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/scroll.html`,
+            url: `${httpServer.PREFIX}/scroll.html`,
           },
           {
             type: StepType.SetViewport,
@@ -584,7 +582,7 @@ describe('Runner', () => {
           },
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/scroll-into-view.html`,
+            url: `${httpServer.PREFIX}/scroll-into-view.html`,
           },
           {
             type: StepType.Click,
@@ -610,7 +608,7 @@ describe('Runner', () => {
         steps: [
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/form.html`,
+            url: `${httpServer.PREFIX}/form.html`,
           },
           {
             type: StepType.SetViewport,
@@ -646,7 +644,7 @@ describe('Runner', () => {
         steps: [
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/main.html`,
+            url: `${httpServer.PREFIX}/main.html`,
           },
           {
             type: StepType.SetViewport,
@@ -683,7 +681,7 @@ describe('Runner', () => {
           steps: [
             {
               type: StepType.Navigate,
-              url: `${HTTP_PREFIX}/shadow-dynamic.html`,
+              url: `${httpServer.PREFIX}/shadow-dynamic.html`,
             },
             {
               type: StepType.WaitForElement,
@@ -702,7 +700,7 @@ describe('Runner', () => {
           steps: [
             {
               type: StepType.Navigate,
-              url: `${HTTP_PREFIX}/shadow-dynamic.html`,
+              url: `${httpServer.PREFIX}/shadow-dynamic.html`,
             },
             {
               type: StepType.WaitForElement,
@@ -740,7 +738,7 @@ describe('Runner', () => {
           steps: [
             {
               type: StepType.Navigate,
-              url: `${HTTP_PREFIX}/shadow-dynamic.html`,
+              url: `${httpServer.PREFIX}/shadow-dynamic.html`,
             },
             {
               type: StepType.WaitForElement,
@@ -763,7 +761,7 @@ describe('Runner', () => {
           steps: [
             {
               type: StepType.Navigate,
-              url: `${HTTP_PREFIX}/shadow-dynamic.html`,
+              url: `${httpServer.PREFIX}/shadow-dynamic.html`,
             },
             {
               type: StepType.WaitForElement,
@@ -790,7 +788,7 @@ describe('Runner', () => {
         steps: [
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/shadow-dynamic.html`,
+            url: `${httpServer.PREFIX}/shadow-dynamic.html`,
           },
           {
             type: StepType.Click,
@@ -824,12 +822,12 @@ describe('Runner', () => {
       steps: [
         {
           type: StepType.Navigate,
-          url: `${HTTP_PREFIX}/main.html`,
+          url: `${httpServer.PREFIX}/main.html`,
           assertedEvents: [
             {
               title: '',
               type: AssertedEventType.Navigation,
-              url: `${HTTP_PREFIX}/main.html`,
+              url: `${httpServer.PREFIX}/main.html`,
             },
           ],
         },
@@ -843,13 +841,13 @@ describe('Runner', () => {
         {
           type: StepType.Click,
           selectors: [['aria/Button in Popup'], ['body > button']],
-          target: `${HTTP_PREFIX}/popup.html`,
+          target: `${httpServer.PREFIX}/popup.html`,
           offsetX: 1,
           offsetY: 1,
         },
         {
           type: StepType.Close,
-          target: `${HTTP_PREFIX}/popup.html`,
+          target: `${httpServer.PREFIX}/popup.html`,
         },
       ],
     });
@@ -931,12 +929,12 @@ describe('Runner', () => {
         steps: [
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/oopif.html`,
+            url: `${httpServer.PREFIX}/oopif.html`,
             assertedEvents: [
               {
                 title: '',
                 type: AssertedEventType.Navigation,
-                url: `${HTTP_PREFIX}/oopif.html`,
+                url: `${httpServer.PREFIX}/oopif.html`,
               },
             ],
           },
@@ -973,12 +971,12 @@ describe('Runner', () => {
         steps: [
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/local-to-oopif.html`,
+            url: `${httpServer.PREFIX}/local-to-oopif.html`,
             assertedEvents: [
               {
                 title: '',
                 type: AssertedEventType.Navigation,
-                url: `${HTTP_PREFIX}/local-to-oopif.html`,
+                url: `${httpServer.PREFIX}/local-to-oopif.html`,
               },
             ],
           },
@@ -1015,12 +1013,12 @@ describe('Runner', () => {
         steps: [
           {
             type: StepType.Navigate,
-            url: `${HTTP_PREFIX}/main.html`,
+            url: `${httpServer.PREFIX}/main.html`,
             assertedEvents: [
               {
                 title: '',
                 type: AssertedEventType.Navigation,
-                url: `${HTTP_PREFIX}/main.html`,
+                url: `${httpServer.PREFIX}/main.html`,
               },
             ],
           },
@@ -1048,12 +1046,12 @@ describe('Runner', () => {
     );
     await runner.runStep({
       type: StepType.Navigate as const,
-      url: `${HTTP_PREFIX}/main.html`,
+      url: `${httpServer.PREFIX}/main.html`,
       assertedEvents: [
         {
           title: '',
           type: AssertedEventType.Navigation,
-          url: `${HTTP_PREFIX}/main.html`,
+          url: `${httpServer.PREFIX}/main.html`,
         },
       ],
     });
@@ -1144,7 +1142,7 @@ describe('Runner', () => {
 
       await runner.run();
 
-      assert.isTrue(extension.isAfterAllStepsRan);
+      assert.ok(extension.isAfterAllStepsRan);
     });
 
     it('should return false when the execution is aborted before all the steps are executed', async () => {
@@ -1179,7 +1177,7 @@ describe('Runner', () => {
 
       const isFinished = await runner.run();
 
-      assert.isFalse(isFinished);
+      assert.strictEqual(isFinished, false);
     });
   });
 });

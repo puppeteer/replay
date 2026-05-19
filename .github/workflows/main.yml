@@ -52,11 +52,8 @@ jobs:
           npm run lint
 
       - name: Run tests
-        uses: nick-invision/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4.0.0
-        with:
-          max_attempts: 3
-          command: npm run test
-          timeout_minutes: 10
+        run: npm run test
+
   headful-checks:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -88,8 +85,4 @@ jobs:
           npm run build
 
       - name: Run tests in headful
-        uses: nick-invision/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4.0.0
-        with:
-          max_attempts: 3
-          command: xvfb-run --auto-servernum npm run test:headful
-          timeout_minutes: 10
+        run: xvfb-run --auto-servernum npm run test:headful

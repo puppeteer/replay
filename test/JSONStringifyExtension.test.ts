@@ -14,7 +14,7 @@
     limitations under the License.
  */
 
-import snapshot from 'snap-shot-it';
+import { describe, it } from 'node:test';
 import { stringify } from '../src/stringify.js';
 import { InMemoryLineWriter } from '../src/InMemoryLineWriter.js';
 import { JSONStringifyExtension } from '../src/JSONStringifyExtension.js';
@@ -23,7 +23,7 @@ import { StepType, AssertedEventType } from '../src/Schema.js';
 describe('JSONStringifyExtension', () => {
   const ext = new JSONStringifyExtension();
 
-  it('should print the script for a click step', async () => {
+  it('should print the script for a click step', async (t) => {
     const step = {
       type: StepType.Click as const,
       target: 'main',
@@ -34,10 +34,10 @@ describe('JSONStringifyExtension', () => {
     };
     const writer = new InMemoryLineWriter('  ');
     await ext.stringifyStep(writer, step);
-    snapshot(writer.toString());
+    t.assert.snapshot(writer.toString());
   });
 
-  it('should print an entire script', async () => {
+  it('should print an entire script', async (t) => {
     const flow = {
       title: 'test',
       steps: [
@@ -59,7 +59,7 @@ describe('JSONStringifyExtension', () => {
         },
       ],
     };
-    snapshot(
+    t.assert.snapshot(
       await stringify(flow, {
         extension: ext,
       })

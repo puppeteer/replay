@@ -5,7 +5,7 @@
     "composite": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "outDir": "lib",
+    "outDir": "../../lib",
     "rootDir": "src"
   },
   "include": ["src"]

@@ -1,0 +1,7 @@
+exports[`PuppeteerReplayStringifyExtension > should print an entire script 1`] = `
+"import url from 'url';\\nimport { createRunner } from '@puppeteer/replay';\\n\\nexport async function run(extension) {\\n  const runner = await createRunner(extension);\\n\\n  await runner.runBeforeAllSteps();\\n\\n  await runner.runStep({\\n    type: 'click',\\n    target: 'main',\\n    selectors: [\\n      'aria/Test'\\n    ],\\n    offsetX: 1,\\n    offsetY: 1,\\n    assertedEvents: [\\n      {\\n        type: 'navigation'\\n      }\\n    ]\\n  });\\n\\n  await runner.runAfterAllSteps();\\n}\\n\\nif (process && import.meta.url === url.pathToFileURL(process.argv[1]).href) {\\n  run()\\n}\\n//# recorderSourceMap=BIO\\n"
+`;
+
+exports[`PuppeteerReplayStringifyExtension > should print the script for a click step 1`] = `
+"await runner.runStep({\\n  type: 'click',\\n  target: 'main',\\n  selectors: [\\n    'aria/Test'\\n  ],\\n  offsetX: 1,\\n  offsetY: 1,\\n  assertedEvents: [\\n    {\\n      type: 'navigation'\\n    }\\n  ]\\n});\\n"
+`;

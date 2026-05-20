@@ -60,7 +60,13 @@ export default [
       'process',
       'yargs/helpers',
     ],
-    plugins: [typescript({ tsconfig: 'tsconfig.cli.json' })],
+    plugins: [
+      typescript({
+        tsconfig: 'tsconfig.cli.json',
+        declaration: false,
+        declarationMap: false,
+      }),
+    ],
   },
   {
     input: 'src/extension-test.ts',
@@ -85,6 +91,12 @@ export default [
       'assert/strict',
       'child_process',
     ],
-    plugins: [typescript({ tsconfig: 'tsconfig.cli.json' })],
+    plugins: [
+      typescript({
+        tsconfig: 'tsconfig.cli.json',
+        declaration: false,
+        declarationMap: false,
+      }),
+    ],
   },
 ];

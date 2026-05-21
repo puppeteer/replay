@@ -1,41 +1,33 @@
+[**@puppeteer/replay**](../README.md)
+
+---
+
 [@puppeteer/replay](../README.md) / StringifyOptions
 
 # Interface: StringifyOptions
 
-## Table of contents
-
-### Properties
-
-- [extension](StringifyOptions.md#extension)
-- [indentation](StringifyOptions.md#indentation)
-- [writer](StringifyOptions.md#writer)
+Defined in: [stringify.ts:24](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L24)
 
 ## Properties
 
-### extension
+### extension?
 
-• `Optional` **extension**: [`StringifyExtension`](../classes/StringifyExtension.md)
+> `optional` **extension?**: [`StringifyExtension`](../classes/StringifyExtension.md)
 
-#### Defined in
-
-[stringify.ts:25](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L25)
+Defined in: [stringify.ts:25](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L25)
 
 ---
 
-### indentation
+### indentation?
 
-• `Optional` **indentation**: `string`
+> `optional` **indentation?**: `string`
 
-#### Defined in
-
-[stringify.ts:27](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L27)
+Defined in: [stringify.ts:27](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L27)
 
 ---
 
-### writer
+### writer?
 
-• `Optional` **writer**: [`LineWriter`](LineWriter.md)
+> `optional` **writer?**: [`LineWriter`](LineWriter.md)
 
-#### Defined in
-
-[stringify.ts:26](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L26)
+Defined in: [stringify.ts:26](https://github.com/puppeteer/replay/blob/main/src/stringify.ts#L26)

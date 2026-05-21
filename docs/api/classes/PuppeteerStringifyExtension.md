@@ -1,65 +1,60 @@
+[**@puppeteer/replay**](../README.md)
+
+---
+
 [@puppeteer/replay](../README.md) / PuppeteerStringifyExtension
 
 # Class: PuppeteerStringifyExtension
 
-## Hierarchy
+Defined in: [PuppeteerStringifyExtension.ts:49](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L49)
+
+## Extends
 
 - [`StringifyExtension`](StringifyExtension.md)
 
-  ↳ **`PuppeteerStringifyExtension`**
+## Extended by
 
-  ↳↳ [`LighthouseStringifyExtension`](LighthouseStringifyExtension.md)
-
-## Table of contents
-
-### Constructors
-
-- [constructor](PuppeteerStringifyExtension.md#constructor)
-
-### Methods
-
-- [afterAllSteps](PuppeteerStringifyExtension.md#afterallsteps)
-- [afterEachStep](PuppeteerStringifyExtension.md#aftereachstep)
-- [beforeAllSteps](PuppeteerStringifyExtension.md#beforeallsteps)
-- [beforeEachStep](PuppeteerStringifyExtension.md#beforeeachstep)
-- [stringifyStep](PuppeteerStringifyExtension.md#stringifystep)
+- [`LighthouseStringifyExtension`](LighthouseStringifyExtension.md)
 
 ## Constructors
 
-### constructor
+### Constructor
 
-• **new PuppeteerStringifyExtension**(`targetBrowser?`): [`PuppeteerStringifyExtension`](PuppeteerStringifyExtension.md)
+> **new PuppeteerStringifyExtension**(`targetBrowser?`): `PuppeteerStringifyExtension`
+
+Defined in: [PuppeteerStringifyExtension.ts:53](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L53)
 
 #### Parameters
 
-| Name            | Type            | Default value |
-| :-------------- | :-------------- | :------------ |
-| `targetBrowser` | `TargetBrowser` | `'chrome'`    |
+##### targetBrowser?
+
+`TargetBrowser` = `'chrome'`
 
 #### Returns
 
-[`PuppeteerStringifyExtension`](PuppeteerStringifyExtension.md)
+`PuppeteerStringifyExtension`
 
 #### Overrides
 
-[StringifyExtension](StringifyExtension.md).[constructor](StringifyExtension.md#constructor)
-
-#### Defined in
-
-[PuppeteerStringifyExtension.ts:53](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L53)
+[`StringifyExtension`](StringifyExtension.md).[`constructor`](StringifyExtension.md#constructor)
 
 ## Methods
 
-### afterAllSteps
+### afterAllSteps()
 
-▸ **afterAllSteps**(`out`, `flow`): `Promise`\<`void`\>
+> **afterAllSteps**(`out`, `flow`): `Promise`\<`void`\>
+
+Defined in: [PuppeteerStringifyExtension.ts:75](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L75)
 
 #### Parameters
 
-| Name   | Type                                           |
-| :----- | :--------------------------------------------- |
-| `out`  | [`LineWriter`](../interfaces/LineWriter.md)    |
-| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+##### out
+
+[`LineWriter`](../interfaces/LineWriter.md)
+
+##### flow
+
+[`UserFlow`](../interfaces/UserFlow.md)
 
 #### Returns
 
@@ -67,25 +62,29 @@
 
 #### Overrides
 
-[StringifyExtension](StringifyExtension.md).[afterAllSteps](StringifyExtension.md#afterallsteps)
-
-#### Defined in
-
-[PuppeteerStringifyExtension.ts:78](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L78)
+[`StringifyExtension`](StringifyExtension.md).[`afterAllSteps`](StringifyExtension.md#afterallsteps)
 
 ---
 
-### afterEachStep
+### afterEachStep()?
 
-▸ **afterEachStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
+> `optional` **afterEachStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
+
+Defined in: [StringifyExtension.ts:33](https://github.com/puppeteer/replay/blob/main/src/StringifyExtension.ts#L33)
 
 #### Parameters
 
-| Name    | Type                                           |
-| :------ | :--------------------------------------------- |
-| `out`   | [`LineWriter`](../interfaces/LineWriter.md)    |
-| `step`  | [`Step`](../modules/Schema.md#step)            |
-| `flow?` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+##### out
+
+[`LineWriter`](../interfaces/LineWriter.md)
+
+##### step
+
+[`Step`](../type-aliases/Step.md)
+
+##### flow?
+
+[`UserFlow`](../interfaces/UserFlow.md)
 
 #### Returns
 
@@ -93,24 +92,25 @@
 
 #### Inherited from
 
-[StringifyExtension](StringifyExtension.md).[afterEachStep](StringifyExtension.md#aftereachstep)
-
-#### Defined in
-
-[StringifyExtension.ts:33](https://github.com/puppeteer/replay/blob/main/src/StringifyExtension.ts#L33)
+[`StringifyExtension`](StringifyExtension.md).[`afterEachStep`](StringifyExtension.md#aftereachstep)
 
 ---
 
-### beforeAllSteps
+### beforeAllSteps()
 
-▸ **beforeAllSteps**(`out`, `flow`): `Promise`\<`void`\>
+> **beforeAllSteps**(`out`, `flow`): `Promise`\<`void`\>
+
+Defined in: [PuppeteerStringifyExtension.ts:58](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L58)
 
 #### Parameters
 
-| Name   | Type                                           |
-| :----- | :--------------------------------------------- |
-| `out`  | [`LineWriter`](../interfaces/LineWriter.md)    |
-| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+##### out
+
+[`LineWriter`](../interfaces/LineWriter.md)
+
+##### flow
+
+[`UserFlow`](../interfaces/UserFlow.md)
 
 #### Returns
 
@@ -118,25 +118,29 @@
 
 #### Overrides
 
-[StringifyExtension](StringifyExtension.md).[beforeAllSteps](StringifyExtension.md#beforeallsteps)
-
-#### Defined in
-
-[PuppeteerStringifyExtension.ts:58](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L58)
+[`StringifyExtension`](StringifyExtension.md).[`beforeAllSteps`](StringifyExtension.md#beforeallsteps)
 
 ---
 
-### beforeEachStep
+### beforeEachStep()?
 
-▸ **beforeEachStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
+> `optional` **beforeEachStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
+
+Defined in: [StringifyExtension.ts:23](https://github.com/puppeteer/replay/blob/main/src/StringifyExtension.ts#L23)
 
 #### Parameters
 
-| Name    | Type                                           |
-| :------ | :--------------------------------------------- |
-| `out`   | [`LineWriter`](../interfaces/LineWriter.md)    |
-| `step`  | [`Step`](../modules/Schema.md#step)            |
-| `flow?` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+##### out
+
+[`LineWriter`](../interfaces/LineWriter.md)
+
+##### step
+
+[`Step`](../type-aliases/Step.md)
+
+##### flow?
+
+[`UserFlow`](../interfaces/UserFlow.md)
 
 #### Returns
 
@@ -144,25 +148,29 @@
 
 #### Inherited from
 
-[StringifyExtension](StringifyExtension.md).[beforeEachStep](StringifyExtension.md#beforeeachstep)
-
-#### Defined in
-
-[StringifyExtension.ts:23](https://github.com/puppeteer/replay/blob/main/src/StringifyExtension.ts#L23)
+[`StringifyExtension`](StringifyExtension.md).[`beforeEachStep`](StringifyExtension.md#beforeeachstep)
 
 ---
 
-### stringifyStep
+### stringifyStep()
 
-▸ **stringifyStep**(`out`, `step`, `flow`): `Promise`\<`void`\>
+> **stringifyStep**(`out`, `step`, `flow`): `Promise`\<`void`\>
+
+Defined in: [PuppeteerStringifyExtension.ts:86](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L86)
 
 #### Parameters
 
-| Name   | Type                                           |
-| :----- | :--------------------------------------------- |
-| `out`  | [`LineWriter`](../interfaces/LineWriter.md)    |
-| `step` | [`Step`](../modules/Schema.md#step)            |
-| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+##### out
+
+[`LineWriter`](../interfaces/LineWriter.md)
+
+##### step
+
+[`Step`](../type-aliases/Step.md)
+
+##### flow
+
+[`UserFlow`](../interfaces/UserFlow.md)
 
 #### Returns
 
@@ -170,8 +178,4 @@
 
 #### Overrides
 
-[StringifyExtension](StringifyExtension.md).[stringifyStep](StringifyExtension.md#stringifystep)
-
-#### Defined in
-
-[PuppeteerStringifyExtension.ts:93](https://github.com/puppeteer/replay/blob/main/src/PuppeteerStringifyExtension.ts#L93)
+[`StringifyExtension`](StringifyExtension.md).[`stringifyStep`](StringifyExtension.md#stringifystep)

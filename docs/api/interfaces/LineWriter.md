@@ -1,6 +1,12 @@
+[**@puppeteer/replay**](../README.md)
+
+---
+
 [@puppeteer/replay](../README.md) / LineWriter
 
 # Interface: LineWriter
+
+Defined in: [LineWriter.ts:17](https://github.com/puppeteer/replay/blob/main/src/LineWriter.ts#L17)
 
 Copyright 2022 Google LLC
 
@@ -16,88 +22,68 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-## Table of contents
-
-### Methods
-
-- [appendLine](LineWriter.md#appendline)
-- [endBlock](LineWriter.md#endblock)
-- [getIndent](LineWriter.md#getindent)
-- [getSize](LineWriter.md#getsize)
-- [startBlock](LineWriter.md#startblock)
-
 ## Methods
 
-### appendLine
+### appendLine()
 
-▸ **appendLine**(`line`): [`LineWriter`](LineWriter.md)
+> **appendLine**(`line`): `LineWriter`
+
+Defined in: [LineWriter.ts:18](https://github.com/puppeteer/replay/blob/main/src/LineWriter.ts#L18)
 
 #### Parameters
 
-| Name   | Type     |
-| :----- | :------- |
-| `line` | `string` |
+##### line
+
+`string`
 
 #### Returns
 
-[`LineWriter`](LineWriter.md)
-
-#### Defined in
-
-[LineWriter.ts:18](https://github.com/puppeteer/replay/blob/main/src/LineWriter.ts#L18)
+`LineWriter`
 
 ---
 
-### endBlock
+### endBlock()
 
-▸ **endBlock**(): [`LineWriter`](LineWriter.md)
+> **endBlock**(): `LineWriter`
+
+Defined in: [LineWriter.ts:20](https://github.com/puppeteer/replay/blob/main/src/LineWriter.ts#L20)
 
 #### Returns
 
-[`LineWriter`](LineWriter.md)
-
-#### Defined in
-
-[LineWriter.ts:20](https://github.com/puppeteer/replay/blob/main/src/LineWriter.ts#L20)
+`LineWriter`
 
 ---
 
-### getIndent
+### getIndent()
 
-▸ **getIndent**(): `string`
+> **getIndent**(): `string`
+
+Defined in: [LineWriter.ts:21](https://github.com/puppeteer/replay/blob/main/src/LineWriter.ts#L21)
 
 #### Returns
 
 `string`
 
-#### Defined in
-
-[LineWriter.ts:21](https://github.com/puppeteer/replay/blob/main/src/LineWriter.ts#L21)
-
 ---
 
-### getSize
+### getSize()
 
-▸ **getSize**(): `number`
+> **getSize**(): `number`
+
+Defined in: [LineWriter.ts:22](https://github.com/puppeteer/replay/blob/main/src/LineWriter.ts#L22)
 
 #### Returns
 
 `number`
 
-#### Defined in
-
-[LineWriter.ts:22](https://github.com/puppeteer/replay/blob/main/src/LineWriter.ts#L22)
-
 ---
 
-### startBlock
+### startBlock()
 
-▸ **startBlock**(): [`LineWriter`](LineWriter.md)
+> **startBlock**(): `LineWriter`
+
+Defined in: [LineWriter.ts:19](https://github.com/puppeteer/replay/blob/main/src/LineWriter.ts#L19)
 
 #### Returns
 
-[`LineWriter`](LineWriter.md)
-
-#### Defined in
-
-[LineWriter.ts:19](https://github.com/puppeteer/replay/blob/main/src/LineWriter.ts#L19)
+`LineWriter`

@@ -1,57 +1,49 @@
+[**@puppeteer/replay**](../README.md)
+
+---
+
 [@puppeteer/replay](../README.md) / JSONStringifyExtension
 
 # Class: JSONStringifyExtension
+
+Defined in: [JSONStringifyExtension.ts:27](https://github.com/puppeteer/replay/blob/main/src/JSONStringifyExtension.ts#L27)
 
 Stringifies a user flow to JSON with source maps.
 
 You probably want to strip the source map because not all
 parsers support comments in JSON.
 
-## Hierarchy
+## Extends
 
 - [`StringifyExtension`](StringifyExtension.md)
 
-  ↳ **`JSONStringifyExtension`**
-
-## Table of contents
-
-### Constructors
-
-- [constructor](JSONStringifyExtension.md#constructor)
-
-### Methods
-
-- [afterAllSteps](JSONStringifyExtension.md#afterallsteps)
-- [afterEachStep](JSONStringifyExtension.md#aftereachstep)
-- [beforeAllSteps](JSONStringifyExtension.md#beforeallsteps)
-- [beforeEachStep](JSONStringifyExtension.md#beforeeachstep)
-- [stringifyStep](JSONStringifyExtension.md#stringifystep)
-
 ## Constructors
 
-### constructor
+### Constructor
 
-• **new JSONStringifyExtension**(): [`JSONStringifyExtension`](JSONStringifyExtension.md)
+> **new JSONStringifyExtension**(): `JSONStringifyExtension`
 
 #### Returns
 
-[`JSONStringifyExtension`](JSONStringifyExtension.md)
+`JSONStringifyExtension`
 
 #### Inherited from
 
-[StringifyExtension](StringifyExtension.md).[constructor](StringifyExtension.md#constructor)
+[`StringifyExtension`](StringifyExtension.md).[`constructor`](StringifyExtension.md#constructor)
 
 ## Methods
 
-### afterAllSteps
+### afterAllSteps()
 
-▸ **afterAllSteps**(`out`): `Promise`\<`void`\>
+> **afterAllSteps**(`out`): `Promise`\<`void`\>
+
+Defined in: [JSONStringifyExtension.ts:42](https://github.com/puppeteer/replay/blob/main/src/JSONStringifyExtension.ts#L42)
 
 #### Parameters
 
-| Name  | Type                                        |
-| :---- | :------------------------------------------ |
-| `out` | [`LineWriter`](../interfaces/LineWriter.md) |
+##### out
+
+[`LineWriter`](../interfaces/LineWriter.md)
 
 #### Returns
 
@@ -59,25 +51,29 @@ parsers support comments in JSON.
 
 #### Overrides
 
-[StringifyExtension](StringifyExtension.md).[afterAllSteps](StringifyExtension.md#afterallsteps)
-
-#### Defined in
-
-[JSONStringifyExtension.ts:42](https://github.com/puppeteer/replay/blob/main/src/JSONStringifyExtension.ts#L42)
+[`StringifyExtension`](StringifyExtension.md).[`afterAllSteps`](StringifyExtension.md#afterallsteps)
 
 ---
 
-### afterEachStep
+### afterEachStep()?
 
-▸ **afterEachStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
+> `optional` **afterEachStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
+
+Defined in: [StringifyExtension.ts:33](https://github.com/puppeteer/replay/blob/main/src/StringifyExtension.ts#L33)
 
 #### Parameters
 
-| Name    | Type                                           |
-| :------ | :--------------------------------------------- |
-| `out`   | [`LineWriter`](../interfaces/LineWriter.md)    |
-| `step`  | [`Step`](../modules/Schema.md#step)            |
-| `flow?` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+##### out
+
+[`LineWriter`](../interfaces/LineWriter.md)
+
+##### step
+
+[`Step`](../type-aliases/Step.md)
+
+##### flow?
+
+[`UserFlow`](../interfaces/UserFlow.md)
 
 #### Returns
 
@@ -85,24 +81,25 @@ parsers support comments in JSON.
 
 #### Inherited from
 
-[StringifyExtension](StringifyExtension.md).[afterEachStep](StringifyExtension.md#aftereachstep)
-
-#### Defined in
-
-[StringifyExtension.ts:33](https://github.com/puppeteer/replay/blob/main/src/StringifyExtension.ts#L33)
+[`StringifyExtension`](StringifyExtension.md).[`afterEachStep`](StringifyExtension.md#aftereachstep)
 
 ---
 
-### beforeAllSteps
+### beforeAllSteps()
 
-▸ **beforeAllSteps**(`out`, `flow`): `Promise`\<`void`\>
+> **beforeAllSteps**(`out`, `flow`): `Promise`\<`void`\>
+
+Defined in: [JSONStringifyExtension.ts:28](https://github.com/puppeteer/replay/blob/main/src/JSONStringifyExtension.ts#L28)
 
 #### Parameters
 
-| Name   | Type                                           |
-| :----- | :--------------------------------------------- |
-| `out`  | [`LineWriter`](../interfaces/LineWriter.md)    |
-| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+##### out
+
+[`LineWriter`](../interfaces/LineWriter.md)
+
+##### flow
+
+[`UserFlow`](../interfaces/UserFlow.md)
 
 #### Returns
 
@@ -110,25 +107,29 @@ parsers support comments in JSON.
 
 #### Overrides
 
-[StringifyExtension](StringifyExtension.md).[beforeAllSteps](StringifyExtension.md#beforeallsteps)
-
-#### Defined in
-
-[JSONStringifyExtension.ts:28](https://github.com/puppeteer/replay/blob/main/src/JSONStringifyExtension.ts#L28)
+[`StringifyExtension`](StringifyExtension.md).[`beforeAllSteps`](StringifyExtension.md#beforeallsteps)
 
 ---
 
-### beforeEachStep
+### beforeEachStep()?
 
-▸ **beforeEachStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
+> `optional` **beforeEachStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
+
+Defined in: [StringifyExtension.ts:23](https://github.com/puppeteer/replay/blob/main/src/StringifyExtension.ts#L23)
 
 #### Parameters
 
-| Name    | Type                                           |
-| :------ | :--------------------------------------------- |
-| `out`   | [`LineWriter`](../interfaces/LineWriter.md)    |
-| `step`  | [`Step`](../modules/Schema.md#step)            |
-| `flow?` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+##### out
+
+[`LineWriter`](../interfaces/LineWriter.md)
+
+##### step
+
+[`Step`](../type-aliases/Step.md)
+
+##### flow?
+
+[`UserFlow`](../interfaces/UserFlow.md)
 
 #### Returns
 
@@ -136,25 +137,29 @@ parsers support comments in JSON.
 
 #### Inherited from
 
-[StringifyExtension](StringifyExtension.md).[beforeEachStep](StringifyExtension.md#beforeeachstep)
-
-#### Defined in
-
-[StringifyExtension.ts:23](https://github.com/puppeteer/replay/blob/main/src/StringifyExtension.ts#L23)
+[`StringifyExtension`](StringifyExtension.md).[`beforeEachStep`](StringifyExtension.md#beforeeachstep)
 
 ---
 
-### stringifyStep
+### stringifyStep()
 
-▸ **stringifyStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
+> **stringifyStep**(`out`, `step`, `flow?`): `Promise`\<`void`\>
+
+Defined in: [JSONStringifyExtension.ts:50](https://github.com/puppeteer/replay/blob/main/src/JSONStringifyExtension.ts#L50)
 
 #### Parameters
 
-| Name    | Type                                           |
-| :------ | :--------------------------------------------- |
-| `out`   | [`LineWriter`](../interfaces/LineWriter.md)    |
-| `step`  | [`Step`](../modules/Schema.md#step)            |
-| `flow?` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+##### out
+
+[`LineWriter`](../interfaces/LineWriter.md)
+
+##### step
+
+[`Step`](../type-aliases/Step.md)
+
+##### flow?
+
+[`UserFlow`](../interfaces/UserFlow.md)
 
 #### Returns
 
@@ -162,8 +167,4 @@ parsers support comments in JSON.
 
 #### Overrides
 
-[StringifyExtension](StringifyExtension.md).[stringifyStep](StringifyExtension.md#stringifystep)
-
-#### Defined in
-
-[JSONStringifyExtension.ts:50](https://github.com/puppeteer/replay/blob/main/src/JSONStringifyExtension.ts#L50)
+[`StringifyExtension`](StringifyExtension.md).[`stringifyStep`](StringifyExtension.md#stringifystep)

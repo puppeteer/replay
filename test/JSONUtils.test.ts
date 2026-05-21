@@ -14,13 +14,13 @@
     limitations under the License.
  */
 
-import snapshot from 'snap-shot-it';
-import { assert } from 'chai';
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
 import { formatJSONAsJS } from '../src/JSONUtils.js';
 import { StepType, AssertedEventType } from '../src/Schema.js';
 
 describe('JSONUtils', () => {
-  it('should format JSON as JS', async () => {
+  it('should format JSON as JS', async (t) => {
     const json = {
       title: 'test',
       test: true,
@@ -47,13 +47,13 @@ describe('JSONUtils', () => {
       nullTest: null,
     };
     const str = formatJSONAsJS(json, '  ');
-    snapshot(str);
+    t.assert.snapshot(str);
     delete json['undefinedTest'];
     assert.deepStrictEqual(Function(`'use strict';return (${str})`)(), json);
   });
 
-  it('should properly escape <script>', async () => {
-    snapshot(
+  it('should properly escape <script>', async (t) => {
+    t.assert.snapshot(
       formatJSONAsJS(
         '<script>test</script><script>test</script><script>test</script>',
         ''

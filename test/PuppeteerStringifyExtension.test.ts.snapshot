@@ -1,0 +1,23 @@
+exports[`PuppeteerStringifyExtension > Firefox > should stringify 1`] = `
+"import { Locator, launch } from 'puppeteer'; // v25.0.0 or later\\n\\nconst browser = await launch({browser: 'firefox'});\\nconst page = await browser.newPage();\\nconst timeout = 5000;\\npage.setDefaultTimeout(timeout);\\n\\n"
+`;
+
+exports[`PuppeteerStringifyExtension > should print the correct script for a change step 1`] = `
+"{\\n  const targetPage = page;\\n  await Locator.race([\\n    targetPage.locator('::-p-aria(Test)')\\n  ])\\n    .setTimeout(timeout)\\n    .fill('Hello World');\\n}\\n"
+`;
+
+exports[`PuppeteerStringifyExtension > should print the correct script for a change step for non-text inputs 1`] = `
+"{\\n  const targetPage = page;\\n  await Locator.race([\\n    targetPage.locator('::-p-aria(Test)')\\n  ])\\n    .setTimeout(timeout)\\n    .fill('#333333');\\n}\\n"
+`;
+
+exports[`PuppeteerStringifyExtension > should print the correct script for a click step 1`] = `
+"{\\n  const targetPage = page;\\n  await Locator.race([\\n    targetPage.locator('::-p-aria(Test)')\\n  ])\\n    .setTimeout(timeout)\\n    .click({\\n      offset: {\\n        x: 1,\\n        y: 1,\\n      },\\n    });\\n}\\n"
+`;
+
+exports[`PuppeteerStringifyExtension > should print the correct script for asserted events 1`] = `
+"{\\n  const targetPage = page;\\n  const promises = [];\\n  const startWaitingForEvents = () => {\\n    promises.push(targetPage.waitForNavigation());\\n  }\\n  await Locator.race([\\n    targetPage.locator('::-p-aria(Test)')\\n  ])\\n    .setTimeout(timeout)\\n    .on('action', () => startWaitingForEvents())\\n    .click({\\n      offset: {\\n        x: 1,\\n        y: 1,\\n      },\\n    });\\n  await Promise.all(promises);\\n}\\n"
+`;
+
+exports[`PuppeteerStringifyExtension > should print the correct script with a chain selector 1`] = `
+"{\\n  const targetPage = page;\\n  await Locator.race([\\n    targetPage.locator('::-p-aria(Test) >>>> ::-p-aria(Test2)')\\n  ])\\n    .setTimeout(timeout)\\n    .click({\\n      offset: {\\n        x: 1,\\n        y: 1,\\n      },\\n    });\\n}\\n"
+`;

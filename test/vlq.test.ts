@@ -14,8 +14,9 @@
     limitations under the License.
  */
 
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
 import { encodeInt, decode, encode } from '../src/vlq.js';
-import { assert } from 'chai';
 
 describe('vlq', () => {
   it('should encode', () => {

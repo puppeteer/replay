@@ -16,12 +16,7 @@
 
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import {
-  RunnerExtension,
-  createRunner,
-  parse,
-  stringify,
-} from '../lib/main.js';
+import { RunnerExtension, createRunner, parse, stringify } from './main.js';
 import { importExtensionFromPath } from './CLIUtils.js';
 import http from 'http';
 import { files, recording, expectedLog } from './Spec.js';

@@ -18,7 +18,8 @@ import fs from 'fs/promises';
 import path from 'path';
 import puppeteer, { Browser, Page } from 'puppeteer';
 
-import { assert } from 'chai';
+import { describe, it, before, beforeEach, afterEach, after } from 'node:test';
+import assert from 'node:assert';
 import { spawn } from 'node:child_process';
 
 import { createRunner } from '../src/Runner.js';
@@ -27,17 +28,15 @@ import { parse } from '../src/SchemaUtils.js';
 import { PuppeteerRunnerExtension } from '../src/PuppeteerRunnerExtension.js';
 import { PuppeteerStringifyExtension } from '../src/PuppeteerStringifyExtension.js';
 import { stringify } from '../src/stringify.js';
-import { TestServer } from '../third_party/testserver/lib/index.js';
+import { TestServer } from '../third_party/testserver/src/index.js';
 import type { UserFlow } from '../src/Schema.js';
 import { files, recording, expectedLog } from '../src/Spec.js';
 
-const HTTP_PORT = 8907;
-const HTTPS_PORT = HTTP_PORT + 1;
-
 async function createServers() {
-  const resources = path.join(import.meta.dirname, 'resources');
-  const httpServer = await TestServer.create(resources, HTTP_PORT);
-  const httpsServer = await TestServer.createHTTPS(resources, HTTPS_PORT);
+  const resources = path.join(process.cwd(), 'test', 'resources');
+  const httpServer = await TestServer.create(resources);
+  const httpsServer = await TestServer.createHTTPS(resources);
+
   for (const [filename, content] of (files || {}).entries()) {
     await fs.writeFile(path.join(resources, filename), content);
   }
@@ -66,7 +65,7 @@ describe('Spec test', () => {
   });
 
   afterEach(async () => {
-    void page.close();
+    await page.close();
   });
 
   after(async () => {
@@ -75,8 +74,15 @@ describe('Spec test', () => {
     await httpsServer.stop();
   });
 
+  function getPatchedRecording() {
+    const recordingCopy = structuredClone(recording);
+    recordingCopy.steps[1]!.url = `${httpServer.PREFIX}/spec.html`;
+    recordingCopy.steps[1]!.assertedEvents![0]!.url = `${httpServer.PREFIX}/spec.html`;
+    return recordingCopy;
+  }
+
   it('should run the test using a runner extension', async () => {
-    const parsed = parse(recording);
+    const parsed = parse(getPatchedRecording());
     const runner = await createRunner(
       parsed,
       new PuppeteerRunnerExtension(browser, page)
@@ -87,7 +93,7 @@ describe('Spec test', () => {
   });
 
   it('should run the test when exported as a script using a stringify extension', async () => {
-    const parsed = parse(recording);
+    const parsed = parse(getPatchedRecording());
     class CustomStringifyExtension extends PuppeteerStringifyExtension {
       override async afterAllSteps(out: LineWriter, flow: UserFlow) {
         out.appendLine(

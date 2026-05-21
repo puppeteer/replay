@@ -9,3 +9,5 @@ coverage/
 tsconfig.tsbuildinfo
 .tmp
 test/resources/spec.html
+test/build/
+build/

@@ -1,0 +1,47 @@
+exports[`stringify > should print the correct script for a emulateNetworkCondition step 1`] = `
+"import { Locator, launch } from 'puppeteer'; // v25.0.0 or later\\n\\nconst browser = await launch();\\nconst page = await browser.newPage();\\nconst timeout = 5000;\\npage.setDefaultTimeout(timeout);\\n\\n{\\n  const targetPage = page;\\n  await targetPage.emulateNetworkConditions({\\n    offline: false,\\n    downloadThroughput: 100,\\n    uploadThroughput: 100,\\n    latency: 999,\\n  });\\n}\\n\\nawait browser.close();\\n\\n//# recorderSourceMap=BHJ\\n"
+`;
+
+exports[`stringify > should print the correct script for a keydown step 1`] = `
+"import { Locator, launch } from 'puppeteer'; // v25.0.0 or later\\n\\nconst browser = await launch();\\nconst page = await browser.newPage();\\nconst timeout = 5000;\\npage.setDefaultTimeout(timeout);\\n\\n{\\n  const targetPage = page;\\n  await targetPage.keyboard.down('E');\\n}\\n\\nawait browser.close();\\n\\n//# recorderSourceMap=BHE\\n"
+`;
+
+exports[`stringify > should print the correct script for a keyup step 1`] = `
+"import { Locator, launch } from 'puppeteer'; // v25.0.0 or later\\n\\nconst browser = await launch();\\nconst page = await browser.newPage();\\nconst timeout = 5000;\\npage.setDefaultTimeout(timeout);\\n\\n{\\n  const targetPage = page;\\n  await targetPage.keyboard.up('E');\\n}\\n\\nawait browser.close();\\n\\n//# recorderSourceMap=BHE\\n"
+`;
+
+exports[`stringify > should print the correct script for a navigate step 1`] = `
+"import { Locator, launch } from 'puppeteer'; // v25.0.0 or later\\n\\nconst browser = await launch();\\nconst page = await browser.newPage();\\nconst timeout = 5000;\\npage.setDefaultTimeout(timeout);\\n\\n{\\n  const targetPage = page;\\n  await targetPage.goto('https://localhost/');\\n}\\n\\nawait browser.close();\\n\\n//# recorderSourceMap=BHE\\n"
+`;
+
+exports[`stringify > should print the correct script for scroll events 1`] = `
+"import { Locator, launch } from 'puppeteer'; // v25.0.0 or later\\n\\nconst browser = await launch();\\nconst page = await browser.newPage();\\nconst timeout = 5000;\\npage.setDefaultTimeout(timeout);\\n\\n{\\n  const targetPage = page;\\n  await Locator.race([\\n    targetPage.locator('body > div:nth-child(1)')\\n  ])\\n    .setTimeout(timeout)\\n    .scroll({ scrollTop: 40, scrollLeft: 0});\\n}\\n{\\n  const targetPage = page;\\n  await targetPage.evaluate((x, y) => { window.scroll(x, y); }, 40, 40)\\n}\\n\\nawait browser.close();\\n\\n//# recorderSourceMap=BHIPE\\n"
+`;
+
+exports[`stringify > should print the correct script for waitForElement steps 1`] = `
+"import { Locator, launch } from 'puppeteer'; // v25.0.0 or later\\n\\nconst browser = await launch();\\nconst page = await browser.newPage();\\nconst timeout = 5000;\\npage.setDefaultTimeout(timeout);\\n\\n{\\n  const targetPage = page;\\n  await waitForElement({\\n    type: 'waitForElement',\\n    selectors: [\\n      'body > div:nth-child(1)'\\n    ]\\n  }, targetPage, timeout);\\n}\\n\\nawait browser.close();\\n\\nasync function waitForElement(step, frame, timeout) {\\n  const {\\n    count = 1,\\n    operator = '>=',\\n    visible = true,\\n    properties,\\n    attributes,\\n  } = step;\\n  const compFn = {\\n    '==': (a, b) => a === b,\\n    '>=': (a, b) => a >= b,\\n    '<=': (a, b) => a <= b,\\n  }[operator];\\n  await waitForFunction(async () => {\\n    const elements = await querySelectorsAll(step.selectors, frame);\\n    let result = compFn(elements.length, count);\\n    const elementsHandle = await frame.evaluateHandle((...elements) => {\\n      return elements;\\n    }, ...elements);\\n    await Promise.all(elements.map((element) => element.dispose()));\\n    if (result && (properties || attributes)) {\\n      result = await elementsHandle.evaluate(\\n        (elements, properties, attributes) => {\\n          for (const element of elements) {\\n            if (attributes) {\\n              for (const [name, value] of Object.entries(attributes)) {\\n                if (element.getAttribute(name) !== value) {\\n                  return false;\\n                }\\n              }\\n            }\\n            if (properties) {\\n              if (!isDeepMatch(properties, element)) {\\n                return false;\\n              }\\n            }\\n          }\\n          return true;\\n\\n          function isDeepMatch(a, b) {\\n            if (a === b) {\\n              return true;\\n            }\\n            if ((a && !b) || (!a && b)) {\\n              return false;\\n            }\\n            if (!(a instanceof Object) || !(b instanceof Object)) {\\n              return false;\\n            }\\n            for (const [key, value] of Object.entries(a)) {\\n              if (!isDeepMatch(value, b[key])) {\\n                return false;\\n              }\\n            }\\n            return true;\\n          }\\n        },\\n        properties,\\n        attributes\\n      );\\n    }\\n    await elementsHandle.dispose();\\n    return result === visible;\\n  }, timeout);\\n}\\n\\nasync function querySelectorsAll(selectors, frame) {\\n  for (const selector of selectors) {\\n    const result = await querySelectorAll(selector, frame);\\n    if (result.length) {\\n      return result;\\n    }\\n  }\\n  return [];\\n}\\n\\nasync function querySelectorAll(selector, frame) {\\n  if (!Array.isArray(selector)) {\\n    selector = [selector];\\n  }\\n  if (!selector.length) {\\n    throw new Error('Empty selector provided to querySelectorAll');\\n  }\\n  let elements = [];\\n  for (let i = 0; i < selector.length; i++) {\\n    const part = selector[i];\\n    if (i === 0) {\\n      elements = await frame.$$(part);\\n    } else {\\n      const tmpElements = elements;\\n      elements = [];\\n      for (const el of tmpElements) {\\n        elements.push(...(await el.$$(part)));\\n      }\\n    }\\n    if (elements.length === 0) {\\n      return [];\\n    }\\n    if (i < selector.length - 1) {\\n      const tmpElements = [];\\n      for (const el of elements) {\\n        const newEl = (await el.evaluateHandle(el => el.shadowRoot ? el.shadowRoot : el)).asElement();\\n        if (newEl) {\\n          tmpElements.push(newEl);\\n        }\\n      }\\n      elements = tmpElements;\\n    }\\n  }\\n  return elements;\\n}\\n\\nasync function waitForFunction(fn, timeout) {\\n  let isActive = true;\\n  const timeoutId = setTimeout(() => {\\n    isActive = false;\\n  }, timeout);\\n  while (isActive) {\\n    const result = await fn();\\n    if (result) {\\n      clearTimeout(timeoutId);\\n      return;\\n    }\\n    await new Promise(resolve => setTimeout(resolve, 100));\\n  }\\n  throw new Error('Timed out');\\n}\\n//# recorderSourceMap=BHJ\\n"
+`;
+
+exports[`stringify > should print the correct script for waitForExpression steps 1`] = `
+"import { Locator, launch } from 'puppeteer'; // v25.0.0 or later\\n\\nconst browser = await launch();\\nconst page = await browser.newPage();\\nconst timeout = 5000;\\npage.setDefaultTimeout(timeout);\\n\\n{\\n  const targetPage = page;\\n  await targetPage.waitForFunction('1 + 2', { timeout });\\n}\\n\\nawait browser.close();\\n\\n//# recorderSourceMap=BHE\\n"
+`;
+
+exports[`stringify > should print the correct script if the step is within an iframe 1`] = `
+"import { Locator, launch } from 'puppeteer'; // v25.0.0 or later\\n\\nconst browser = await launch();\\nconst page = await browser.newPage();\\nconst timeout = 5000;\\npage.setDefaultTimeout(timeout);\\n\\n{\\n  const targetPage = page;\\n  let frame = targetPage.mainFrame();\\n  frame = frame.childFrames()[1];\\n  frame = frame.childFrames()[1];\\n  await Locator.race([\\n    frame.locator('::-p-aria(Test)')\\n  ])\\n    .setTimeout(timeout)\\n    .click({\\n      offset: {\\n        x: 1,\\n        y: 1,\\n      },\\n    });\\n}\\n\\nawait browser.close();\\n\\n//# recorderSourceMap=BHQ\\n"
+`;
+
+exports[`stringify > should print the correct script if the target is not the main page 1`] = `
+"import { Locator, launch } from 'puppeteer'; // v25.0.0 or later\\n\\nconst browser = await launch();\\nconst page = await browser.newPage();\\nconst timeout = 5000;\\npage.setDefaultTimeout(timeout);\\n\\n{\\n  const target = await browser.waitForTarget(t => t.url() === 'https://localhost/test', { timeout });\\n  const targetPage = await target.page();\\n  targetPage.setDefaultTimeout(timeout);\\n  await Locator.race([\\n    targetPage.locator('::-p-aria(Test)')\\n  ])\\n    .setTimeout(timeout)\\n    .click({\\n      offset: {\\n        x: 1,\\n        y: 1,\\n      },\\n    });\\n}\\n\\nawait browser.close();\\n\\n//# recorderSourceMap=BHP\\n"
+`;
+
+exports[`stringify > should produce a source map 1`] = `
+[
+  1,
+  7,
+  9
+]
+`;
+
+exports[`stringify > should use step and flow timeouts 1`] = `
+"import { Locator, launch } from 'puppeteer'; // v25.0.0 or later\\n\\nconst browser = await launch();\\nconst page = await browser.newPage();\\nconst timeout = 10000;\\npage.setDefaultTimeout(timeout);\\n\\n{\\n  const timeout = 20000;\\n  const target = await browser.waitForTarget(t => t.url() === 'https://localhost/test', { timeout });\\n  const targetPage = await target.page();\\n  targetPage.setDefaultTimeout(timeout);\\n  await Locator.race([\\n    targetPage.locator('::-p-aria(Test)')\\n  ])\\n    .setTimeout(timeout)\\n    .click({\\n      offset: {\\n        x: 1,\\n        y: 1,\\n      },\\n    });\\n}\\n\\nawait browser.close();\\n\\n//# recorderSourceMap=BHQ\\n"
+`;

@@ -14,15 +14,14 @@
     limitations under the License.
  */
 
-import snapshot from 'snap-shot-it';
-
+import { describe, it } from 'node:test';
 import { stringify } from '../../src/stringify.js';
 import { LighthouseStringifyExtension } from '../../src/lighthouse/LighthouseStringifyExtension.js';
 import { AssertedEventType, StepType } from '../../src/Schema.js';
 import type { UserFlow } from '../../src/Schema.js';
 
 describe('LighthouseStringifyExtension', () => {
-  it('handles ending timespan', async () => {
+  it('handles ending timespan', async (t) => {
     const flowJson: UserFlow = {
       title: 'Test Flow',
       steps: [
@@ -64,10 +63,10 @@ describe('LighthouseStringifyExtension', () => {
     const endIndex = scriptContents.indexOf('browser.close');
     const relevantOutput = scriptContents.substring(0, endIndex);
 
-    snapshot(relevantOutput);
+    t.assert.snapshot(relevantOutput);
   });
 
-  it('handles ending navigation', async () => {
+  it('handles ending navigation', async (t) => {
     const flowJson: UserFlow = {
       title: 'Test Flow',
       steps: [
@@ -120,10 +119,10 @@ describe('LighthouseStringifyExtension', () => {
     const endIndex = scriptContents.indexOf('browser.close');
     const relevantOutput = scriptContents.substring(0, endIndex);
 
-    snapshot(relevantOutput);
+    t.assert.snapshot(relevantOutput);
   });
 
-  it('handles multiple sequential navigations', async () => {
+  it('handles multiple sequential navigations', async (t) => {
     const flowJson: UserFlow = {
       title: 'Test Flow',
       steps: [
@@ -172,6 +171,6 @@ describe('LighthouseStringifyExtension', () => {
     const endIndex = scriptContents.indexOf('browser.close');
     const relevantOutput = scriptContents.substring(0, endIndex);
 
-    snapshot(relevantOutput);
+    t.assert.snapshot(relevantOutput);
   });
 });

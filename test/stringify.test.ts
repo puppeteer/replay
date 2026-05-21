@@ -14,17 +14,17 @@
     limitations under the License.
  */
 
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
 import { parseSourceMap, stringify, stripSourceMap } from '../src/stringify.js';
-import { assert } from 'chai';
 import { StringifyExtension } from '../src/StringifyExtension.js';
 import { StepType } from '../src/Schema.js';
 import type { Step, UserFlow } from '../src/Schema.js';
 import type { LineWriter } from '../src/LineWriter.js';
-import snapshot from 'snap-shot-it';
 import { decode } from '../src/vlq.js';
 
 describe('stringify', () => {
-  it('should print the correct script for a navigate step', async () => {
+  it('should print the correct script for a navigate step', async (t) => {
     const flow = {
       title: 'Test Recording',
       steps: [
@@ -34,10 +34,10 @@ describe('stringify', () => {
         },
       ],
     };
-    snapshot(await stringify(flow));
+    t.assert.snapshot(await stringify(flow));
   });
 
-  it('should print the correct script for a emulateNetworkCondition step', async () => {
+  it('should print the correct script for a emulateNetworkCondition step', async (t) => {
     const flow = {
       title: 'Test Recording',
       steps: [
@@ -49,10 +49,10 @@ describe('stringify', () => {
         },
       ],
     };
-    snapshot(await stringify(flow));
+    t.assert.snapshot(await stringify(flow));
   });
 
-  it('should print the correct script if the target is not the main page', async () => {
+  it('should print the correct script if the target is not the main page', async (t) => {
     const flow = {
       title: 'Test Recording',
       steps: [
@@ -65,10 +65,10 @@ describe('stringify', () => {
         },
       ],
     };
-    snapshot(await stringify(flow));
+    t.assert.snapshot(await stringify(flow));
   });
 
-  it('should use step and flow timeouts', async () => {
+  it('should use step and flow timeouts', async (t) => {
     const flow = {
       title: 'Test Recording',
       timeout: 10000,
@@ -83,10 +83,10 @@ describe('stringify', () => {
         },
       ],
     };
-    snapshot(await stringify(flow));
+    t.assert.snapshot(await stringify(flow));
   });
 
-  it('should print the correct script if the step is within an iframe', async () => {
+  it('should print the correct script if the step is within an iframe', async (t) => {
     const flow = {
       title: 'Test Recording',
       steps: [
@@ -100,7 +100,7 @@ describe('stringify', () => {
         },
       ],
     };
-    snapshot(await stringify(flow));
+    t.assert.snapshot(await stringify(flow));
   });
 
   it('should fail when given an invalid step type', async () => {
@@ -125,7 +125,7 @@ describe('stringify', () => {
     }
   });
 
-  it('should print the correct script for a keydown step', async () => {
+  it('should print the correct script for a keydown step', async (t) => {
     const flow = {
       title: 'Test Recording',
       steps: [
@@ -136,10 +136,10 @@ describe('stringify', () => {
         },
       ],
     };
-    snapshot(await stringify(flow));
+    t.assert.snapshot(await stringify(flow));
   });
 
-  it('should print the correct script for a keyup step', async () => {
+  it('should print the correct script for a keyup step', async (t) => {
     const flow = {
       title: 'Test Recording',
       steps: [
@@ -150,10 +150,10 @@ describe('stringify', () => {
         },
       ],
     };
-    snapshot(await stringify(flow));
+    t.assert.snapshot(await stringify(flow));
   });
 
-  it('should print the correct script for scroll events', async () => {
+  it('should print the correct script for scroll events', async (t) => {
     const flow = {
       title: 'Test Recording',
       steps: [
@@ -172,10 +172,10 @@ describe('stringify', () => {
         },
       ],
     };
-    snapshot(await stringify(flow));
+    t.assert.snapshot(await stringify(flow));
   });
 
-  it('should print the correct script for waitForElement steps', async () => {
+  it('should print the correct script for waitForElement steps', async (t) => {
     const flow = {
       title: 'Test Recording',
       steps: [
@@ -185,10 +185,10 @@ describe('stringify', () => {
         },
       ],
     };
-    snapshot(await stringify(flow));
+    t.assert.snapshot(await stringify(flow));
   });
 
-  it('should print the correct script for waitForExpression steps', async () => {
+  it('should print the correct script for waitForExpression steps', async (t) => {
     const flow = {
       title: 'Test Recording',
       steps: [
@@ -198,7 +198,7 @@ describe('stringify', () => {
         },
       ],
     };
-    snapshot(await stringify(flow));
+    t.assert.snapshot(await stringify(flow));
   });
 
   it('invokes all hooks in extensions', async () => {
@@ -257,7 +257,7 @@ describe('stringify', () => {
     );
   });
 
-  it('should produce a source map', async () => {
+  it('should produce a source map', async (t) => {
     const flow = {
       title: 'Test Recording',
       steps: [
@@ -272,7 +272,7 @@ describe('stringify', () => {
       .split('\n')
       .reverse()
       .find((line) => line.trim() !== '');
-    snapshot(
+    t.assert.snapshot(
       decode(sourceMapLine?.split('//# recorderSourceMap=').pop() as string)
     );
   });

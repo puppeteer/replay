@@ -14,7 +14,7 @@
     limitations under the License.
  */
 
-import snapshot from 'snap-shot-it';
+import { describe, it } from 'node:test';
 import { InMemoryLineWriter } from '../src/InMemoryLineWriter.js';
 import { PuppeteerStringifyExtension } from '../src/PuppeteerStringifyExtension.js';
 import { AssertedEventType, StepType } from '../src/Schema.js';
@@ -22,7 +22,7 @@ import { AssertedEventType, StepType } from '../src/Schema.js';
 describe('PuppeteerStringifyExtension', () => {
   const ext = new PuppeteerStringifyExtension();
 
-  it('should print the correct script for a click step', async () => {
+  it('should print the correct script for a click step', async (t) => {
     const step = {
       type: StepType.Click as const,
       target: 'main',
@@ -34,10 +34,10 @@ describe('PuppeteerStringifyExtension', () => {
 
     const writer = new InMemoryLineWriter('  ');
     await ext.stringifyStep(writer, step, flow);
-    snapshot(writer.toString());
+    t.assert.snapshot(writer.toString());
   });
 
-  it('should print the correct script for asserted events', async () => {
+  it('should print the correct script for asserted events', async (t) => {
     const step = {
       type: StepType.Click as const,
       target: 'main',
@@ -50,10 +50,10 @@ describe('PuppeteerStringifyExtension', () => {
 
     const writer = new InMemoryLineWriter('  ');
     await ext.stringifyStep(writer, step, flow);
-    snapshot(writer.toString());
+    t.assert.snapshot(writer.toString());
   });
 
-  it('should print the correct script with a chain selector', async () => {
+  it('should print the correct script with a chain selector', async (t) => {
     const step = {
       type: StepType.Click as const,
       target: 'main',
@@ -65,10 +65,10 @@ describe('PuppeteerStringifyExtension', () => {
 
     const writer = new InMemoryLineWriter('  ');
     await ext.stringifyStep(writer, step, flow);
-    snapshot(writer.toString());
+    t.assert.snapshot(writer.toString());
   });
 
-  it('should print the correct script for a change step', async () => {
+  it('should print the correct script for a change step', async (t) => {
     const step = {
       type: StepType.Change as const,
       target: 'main',
@@ -79,10 +79,10 @@ describe('PuppeteerStringifyExtension', () => {
 
     const writer = new InMemoryLineWriter('  ');
     await ext.stringifyStep(writer, step, flow);
-    snapshot(writer.toString());
+    t.assert.snapshot(writer.toString());
   });
 
-  it('should print the correct script for a change step for non-text inputs', async () => {
+  it('should print the correct script for a change step for non-text inputs', async (t) => {
     const step = {
       type: StepType.Change as const,
       target: 'main',
@@ -93,13 +93,13 @@ describe('PuppeteerStringifyExtension', () => {
 
     const writer = new InMemoryLineWriter('  ');
     await ext.stringifyStep(writer, step, flow);
-    snapshot(writer.toString());
+    t.assert.snapshot(writer.toString());
   });
 
   describe('Firefox', () => {
     const ext = new PuppeteerStringifyExtension('firefox');
 
-    it('should stringify', async () => {
+    it('should stringify', async (t) => {
       const step = {
         type: StepType.Click as const,
         target: 'main',
@@ -111,7 +111,7 @@ describe('PuppeteerStringifyExtension', () => {
 
       const writer = new InMemoryLineWriter('  ');
       await ext.beforeAllSteps(writer, flow);
-      snapshot(writer.toString());
+      t.assert.snapshot(writer.toString());
     });
   });
 });

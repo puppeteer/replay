@@ -1,0 +1,7 @@
+exports[`JSONStringifyExtension > should print an entire script 1`] = `
+"{\\n  \\"title\\": \\"test\\",\\n  \\"steps\\": [\\n    {\\n      \\"type\\": \\"click\\",\\n      \\"target\\": \\"main\\",\\n      \\"selectors\\": [\\n        \\"aria/Test\\"\\n      ],\\n      \\"offsetX\\": 1,\\n      \\"offsetY\\": 1,\\n      \\"assertedEvents\\": [\\n        {\\n          \\"type\\": \\"navigation\\"\\n        }\\n      ]\\n    },\\n    {\\n      \\"type\\": \\"click\\",\\n      \\"target\\": \\"main\\",\\n      \\"selectors\\": [\\n        \\"aria/Test\\"\\n      ],\\n      \\"offsetX\\": 1,\\n      \\"offsetY\\": 1,\\n      \\"assertedEvents\\": [\\n        {\\n          \\"type\\": \\"navigation\\"\\n        }\\n      ]\\n    }\\n  ]\\n}\\n//# recorderSourceMap=BDORO\\n"
+`;
+
+exports[`JSONStringifyExtension > should print the script for a click step 1`] = `
+"{\\n  \\"type\\": \\"click\\",\\n  \\"target\\": \\"main\\",\\n  \\"selectors\\": [\\n    \\"aria/Test\\"\\n  ],\\n  \\"offsetX\\": 1,\\n  \\"offsetY\\": 1,\\n  \\"assertedEvents\\": [\\n    {\\n      \\"type\\": \\"navigation\\"\\n    }\\n  ]\\n}\\n"
+`;

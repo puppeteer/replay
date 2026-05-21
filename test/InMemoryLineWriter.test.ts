@@ -14,8 +14,9 @@
     limitations under the License.
  */
 
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
 import { InMemoryLineWriter } from '../src/InMemoryLineWriter.js';
-import { assert } from 'chai';
 
 describe('InMemoryLineWriter', () => {
   it('should open and close blocks', () => {

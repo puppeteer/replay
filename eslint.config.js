@@ -1,34 +1,12 @@
 import js from '@eslint/js';
-import { FlatCompat } from '@eslint/eslintrc';
-
 import tsParser from '@typescript-eslint/parser';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import tsdocPlugin from 'eslint-plugin-tsdoc';
 import globals from 'globals';
-
-const compat = new FlatCompat({
-  baseDirectory: import.meta.dirname,
-});
-
-// Get the extended configs and filter out deprecated rules
-const googleConfig = compat.extends('eslint-config-google');
-const prettierConfig = compat.extends('plugin:prettier/recommended');
-
-// Filter out deprecated rules that don't exist in ESLint v9
-const filterDeprecatedRules = (config) => {
-  if (!config.rules) return config;
-  const filteredRules = { ...config.rules };
-  // Remove deprecated rules that were removed in ESLint v9
-  delete filteredRules['valid-jsdoc'];
-  delete filteredRules['require-jsdoc'];
-  return { ...config, rules: filteredRules };
-};
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 
 export default [
-  // Apply recommended configs
   js.configs.recommended,
-  ...googleConfig.map(filterDeprecatedRules),
-  ...prettierConfig.map(filterDeprecatedRules),
 
   // Main configuration for JS/TS files
   {
@@ -57,6 +35,8 @@ export default [
       '@typescript-eslint/no-unused-vars': 'off',
     },
   },
+
+  eslintPluginPrettierRecommended,
 
   // Ignore patterns
   {

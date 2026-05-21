@@ -1,0 +1,17 @@
+exports[`cli > createStatusReport > is able to create a failed status report 1`] = `
+[
+  "Test run",
+  " Failure ",
+  "PLACEHOLDER_FILE",
+  "0ms"
+]
+`;
+
+exports[`cli > createStatusReport > is able to create a successful status report 1`] = `
+[
+  "Test run",
+  " Success ",
+  "PLACEHOLDER_FILE",
+  "1000ms"
+]
+`;

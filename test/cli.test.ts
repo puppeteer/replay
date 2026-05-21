@@ -14,12 +14,13 @@
     limitations under the License.
  */
 
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
 import {
   getHeadlessEnvVar,
   getRecordingPaths,
   getJSONFilesFromFolder,
 } from '../src/CLIUtils.js';
-import { assert } from 'chai';
 import path from 'path';
 
 describe('cli', () => {
@@ -41,11 +42,9 @@ describe('cli', () => {
       const recordingsFolderPath = 'test/resources/folder-test';
       const recordingPaths = getRecordingPaths([recordingsFolderPath]);
 
-      assert.isTrue(
-        !!recordingPaths.find((path) => path.includes('replay.json'))
-      );
-      assert.isTrue(
-        !!recordingPaths.find((path) => path.includes('replay-fail.json'))
+      assert.ok(recordingPaths.find((path) => path.includes('replay.json')));
+      assert.ok(
+        recordingPaths.find((path) => path.includes('replay-fail.json'))
       );
     });
   });
@@ -53,10 +52,10 @@ describe('cli', () => {
   describe('getJSONFilesFromFolder', () => {
     it('is able to return json files from a directory', () => {
       const files = getJSONFilesFromFolder(
-        path.join(import.meta.dirname, 'resources', 'folder-test')
+        path.join(process.cwd(), 'test', 'resources', 'folder-test')
       );
 
-      assert.isTrue(files.every((file) => file.endsWith('.json')));
+      assert.ok(files.every((file) => file.endsWith('.json')));
     });
   });
 });

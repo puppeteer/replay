@@ -53,7 +53,7 @@ export default [
         ...packageJson.dependencies,
         ...packageJson.peerDependencies,
       }),
-      '../lib/main.js',
+      './main.js',
       'fs',
       'path',
       'url',

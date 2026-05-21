@@ -4,8 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import yargs from 'yargs';
-import { hideBin } from 'yargs/helpers';
+import { parseArgs } from 'node:util';
 import { RunnerExtension, createRunner, parse, stringify } from './main.js';
 import { importExtensionFromPath } from './CLIUtils.js';
 import http from 'http';
@@ -57,65 +56,82 @@ async function startServer() {
   });
 }
 
-yargs(hideBin(process.argv))
-  .command(
-    '$0',
-    'Test an extension implementation',
-    () => {},
-    async (argv) => {
-      const args = argv as unknown as { extension: string };
-      const Extension = await importExtensionFromPath(args.extension);
-      const ext = new Extension();
+const { values } = parseArgs({
+  options: {
+    extension: {
+      type: 'string',
+    },
+    ext: {
+      type: 'string',
+    },
+    help: {
+      type: 'boolean',
+      short: 'h',
+      default: false,
+    },
+  },
+});
 
-      let run = async () => {};
+if (values.help) {
+  console.log(`
+Usage: replay-extension-test [options]
 
-      if (ext instanceof RunnerExtension) {
-        console.log('runner');
-        run = async () => {
-          const extension = new Extension();
-          const runner = await createRunner(parse(recording), extension);
-          await runner.run();
-        };
-      } else {
-        run = async () => {
-          const exported = await stringify(parse(recording), {
-            extension: new Extension(),
-          });
+Options:
+  --ext, --extension    The path to the extension module. The default export will be used as a Stringify or Runner extension based on instanceOf checks.
+  -h, --help            Show help
+`);
+  process.exit(0);
+}
 
-          const childProcess = spawn('node', {
-            stdio: ['pipe', 'pipe', 'inherit'],
-            shell: true,
-          });
-          childProcess.stdin.write(exported);
-          childProcess.stdin.end();
+const extensionPath = values.extension ?? values.ext;
 
-          await new Promise<void>((resolve, reject) => {
-            childProcess.on('close', (code) =>
-              code
-                ? reject(new Error(`Running node failed with code ${code}`))
-                : resolve()
-            );
-          });
-        };
-      }
-      const { server, log } = await startServer();
+if (!extensionPath) {
+  console.error('Error: Missing required argument: extension');
+  process.exit(1);
+}
 
-      try {
-        await run();
-      } catch (err) {
-        console.error(err);
-      } finally {
-        server.close();
-      }
-      assert.equal(log.contents, expectedLog);
-      console.log('Run matches the expectations');
-    }
-  )
-  .option('extension', {
-    alias: 'ext',
-    type: 'string',
-    description:
-      'The path to the extension module. The default export will be used as a Stringify or Runner extension based on instanceOf checks.',
-    demandOption: true,
-  })
-  .parse();
+const Extension = await importExtensionFromPath(extensionPath);
+const ext = new Extension();
+
+let run = async () => {};
+
+if (ext instanceof RunnerExtension) {
+  console.log('runner');
+  run = async () => {
+    const extension = new Extension();
+    const runner = await createRunner(parse(recording), extension);
+    await runner.run();
+  };
+} else {
+  run = async () => {
+    const exported = await stringify(parse(recording), {
+      extension: new Extension(),
+    });
+
+    const childProcess = spawn('node', {
+      stdio: ['pipe', 'pipe', 'inherit'],
+      shell: true,
+    });
+    childProcess.stdin.write(exported);
+    childProcess.stdin.end();
+
+    await new Promise<void>((resolve, reject) => {
+      childProcess.on('close', (code) =>
+        code
+          ? reject(new Error(`Running node failed with code ${code}`))
+          : resolve()
+      );
+    });
+  };
+}
+const { server, log } = await startServer();
+
+try {
+  await run();
+} catch (err) {
+  console.error(err);
+} finally {
+  server.close();
+}
+assert.equal(log.contents, expectedLog);
+console.log('Run matches the expectations');

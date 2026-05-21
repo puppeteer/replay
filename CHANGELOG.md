@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/puppeteer/replay/compare/v3.1.3...v4.0.0) (2026-05-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* update repo to more modern code ([#1116](https://github.com/puppeteer/replay/issues/1116))
+
+### Features
+
+* update repo to more modern code ([#1116](https://github.com/puppeteer/replay/issues/1116)) ([a04ff86](https://github.com/puppeteer/replay/commit/a04ff8690499d425e815a7198388837f44192065))
+
 ## [3.1.3](https://github.com/puppeteer/replay/compare/v3.1.2...v3.1.3) (2025-09-11)
 
 

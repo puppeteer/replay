@@ -11,8 +11,47 @@ import { pathToFileURL } from 'url';
 import { cwd } from 'process';
 import { PuppeteerRunnerOwningBrowserExtension } from './main.js';
 import { Browser } from 'puppeteer';
-import Table from 'cli-table3';
 import { styleText } from 'node:util';
+
+export class StatusReport extends Array<string[]> {
+  override toString(): string {
+    const headers = ['Title', 'Status', 'File', 'Duration'];
+    const allRows = [headers, ...this];
+
+    const colWidths = headers.map((_, colIndex) => {
+      return Math.max(...allRows.map((row) => (row[colIndex] || '').length));
+    });
+
+    return allRows
+      .map((row, rowIndex) => {
+        const paddedRow = row
+          .map((cell, colIndex) => {
+            const cellStr = cell || '';
+            let formattedCell = cellStr;
+
+            if (rowIndex > 0 && colIndex === 1) {
+              formattedCell =
+                cellStr === ' Success '
+                  ? styleText(['white', 'bgGreen'], cellStr)
+                  : styleText(['white', 'bgRed'], cellStr);
+            }
+
+            const padding = ' '.repeat(
+              Math.max(0, colWidths[colIndex]! - cellStr.length)
+            );
+            return formattedCell + padding;
+          })
+          .join('  ');
+
+        if (rowIndex === 0) {
+          const separator = colWidths.map((w) => '═'.repeat(w)).join('══');
+          return `${paddedRow}\n${separator}`;
+        }
+        return paddedRow;
+      })
+      .join('\n');
+  }
+}
 
 export function getJSONFilesFromFolder(path: string): string[] {
   return readdirSync(path)
@@ -75,39 +114,15 @@ type Result = {
   title: string;
 };
 
-export function createStatusReport(results: Result[]): Table.Table {
-  const table = new Table({
-    head: ['Title', 'Status', 'File', 'Duration'],
-    chars: {
-      top: '═',
-      'top-mid': '╤',
-      'top-left': '╔',
-      'top-right': '╗',
-      bottom: '═',
-      'bottom-mid': '╧',
-      'bottom-left': '╚',
-      'bottom-right': '╝',
-      left: '║',
-      'left-mid': '╟',
-      mid: '─',
-      'mid-mid': '┼',
-      right: '║',
-      'right-mid': '╢',
-      middle: '│',
-    },
-    style: {
-      head: ['bold'],
-    },
-  });
+export function createStatusReport(results: Result[]): StatusReport {
+  const table = new StatusReport();
 
   for (const result of results) {
     const row: string[] = [];
 
     const duration =
       result.finishedAt?.getTime()! - result.startedAt.getTime() || 0;
-    const status = result.success
-      ? styleText(['white', 'bgGreen'], ' Success ')
-      : styleText(['white', 'bgRed'], ' Failure ');
+    const status = result.success ? ' Success ' : ' Failure ';
 
     row.push(result.title);
     row.push(status);

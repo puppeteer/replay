@@ -13,8 +13,6 @@ import {
 } from '../../src/CLIUtils.js';
 import path from 'path';
 
-import * as CliTable from 'cli-table3';
-
 const Status = {
   Success: 1,
   Error: 0,
@@ -30,6 +28,10 @@ async function getStatus(asyncFn: () => Promise<unknown>): Promise<Status> {
   }
 
   return error ? Status.Error : Status.Success;
+}
+
+function normalizePaths(str: string): string {
+  return str.replace(/\\/g, '/');
 }
 
 describe('cli', () => {
@@ -89,8 +91,7 @@ describe('cli', () => {
         title: 'Test run',
       };
       const [statusReport] = createStatusReport([result]);
-      const [title, status, _file, duration] =
-        statusReport as CliTable.HorizontalTableRow;
+      const [title, status, _file, duration] = statusReport!;
 
       t.assert.snapshot([title, status, 'PLACEHOLDER_FILE', duration]);
     });
@@ -105,10 +106,36 @@ describe('cli', () => {
         title: 'Test run',
       };
       const [statusReport] = createStatusReport([result]);
-      const [title, status, _file, duration] =
-        statusReport as CliTable.HorizontalTableRow;
+      const [title, status, _file, duration] = statusReport!;
 
       t.assert.snapshot([title, status, 'PLACEHOLDER_FILE', duration]);
+    });
+  });
+
+  describe('StatusReport.toString', () => {
+    it('is able to format multiple status results into padded rows', (t) => {
+      const date = new Date();
+      const results = [
+        {
+          startedAt: date,
+          file: 'replay.json',
+          finishedAt: new Date(date.getTime() + 1000),
+          success: true,
+          title: 'wiki',
+        },
+        {
+          startedAt: date,
+          file: 'replay-fail.json',
+          finishedAt: date,
+          success: false,
+          title: 'fail',
+        },
+      ];
+      const report = createStatusReport(results);
+
+      // Replace the dynamic paths and times if they vary, but here paths and times are static in inputs.
+      // Let's assert on the snapshot of report.toString() output.
+      t.assert.snapshot(normalizePaths(report.toString()));
     });
   });
 });

@@ -1,3 +1,7 @@
+exports[`cli > StatusReport.toString > is able to format multiple status results into padded rows 1`] = `
+"Title  Status     File              Duration\\n════════════════════════════════════════════\\nwiki    Success   replay.json       1000ms  \\nfail    Failure   replay-fail.json  0ms     "
+`;
+
 exports[`cli > createStatusReport > is able to create a failed status report 1`] = `
 [
   "Test run",

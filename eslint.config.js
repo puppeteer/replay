@@ -36,10 +36,24 @@ export default [
     },
   },
 
+  // Disable TSDoc checks for config files
+  {
+    files: ['*.config.js'],
+    rules: {
+      'tsdoc/syntax': 'off',
+    },
+  },
+
   eslintPluginPrettierRecommended,
 
   // Ignore patterns
   {
-    ignores: ['lib/**', 'node_modules/**', 'coverage/**', 'third_party/**'],
+    ignores: [
+      'lib/**',
+      'node_modules/**',
+      'coverage/**',
+      'third_party/**',
+      '.tmp/**',
+    ],
   },
 ];

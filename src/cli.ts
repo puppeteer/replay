@@ -7,7 +7,7 @@
 import { parseArgs } from 'node:util';
 import { getHeadlessEnvVar, getRecordingPaths, runFiles } from './CLIUtils.js';
 
-const { values, positionals } = parseArgs({
+const { values, positionals: files } = parseArgs({
   options: {
     headless: {
       type: 'string',
@@ -32,14 +32,13 @@ if (values.help) {
 Usage: replay [options] <files..>
 
 Options:
-  --headless     Run using the browser's headless mode. Choices: shell, true, 1, 0, false
+  --headless            Run using the browser's headless mode. 
+                        Choices: shell, true, 1, 0, false
   --ext, --extension    Run using an extension identified by the path.
-  -h, --help     Show help
+  -h, --help            Show help
 `);
   process.exit(0);
 }
-
-const files = positionals;
 
 if (files.length === 0) {
   console.error('Error: Missing required argument: files');

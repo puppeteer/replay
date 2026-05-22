@@ -1,6 +1,5 @@
 import js from '@eslint/js';
-import tsParser from '@typescript-eslint/parser';
-import tsPlugin from '@typescript-eslint/eslint-plugin';
+import typeScriptEsLint from 'typescript-eslint';
 import tsdocPlugin from 'eslint-plugin-tsdoc';
 import globals from 'globals';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
@@ -12,20 +11,19 @@ export default [
   {
     files: ['**/*.js', '**/*.ts'],
     languageOptions: {
-      parser: tsParser,
+      parser: typeScriptEsLint.parser,
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
       },
       globals: {
         ...globals.browser,
-        ...globals.es2022,
+        ...globals.es2024,
         ...globals.node,
-        ...globals.mocha,
       },
     },
     plugins: {
-      '@typescript-eslint': tsPlugin,
+      '@typescript-eslint': typeScriptEsLint.plugin,
       tsdoc: tsdocPlugin,
     },
     rules: {

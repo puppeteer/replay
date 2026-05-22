@@ -58,7 +58,7 @@ export default [
       'path',
       'url',
       'process',
-      'yargs/helpers',
+      'node:util',
     ],
     plugins: [
       typescript({
@@ -81,12 +81,12 @@ export default [
         ...packageJson.dependencies,
         ...packageJson.peerDependencies,
       }),
-      '../lib/main.js',
+      './main.js',
       'fs',
       'path',
       'url',
       'process',
-      'yargs/helpers',
+      'node:util',
       'http',
       'assert/strict',
       'child_process',

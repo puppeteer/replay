@@ -65,7 +65,7 @@
     "ws": "8.20.1"
   },
   "peerDependencies": {
-    "lighthouse": ">=10.0.0",
+    "lighthouse": ">=13.0.0",
     "puppeteer": ">=25.0.0"
   },
   "peerDependenciesMeta": {

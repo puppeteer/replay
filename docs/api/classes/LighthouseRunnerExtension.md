@@ -1,66 +1,62 @@
+[**@puppeteer/replay**](../README.md)
+
+---
+
 [@puppeteer/replay](../README.md) / LighthouseRunnerExtension
 
 # Class: LighthouseRunnerExtension
 
-## Hierarchy
+Defined in: [lighthouse/LighthouseRunnerExtension.ts:12](https://github.com/puppeteer/replay/blob/main/src/lighthouse/LighthouseRunnerExtension.ts#L12)
+
+## Extends
 
 - [`PuppeteerRunnerExtension`](PuppeteerRunnerExtension.md)
 
-  ↳ **`LighthouseRunnerExtension`**
-
-## Table of contents
-
-### Constructors
-
-- [constructor](LighthouseRunnerExtension.md#constructor)
-
-### Methods
-
-- [afterAllSteps](LighthouseRunnerExtension.md#afterallsteps)
-- [afterEachStep](LighthouseRunnerExtension.md#aftereachstep)
-- [beforeAllSteps](LighthouseRunnerExtension.md#beforeallsteps)
-- [beforeEachStep](LighthouseRunnerExtension.md#beforeeachstep)
-- [createFlowResult](LighthouseRunnerExtension.md#createflowresult)
-- [runStep](LighthouseRunnerExtension.md#runstep)
-
 ## Constructors
 
-### constructor
+### Constructor
 
-• **new LighthouseRunnerExtension**(`browser`, `page`, `opts?`): [`LighthouseRunnerExtension`](LighthouseRunnerExtension.md)
+> **new LighthouseRunnerExtension**(`browser`, `page`, `opts?`): `LighthouseRunnerExtension`
+
+Defined in: [PuppeteerRunnerExtension.ts:35](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L35)
 
 #### Parameters
 
-| Name            | Type      |
-| :-------------- | :-------- |
-| `browser`       | `Browser` |
-| `page`          | `Page`    |
-| `opts?`         | `Object`  |
-| `opts.timeout?` | `number`  |
+##### browser
+
+`Browser`
+
+##### page
+
+`Page`
+
+##### opts?
+
+###### timeout?
+
+`number`
 
 #### Returns
 
-[`LighthouseRunnerExtension`](LighthouseRunnerExtension.md)
+`LighthouseRunnerExtension`
 
 #### Inherited from
 
-[PuppeteerRunnerExtension](PuppeteerRunnerExtension.md).[constructor](PuppeteerRunnerExtension.md#constructor)
-
-#### Defined in
-
-[PuppeteerRunnerExtension.ts:51](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L51)
+[`PuppeteerRunnerExtension`](PuppeteerRunnerExtension.md).[`constructor`](PuppeteerRunnerExtension.md#constructor)
 
 ## Methods
 
-### afterAllSteps
+### afterAllSteps()
 
-▸ **afterAllSteps**(`flow`): `Promise`\<`void`\>
+> **afterAllSteps**(`flow`): `Promise`\<`void`\>
+
+Defined in: [lighthouse/LighthouseRunnerExtension.ts:66](https://github.com/puppeteer/replay/blob/main/src/lighthouse/LighthouseRunnerExtension.ts#L66)
 
 #### Parameters
 
-| Name   | Type                                           |
-| :----- | :--------------------------------------------- |
-| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+##### flow
+
+[`UserFlow`](../interfaces/UserFlow.md)
 
 #### Returns
 
@@ -68,24 +64,25 @@
 
 #### Overrides
 
-[PuppeteerRunnerExtension](PuppeteerRunnerExtension.md).[afterAllSteps](PuppeteerRunnerExtension.md#afterallsteps)
-
-#### Defined in
-
-[lighthouse/LighthouseRunnerExtension.ts:76](https://github.com/puppeteer/replay/blob/main/src/lighthouse/LighthouseRunnerExtension.ts#L76)
+[`PuppeteerRunnerExtension`](PuppeteerRunnerExtension.md).[`afterAllSteps`](PuppeteerRunnerExtension.md#afterallsteps)
 
 ---
 
-### afterEachStep
+### afterEachStep()
 
-▸ **afterEachStep**(`step`, `flow?`): `Promise`\<`void`\>
+> **afterEachStep**(`step`, `flow?`): `Promise`\<`void`\>
+
+Defined in: [lighthouse/LighthouseRunnerExtension.ts:58](https://github.com/puppeteer/replay/blob/main/src/lighthouse/LighthouseRunnerExtension.ts#L58)
 
 #### Parameters
 
-| Name    | Type                                           |
-| :------ | :--------------------------------------------- |
-| `step`  | [`Step`](../modules/Schema.md#step)            |
-| `flow?` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+##### step
+
+[`Step`](../type-aliases/Step.md)
+
+##### flow?
+
+[`UserFlow`](../interfaces/UserFlow.md)
 
 #### Returns
 
@@ -93,23 +90,21 @@
 
 #### Overrides
 
-[PuppeteerRunnerExtension](PuppeteerRunnerExtension.md).[afterEachStep](PuppeteerRunnerExtension.md#aftereachstep)
-
-#### Defined in
-
-[lighthouse/LighthouseRunnerExtension.ts:68](https://github.com/puppeteer/replay/blob/main/src/lighthouse/LighthouseRunnerExtension.ts#L68)
+[`PuppeteerRunnerExtension`](PuppeteerRunnerExtension.md).[`afterEachStep`](PuppeteerRunnerExtension.md#aftereachstep)
 
 ---
 
-### beforeAllSteps
+### beforeAllSteps()
 
-▸ **beforeAllSteps**(`flow`): `Promise`\<`void`\>
+> **beforeAllSteps**(`flow`): `Promise`\<`void`\>
+
+Defined in: [lighthouse/LighthouseRunnerExtension.ts:24](https://github.com/puppeteer/replay/blob/main/src/lighthouse/LighthouseRunnerExtension.ts#L24)
 
 #### Parameters
 
-| Name   | Type                                           |
-| :----- | :--------------------------------------------- |
-| `flow` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+##### flow
+
+[`UserFlow`](../interfaces/UserFlow.md)
 
 #### Returns
 
@@ -117,24 +112,25 @@
 
 #### Overrides
 
-[PuppeteerRunnerExtension](PuppeteerRunnerExtension.md).[beforeAllSteps](PuppeteerRunnerExtension.md#beforeallsteps)
-
-#### Defined in
-
-[lighthouse/LighthouseRunnerExtension.ts:34](https://github.com/puppeteer/replay/blob/main/src/lighthouse/LighthouseRunnerExtension.ts#L34)
+[`PuppeteerRunnerExtension`](PuppeteerRunnerExtension.md).[`beforeAllSteps`](PuppeteerRunnerExtension.md#beforeallsteps)
 
 ---
 
-### beforeEachStep
+### beforeEachStep()
 
-▸ **beforeEachStep**(`step`, `flow?`): `Promise`\<`void`\>
+> **beforeEachStep**(`step`, `flow?`): `Promise`\<`void`\>
+
+Defined in: [lighthouse/LighthouseRunnerExtension.ts:41](https://github.com/puppeteer/replay/blob/main/src/lighthouse/LighthouseRunnerExtension.ts#L41)
 
 #### Parameters
 
-| Name    | Type                                           |
-| :------ | :--------------------------------------------- |
-| `step`  | [`Step`](../modules/Schema.md#step)            |
-| `flow?` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+##### step
+
+[`Step`](../type-aliases/Step.md)
+
+##### flow?
+
+[`UserFlow`](../interfaces/UserFlow.md)
 
 #### Returns
 
@@ -142,38 +138,37 @@
 
 #### Overrides
 
-[PuppeteerRunnerExtension](PuppeteerRunnerExtension.md).[beforeEachStep](PuppeteerRunnerExtension.md#beforeeachstep)
-
-#### Defined in
-
-[lighthouse/LighthouseRunnerExtension.ts:51](https://github.com/puppeteer/replay/blob/main/src/lighthouse/LighthouseRunnerExtension.ts#L51)
+[`PuppeteerRunnerExtension`](PuppeteerRunnerExtension.md).[`beforeEachStep`](PuppeteerRunnerExtension.md#beforeeachstep)
 
 ---
 
-### createFlowResult
+### createFlowResult()
 
-▸ **createFlowResult**(): `Promise`\<`FlowResult`\>
+> **createFlowResult**(): `Promise`\<`FlowResult`\>
+
+Defined in: [lighthouse/LighthouseRunnerExtension.ts:17](https://github.com/puppeteer/replay/blob/main/src/lighthouse/LighthouseRunnerExtension.ts#L17)
 
 #### Returns
 
 `Promise`\<`FlowResult`\>
 
-#### Defined in
-
-[lighthouse/LighthouseRunnerExtension.ts:27](https://github.com/puppeteer/replay/blob/main/src/lighthouse/LighthouseRunnerExtension.ts#L27)
-
 ---
 
-### runStep
+### runStep()
 
-▸ **runStep**(`step`, `flow?`): `Promise`\<`void`\>
+> **runStep**(`step`, `flow?`): `Promise`\<`void`\>
+
+Defined in: [PuppeteerRunnerExtension.ts:56](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L56)
 
 #### Parameters
 
-| Name    | Type                                           |
-| :------ | :--------------------------------------------- |
-| `step`  | [`Step`](../modules/Schema.md#step)            |
-| `flow?` | [`UserFlow`](../interfaces/Schema.UserFlow.md) |
+##### step
+
+[`Step`](../type-aliases/Step.md)
+
+##### flow?
+
+[`UserFlow`](../interfaces/UserFlow.md)
 
 #### Returns
 
@@ -181,8 +176,4 @@
 
 #### Inherited from
 
-[PuppeteerRunnerExtension](PuppeteerRunnerExtension.md).[runStep](PuppeteerRunnerExtension.md#runstep)
-
-#### Defined in
-
-[PuppeteerRunnerExtension.ts:72](https://github.com/puppeteer/replay/blob/main/src/PuppeteerRunnerExtension.ts#L72)
+[`PuppeteerRunnerExtension`](PuppeteerRunnerExtension.md).[`runStep`](PuppeteerRunnerExtension.md#runstep)

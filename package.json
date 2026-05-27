@@ -23,7 +23,7 @@
     "lint:format": "prettier --check . && npm run eslint",
     "format": "prettier --write . && eslint --fix .",
     "eslint": "eslint .",
-    "docs": "typedoc --tsconfig docs.tsconfig.json --readme none --gitRevision main --externalPattern --excludeExternals --excludeProtected --excludePrivate --plugin typedoc-plugin-markdown --out docs/api src/main.ts && npm run format",
+    "docs": "typedoc --tsconfig tsconfig.json --readme none --gitRevision main --externalPattern --excludeExternals --excludeProtected --excludePrivate --plugin typedoc-plugin-markdown --out docs/api src/main.ts && npm run format",
     "clean": "rimraf lib",
     "build": "npm run clean && rollup --config rollup.config.js"
   },

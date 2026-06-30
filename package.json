@@ -17,7 +17,7 @@
   },
   "scripts": {
     "test": "npm run build && tsc -p tsconfig.test.json && node --test --test-reporter=spec --import ./lib/test/setup.js lib/test/*.test.js lib/**/*.test.js",
-    "test:headful": "cross-env PUPPETEER_HEADFUL=true npm run test",
+    "test:headful": "cross-env PUPPETEER_HEADFUL=true npm run test -- --test-concurrency=1",
     "test:fast": "npm run test -- --ignore=test/e2e/**/*",
     "lint": "npm run lint:format",
     "lint:format": "prettier --check . && npm run eslint",

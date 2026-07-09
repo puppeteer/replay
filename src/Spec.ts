@@ -145,7 +145,6 @@ export const files = new Map([
 <button
     id="hover"
     onmouseenter="logEvent(event)"
-    onmouseleave="logEvent(event)"
 >
     Hover
 </button>

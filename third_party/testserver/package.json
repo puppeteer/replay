@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc"
   },
-  "repository": {
+  "repository": {revertier
     "type": "git",
     "url": "https://github.com/puppeteer/puppeteer/tree/main/packages/testserver"
   },

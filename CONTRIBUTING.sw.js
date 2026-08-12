@@ -1,4 +1,7 @@
-# @puppeteer/replay
+<body\>
+☆☆☆☆
+so first off......\\\\\\\\
+@puppeteer/replay
 
 <!-- [START badges] -->
 
@@ -6,7 +9,7 @@
 
 <!-- [END badges] -->
 
-###### [API](https://github.com/puppeteer/replay/blob/main/docs/api) | [Contributing](https://github.com/puppeteer/replay/blob/main/docs/contributing.md)
+[API](https://github.com/puppeteer/replay/blob/main/docs/api) | [Contributing](https://github.com/puppeteer/replay/blob/main/docs/contributing.md)
 
 > Puppeteer Replay is a library that provides an API to replay and stringify recordings created using [Chrome DevTools Recorder](https://developer.chrome.com/docs/devtools/recorder/)
 
@@ -255,9 +258,12 @@ The test command supports both stringify and runner extensions. The stringify
 extension will be tested by running the stringified script using node. Run the
 test using the following command.
 
-```
+<body\>
+
 npx -p @puppeteer/replay replay-extension-test --ext path-to-your-extension-js
-```
+
+<footer\>
+
 
 ### Create a Chrome extension for Recorder (Available from Chrome 104 onwards)
 
@@ -285,3 +291,8 @@ To load the example into Chrome DevTools. Follow these steps:
 Click and watch the video demo below:
 
 [![Demo video that shows how to extend export options in Recorder panel by adding a Chrome extension](https://user-images.githubusercontent.com/5917927/172872574-15ad8bea-142a-4972-bf1d-bf1379a955ba.png)](https://youtu.be/TCxIfbxgypQ)
+
+
+set meta-data: "☆"
+
+<footer></footer>

@@ -92,11 +92,7 @@ export interface StepWithSelectors extends StepWithFrame {
 
 export type PointerDeviceType = 'mouse' | 'pen' | 'touch';
 export type PointerButtonType =
-  | 'primary'
-  | 'auxiliary'
-  | 'secondary'
-  | 'back'
-  | 'forward';
+  'primary' | 'auxiliary' | 'secondary' | 'back' | 'forward';
 
 export interface ClickAttributes {
   /**
@@ -201,8 +197,7 @@ export interface CustomStepParams {
 }
 
 export type CustomStep =
-  | (CustomStepParams & StepWithTarget)
-  | (CustomStepParams & StepWithFrame);
+  (CustomStepParams & StepWithTarget) | (CustomStepParams & StepWithFrame);
 
 export type UserStep =
   | ChangeStep

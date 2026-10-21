@@ -127,8 +127,8 @@ export const formatAsJSLiteral = (content: string): string => {
     return match;
   };
 
-  let escapedContent = '';
-  let quote = '';
+  let escapedContent;
+  let quote;
   if (!content.includes("'")) {
     quote = "'";
     escapedContent = content.replace(patternsToEscape, escapePattern);

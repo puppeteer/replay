@@ -5,12 +5,7 @@ export type ExcludeType<T, U> = {
 export type PickType<T, U> = Pick<T, ExcludeType<T, U>>;
 
 export type JSONValue =
-  | null
-  | string
-  | number
-  | boolean
-  | JSONObject
-  | JSONArray;
+  null | string | number | boolean | JSONObject | JSONArray;
 
 export interface JSONObject {
   [key: string]: JSONValue;

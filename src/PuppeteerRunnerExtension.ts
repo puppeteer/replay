@@ -241,7 +241,8 @@ export class PuppeteerRunnerExtension extends RunnerExtension {
         } catch (err) {
           if ((err as Error).message === 'Timed out') {
             throw new Error(
-              'waitForElement timed out. The element(s) could not be found.'
+              'waitForElement timed out. The element(s) could not be found.',
+              { cause: err }
             );
           } else {
             throw err;

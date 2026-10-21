@@ -93,7 +93,7 @@ if (!extensionPath) {
 const Extension = await importExtensionFromPath(extensionPath);
 const ext = new Extension();
 
-let run = async () => {};
+let run;
 
 if (ext instanceof RunnerExtension) {
   console.log('runner');
